@@ -1,0 +1,173 @@
+\documentclass[12pt,spanish]{article}
+
+% aprovechamiento de la p\'agina -- fill an A4 (210mm x 297mm) page
+% Note: 1 inch = 25.4 mm = 72.27 pt
+% 1 pt = 3.5 mm (approx)
+
+% vertical page layout -- one inch margin top and bottom
+\topmargin      -10 mm   % top margin less 1 inch
+\headheight       0 mm   % height of box containing the head
+\headsep          0 mm   % space between the head and the body of the page
+\textheight     255 mm   % the height of text on the page
+\footskip         7 mm   % distance from bottom of body to bottom of foot
+
+% horizontal page layout -- one inch margin each side
+\oddsidemargin    0 mm     % inner margin less one inch on odd pages
+\evensidemargin   0 mm     % inner margin less one inch on even pages
+\textwidth      159 mm     % normal width of text on page
+
+\usepackage[doument]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage[dvips,usenames]{color}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage{tikz}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=webred]{hyperref}
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{MistyRose}{RGB}{255,228,225}
+\definecolor{LightCyan}{RGB}{224,255,255}
+
+\usepackage{beton}
+\usepackage[T1]{fontenc}
+
+% Theorem environments
+
+%% \theoremstyle{plain} %% This is the default
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+%\newtheorem{ax}{Axioma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definici\'on}[section]
+\newtheorem{algorithm}{\textrm{\bf Algoritmo}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observaci\'on}[section]
+\newtheorem{example}{Ejemplo}[section]
+\newtheorem{exercise}{Ejercicio}[section]
+%\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}}
+\newtheorem*{notation}{Notaci\'on}
+
+%\numberwithin{equation}{section}
+
+%\newcommand{\regla}[2]{
+%\begin{array}{c}
+%#1\\
+%\hline
+%#2\\
+%\end{array}
+%}
+
+\title{Desbarajustes}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{justify}
+  Los desbarajustes de n elementos son las formas de ordenar dichos
+  elementos de forma que ninguno de ellos acabe en su posición
+  correspondiente. Por ejemplo, la permutación $\{3,2,1,5,4\}$ no es
+  un desbarajuste porque el 2 está en su posición, mientras que
+  $\{5,4,2,1,3\}$ sí que lo es.  El número de desbarajustes para n
+  elementos viene dado por la siguiente fórmula:
+\end{justify}
+
+\begin{align*}
+  D(n)=n!\cdot\sum\limits_{i=0}^n\frac{(-1)^i}{i!}
+\end{align*}
+
+\begin{justify}
+  Veamos como se deduce la fórmula, para ello primero consideraremos
+  el complementario, sea $A\subset\mathnormal{Perm}(n)$ el subconjunto
+  de las permutaciones de n elementos que tienen algún elemento en su
+  posición correspondiente. Notaremos $A_i$ a las permutaciones que
+  conservan la posición del elemento i-ésimo, entonces tenemos:
+  
+  $A=A_1\cup A_2\cup\ldots\cup A_r \cup\ldots\cup A_n$,
+  pero los $A_i$
+  no son disjuntos, por ejemplo la permutación que conserva las
+  posiciones de los dos primeros elementos, pertenece tanto a $A_1$
+  como $A_2$. Luego para hallar el cardinal de $A$ haremos uso del
+  principio de inclusión-exclusión ( $|\cdot|$ denota cardinal).
+\end{justify}
+
+\begin{justify}
+  Cada $A_i$ fija el elemento i-ésimo y permite las permutaciones de
+  los $n-1$ elementos restantes, $|A_i|=(n-1)!$, y tenemos n conjuntos
+  como este distintos, que podemos escribir como $\binom{n}{1}$.
+\end{justify}
+
+\begin{justify}
+  Cada $A_i\cap A_j$ fija los elementos i-ésimo y j-ésimo y permite
+  las permutacionesde los $n-2$ elementos restantes, $|A_i\cap
+  A_j|=(n-2)!$, y podemos formar $\binom{n}{2}$ conjuntos como este
+  distintos ($i<j$, i debe ser distinto de j y el orden no importa ya
+  que $A_i\cap A_j =A_j\cap A_i$).
+\end{justify}
+
+\begin{justify}
+  Para cada r tal que $1\leq r \leq n$, tenemos $|A_{i1}\cap
+  A_{i2}\cap...\cap A_{ir}|=(n-r)!$, ya que fija r elementos y permite
+  las permutaciones de los n-r restantes. Y podemos formar
+  $\binom{n}{r}$ conjuntos como este diferentes.
+\end{justify}
+
+\begin{justify}
+  Finalmente, tenemos $|\bigcap\limits_{i=1}^n A_i|=(n-n)!=1$, y sólo
+  existe un conjunto de este tipo,$\binom{n}{n}$.
+\end{justify}
+
+\begin{align*}
+  |A|&=|A_1\cup A_2\cup\cdots\cup A_r \cup\cdots\cup A_n|\\
+  &=\sum\limits_{i=1}^n|A_i|-\sum\limits_{i<j}^n|A_i\cap A_j|+\cdots+(-1)^{n+1}|\bigcap\limits_{i=1}^nA_i|\\
+  &=\binom{n}{1}(n-1)!-\binom{n}{2}(n-2)!+\cdots+(-1)^{n+1}\binom{n}{n}(n-n)!\\
+  &=\sum\limits_{i=1}^n(-1)^{i+1}\binom{n}{i}(n-i)!
+\end{align*}
+
+\begin{justify}
+  Pero lo que nos interesan son las permutaciones en las que ningún
+  elemento está en su posición correspondiente, es decir, todas las
+  permutaciones de n elementos que no pertenezcan a A. Por tanto los
+  desbarajustes de n elementos son:
+\end{justify}
+
+\begin{align*}
+  D(n)&=n!-\sum\limits_{i=1}^n(-1)^{i+1}\binom{n}{i}(n-i)!\\
+  &=n!+\sum\limits_{i=1}^n(-1)^i\binom{n}{i}(n-i)!\\
+  &=\sum\limits_{i=0}^n(-1)^i\binom{n}{i}(n-i)!
+\end{align*}
+
+\begin{justify}
+  En la primera igualdad, hemos cambiado el signo a cada elemento de
+  la sumatoria, por lo que $(-1)^{i+1}$ que pasa a ser $(-1)^i$, y en
+  la segunda, hay que notar que n! es justo el término 0 de la
+  sumatoria. El último paso es simplificar el número combinatorio y
+  sacar n! de la sumatoria para obtener la expresión del principio.
+\end{justify}
+
+\begin{align*}
+  D(n)&=\sum\limits_{i=0}^n(-1)^i\binom{n}{i}(n-i)!\\
+  &=\sum\limits_{i=0}^n(-1)^i\frac{n!}{i!(n-i)!}(n-i)!\\
+  &=n!\sum\limits_{i=0}^n\frac{(-1)^i}{i!}
+\end{align*}
+
+\end{document}

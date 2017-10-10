@@ -1,0 +1,175 @@
+\documentclass[12pt,spanish]{article}
+
+% aprovechamiento de la p\'agina -- fill an A4 (210mm x 297mm) page
+% Note: 1 inch = 25.4 mm = 72.27 pt
+% 1 pt = 3.5 mm (approx)
+
+% vertical page layout -- one inch margin top and bottom
+\topmargin      -10 mm   % top margin less 1 inch
+\headheight       0 mm   % height of box containing the head
+\headsep          0 mm   % space between the head and the body of the page
+\textheight     255 mm   % the height of text on the page
+\footskip         7 mm   % distance from bottom of body to bottom of foot
+
+% horizontal page layout -- one inch margin each side
+\oddsidemargin    0 mm     % inner margin less one inch on odd pages
+\evensidemargin   0 mm     % inner margin less one inch on even pages
+\textwidth      159 mm     % normal width of text on page
+
+\usepackage[doument]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage[dvips,usenames]{color}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage{tikz}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=webred]{hyperref}
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{MistyRose}{RGB}{255,228,225}
+\definecolor{LightCyan}{RGB}{224,255,255}
+
+\usepackage{beton}
+\usepackage[T1]{fontenc}
+
+% Theorem environments
+
+%% \theoremstyle{plain} %% This is the default
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+%\newtheorem{ax}{Axioma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definici\'on}[section]
+\newtheorem{algorithm}{\textrm{\bf Algoritmo}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observaci\'on}[section]
+\newtheorem{example}{Ejemplo}[section]
+\newtheorem{exercise}{Ejercicio}[section]
+%\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}}
+\newtheorem*{notation}{Notaci\'on}
+
+%\numberwithin{equation}{section}
+
+%\newcommand{\regla}[2]{
+%\begin{array}{c}
+%#1\\
+%\hline
+%#2\\
+%\end{array}
+%}
+
+\title{Problema de las n cartas introducidas al azar en n sobres}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{justify}
+  Una secretaria introduce n cartas dirigidas a n destinatarios
+  distintos en n sobres al azar, se desea calcular la probabilidad de
+  que al menos una carta llegue a su destino.
+\end{justify}
+
+\begin{justify}
+  Primero identifiquemos nuestro espacio probabilístico, los posibles
+  sucesos son las diferentes formas de repartir las n cartas en n
+  sobres de forma que a cada sobre le corresponda una única carta
+  (obviamente no pueden quedar cartas fuera), es decir, las
+  permutaciones de n elementos.
+\end{justify}
+
+\begin{align*}
+  \Omega&=\mathnormal{Perm}(n)\\
+  |\Omega|&=n!
+ \end{align*}
+    
+\begin{justify}
+  La probabilidad de cada permutación es $\frac{1}{n!}$, por lo tanto
+  el número de casos posibles es el cardinal de $\Omega$, n!.
+\end{justify}
+
+\begin{justify}
+  Los casos favorables son aquellas permutaciones en las que alguna de
+  las cartas queda en su posión correcta, es decir, el complementario
+  de los desbarajustes. Por tanto la probabilidad de que alguna carta
+  llegue a su destino es 1 menos la probabilidad de que aparezca un
+  desbarajuste. Notaremos $A$ al suceso que ocurre cuando alguna carta
+  llega a su destino, nuestro objetivo es calular su probabilidad, y
+  $D$ al suceso que ocurre cuando ninguna carta llega a su destino, es
+  decir, se da un desbarajuste. Obviamente, $A$ y $D$ son sucesos
+  complementarios.
+  $P(A)=1-P(D)$
+\end{justify}
+
+\begin{align*}
+  D(n)=n!\sum\limits_{i=0}^n\frac{(-1)^i}{i!}
+\end{align*}
+
+\begin{justify}
+  Como todos los casos son equiprobables (cada una de las
+  permutaciones en las cartas tiene la misma probabilidad de ocurrir),
+  calculamos la probabilidad de que ninguna carta llegue al
+  destinatario adecuado dividiendo el número de casos favorables entre
+  el número de casos posibles.
+\end{justify}
+
+\begin{align*}
+  P(D)&=\frac{D(n)}{n!}\\
+  &=\frac{n!\sum\limits_{i=0}^n\frac{(-1)^i}{i!}}{n!}\\
+  &=\sum\limits_{i=0}^n\frac{(-1)^i}{i!}\\
+  &=\frac{1}{0!}-\frac{1}{1!}+\frac{1}{2!}-\frac{1}{3!}+\cdots+\frac{(-1)^n}{n!}\\
+  &=\frac{1}{2!}-\frac{1}{3!}+\cdots+\frac{(-1)^n}{n!}
+\end{align*}
+
+\begin{justify}
+  Por tanto, la probabilidad de que al menos una carta llegue a su
+  destino, que es la que buscamos, viene dada por:
+\end{justify}
+
+\begin{align*}
+  P(A)&=1-P(D)\\
+  &=1-\frac{1}{2!}+\frac{1}{3!}-\frac{1}{4!}+\cdots+\frac{(-1)^{n+1}}{n!}
+\end{align*}
+
+\begin{justify}
+  Esta serie es convergente, por lo que podemos calcular el límite de
+  $P(A)$ en el infinito, la probabilidad de que aparezca un
+  desbarajuste, $P(D)$, se corresponde con el polinomio de Taylor de
+  orden n de la función $f(x)=e^x$ centrado en $0$ y evaluado en
+  $x=-1$, recordemos que este polinomio es:
+\end{justify}
+
+\begin{align*}
+  P_n(x)&=1+\frac{x}{1}+\frac{x^2}{2!}-\frac{1}{3!}+\cdots+\frac{(-1)^n}{n!}\\
+  P_n(-1)&=1-1+\frac{1}{2!}-\frac{1}{3!}+\cdots+\frac{(-1)^n}{n!}\\
+  &=P(D)
+\end{align*}
+
+\begin{justify}
+  Por tanto, a medida que aumenta el número de cartas a enviar, n, la probabilidad de que se produzca un desbarajuste se aproxima a $e^{-1}$. Finalmente obtenemos:
+\end{justify}
+
+\begin{align*}
+  \lim_{n\to\infty} P(D)&=\lim_{n\to\infty} D(n)=e^{-1}=\frac{1}{e}\\
+  \lim_{n\to\infty} P(A)&=1-\frac{1}{e} 
+\end{align*}
+
+\end{document}
