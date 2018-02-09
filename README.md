@@ -3,4 +3,4 @@
 
 Documentos que realizo sobre cosas interesantes de matemáticas externas a la carrera.
 Incluye archivos.tex, pequeños programas, etc. 
-Los PDF compilados extán la sección releases.
+Los PDF compilados están la sección releases.
