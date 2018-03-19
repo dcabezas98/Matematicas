@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[spanish]{babel}
+
+
+
+\usepackage{multirow}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pifont}
+
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\usepackage[parfill]{parskip}
+
+% Para el código
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+% Entorno para estilo de ejercicios
+\newenvironment{ejercicio}[1]{\textbf{#1} \vspace*{5mm}}{\vspace*{5mm}}
+\setlength{\parindent}{10pt} 
+
+\begin{document}
+
+\title{Tema 1: Problema 2}
+\author{David Cabezas}
+\date{}
+\maketitle
+\begin{flushleft}
+  \textbf {Sea $A$ un subconjunto cualquiera de $R^N$.Probar que el
+    espacio normado de funciones continuas y acotadas
+    $(\mathcal{C}_b(A,\mathbb{R}), \|\cdot\|_\infty)$ es de Banach, es
+    decir, completo.}
+
+  En adelante $\|\cdot\|$ denota $\|\cdot\|_\infty$.
+
+  Tomamos una sucesión de Cauchy $\{f_n\}$ de elementos del espacio.
+  Dado un $\epsilon>0$, existe un $m \in \mathbb{N}$ tal que
+  $$\forall p,q \in \mathbb{N} \text{ cumpliendo }  p,q \geq m \text{ se tiene } \|f_p - f_q\| < \epsilon$$
+  en particular
+  $$\forall n \in \mathbb{N} \text{ cumpliendo } n \geq m \text{ se
+    tiene } \|f_n - f_m\| < \epsilon$$
+
+  Notemos que
+  $$\forall x \in A, |f_p(x)-f_q(x)| \leq \|f_p-f_q\| < \epsilon$$
+
+  por lo que fijado un $x \in A$, la sucesión real $\{f_n(x)\}$ es de
+  Cauchy y por tanto convergente. Esto nos da convergencia puntual
+  para $\{f_n\}$ y un único candidato a límite, la función $f$ que
+  cumple $f(x) = \lim\limits_{n \to \infty}f_n(x)$.
+
+  Supongamos que la sucesión no converge uniformemente a $f$, esto es:
+  $\exists \epsilon_0 > 0$ tal que
+  $$\forall m \in \mathbb{N} \hspace{2mm} \exists n \geq m: \hspace{2mm} \exists x \in A
+  \text{ cumpliendo } |f_n(x) - f(x)| \geq \epsilon_0$$
+
+  Fijado este $\epsilon_0$, el hecho de que $\{f_n\}$ sea de Cauchy
+  nos da un $m \in \mathbb{N}$ tal que
+  $$\forall p, q \in \mathbb{N} \text{ cumpliendo }  p,q \geq m
+  \text{ se tiene } \|f_p - f_q\| < \frac{\epsilon_0}{2}$$ luego se
+  tendrá
+  $$|f_p(x) - f_q(x)| < \frac{\epsilon_0}{2} \hspace{2mm} \forall x
+  \in A$$
+
+  Usando la suposición de que no $f$ converge uniformemente con este
+  $m$
+  $$\exists k \geq m, \hspace{2mm} \exists x_0 \in A \text{ tal que } |f_k(x_0) - f(x_0)| \geq \epsilon_0$$
+
+  Lleguemos a un absurdo negando la convergencia puntual de $\{f_n\}$,
+  $\forall n \in \mathbb{N}$ cumpliendo $n \geq m$ se tiene
+  $$|f_n(x_0) - f(x_0)| = |f_n(x_0) - f_k(x_0) + f_k(x_0) - f(x_0)| \geq
+  |f_k(x_0) - f(x_0)| - |f_n(x_0) - f_k(x_0)| > \epsilon_0 -
+\frac{\epsilon_0}{2} = \frac{\epsilon_0}{2}$$
+
+Entonces $\{f_n\}$ no converge puntualmente a $f$, lo cual es absurdo.
+Por tanto $\{f_n\}$ debe converger uniformemente a $f$. 
+\end{flushleft}
+
+\begin{flushleft}
+  Como cada función $f_n$ de la sucesión es continua, sabemos que $f$
+  lo es. Para probar que $f$ es acotada procedemos del siguiente modo:
+  fijamos $\epsilon = 1$, $\exists m \in \mathbb{N}$ tal que
+  $|f_m(x) - f(x)| < 1$ $\forall x \in A$, por tanto
+  $|f(x)| < |f_m(x)| + 1$ $\forall x \in A$, luego $f$ está acotada
+  por estarlo $f_m$, que es un elemento del espacio.
+\end{flushleft}
+
+\begin{flushleft}
+  Esto prueba que toda sucesión de Cauchy de elementos del espacio
+  converge uniformemente a un elemento del espacio, luego es de Banach.
+\end{flushleft}
+
+\end{document}
