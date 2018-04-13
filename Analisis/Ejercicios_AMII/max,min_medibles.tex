@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page settings
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+
+\usepackage[spanish]{babel}
+
+\usepackage{multirow}
+
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\usepackage[parfill]{parskip}
+
+% Para el código
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+% Entorno para estilo de ejercicios
+\newenvironment{ejercicio}[1]{\textbf{#1} \vspace*{5mm}}{\vspace*{5mm}}
+\setlength{\parindent}{10pt} 
+
+\begin{document}
+
+\title{\Large max\{$f$,$g$\} y min\{$f$,$g$\} son medibles}
+\author{David Cabezas}
+\date{}
+\maketitle
+
+\begin{flushleft}
+  \textbf{Sea $\Omega$ un espacio medible y
+    $f,g:\Omega \longrightarrow \mathbb{R}$ funciones
+    medibles. Consideramos
+    $\alpha,\beta:\Omega \longrightarrow \mathbb{R}$ dadas por}
+  $\alpha(\omega) = \mbox{min}\{f(\omega),g(\omega)\}, \ \beta(\omega)
+  = \mbox{max}\{f(\omega),g(\omega)\} \hspace{2mm} \forall \omega \in
+  \Omega.$
+
+  \textbf{Probar que $\alpha$ y $\beta$ son medibles.}
+\end{flushleft}  
+
+\begin{flushleft}
+  Dados $x,y \in \mathbb{R}$, tenemos
+  $\mbox{max}\{x,y\}=\dfrac{x+y+|x-y|}{2}$, \
+  $\mbox{min}\{x,y\}=\dfrac{x+y-|x-y|}{2}$
+
+  Esto puede comprobarse fácilmente teniendo en cuenta que
+  \[|x-y| =
+\begin{cases}
+x-y & \mbox{ si } x \leq y \\
+y-x & \mbox{ si } y \leq x
+\end{cases}
+\]
+Del mismo modo, tendremos
+\[
+  \alpha(\omega)=\mbox{min}\{f(\omega),g(\omega)\}=\dfrac{f(\omega)+g(\omega)-|f(\omega)-g(\omega)|}{2} \hspace{4mm} \forall \omega \in \Omega
+\]
+\[
+  \beta(\omega)=\mbox{max}\{f(\omega),g(\omega)\}=\dfrac{f(\omega)+g(\omega)+|f(\omega)-g(\omega)|}{2} \hspace{4mm} \forall \omega \in \Omega
+\]
+
+Como $g$ es medible, $\lambda g$ lo es ($\lambda \in \mathbb{C}$), por
+lo que $-g$ es medible. Además sabemos que la suma de funciones
+medibles es medible, luego tenemos que $f-g$ es medible.
+
+Por otra parte, la función valor absoluto es continua, por lo que al
+componerla con $f-g$ obtenemos que $|f-g|$ es medible.
+
+Queda comprobado que tanto $\alpha$ como $\beta$ son medibles, ya que
+son resultado de sumar, restar y multiplicar por escalares funciones
+medibles.
+
+\hfill\qedsymbol
+\end{flushleft}
+
+\end{document}
