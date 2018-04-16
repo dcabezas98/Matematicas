@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page settings
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathtools}
+
+\usepackage[spanish]{babel}
+
+\usepackage{multirow}
+
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\usepackage[parfill]{parskip}
+
+\usepackage{beton}
+\usepackage{euler} 
+\usepackage[T1]{fontenc}
+
+\newtheorem*{theorem}{}
+
+% Entorno para estilo de ejercicios
+\newenvironment{ejercicio}[1]{\textbf{#1} \vspace*{5mm}}{\vspace*{5mm}}
+
+\begin{document}
+
+\title{\Large Generalización del Lema de Fatou}
+\author{David Cabezas}
+\date{}
+\maketitle
+
+\begin{theorem}[\textbf{Lema de Fatou para funciones positivas}]
+  Sea $(\Omega,\mathcal{A},\mu)$ un espacio de medida y
+  $E \in \mathcal{A}$.
+
+  Si $f_n:\Omega \longrightarrow [0,\infty]$ es una sucesión de
+  funciones medibles entonces se cumple que
+  \[\int_E\varliminf\limits_{n\to\infty} f_n d\mu \leq
+    \varliminf\limits_{n\to\infty} \int_Ef_nd\mu\]
+\end{theorem}
+
+\begin{theorem}[\textbf{Lema de Fatou generalizado}]
+  Sea $(\Omega,\mathcal{A},\mu)$ un espacio de medida y
+  $E \in \mathcal{A}$.
+
+  Si $f_n:\Omega \longrightarrow \mathbb{R}$ es una sucesión de
+  funciones medibles y $\exists h:\Omega \longrightarrow \mathbb{R}$
+  integrable cumpliendo $h(\omega) \leq f_n(\omega)$ a.e.
+  $\omega \in E \hspace{2mm} \forall n \in \mathbb{N}$ entonces se
+  cumple que
+  \[\int_E\varliminf\limits_{n\to\infty} f_n d\mu \leq
+    \varliminf\limits_{n\to\infty} \int_Ef_nd\mu\]
+\end{theorem}
+
+\textbf{\underline{Demostración:}}
+
+Para cada $n \in \mathbb{N}$, definimos
+$A_n:=\{\omega \in E : h(\omega) > f_n(\omega)\}$, que es medible. \\
+Sabemos que $\mu(A_n)=0 \ \forall n \in \mathbb{N}$ ya que
+$h(\omega) \leq f_n(\omega)$ a.e. en $E$.
+
+Tomamos $A=E\Big\backslash\bigcup\limits_{n=1}^\infty A_n$, que tiene
+medida nula. Dado $\omega \in A$ se tiene
+$h(\omega) \leq f_n(\omega) \hspace{2mm} \forall n \in \mathbb{N}$.
+
+Ahora consideramos la sucesión de funciones
+$g_n:\Omega \longrightarrow \mathbb{R}$, donde
+$g_n=(f_n-h)\mathcal{X}_A \hspace{2mm} \forall n \in \mathbb{N}$, que
+son medibles.
+
+Dado $\omega \in E$, $g_n(\omega)=f_n(\omega)-h(\omega)$ si
+$\omega \in A$ y $g_n(\omega)=0$ si $\omega \notin A$. En cualquier
+caso se tiene $g_n(\omega) \leq 0$. Por lo que podemos aplicar el
+resultado anterior a la sucesión $\{g_n\}$, obteniendo
+\begin{align}
+  &\int_E\varliminf\limits_{n\to\infty} g_n d\mu \leq \varliminf\limits_{n\to\infty} \int_Eg_nd\mu \\
+  &\int_E\varliminf\limits_{n\to\infty} (f_n-h)\mathcal{X}_A d\mu \leq \varliminf\limits_{n\to\infty} \int_E(f_n-h)\mathcal{X}_A d\mu \\
+  &\int_E\varliminf\limits_{n\to\infty} f_n\mathcal{X}_A - h\mathcal{X}_A d\mu \leq \varliminf\limits_{n\to\infty} \int_E(f_n-h)\mathcal{X}_A d\mu = \varliminf\limits_{n\to\infty} \int_Ef_n-h d\mu \\
+  &\int_E \varliminf\limits_{n\to\infty} f_n\mathcal{X}_A d\mu - \int_Eh\mathcal{X}_A d\mu = \int_E\varliminf\limits_{n\to\infty} f_n\mathcal{X}_A - h\mathcal{X}_A d\mu \leq \varliminf\limits_{n\to\infty} \int_Ef_n d\mu - \int_Eh d\mu \\
+  &\int_A \varliminf\limits_{n\to\infty} f_n d\mu = \int_E \varliminf\limits_{n\to\infty} f_n\mathcal{X}_A d\mu \leq \varliminf\limits_{n\to\infty} \int_Ef_n d\mu
+\end{align}
+
+Donde en (3) hemos usado que
+$\int_E(f_n-h)\mathcal{X}_A d\mu = \int_Ef_n-h d\mu$ ya que
+$(f_n-h)\mathcal{X}_A = f_n-h$ a.e. en $E$. \\
+En (4) hemos usado que $\int_Eh d\mu < \infty$ ($h$ integrable) para
+separar las integrales.
+
+Finalmente tenenemos
+
+\[\int_E \varliminf\limits_{n\to\infty} f_n = \int_A \varliminf\limits_{n\to\infty} f_n + \int_{E\backslash A}\varliminf\limits_{n\to\infty} f_n = \int_A \varliminf\limits_{n\to\infty} f_n + 0\]
+
+Ya que $\mu(E\backslash A)=0$.
+
+\hfill\qedsymbol
+
+\end{document}
