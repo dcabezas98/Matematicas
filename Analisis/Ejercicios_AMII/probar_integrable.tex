@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page settings
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathtools}
+
+\usepackage[spanish]{babel}
+
+\usepackage{multirow}
+
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\usepackage[parfill]{parskip}
+
+% \usepackage{beton}
+% \usepackage{euler} 
+% \usepackage[T1]{fontenc}
+
+\newtheorem*{theorem}{}
+
+% Entorno para estilo de ejercicios
+\newenvironment{ejercicio}[1]{\textbf{#1} \vspace*{5mm}}{\vspace*{5mm}}
+
+\begin{document}
+
+\title{\Large Probar que $g(x)=\dfrac{-x}{x^3+\cos^2x}$ es integrable en $(0,+\infty)$}
+
+\author{David Cabezas}
+\date{}
+\maketitle
+
+\begin{displaymath}
+  \int_0^\infty g(x)dx = \int_0^1 g(x)dx + \int_1^\infty g(x)dx = \int_0^1 \frac{-x}{x^3+\cos^2x}dx + \int_1^\infty \frac{-x}{x^3+\cos^2x}dx
+\end{displaymath}
+
+Trabajaremos con ambos sumandos por separado, debemos probar que ambos
+son finitos.
+
+La función $\dfrac{-x}{x^3+\cos^2x}$ es continua en $[0,1]$, por tanto
+es integrable, luego el primer sumando está acotado.
+
+Respecto al segundo, notemos que $\forall x \in (0,+\infty)$.
+
+\begin{displaymath}
+  0 > \frac{-x}{x^3+\cos^2x} \geq \frac{-1}{x^2}
+\end{displaymath}
+
+Luego se tiene
+
+\begin{displaymath}
+  0 > \int_1^\infty \frac{-x}{x^3+\cos^2x}dx \geq \int_1^\infty \frac{-1}{x^2}dx = \frac{1}{x}\bigg]_1^\infty = -1
+\end{displaymath}
+
+Por tanto, ambos sumandos son finitos y $g$ es integrable.
+
+\end{document}
