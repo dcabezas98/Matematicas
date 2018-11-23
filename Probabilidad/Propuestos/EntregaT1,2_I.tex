@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[left=1.8cm,right=3cm,top=1.5cm,bottom=2cm]{geometry} % page
+% settings
+\usepackage{multicol} 
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage{dsfont}
+\usepackage{upgreek}
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+
+% Images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure} % subfiguras
+\usepackage{caption}
+\captionsetup[table]{labelformat=empty}
+\captionsetup[figure]{labelformat=empty}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Ejercicios propuestos: Temas 1 y 2 (Parte I)}
+\author{David Cabezas Berrido}
+\date{}
+\maketitle
+
+\section*{Ejercicio 1}
+Demostrar la propiedad de falta de memoria de la distribución exponencial:
+\[P(X>t+h \ | \ X>h) = P(X>t), \hspace{3mm} t,h > 0, \hspace{3mm} X \sim exp(\lambda)\]
+
+\begin{align*}
+  P(X>t+h \ | \ X>h) &= \frac{P(X>t+h \ \cap \ X>h)}{P(X>h)} =^{(*)}
+\frac{P(X>t+h)}{P(X>h)} = \frac{1-P(X \leq t+h)}{1-P(X \leq h)} \\
+&=\frac{1-F_X(t+h)}{1-F_X(h)} =
+\frac{1-(1-e^{-\lambda(t+h)})}{1-(1-e^{-\lambda h})} =
+\frac{e^{-\lambda(t+h)}}{e^{-\lambda h}} = \frac{e^{-\lambda t}e^{-\lambda h}}{e^{-\lambda h}} \\ &= e^{-\lambda t} = 1-(1-e^{-\lambda t}) =
+1-F_X(t) = 1-P(X \leq t) = P(X>t)
+\end{align*}
+
+$(*):$ $X>t+h \subset X>h$.
+
+\section*{Ejercicio 2}
+Definir un experimento aleatorio cualquiera, especificando los
+elementos del espacio probabilístico $(\Omega, \mathcal{A}, P)$, y
+describir adecuadamente sobre él un vector aleatorio discreto
+$X = (X_1, X_2 , \ldots, X_n)$ (con n siendo una cifra a tu elección)
+que mida una serie de características del experimento. Asimismo,
+calcular la función de distribución de dicho vector aleatorio.
+
+\vspace{10mm}
+
+El caballero Ramón decide apostar el dinero de la misión en la ruleta.
+Si tiene suerte ganará una fortuna, lo suficiente para comprar su
+propia nave estacial. Si no, tendrá que conformarse con invitar a una
+damisela a cenar.
+
+Tenemos una ruleta con \textbf{una casilla verde (0), 6 casillas rojas
+  (1-6) y 6 casillas negras (1-6)}. De las 6 casillas de un mismo
+color, la mitad son pares y la otra mitad impares.
+
+\[\Omega = \{0V, 1R, 2R, 3R, 4R, 5R, 6R, 1N, 2N, 3N, 4N, 5N, 6N\}, \hspace{4mm} \mathcal{A} = \mathcal{P}(\Omega)\]
+
+Supondremos la ruleta no cargada, luego $P(\omega)=\frac{1}{13}$ $\forall \omega \in \Omega$.
+
+Definimos el vector aleatorio $(X,Y)$ donde $X$ mide la paridad del número obtenido e $Y$ el color. \\
+
+$X(\omega)=
+\begin{cases}
+  0 \text{ si } \omega \in \{0V,2R,4R,6R,2N,4N,6N\} \\
+  1 \text{ si } \omega \in \{1R,3R,5R,1N,3N,5N\}
+\end{cases}
+$
+
+\vspace{4mm}
+
+$Y(\omega)=
+\begin{cases}
+  0 \text{ si } \omega \in \{0V\} \\
+  1 \text{ si } \omega \in \{1R,2R,3R,4R,5R,6R\} \\
+  2 \text{ si } \omega \in \{1N,2N,3N,4N,5N,6N\}
+\end{cases}
+$
+
+\newpage
+
+Función masa de probabilidad: 
+\begin{itemize}
+\item $P(0,0)=P(\omega \in \{0V\}) = \frac{1}{13}$
+\item $P(0,1)=P(\omega \in \{2R,4R,6R\}) = \frac{3}{13}$
+\item $P(0,2)=P(\omega \in \{2N,4N,6N\}) = \frac{3}{13}$
+\item $P(1,1)=P(\omega \in \{1R,3R,5R\}) = \frac{3}{13}$
+\item $P(1,2)=P(\omega \in \{1N,3N,5N\}) = \frac{3}{13}$
+\item $P(X,Y)=0$ en el resto de casos
+\end{itemize}
+
+Función de distribución:
+$F(x,y)=
+\begin{cases}
+  \hspace{1mm }0 \text{\hspace{1.2mm}si $x < 0$ ó $y < 0$} \\
+  \frac{1}{13} \text{ si $0\leq x$, $0\leq y < 1$} \\
+  \frac{4}{13} \text{ si $0\leq x < 1$, $1\leq y < 2$} \\
+  \frac{7}{13} \text{ si $0\leq x < 1$, $2\leq y$} \\
+  \frac{7}{13} \text{ si $1\leq x$, $1\leq y < 2$} \\
+  \frac{13}{13} \text{ si $1\leq x$, $2\leq y$}
+\end{cases}
+$
+
+\section*{Ejercicio 3}
+
+Dar la expresión de las siguientes probabilidades en términos de la
+función de distribución para un vector aleatorio $X = (X_1 , X_2)$:
+\begin{itemize}
+\item $P[a < X_1 < b, c < X_2 < d] = F(b^-,d^-) - F(b^-,c) - F(a,d^-) + F(a,c)$
+\item $P[a \leq X_1 < b, c < X_2 < d] = F(b^-,d^-) - F(b^-,c) - F(a^-,d^-) + F(a^-,c)$
+\item $P[a < X_1 \leq b, c < X_2 < d] = F(b,d^-) - F(b,c) - F(a,d^-) + F(a,c)$
+\item $P[a \leq X_1 \leq b, c < X_2 < d] = F(b,d^-) - F(b,c) - F(a^-,d^-) + F(a^-,c)$
+\item $P[a < X_1 < b, c \leq X_2 < d] = F(b^-,d^-) - F(b^-,c^-) - F(a,d^-) + F(a,c^-)$
+\item $P[a \leq X_1 < b, c \leq X_2 < d] = F(b^-,d^-) - F(b^-,c^-) - F(a^-,d^-) + F(a^-,c^-)$
+\item $P[a < X_1 \leq b, c \leq X_2 < d] = F(b,d^-) - F(b^-,c^-) - F(a,d^-) + F(a,c^-)$
+\item $P[a \leq X_1 \leq b, c \leq X_2 < d] = F(b,d^-) - F(b,c^-) - F(a^-,d^-) + F(a^-,c^-)$
+\item $P[a < X_1 < b, c < X_2 \leq d] = F(b^-,d) - F(b^-,c) - F(a,d) + F(a,c)$
+\item $P[a \leq X_1 < b, c < X_2 \leq d] = F(b^-,d) - F(b^-,c) - F(a^-,d) + F(a^-,c)$
+\item $P[a < X_1 \leq b, c < X_2 \leq d] = F(b,d) - F(b,c) - F(a,d) + F(a,c)$
+\item $P[a \leq X_1 \leq b, c < X_2 \leq d] = F(b,d) - F(b,c) - F(a^-,d) + F(a^-,c)$
+\item $P[a < X_1 < b, c \leq X_2 \leq d] = F(b^-,d) - F(b^-,c^-) - F(a,d) + F(a,c^-)$
+\item $P[a \leq X_1 < b, c \leq X_2 \leq d] = F(b^-,d) - F(b^-,c^-) - F(a^-,d) + F(a^-,c^-)$
+\item $P[a < X_1 \leq b, c \leq X_2 \leq d] = F(b,d) - F(b,c^-) - F(a,d) + F(a,c^-)$
+\item $P[a \leq X_1 \leq b, c \leq X_2 \leq d] = F(b,d) - F(b,c^-) - F(a^-,d) + F(a^-,c^-)$
+\end{itemize}
+
+\end{document}
