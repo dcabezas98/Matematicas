@@ -5,6 +5,10 @@
 \usepackage{amsmath} % provides many mathematical environments & tools
 \usepackage{dsfont}
 \usepackage{upgreek}
+
+\usepackage{scalerel}
+\def\stretchint#1{\vcenter{\hbox{\stretchto[440]{\displaystyle\int}{#1}}}}
+
 \usepackage[english]{babel}
 \usepackage[doument]{ragged2e}
 
@@ -55,25 +59,64 @@ se muestra a continuación
 Obtener la función de densidad de $y$ condicionada a un valor $x_0$,
 así como la función de densidad de $x$ condicionada a un valor
 $y_0$. A través de estas funciones de densidad condicionadas, calcular
-$P(Y>1.34|X=1.97)$ y $P(X<1.97|Y=1.34)$.
+\\ $P(Y>1.34|X=1.97)$ y $P(X<1.97|Y=1.34)$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.5]
 
-  \draw[->] (-3,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-9) -- (0,9) node[above] {$y$};
+  \draw[->,thick] (-3,0) -- (7,0) node[right] {$x$};
+  \draw[->,thick] (0,-9) -- (0,9) node[above] {$y$};
 
   \draw[style=help lines] (-3,-9) grid (7,9);
   
   \draw[domain=-3:7,smooth,variable=\x,blue] plot ({\x},{\x+2});
   \draw[domain=-3:7,smooth,variable=\x,green] plot ({\x},{-\x-2});
 
-  \node at (-2,0) [below] {$(-2,0)$};
-  \node at (6,-8) [right] {$(6,-8)$};
-  \node at (6,8) [right] {$(6,8)$};
+  \node at (-2,0) [below] {\textbf{(-2,0)}};
+  \node at (6,-8) [right] {\textbf{(6,-8)}};
+  \node at (6,8) [right] {\textbf{(6,8)}};
+
+  \node at (4.5,-6.5) [left] {$y=-x-2$};
+  \node at (3.5,5.5) [left] {$y=x+2$};
 
   \draw[fill=red, fill opacity=0.4] (-2,0) -- (6,-8) -- (6,8) -- cycle;
 \end{tikzpicture}
 \end{center}
+
+\vspace{2mm}
+
+\title{\large \textbf{Marginales:}}
+
+\[f_1(x) = \int_{-\infty}^{+\infty} f(x,y) dy =
+\int_{-x-2}^{x+2}\frac{1}{64}dy=\frac{1}{64}(x+2-(-x-2))=\frac{1}{64}(2x+4)
+\quad x \in ]-2,6[\]
+
+\[f_2(y) = \int_{-\infty}^{+\infty} f(x,y) dx = \begin{cases} ~
+    \vspace{-4mm}\\ \stretchint{5ex}_{\hspace{-1.5mm}-y-2}^6
+    \dfrac{1}{64} dx = \dfrac{1}{64}(6-(-y-2))=\dfrac{1}{64}(y+8)
+    \hspace{12mm} y \in ]-8,0[ \vspace{3mm}\\
+    \stretchint{5ex}_{\hspace{-1.5mm}y-2}^6 \dfrac{1}{64} dx =
+    \dfrac{1}{64}(6-(y-2))=\dfrac{1}{64}(-y+8) \hspace{14mm} y \in
+    ]0,8[ \\ \vspace{-4mm} ~
+  \end{cases}\]
+
+\newpage
+
+\title{\large \textbf{Condicionadas:}}
+
+\vspace{7mm}
+
+$x_0 \in ]-2,6[$
+\[f(y/x=x_0)=\frac{f(x_0,y)}{f_1(x_0)}=\frac{\frac{1}{64}}{\frac{1}{64}(2x_0+4)}=\frac{1}{2x_0+4}
+\qquad y \in ]-2-x_0,x_0+2[\]
+
+$y_0 \in ]-8,8[$
+
+\[f(x/y=y_0)=\frac{f(x,y_0)}{f_2(y_0)} = \begin{cases} ~ \vspace{-4mm}
+\\ \dfrac{\frac{1}{64}}{\frac{1}{64}(y_0+8)} = \dfrac{1}{y_0+8} \qquad
+y_0 \in ]-8,0[, \quad x \in ]-y_0-2,6[ \vspace{3mm} \\
+\dfrac{\frac{1}{64}}{\frac{1}{64}(-y+8)} = \dfrac{1}{-y_0+8} \qquad
+y_0 \in ]0,8[, \quad x \in ]y_0-2,6[ \\ \vspace{-4mm} ~
+  \end{cases}\]
 
 \end{document}
