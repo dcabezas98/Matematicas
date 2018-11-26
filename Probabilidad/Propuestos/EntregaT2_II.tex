@@ -45,7 +45,7 @@
 
 \begin{document}
 
-\title{Ejercicios propuestos: Temas 1 y 2 (Parte II)}
+\title{Ejercicios propuestos: Tema 2 (Parte II)}
 \author{David Cabezas Berrido}
 \date{}
 \maketitle
@@ -59,7 +59,14 @@ se muestra a continuación
 Obtener la función de densidad de $y$ condicionada a un valor $x_0$,
 así como la función de densidad de $x$ condicionada a un valor
 $y_0$. A través de estas funciones de densidad condicionadas, calcular
-\\ $P(Y>1.34|X=1.97)$ y $P(X<1.97|Y=1.34)$.
+\\ $P(Y>1.34/X=1.97)$ y $P(X<1.97/Y=1.34)$.
+
+\vspace{7mm}
+
+El área roja es el conjunto de puntos del plano donde $f$ toma el
+valor constante $\frac{1}{64}$. Fuera de éste área, $f$ es nula. Del
+mismo modo, todas las funciones que definiré a continuación toman el
+valor 0 fuera de los intervalos que especifico.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.5]
@@ -83,9 +90,11 @@ $y_0$. A través de estas funciones de densidad condicionadas, calcular
 \end{tikzpicture}
 \end{center}
 
-\vspace{2mm}
+\newpage
 
-\title{\large \textbf{Marginales:}}
+\title{\large \textbf{Marginales:}} \\
+
+Necesarias para el cálculo de las funciones de densidad condicionadas.
 
 \[f_1(x) = \int_{-\infty}^{+\infty} f(x,y) dy =
 \int_{-x-2}^{x+2}\frac{1}{64}dy=\frac{1}{64}(x+2-(-x-2))=\frac{1}{64}(2x+4)
@@ -100,13 +109,12 @@ $y_0$. A través de estas funciones de densidad condicionadas, calcular
     ]0,8[ \\ \vspace{-4mm} ~
   \end{cases}\]
 
-\newpage
-
 \title{\large \textbf{Condicionadas:}}
 
 \vspace{7mm}
 
 $x_0 \in ]-2,6[$
+
 \[f(y/x=x_0)=\frac{f(x_0,y)}{f_1(x_0)}=\frac{\frac{1}{64}}{\frac{1}{64}(2x_0+4)}=\frac{1}{2x_0+4}
 \qquad y \in ]-2-x_0,x_0+2[\]
 
@@ -114,9 +122,19 @@ $y_0 \in ]-8,8[$
 
 \[f(x/y=y_0)=\frac{f(x,y_0)}{f_2(y_0)} = \begin{cases} ~ \vspace{-4mm}
 \\ \dfrac{\frac{1}{64}}{\frac{1}{64}(y_0+8)} = \dfrac{1}{y_0+8} \qquad
-y_0 \in ]-8,0[, \quad x \in ]-y_0-2,6[ \vspace{3mm} \\
-\dfrac{\frac{1}{64}}{\frac{1}{64}(-y+8)} = \dfrac{1}{-y_0+8} \qquad
-y_0 \in ]0,8[, \quad x \in ]y_0-2,6[ \\ \vspace{-4mm} ~
-  \end{cases}\]
+x \in ]-y_0-2,6[ \qquad \mbox{si } y_0 \in ]-8,0[ \vspace{3mm} \\
+\dfrac{\frac{1}{64}}{\frac{1}{64}(-y_0+8)} = \dfrac{1}{-y_0+8} \qquad
+x \in ]y_0-2,6[ \qquad \mbox{si } y_0 \in ]0,8[ \\ \vspace{-4mm} ~
+\end{cases}\]
 
+\title{\large \textbf{Probabilidades:}} \\
+
+Evaluamos las funciones de densidad condicionadas que acabamos de
+calcular para hallar la probabilidades requeridas.
+
+\[P(Y>1.34/X=1.97) = \int_{1.34}^{+\infty}f(y/x=1.97)dy = \int_{1.34}^{1.97+2}\frac{1}{2\cdot 1.97+4}dy = \frac{1.97+2-1.34}{2\cdot1.97+4}=\frac{263}{794} \simeq 0.3312\]
+
+\[P(X<1.97/Y=1.34) = \int_{-\infty}^{1.97}f(x/y=1.34)dx =
+  \int_{1.34-2}^{1.97}\frac{1}{-1.34+8}dx =
+  \frac{1.97-(1.34-2)}{-1.34+8} = \frac{263}{666} \simeq 0.3949\]
 \end{document}

@@ -1,0 +1,143 @@
+\documentclass[tikz]{article}
+\usepackage[left=1.8cm,right=3cm,top=1.5cm,bottom=2cm]{geometry} % page
+% settings
+\usepackage{multicol} 
+\usepackage{amsmath} % provides many mathematical environments & tools
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\usepackage{dsfont}
+\usepackage{upgreek}
+
+\usepackage{scalerel}
+\def\stretchint#1{\vcenter{\hbox{\stretchto[440]{\displaystyle\int}{#1}}}}
+
+\usepackage[english]{babel}
+\usepackage[doument]{ragged2e}
+
+\usepackage{tikz}
+\tikzset{
+  every point/.style = {radius={\pgflinewidth}, opacity=1, draw, solid, fill=white},
+  pt/.pic = {
+    \begin{pgfonlayer}{foreground}
+      \path[every point, #1] circle;
+    \end{pgfonlayer}
+  },
+  point/.style={insert path={pic{pt={#1}}}}, point/.default={},
+  colored point/.style = {point={fill=#1}},
+  point name/.style = {insert path={coordinate (#1)}}
+}
+
+% Images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure} % subfiguras
+\usepackage{caption}
+\captionsetup[table]{labelformat=empty}
+\captionsetup[figure]{labelformat=empty}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+\selectlanguage{english}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Ejercicios propuestos: Parte III}
+\author{David Cabezas Berrido}
+\date{}
+\maketitle
+
+\section*{Ejercicio 1}
+
+Función masa de probabilidad:
+
+\begin{center}
+\begin{tabular}{|c|c c|}
+\hline
+\multicolumn{1}{|c|}{$X / Y$}& 0& 2\\\hline
+  2      & 1/16 & 1/16 \\
+  4      & 1/8 & 1/4 \\
+  6 & 0 & 1/2 \\ \hline
+    
+\end{tabular}
+\end{center}
+
+\vspace{3mm}
+
+Se pide calcular la función generatriz de momentos y, a partir de
+ella, la matriz de covarianzas.
+
+\vspace{5mm}
+
+\textbf{f.g.m.:}
+\[M(t_1,t_2) = E[e^{t_1x+t_2y}] = \frac{1}{16}e^{2t_1} +
+  \frac{1}{16}e^{2t_1+2t_2} + \frac{1}{8}e^{4t_1} +
+  \frac{1}{4}e^{4t_1+2t_2} + \frac{1}{2}e^{6t_1+2t_2} =
+  \frac{1}{16}(e^{2t_1} + e^{2t_1+2t_2} + 2e^{4t_1} + 4e^{4t_1+2t_2}
+  + 8e^{6t_1+2t_2})\]
+
+\vspace{2mm}
+
+Queremos calcular la \textbf{matriz de covarianzas}
+
+\begin{center}
+  $
+  \begin{pmatrix}
+    \Var(X) & \Cov(X,Y) \\
+    \Cov(X,Y) & \Var(Y) 
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \mu_{20} & \mu_{11} \\
+    \mu_{11} & \mu_{02} 
+  \end{pmatrix}
+  $
+\end{center}
+
+\vspace{2mm}
+
+Para hallar los momentos centrados, podemos hallar primero los no
+centrados. Usaremos la función generatriz de momentos para hallarlos.
+
+\[m_{10} = \frac{\partial M}{\partial t_1}(t_1,t_2)\Big|_{t_1=t_2=0} =
+  \frac{1}{16}(2e^{2t_1} + 2e^{2t_1+2t_2} + 8e^{4t_1} +
+  16e^{4t_1+2t_2} + 48e^{6t_1+2t_2})\Big|_{t_1=t_2=0} =
+  \frac{2+2+8+16+48}{16} = \frac{19}{4}\]
+
+\[m_{01} = \frac{\partial M}{\partial t_2}(t_1,t_2)\Big|_{t_1=t_2=0} =
+  \frac{1}{16}(2e^{2t_1+2t_2} + 8e^{4t_1+2t_2} +
+  16e^{6t_1+2t_2})\Big|_{t_1=t_2=0} = \frac{2+8+16}{16} = \frac{13}{8}\]
+
+\[m_{20} = \frac{\partial^2 M}{\partial
+    t_1^2}(t_1,t_2)\Big|_{t_1=t_2=0} = \frac{1}{16}(4e^{2t_1} +
+  4e^{2t_1+2t_2} + 32e^{4t_1} + 64e^{4t_1+2t_2} +
+  288e^{6t_1+2t_2})\Big|_{t_1=t_2=0} = \frac{4+4+32+64+288}{16} =
+  \frac{49}{2}\]
+
+\[m_{02} = \frac{\partial^2 M}{\partial
+    t_2^2}(t_1,t_2)\Big|_{t_1=t_2=0} = \frac{1}{16}(4e^{2t_1+2t_2} +
+  16e^{4t_1+2t_2} + 32e^{6t_1+2t_2})\Big|_{t_1=t_2=0} =
+  \frac{4+16+32}{16} = \frac{13}{4}\]
+
+\[m_{11} = \frac{\partial^2 M}{\partial
+    t_1t_2}(t_1,t_2)\Big|_{t_1=t_2=0} = \frac{1}{16}(4e^{2t_1+2t_2} +
+  32e^{4t_1+2t_2} + 96e^{6t_1+2t_2})\Big|_{t_1=t_2=0} =
+  \frac{4+32+96}{16} = \frac{33}{4}\]
+
+\vspace{3mm}
+
+Ya podemos hallar los momentos centrados:
+\begin{align*}
+  \mu_{20}&=m_{20}-m_{10}^2 = \frac{49}{2} - \Big(\frac{19}{4}\Big)^2\\
+  \mu_{11}&=m_{11}-m_{10}m_{01} \\
+  \mu_{02}&=m_{02}-m_{01}^2
+\end{align*}
+
+\end{document}
