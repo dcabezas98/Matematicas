@@ -1,0 +1,113 @@
+\documentclass[12pt,spanish]{article}
+% aprovechamiento de la p\'agina -- fill an A4 (210mm x 297mm) page
+% Note: 1 inch = 25.4 mm = 72.27 pt
+% 1 pt = 3.5 mm (approx)
+
+% vertical page layout -- one inch margin top and bottom
+\topmargin      -10 mm   % top margin less 1 inch
+\headheight       0 mm   % height of box containing the head
+\headsep          0 mm   % space between the head and the body of the page
+\textheight     255 mm   % the height of text on the page
+\footskip         7 mm   % distance from bottom of body to bottom of foot
+
+% horizontal page layout -- one inch margin each side
+\oddsidemargin    0 mm     % inner margin less one inch on odd pages
+\evensidemargin   0 mm     % inner margin less one inch on even pages
+\textwidth      159 mm     % normal width of text on page
+
+\setlength{\parindent}{0pt}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\usepackage[doument]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage{subfigure, float, graphicx, caption}
+\captionsetup[table]{labelformat=empty}
+\captionsetup[figure]{labelformat=empty}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=webred]{hyperref}
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{MistyRose}{RGB}{255,228,225}
+\definecolor{LightCyan}{RGB}{224,255,255}
+
+\begin{document}
+
+\title{Solución al problema 1: Dilema del padre}
+\author{David Cabezas Berrido}
+\date{\vspace{-5mm}}
+\maketitle
+
+Un padre y su hijo intentan cubrir un tablero de $N\times N$
+($N\geq 2$) sin las dos esquinas diametralmente opuestas ($1\times 1$)
+utilizando piezas de $2\times 1$ sin que sobresalgan las piezas ni
+queden huecos. Pero no pueden lograrlo, este es mi razonamiento. \\
+
+El número de casillas del tablero es $N^2-2$, y cada pieza ocupa 2
+casillas, por tanto si $N$ es impar, no pueden recubrirlo, puesto
+que $N^2-2$ será impar. \\
+
+Si $N$ es par, el razonamiento es algo más complejo. Razonaré
+inductivamente. \\
+
+Denotaré como $C_n$ ($n$ par) a la capa del tablero de lado $n$
+(centrada). Por ejemplo, $C_2$ es el cuadrado de $2\times 2$ en el
+centro del tablero, $C_4$ la capa que rodea a $C_2$, $C_6$ la que
+rodea a $C_4\ldots$ y $C_N$ es el borde exterior del tablero. \\
+
+La capa $C_k$ tiene $k^2-(k-2)^2 = 4k-4$ casillas, $2k-2$ pares y
+$2k-2$ impares, diré que la casilla que ocupa la posición $(i,j)$ es
+par cuando $i+j$ sea par, e impar cuando $i+j$ sea impar. Dos casillas
+contiguas siempre serán una par y la otra impar, una será $(i,j)$ y la
+otra $(i,j+1)$ o $(i+1,j)$. \\
+
+La capa $C_N$ tiene las dos esquinas diametralmente opuestas rotas, que
+pueden ser la $(1,1)$ y la $(N,N)$, en cuyo caso ambas serán pares; o
+la $(1,N)$ y la $(N,1)$, en cuyo caso ambas serán impares. Luego la
+capa $C_N$ tiene $2k-2$ casillas libres de una paridad y $2k-4$
+casillas libres de la otra. Supondré que las rotas son la $(1,1)$ y la
+$(N,N)$, en el otro caso el razonamiento es análogo. \\
+
+Cada pieza ocupa dos casillas contiguas, luego ocupará una par y otra
+impar. Como en $C_N$ no hay el mismo número de casillas pares que
+impares (hay dos impares más), para recubrir $C_N$ habrá que colocar
+piezas cubriendo una casilla de $C_N$ y otra de $C_{N-2}$ (de distinta
+paridad), ya que en $C_N$ no hay suficientes casillas pares para
+emparejar todas las impares. \\
+
+Como consecuencia de esto, cuando acaben de recubrir $C_N$, habrán
+ocupado al menos dos casillas pares de $C_{N-2}$, le llamaremos
+$p\geq 2$. También, por cada otra casilla (aparte de las dos pares
+para compensar el desequilibrio en $C_N$) que hallan ocupado de
+$C_{N-2}$ mientras recubrían $C_N$, habrán tenido que ocupar otra de
+distinta paridad de $C_{N-2}$ para compensar el nuevo desequilibrio
+generado en $C_N$. Por tanto el número de casillas impares de
+$C_{N-2}$ que habrán ocupado mientras rellenaban $C_N$ será $p-2$. \\
+
+Ahora, $C_{N-2}$ tiene dos casillas impares libres más que pares
+(libres). Luego, por el mismo razonamiento, ocuparán dos casillas
+pares más que impares de $C_{N-4}$ al cubrirla, generando el mismo
+desequilibrio en $C_{N-4}$. Es claro que cada vez que rellenen una
+capa, generarán el mismo problema en la capa interior. \\
+
+Suponiendo todas las capas rellenas desde la $C_4$ hasta la $C_N$, por
+el argumento de antes, en la capa $C_2$ habrá libres dos casillas
+impares más que pares (2 y 0), lo que la hace imposible de completar,
+ya que estas dos casillas libres serán no contiguas. Por tanto, el
+tablero es imposible de recubrir.
+\end{document}
