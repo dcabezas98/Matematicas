@@ -1,0 +1,164 @@
+\documentclass[12pt,spanish]{article}
+% aprovechamiento de la p\'agina -- fill an A4 (210mm x 297mm) page
+% Note: 1 inch = 25.4 mm = 72.27 pt
+% 1 pt = 3.5 mm (approx)
+
+% vertical page layout -- one inch margin top and bottom
+\topmargin      -10 mm   % top margin less 1 inch
+\headheight       0 mm   % height of box containing the head
+\headsep          0 mm   % space between the head and the body of the page
+\textheight     255 mm   % the height of text on the page
+\footskip         7 mm   % distance from bottom of body to bottom of foot
+
+% horizontal page layout -- one inch margin each side
+\oddsidemargin    0 mm     % inner margin less one inch on odd pages
+\evensidemargin   0 mm     % inner margin less one inch on even pages
+\textwidth      159 mm     % normal width of text on page
+
+\setlength{\parindent}{0pt}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\usepackage[doument]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage{subfigure, float, graphicx, caption}
+\captionsetup[table]{labelformat=empty}
+\captionsetup[figure]{labelformat=empty}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=webred]{hyperref}
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{MistyRose}{RGB}{255,228,225}
+\definecolor{LightCyan}{RGB}{224,255,255}
+
+\begin{document}
+
+\title{Solución al problema 2: Roscón Criptoanalítico}
+\author{David Cabezas Berrido}
+\date{\vspace{-5mm}}
+\maketitle
+
+Queremos descifrar el siguiente mensaje:
+
+\begin{center}
+  Dqxwpcmadqc, xcr pdradñsw dñ epwmñdoc. \\
+  Drjphmd odñwjwswq dq dñ craqsw fdñ jwppdw ecpc rcmdp gad ñw shdqdr mhdq.
+\end{center}
+
+El cifrado es una biyección del alfabeto a él mismo, sospecho esto
+porque \textit{dñ} y \textit{fdñ} tienen pinta de ser \textit{el} y \textit{del}.
+
+He realizado un programa en \texttt{Python} para probar combinaciones
+y ayudarme a encontrar la solución:
+
+\begin{verbatim}
+enigma=list("""dqxwpcmadqc, xcr pdradñsw dñ epwmñdoc.
+drjphmd odñwjwswq dq dñ craqsw fdñ jwppdw ecpc rcmdp gad ñw shdqdr mhdq.""")
+
+solucion=enigma.copy()
+
+print(''.join(solucion), '\n')
+
+# Es muy probable que 'dñ' y 'fdñ' sean 'EL' y 'DEL'.
+# Esto nos sugiere que la encriptación es una biyección del alfabeto sobre él mismo
+
+# Función para cambiar letras del mensaje original (las nuevas las pongo en mayúscula para diferenciar
+def cambio(a, b):
+    for i in range(len(enigma)):
+        if enigma[i]==a:
+            solucion[i]=b.upper()
+
+cambio('d','e')
+cambio('ñ','l')
+cambio('f','d')
+print(''.join(solucion), '\n')
+
+"""
+EqxwpcmaEqc, xcr pEraELsw EL epwmLEoc.
+ErjphmE oELwjwswq Eq EL craqsw DEL jwppEw ecpc rcmEp gaE Lw shEqEr mhEq.
+"""
+
+# 'ecpc' tiene que ser una palabra del tipo 'poco', 'como', 'PARA'
+
+cambio('e','p')
+cambio('c','a')
+cambio('p','r')
+print(''.join(solucion), '\n')
+
+"""
+EqxwRAmaEqA, xAr REraELsw EL PRwmLEoA.
+ErjRhmE oELwjwswq Eq EL Araqsw DEL jwRREw PARA rAmER gaE Lw shEqEr mhEq.
+"""
+# 'rAmER' será un verbo como 'lamer' (pero la L ya es la ñ) o 'SABER
+
+cambio('r','s')
+cambio('m','b')
+print(''.join(solucion), '\n')
+
+"""
+EqxwRABaEqA, xAS RESaELsw EL PRwBLEoA.
+ESjRhBE oELwjwswq Eq EL ASaqsw DEL jwRREw PARA SABER gaE Lw shEqES BhEq.
+"""
+
+# 'PRwBLEoA' suena a 'PROBLEMA'
+
+cambio('w','o')
+cambio('o','m')
+print(''.join(solucion), '\n')
+
+"""
+EqxORABaEqA, xAS RESaELsO EL PROBLEMA.
+ESjRhBE MELOjOsOq Eq EL ASaqsO DEL jORREO PARA SABER gaE LO shEqES BhEq.
+"""
+
+# 'jORREO' a 'CORREO' y 'xAS' a 'HAS'
+
+cambio('j','c')
+cambio('x','h')
+print(''.join(solucion), '\n')
+
+"""
+EqHORABaEqA, HAS RESaELsO EL PROBLEMA.
+ESCRhBE MELOCOsOq Eq EL ASaqsO DEL CORREO PARA SABER gaE LO shEqES BhEq.
+"""
+
+# 'RESaELsO' a 'RESUELTO'
+
+cambio('a','u')
+cambio('s','t')
+print(''.join(solucion), '\n')
+
+"""
+EqHORABUEqA, HAS RESUELTO EL PROBLEMA.
+ESCRhBE MELOCOTOq Eq EL ASUqTO DEL CORREO PARA SABER gUE LO ThEqES BhEq.
+"""
+
+
+# 'EqHORABUEqA' a 'ENHORABUENA', 'ESCRhBE' a 'ESCRIBE', 'gUE' a 'QUE'
+cambio('g','q')
+cambio('q','n')
+cambio('h','i')
+print(''.join(solucion), '\n')
+
+"""
+ENHORABUENA, HAS RESUELTO EL PROBLEMA.
+ESCRIBE MELOCOTON EN EL ASUNTO DEL CORREO PARA SABER QUE LO TIENES BIEN.
+"""
+\end{verbatim}
+
+\end{document}
