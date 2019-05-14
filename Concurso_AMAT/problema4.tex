@@ -1,0 +1,79 @@
+\documentclass[12pt,spanish]{article}
+% aprovechamiento de la p\'agina -- fill an A4 (210mm x 297mm) page
+% Note: 1 inch = 25.4 mm = 72.27 pt
+% 1 pt = 3.5 mm (approx)
+
+% vertical page layout -- one inch margin top and bottom
+\topmargin      -10 mm   % top margin less 1 inch
+\headheight       0 mm   % height of box containing the head
+\headsep          0 mm   % space between the head and the body of the page
+\textheight     255 mm   % the height of text on the page
+\footskip         7 mm   % distance from bottom of body to bottom of foot
+
+% horizontal page layout -- one inch margin each side
+\oddsidemargin    0 mm     % inner margin less one inch on odd pages
+\evensidemargin   0 mm     % inner margin less one inch on even pages
+\textwidth      159 mm     % normal width of text on page
+
+\setlength{\parindent}{0pt}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\usepackage[doument]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage{subfigure, float, graphicx, caption}
+\captionsetup[table]{labelformat=empty}
+\captionsetup[figure]{labelformat=empty}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=webred]{hyperref}
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{MistyRose}{RGB}{255,228,225}
+\definecolor{LightCyan}{RGB}{224,255,255}
+
+\begin{document}
+
+\title{Solución al problema 1: Dilema del padre}
+\author{David Cabezas Berrido}
+\date{\vspace{-5mm}}
+\maketitle
+
+\section{a) Encontrar, si existe, un entero positivo cuyo factorial termine en exactamente 5 ceros.}
+
+Entiendo que esto significa que la cifra correspondiente a las
+unidades de millón sea distinta de 0 y todas las cifras anteriores
+(desde las unidades a las centenas de millar) sean 0. \\
+
+No existe tal número, a continuación lo razonaré: \\
+
+Para que un número termine en exactamente 5 0s, debe ser divisible por
+$10^5$, pero no por $10^6$, esto significa que en su factorización en
+números primos aparezcan $2^p\cdot 5^q$ con $p,q \in \mathbb{N}$ y min$\{p,q\}=5$. \\
+
+Si un número $n$ es de la forma $n=k!$, la multiplicidad del factor 2
+(aparece cada dos números) será menor que la multiplicidad del factor
+5 (aparece cada 5), por lo que podemos suponer que si $k$ es el número
+buscado, la factorización de $n$ en números primos tendrá
+$2^p\cdot 5^5$ con $p>5$. Pero esto es imposible, ya que si $k=24$, el
+factor 5 tendrá multiplicidad 4 (aparece en 5, 10, 15, 20); y para
+$k=25$, el factor 5 tendrá multiplicidad 6 (aparece dos veces en 25). \\
+
+Por lo que no existe ningún número cuyo factorial tenga al 5 como
+factor de multiplicidad exactamente 5, y puesto que el factor 2
+aparece con mayor multiplicidad, acabe en 5 0s.
+\end{document}
