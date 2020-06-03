@@ -1,0 +1,329 @@
+\documentclass[a4]{article}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} 
+
+\usepackage[utf8]{inputenc}   % otra alternativa para los caracteres acentuados y la "Ã±"
+\usepackage[           spanish % para poder usar el espaÃ±ol
+                      ,es-tabla % para los captions de las tablas
+                       ]{babel}   
+\decimalpoint %para usar el punto decimal en vez de coma para los nÃºmeros con decimales
+
+\usepackage{beton}
+\usepackage[T1]{fontenc}
+
+\usepackage{parskip}
+\usepackage{xcolor}
+
+\usepackage{marvosym}
+
+\usepackage{caption}
+
+\usepackage{enumerate} % paquete para poder personalizar fÃ¡cilmente la apariencia de las listas enumerativas
+
+\usepackage{graphicx} % figuras
+\usepackage{subfigure} % subfiguras
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\usepackage{chngcntr}
+
+\counterwithin*{equation}{section}
+
+\definecolor{gris}{RGB}{220,220,220}
+	
+\usepackage{float} % para controlar la situaciÃ³n de los entornos flotantes
+
+\restylefloat{figure}
+\restylefloat{table} 
+\setlength{\parindent}{0mm}
+
+
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            allcolors=blue]{hyperref}
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+
+
+\title{Ejercicios de la ecuación del calor y programación lineal}
+
+\author{David Cabezas Berrido}
+
+\date{\vspace{-4mm}}
+
+\begin{document}
+\maketitle
+
+\section{Ecuación del calor}
+
+Debemos encontrar una solución del problema:
+
+\begin{equation} \label{eq:enunciado}
+  \begin{cases}
+    u_t=u_{xx}, \qquad (t,x)\in [0,+\infty)\times [0,\pi] \\
+    u(t,0)=0,\quad u(t,\pi)=\pi, \qquad t\in [0,+\infty) \\
+    u(0,x)=x+\sin(x), \qquad x\in [0,\pi]
+  \end{cases}
+\end{equation}
+
+y estudiar entre qué clase de funciones podríamos afirmar que es
+única.
+
+Consideramos primero el problema
+
+\begin{equation} \label{eq:homogeneo}
+  \begin{cases}
+    u_t=u_{xx}, \qquad (t,x)\in [0,+\infty)\times [0,\pi] \\
+    u(t,0)=u(t,\pi)=0   , \qquad t\in [0,+\infty) \\
+    u(0,x)=\sin(x), \qquad x\in [0,\pi]
+  \end{cases}
+\end{equation}
+
+Este es el problema que hemos estudiado en teoría (con
+$\varphi(x)=\sin(x)\quad\forall x\in[0,\pi]$) y conocemos que la
+solución es
+\begin{equation} \label{eq:sol-homogeneo}
+  u(t,x)=\sum_{n=1}^\infty a_n e^{-n^2 t}\sin(nx)\qquad\forall(t,x)\in[0,+\infty)\times [0,\pi]
+\end{equation}
+donde
+\begin{equation} \label{eq:an}
+  a_n=\frac{2}{\pi}\int_0^\pi\sin(x)\sin(nx)dx\qquad\forall n\in\mathbb{N}
+\end{equation}
+Para $n>1$, tenemos
+\begin{align*}
+  \frac{\pi}{2}a_n&=\int_0^\pi\sin(x)\sin(nx)dx=-\sin(nx)\cos(x)\bigg]_0^\pi+n\int_0^\pi\cos(x)\cos(nx)dx=\\&= 0+n\bigg(\sin(x)\cos(nx)\bigg]_0^\pi+n\int_0^\pi\sin(x)\sin(nx)dx\bigg)=0+n^2\frac{\pi}{2}a_n \Longrightarrow a_n=0
+\end{align*}
+Para $n=1$, tenemos
+\[a_1=\frac{2}{\pi}\int_0^\pi\sin^2(x)dx=\frac{2}{\pi}\int_0^\pi\frac{1-\cos(2x)}{2}dx=\frac{2}{\pi}\frac{\pi}{2}-\frac{2}{\pi}\int_0^\pi\frac{\cos(2x)}{2}dx=1-\frac{2}{\pi}\bigg[\frac{\sin(2x)}{4}\bigg]_{0}^{\pi}=1\]
+
+No debe sorprendernos que el desarollo en serie de Fourier de
+$\sin(x)$ sea $\sin(x)$.
+
+Por tanto la solución de (\ref{eq:homogeneo}) es
+\begin{equation} \label{eq:u}
+  u(t,x)=e^{-t}\sin(x)\qquad\forall(t,x)\in[0,+\infty)\times [0,\pi]
+\end{equation}
+Se comprueba rápidamente que $u_t=-u=u_{xx}$, $u(t,0)=u(t,\pi)=0$ y
+$u(0,x)=\sin(x)$.
+
+\newpage
+
+Tomamos ahora $v(t,x)=x+u(t,x)=x+e^{-t}\sin(x)\qquad\forall(t,x)\in[0,+\infty)\times [0,\pi]$
+
+Tenemos $v_t=u_t$ y $v_{xx}=u_{xx}$, por lo que $v$ satisface la
+ecuación diferencial de (\ref{eq:enunciado}).
+
+También, $v(t,0)=0+u(t,0)=0$ y $v(t,\pi)=\pi+u(t,\pi)=\pi$ para todo
+$t$ en $\mathbb{R}^+_0$. Y $v(0,x)=x+u(0,x)=x+\sin(x)$ para todo $x$ en
+$[0,\pi]$.
+
+Por tanto $v\in C^2\big([0,+\infty)\times[0,\pi]\big)$ es solución de (\ref{eq:enunciado}).
+
+\vspace{4mm}
+
+Ahora supongamos que $w\in C^2\big([0,+\infty)\times[0,\pi]\big)$ es
+otra solución de (\ref{eq:enunciado}), por tanto tendremos
+$w_t=w_{xx}$, $w(t,0)=0$ y $w(t,\pi)=\pi$ para todo $t$ en
+$\mathbb{R}^+_0$. Y $w(0,x)=x+\sin(x)$ para todo $x$ en $[0,\pi]$.
+
+Tomando $u=v-w$ obtenemos $u_t=u_{xx}$, $u(t,0)=u(t,\pi)=0$ para todo
+$t$ en $\mathbb{R}^+_0$ y $u(0,x)=0$ para todo $x$ en $[0,\pi]$.
+
+Por tanto $u\in C^2\big([0,+\infty)\times[0,\pi]\big)$ es solución del
+problema ($\varphi(x)=0\quad\forall x\in[0,\pi]$).
+
+\begin{equation} \label{eq:nulo}
+  \begin{cases}
+    u_t=u_{xx}, \qquad (t,x)\in [0,+\infty)\times [0,\pi] \\
+    u(t,0)=u(t,\pi)=0, \qquad t\in [0,+\infty) \\
+    u(0,x)=0, \qquad x\in [0,\pi]
+  \end{cases}
+\end{equation}
+
+El problema satisface claramente las hipótesis del teorema de
+unicidad, luego tiene (sabemos que la tiene porque $u$ lo satisface)
+solución única en $C^2\big([0,+\infty)\times[0,\pi]\big)$. Como la
+función constante 0 en $[0,+\infty)\times[0,\pi]$ también es solución,
+$u=0$, por tanto $v=w$ y afirmamos que $v$ es la única solución de
+(\ref{eq:enunciado}) en $C^2\big([0,+\infty)\times[0,\pi]\big)$.
+
+Puesto que toda solución tiene que ser clase 2, esta es la clase de
+funciones más general en la que podemos asegurar que $v$ es la única
+solución del problema.
+
+\newpage
+
+\section{Programación lineal}
+
+Una fábrica envasadora de alimentos recibe diariamente
+\begin{itemize}
+\item 1500 kg de café tipo A.
+\item 715 kg de café tipo B.
+\item 190 kg de café tipo C.
+\end{itemize}
+con ellos fabrica tres mezclas
+\begin{itemize}
+\item Mezcla tipo 1: 80\% café A y 20\% café B; beneficio de 0.2
+  \EUR/kg.
+\item Mezcla tipo 2: 60\% café B y 40\% café C; beneficio de 0.3
+  \EUR/kg.
+\item Mezcla tipo 3: 40\% café A, 44\% café B y 16\% café C; beneficio
+  de 0.4 \EUR/kg.
+\end{itemize}
+
+Queremos conocer la cantidad de mezcla de cada tipo que debemos
+producir para maximizar la ganancia.
+
+\vspace{4mm}
+
+Si denotamos $x_1$, $x_2$ y $x_3$ a la cantidad en kg que fabricamos
+de mezcla de tipo 1, 2 y 3 respectivamente, el beneficio en \EUR\
+(función a maximizar) es
+\begin{equation} \label{eq:beneficio}
+BE=0.2x_1+0.3x_2+0.4x_3
+\end{equation}
+Hay ciertas restricciones, pues tenemos recursos limitados. La
+cantidad total en kg de café de tipo A utilizado es $0.8x_1+0.4x_3$ y
+no podrá exceder los 1500 kg. Del mismo modo la cantidad de tipo B
+($0.2x_1+0.6x_2+0.44x_3$) no podrá exceder 715 kg y la de tipo C
+($0.4x_2+0.16x_3$) los 190 kg. Por tanto las restricciones que
+encontramos son
+\begin{equation} \label{eq:restricciones}
+  \begin{split} 
+  0.8x_1+0.4x_3 \leq 1500 \\
+  0.2x_1+0.6x_2+0.44x_3 \leq 715 \\
+  0.4x_2+0.16x_3 \leq 190 \\
+\end{split} \ \Longleftrightarrow
+\begin{pmatrix}
+    0.8 & 0 & 0.4 \\
+    0.2 & 0.6 & 0.44 \\
+    0 & 0.4 & 0.16
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_1 \\ x_2 \\ x_3
+  \end{pmatrix} \leq
+  \begin{pmatrix}
+    1500 \\ 715 \\ 190
+  \end{pmatrix}
+\end{equation}
+Por tanto problema de gestión de recursos que debemos resolver es
+\begin{equation} \label{eq:prob-recursos}
+  \begin{cases}
+    Ax\leq b \\
+    x\leq 0 \\
+    \max f(x)=<p,x>+m
+  \end{cases}
+\end{equation}
+Donde
+\[A=\begin{pmatrix}
+    0.8 & 0 & 0.4 \\
+    0.2 & 0.6 & 0.44 \\
+    0 & 0.4 & 0.16
+  \end{pmatrix}\quad b=\begin{pmatrix}
+    1500 \\ 715 \\ 190
+  \end{pmatrix}\quad x=\begin{pmatrix}
+    x_1 \\ x_2 \\ x_3
+  \end{pmatrix}\quad p=\begin{pmatrix}
+    0.2 \\ 0.3 \\ 0.4
+  \end{pmatrix}\quad m=0
+\]
+
+Llamando $h=(h_1, h_2, h_3)$ al vector de holguras, obtenemos el
+problema estándar asociado
+\begin{equation} \label{eq:prob-estandar}
+  \begin{cases}
+    Ax+h= b \\
+    x\geq 0, \quad h\geq 0 \\
+    \max f(x)=<p,x>+m
+  \end{cases}
+\end{equation}
+Lo resolveremos por el método Simplex. Como no nos dicen nada,
+suponemos que el café sin mezclar no aporta ningún beneficio a la
+fábrica envasadora, luego en la matriz ampliada las holguras tendrán
+ceros en la última fila. La matriz ampliada queda de esta forma.
+\[\begin{pmatrix}
+    x_1 & x_2 & x_3 & h_1 & h_2 & h_3 & b \\
+    0.8 & 0 & 0.4 & 1 & 0 & 0 & 1500 \\
+    0.2 & 0.6 & 0.44 & 0 & 1 & 0 & 715 \\
+    0 & 0.4 & 0.16 & 0 & 0 & 1 & 190 \\
+    0.2 & 0.3 & 0.4 & 0 & 0 & 0 & f-0
+  \end{pmatrix}\] Primero elegimos la primera columna para
+pivotar. Dividiendo la columna de $b$ entre la de $x_1$ (sólo las dos
+primeras filas puesto que sólo consideramos entradas positivas y hay
+un $0$ en la tercera fila) obtenemos $\frac{1500}{0.8}=1875$,
+$\frac{715}{0.2}=3575$ Para evitar obtener valores negativos en la
+columna $b$ , hacemos un $1$ en la primera fila (menor de los
+cocientes), para ello la dividimos entre $0.8$. En las demás filas
+haremos un $0$ en la primera columna, restandoles la primera fila (ya
+con un $1$ en esa columna) multiplicada por el valor correspondiente a
+$x_1$ en esa fila. Obtenemos
+\[\begin{pmatrix}
+    x_1 & x_2 & x_3 & h_1 & h_2 & h_3 & b \\
+    1 & 0   & 0.5  & 1.25  & 0 & 0 & 1875 \\
+    0 & 0.6 & 0.34 & -0.25 & 1  & 0 & 340 \\
+    0 & 0.4 & 0.16 & 0     & 0  & 1 & 190 \\
+    0 & 0.3 & 0.3  & -0.25 & 0 & 0 & f-375
+  \end{pmatrix}\]
+Ahora pivotamos sobre la segunda columna (debemos
+siempre elegir una con entrada positiva en la fila correspondiente a
+la función objetivo, la última). Para decidir si pivotar sobre las
+filas 2 ó 3 (la 1 tiene un 0, elegimos entradas positivas) calculamos
+los cocientes $\frac{340}{0.6}=566.\overline{6}$ y 
+$\frac{190}{0.4}=475$; elegimos el menor de ellos, luego pivotaremos
+sobre la tercera fila. Obtenemos
+\[\begin{pmatrix}
+    x_1 & x_2 & x_3 & h_1 & h_2 & h_3 & b \\
+    1 & 0 & 0.5  & 1.25  & 0 &   0   & 1875 \\
+    0 & 0 & 0.1  & -0.25 & 1 & -1.5  & 55 \\
+    0 & 1 & 0.4  &   0   & 0 &  2.5  & 475 \\
+    0 & 0 & 0.18 & -0.25 & 0 & -0.75 & f-517.5
+  \end{pmatrix}\]
+
+Ahora pivotamos sobre la columna 3, la única
+posible. $\frac{1875}{0.5}=3750$, $\frac{55}{0.1}=550$ y
+$\frac{475}{0.4}=1187.5$; así que pivotamos sobre la segunda fila
+obteniendo
+\[\begin{pmatrix}
+    x_1 & x_2 & x_3 & h_1 & h_2 & h_3 & b \\
+    1 & 0 & 0 &  2.5 &  -5  &  7.5  & 1600 \\
+    0 & 0 & 1 & -2.5 &  10  &  -15  & 550 \\
+    0 & 1 & 0 &   1  &  -4  &  8.5  & 255 \\
+    0 & 0 & 0 &  0.2 & -1.8 &  1.95 & f-616.5
+  \end{pmatrix}\] Ahora pivotamos sobre la columna
+4. $\frac{1600}{2.5}=640$, $\frac{255}{1}=255$. Fila 3. Obtenemos
+\[\begin{pmatrix}
+    x_1 & x_2 & x_3 & h_1 & h_2 & h_3 & b \\
+    1 & -2.5 & 0 & 0 &  5 & -13.75 & 962.5 \\
+    0 &  2.5 & 1 & 0 &  0 &  6.25  & 1187.5 \\
+    0 &   1  & 0 & 1 & -4 &  8.5   & 255 \\
+    0 & -0.2 & 0 & 0 & -1 &  0.25  & f-667.5
+  \end{pmatrix}\] Pivotamos sobre la columna
+6. $\frac{1187.5}{6.25}=190$, $\frac{255}{8.5}=30$. Fila 3. Obtenemos
+\[\begin{pmatrix}
+    x_1 & x_2 & x_3 & h_1 & h_2 & h_3 & b \\
+    1 & -0.8824 & 0 &  1.6176 & -1.4706 & 0 & 1375 \\
+    0 &  1.7647 & 1 & -0.7353 &  2.9412 & 0 & 1000 \\
+    0 &  0.1176 & 0 &  0.1176 & -0.4756 & 1 & 30 \\
+    0 & -0.2294 & 0 & -0.2294 & -0.8824 & 0 & f-675
+  \end{pmatrix}\]
+
+No queda ningún peso positivo en la última fila, luego hemos llegado a
+una tabla terminal. Las tres variables básicas que hemos obtenido son
+$x_1$, $x_3$ y $h_3$. Mirando la posición de los 1$_\text{s}$,
+concluimos que para maximizar el beneficio se deben fabricar
+\textbf{1375 kg de la mezcla 1, 1000 kg de la mezcla 3 y 0 kg de la
+  mezcla 2}. Sobrando 30 kg de café tipo C.
+
+La cantidad de café A que se gasta es
+$0.8\cdot 1375+0.4\cdot 1000=1500$ kg, de café B se gastan
+$0.2\cdot 1375+0.6\cdot 0+0.44\cdot 1000=715$ kg y de café C se gastan
+$0.4\cdot 0+0.16\cdot 1000=160$ kg (sobran 30 kg como sabíamos).
+
+Fabricando estas cantidades, se obtiene un beneficio de
+$0.2\cdot 1375+0.3\cdot 0+0.4\cdot 1000=675$ \EUR
+
+\end{document}
