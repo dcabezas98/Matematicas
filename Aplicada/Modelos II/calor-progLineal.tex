@@ -73,6 +73,8 @@ Debemos encontrar una solución del problema:
 y estudiar entre qué clase de funciones podríamos afirmar que es
 única.
 
+\vspace{4mm}
+
 Consideramos primero el problema
 
 \begin{equation} \label{eq:homogeneo}
@@ -125,15 +127,18 @@ Por tanto $v\in C^2\big([0,+\infty)\times[0,\pi]\big)$ es solución de (\ref{eq:
 
 \vspace{4mm}
 
-Ahora supongamos que $w\in C^2\big([0,+\infty)\times[0,\pi]\big)$ es
-otra solución de (\ref{eq:enunciado}), por tanto tendremos
-$w_t=w_{xx}$, $w(t,0)=0$ y $w(t,\pi)=\pi$ para todo $t$ en
-$\mathbb{R}^+_0$. Y $w(0,x)=x+\sin(x)$ para todo $x$ en $[0,\pi]$.
+Ahora supongamos que
+$w\in C^2\big((0,+\infty)\times[0,\pi]\big)\cap
+C\big([0,+\infty)\times[0,\pi]\big)$ es otra solución de
+(\ref{eq:enunciado}), por tanto tendremos $w_t=w_{xx}$, $w(t,0)=0$ y
+$w(t,\pi)=\pi$ para todo $t$ en $\mathbb{R}^+$. Y $w(0,x)=x+\sin(x)$
+para todo $x$ en $[0,\pi]$.
 
 Tomando $u=v-w$ obtenemos $u_t=u_{xx}$, $u(t,0)=u(t,\pi)=0$ para todo
 $t$ en $\mathbb{R}^+_0$ y $u(0,x)=0$ para todo $x$ en $[0,\pi]$.
 
-Por tanto $u\in C^2\big([0,+\infty)\times[0,\pi]\big)$ es solución del
+Por tanto $u\in C^2\big((0,+\infty)\times[0,\pi]\big)\cap
+C\big([0,+\infty)\times[0,\pi]\big)$ es solución del
 problema ($\varphi(x)=0\quad\forall x\in[0,\pi]$).
 
 \begin{equation} \label{eq:nulo}
@@ -146,14 +151,33 @@ problema ($\varphi(x)=0\quad\forall x\in[0,\pi]$).
 
 El problema satisface claramente las hipótesis del teorema de
 unicidad, luego tiene (sabemos que la tiene porque $u$ lo satisface)
-solución única en $C^2\big([0,+\infty)\times[0,\pi]\big)$. Como la
+solución única en $C\big([0,+\infty)\times[0,\pi]\big)$. Como la
 función constante 0 en $[0,+\infty)\times[0,\pi]$ también es solución,
-$u=0$, por tanto $v=w$ y afirmamos que $v$ es la única solución de
-(\ref{eq:enunciado}) en $C^2\big([0,+\infty)\times[0,\pi]\big)$.
+$u=0$. Por tanto $v=w$ y afirmamos que $v$ es la única solución de
+(\ref{eq:enunciado}) en $C\big([0,+\infty)\times[0,\pi]\big)$.
 
-Puesto que toda solución tiene que ser clase 2, esta es la clase de
-funciones más general en la que podemos asegurar que $v$ es la única
-solución del problema.
+Ahora probaré que la solución también es única en el sentido
+$L^2$. Sea $w\in C^2\big((0,+\infty)\times[0,\pi]\big)$ tal que \\
+$w(t,\cdot)\in L^2[0,\pi]$ para todo $t$ cercano a 0
+($t\in (0,\varepsilon)$ con $\varepsilon>0$) y (llamando
+$g(x)=x+\sin(x)$)
+\[\lim_{t\to 0^+}\big\|w(t,\cdot)-g\big\|_{L^2}=0\]
+también $w_t=w_{xx}$ en $(0,+\infty)\times[0,\pi]$ y $w(t,0)=0$,
+$w(t,\pi)=\pi$ para todo $t$ en $\mathbb{R}^+$. Probaré que $w=v$ en
+$(0,+\infty)\times[0,\pi]$. Tomando
+$u=w-v\in C^2\big((0,+\infty)\times[0,\pi]\big)$,
+$u(t,\cdot)\in L^2[0,\pi]\quad\forall t\in (0,\varepsilon)$, tenemos
+
+$u_t=w_t-v_t=w_{xx}-v_{xx}=u_{xx}$ en $(0,+\infty)\times[0,\pi]$ \\
+$u(t,0)=w(t,0)-v(t,0)=0-0=0$ para todo $t$ en $\mathbb{R}^+$ \\
+$u(t,\pi)=w(t,\pi)-v(t,\pi)=\pi-\pi=0$ para todo $t$ en $\mathbb{R}^+$
+\[\lim\limits_{t\to 0^+}\big\|u(t,\cdot)\big\|_{L^2}=\lim\limits_{t\to 0^+}\big\|w(t,\cdot)-v(t,\cdot)\big\|_{L^2}\leq \lim\limits_{t\to 0^+}\big\|w(t,\cdot)-g\big\|_{L^2}+\lim\limits_{t\to 0^+}\big\|v(t,\cdot)-g\big\|_{L^2}=0+0=0\]
+Por tanto $u$ es solución en el sentido $L^2$ del problema
+(\ref{eq:nulo}). La función constante 0 $(0,+\infty)\times[0,\pi]$
+también es solución del problema en el sentido $L^2$, y aplicando la
+proposición de unicidad en sentido $L^2$ que hemos estudiado en teoría
+obtenemos $u=0$ y $v=w$ como queríamos. Por lo que $v$ también es
+única en sentido $L^2$.
 
 \newpage
 
