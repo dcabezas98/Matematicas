@@ -1,0 +1,110 @@
+\documentclass[12pt,spanish]{article}
+
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage{float}
+
+\usepackage{parskip}
+\usepackage[document]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage[dvips,usenames]{color}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage{tikz}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=webred]{hyperref}
+            
+\usepackage{beton}
+\usepackage[T1]{fontenc}
+
+% Theorem environments
+
+%% \theoremstyle{plain} %% This is the default
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+%\newtheorem{ax}{Axioma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definici\'on}[section]
+\newtheorem{algorithm}{\textrm{\bf Algoritmo}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Observaci\'on}
+\newtheorem{example}{Ejemplo}
+\newtheorem{exercise}{Ejercicio}
+%\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}}
+\newtheorem*{notation}{Notaci\'on}
+
+
+\title{Tema 1. Ejercicios propuestos}
+
+\author{David Cabezas Berrido}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{exercise}
+  \begin{align*}
+    X&\sim N_p(\mu_X,\Sigma_X)\qquad (\Sigma_X>0) \\
+    Y&=B X+b\quad \text{ con $B$ matriz (cte.) $p\times p$ no singular} \\
+    &\hspace{34mm}\text{$b$ vector (cte.) $p\times 1$}
+  \end{align*}
+  Entonces, $Y\sim N_p(\mu_Y,\Sigma_Y)=N_p(B\mu_X+b,B\Sigma_X B')$
+
+  Cambio de variables lineal: \qquad (Abrevio $\Sigma_X=\Sigma$ y
+  $\mu_X=\mu$)
+  \begin{align*}
+    f_Y(y)&=f_X(B^{-1}(y-b))\cdot \operatorname{abs}(|B|^{-1}) \\ 
+          &=\frac{1}{(2\pi)^{p/2}|\Sigma|^{\frac{1}{2}}}\exp\Big\{-\frac{1}{2}\big(B^{-1}(y-b)-\mu\big)'\Sigma^{-1}\big(B^{-1}(y-b)-\mu\big)\Big\}\cdot \operatorname{abs}(|B|^{-1}) \\
+          &=\frac{\operatorname{abs}(|B|^{-1})}{(2\pi)^{p/2}|\Sigma|^{\frac{1}{2}}}\exp\Big\{-\frac{1}{2}\big((y-b)'(B^{-1})'-\mu'\big)\Sigma^{-1}\big(B^{-1}(y-b)-\mu\big)\Big\} \\
+          &=\frac{\operatorname{abs}(|B|^{-1})}{(2\pi)^{p/2}|\Sigma|^{\frac{1}{2}}}\exp\Big\{-\frac{1}{2}\big(y'-b'-\mu'B'\big)(B^{-1})'\Sigma^{-1}B^{-1}\big(y-b-B\mu\big)\Big\} \\
+          &=\frac{\operatorname{abs}(|B|^{-1})}{(2\pi)^{p/2}|\Sigma|^{\frac{1}{2}}}\exp\Big\{-\frac{1}{2}\big(y'-(b'+(B\mu)')\big)\big(B\Sigma B'\big)^{-1}\big(y-(b+B\mu)\big)\Big\} \\
+          &=\frac{\operatorname{abs}(|B|^{-1})}{(2\pi)^{p/2}|\Sigma|^{\frac{1}{2}}}\exp\Big\{-\frac{1}{2}\big(y-(b+B\mu)\big)'\big(B\Sigma B'\big)^{-1}\big(y-(b+B\mu)\big)\Big\} \\
+          &=\frac{1}{(2\pi)^{p/2}|\Sigma_Y|^{\frac{1}{2}}}\exp\Big\{-\frac{1}{2}\big(y-\mu_Y\big)'\big(\Sigma_Y\big)^{-1}\big(y-\mu_Y\big)\Big\}
+  \end{align*}
+
+  Para el factor de la izquierda en el último paso:
+  \[|\Sigma_Y|=|B\Sigma
+    B'|=|B||\Sigma||B'|=|B|^2|\Sigma|\Rightarrow|\Sigma_Y|^{\frac{1}{2}}=\operatorname{abs}(|B|)|\Sigma|^{\frac{1}{2}}\]
+  \[\frac{1}{|\Sigma_Y|^{\frac{1}{2}}}=\frac{1}{\operatorname{abs}(|B|)}\frac{1}{|\Sigma|^{\frac{1}{2}}}=\frac{\operatorname{abs}(|B|^{-1})}{|\Sigma|^{\frac{1}{2}}}\]
+\end{exercise}
+
+\newpage
+
+\begin{exercise}
+  \begin{align*}
+    X&\sim N_p(\mu_X,\Sigma_X)\qquad (\Sigma_X>0) \\
+    Y&=B X+b\quad \text{ con $B$ matriz (cte.) $p\times q$ de rango $q\leq p$} \\
+     &\hspace{34mm}\text{$b$ vector (cte.) $q\times 1$}
+  \end{align*}
+  Entonces, $Y\sim N_q(\mu_Y,\Sigma_Y)=N_q(B\mu_X+b,B\Sigma_X B')$
+
+  (Abrevio $\Sigma_X=\Sigma$ y $\mu_X=\mu$)
+
+  Sabemos que $\phi_X(t)=\exp\Big\{it'\mu-\frac{1}{2}t'\Sigma t\Big\}$.
+
+  Tenemos
+  \begin{align*}
+    \phi_Y(t)=e^{it'b}\phi_X(B't)&=e^{it'b}\exp\Big\{i(B't)'\mu-\frac{1}{2}(B't)'\Sigma B't\Big\} \\
+                                 &=\exp\Big\{it'b+it'B\mu-\frac{1}{2}t'B\Sigma B't\Big\} \\
+                                 &=\exp\Big\{it'(b+B\mu)-\frac{1}{2}t'B\Sigma B't\Big\} \\
+                                 &=\exp\Big\{it'\mu_Y-\frac{1}{2}t'\Sigma_Y t\Big\}
+  \end{align*}
+  
+\end{exercise}
+
+\end{document}
