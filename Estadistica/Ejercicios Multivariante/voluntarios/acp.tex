@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage{float}
+
+\usepackage{parskip}
+\usepackage[document]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage[dvips,usenames]{color}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage{tikz}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            linkcolor=blue]{hyperref}
+            
+\usepackage{beton}
+\usepackage[T1]{fontenc}
+
+\newcommand{\cov}{\operatorname{cov}}
+
+\title{ACP: Tarea voluntaria}
+
+\author{David Cabezas Berrido}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+Justificar que $a_3$ (el vector de pesos de la tercera componente
+principal) es el vector de vector propio asociado al tercer valor
+propio de mayor módulo de la matriz R.
+
+$a_3$ debe maximizar la expresión $Var[U_3]=Var[a_3^t X]$, siendo un
+vector unitario. Y $U_3$ debe ser incorrelada con $U_1$ y con
+$U_2$. Esto se traduce en:
+\begin{align*}
+  \max \ Var[U_3]& \\
+  \text{s.a.}\ \|a_3\|=a_3^t a_3=1& \\
+  \cov(U_1,U_3)=0& \\
+  \cov(U_2,U_3)=0&
+\end{align*}
+
+Como $X$ es centrado, tenemos $E[U_3]=E[a_3^t X]=a_3^t E[X]=0$. Por
+tanto,
+$Var[U_3]=E[U_3^2]=E[a_3^t X a_3^t X]=E[a_3^t XX^ta_3]=a_3^t
+E[XX^t]a_3=a_3^t Ra_3$.
+
+Por otra parte, para $i=1,2$ tenemos:
+$\cov(U_i,U_3)=E[U_iU_3]-E[U_i]E[U_3]=E[U_i U_3]=E[a_i^t X a_3^t
+X]=a_i^t E[X X^t] a_3=a_i^t R a_3$. Llamando $\lambda_i\neq 0$ al
+valor propio asociado al vector propio $a_i$ y utilizando que $R$ es
+simétrica, tenemos $0=\cov(U_i,U_3)=a_i^t R a_3$=$\lambda_i a_i^t a_3$.
+Por tanto el problema queda:
+\begin{align*}
+  \max\limits_{a_3} & a_3^t Ra_3\\
+  \text{s.a.}\ \|a_3\|=a_3^t a_3=1& \\
+  a_1^t R a_3=0& \\
+  a_2^t R a_3=0& \\
+  a_1^t a_3=0& \\
+  a_2^t a_3=0&
+\end{align*}
+Donde las últimas dos condiciones se deducen de las dos anteriores.
+
+Aplicando el Teorema de los multiplicadores Lagrange para la obtención
+de extremos condicionados, el problema se reduce a
+\[\max\limits_{a_3}\{a_3^t Ra_3 -\lambda(a_3^t a_3-1)-\mu_1 a_1^t R a_3 -\mu_2 a_2^t R a_3\}\]
+Derivando la expresión respecto de $a_3$ (matricialmente y teniendo en cuenta que $R$ es simétrica) e igualando a cero, obtenemos:
+\begin{equation}\label{derivada}
+  2Ra_3-2\lambda a_3-\mu_1 Ra_1-\mu_2 Ra_2=0
+  \end{equation}
+  Multiplicando a la izquierda por $a_i^t$ ($i=1,2$, llamamos $j$ al
+  otro), tenemos:
+  \[2a_i^tRa_3-2\lambda a_i^ta_3-\mu_1 a_i^tRa_1-\mu_2 a_i^tRa_2=0\]
+  Ahora utilizamos que $a_i^t a_3=a_i^t R a_3=a_i^t R a_j=0$, también
+  que $a_i^t Ra_i=\lambda_i\neq 0$. Nos queda $-\mu_i\lambda_i=0$, por
+  lo que $\mu_i=0$ para $i=1,2$. Por tanto \ref{derivada} queda:
+  \[2Ra_3-2\lambda a_3=0\] Equivalentemente $Ra_3=\lambda a_3$, por lo
+  que $a_3$ es un vector propio de $R$ asociado al valor propio
+  $\lambda$.
+
+  Además, $Var[U_3]=a_3^t Ra_3=a_3^t \lambda a_3=\lambda$, ya que
+  $a_3$ es unitario.
+
+  Por tanto, la tercera componente principal es $U_3=a_3^t X$, siendo
+  $a_3$ el vector propio asociado al tercer valor propio de mayor
+  módulo de $R$.
+\end{document}
