@@ -93,4 +93,47 @@ Este es el gráfico que generamos:
   \caption{Gráfico generado}
 \end{figure}
 
+\section{Método del codo para la selección del número de componentes
+  principales}
+
+El
+\href{https://en.wikipedia.org/wiki/Elbow_method_(clustering)}{método
+  del codo}, es una heurística que se utiliza para determinar el
+número de clusters en un dataset. Consiste en representar la
+proporción de varianza explicada en función del número de clusters y
+escoger el número de clusters en el que se produzca el
+\href{https://en.wikipedia.org/wiki/Knee_of_a_curve}{codo de la
+  curva}.
+
+Esta misma técnica se puede utilizar para elegir el número de
+componentes principales para describir los datos, sólo hay que
+representar la proporción de varianza acumulada por las $n$ primeras
+componponentes principales como función de $n$ y elegir el valor de
+$n$ con el código de la curva. También se puede hacer (como explica
+\href{https://feliperego.github.io/blog/2016/05/31/Intro-To-Principal-Component-Analysis}{aquí})
+sobre el porcentaje de varianza explicada por cada componente
+princial, e identificar el valor de $n$ a partir del cual la varianza
+explicada por cada posterior componente principal sea baja.
+
+Ponemos como ejemplo el dataset de las concentraciones de elementos
+químicos en muestras de vidrio del paquete ``archdata''. En lugar de
+como gráfico de barras, cambiamos la prepresentación a líneas y puntos
+para que sea más fácil identificar el codo de la curva.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=120mm]{elbow}
+  \caption{Curva de varianza explicada de cada componente principal.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=120mm]{elbow-cumsum}
+  \caption{Curva de varianza explicada acumulada de cada componente
+    principal.}
+\end{figure}
+
+En ambas curvas, podemos identificar el codo para el valor 3 del
+número de componentes principales.
+
 \end{document}
