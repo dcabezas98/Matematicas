@@ -27,6 +27,12 @@
 \usepackage{beton}
 \usepackage[T1]{fontenc}
 
+\makeatletter
+\newcommand{\vast}{\bBigg@{3}}
+\newcommand{\Vast}{\bBigg@{4}}
+\makeatother
+
+
 % Theorem environments
 
 %% \theoremstyle{plain} %% This is the default
@@ -40,7 +46,7 @@
 \newtheorem{definition}{Definici\'on}[section]
 \newtheorem{algorithm}{\textrm{\bf Algoritmo}}[section]
 
-\theoremstyle{remark}
+%\theoremstyle{remark}
 \newtheorem{remark}{Observaci\'on}
 \newtheorem{example}{Ejemplo}
 \newtheorem{exercise}{Ejercicio}
@@ -57,6 +63,27 @@
 
 \begin{document}
 \maketitle
+
+\begin{exercise} ~
+  \begin{enumerate}[a)]
+  \item $Y$ sigue una DNM con vector de medias $\alpha$ y matriz de
+    covarianzas $D\Sigma D'+\sigma^2 I$, utilizaremos la función
+    característica para comprobarlo.
+    \[\Phi_Y(t)=E[e^{it'(\alpha+DX+Z)}]=E[e^{it'\alpha}e^{it'DX}e^{it'Z}],\]
+    sacamos la constante y utilizamos que $e^{it'DX}$ y $e^{it'Z}$ son
+    independientes (funciones medibles de vectores aleatorios
+    independientes) para separar las esperanzas,
+    \[\Phi_Y(t)=E[e^{it'\alpha}e^{it'DX}e^{it'Z}]=e^{it'\alpha}E[e^{it'DX}]E[e^{it'Z}]=e^{it'\alpha}\Phi_X(D't)\Phi_Z(t).\]
+    Sustituimos las funciones características de $X$ y $Z$ para
+    obtener lo que queríamos:
+    \[\Phi_Y(t)=e^{it'\alpha}\exp\left\{-\frac{1}{2}t'D\Sigma
+        D't\right\}\exp\left\{-\frac{1}{2}t'\sigma^2 I
+        t\right\}=\exp\left\{it'\alpha -\frac{1}{2}t'\big(D\Sigma
+        D'+\sigma^2I\big)t\right\}.\] Por tanto,
+    $Y\sim N_p\big(\alpha,D\Sigma D'+\sigma^2I\big)$.
+  \item 
+  \end{enumerate}
+\end{exercise}
 
 \setcounter{exercise}{2}
 \begin{exercise} %3
@@ -369,27 +396,96 @@
       3 & -3 \\
       -3 & 6
     \end{pmatrix}\right),\qquad Y_3\sim N_1(4,5)\]
+
+Nos será útil el siguiente resultado: Si $X$ e $Y$ son vectores
+aleatorios independientes de $m$ y $n$ componentes respectivamente,
+para cada par de funciones medibles
+$f:\mathbb{R }^m\rightarrow\mathbb{R}^p$ y
+$g:\mathbb{R }^n\rightarrow\mathbb{R}^q$ se tiene que los vectores
+aleatorios $f(X)$ y $g(Y)$ son independientes.
   
   \begin{enumerate}[a)]
   \item En la entrada $(1,2)$ de la matriz $\Sigma$, vemos que
-    $\operatorname{Cov(Y_1,Y_2)}=-3\neq 0$. Por tanto, estas variables
+    $\operatorname{Cov}(Y_1,Y_2)=-3\neq 0$. Por tanto, estas variables
     no son incorreladas, luego no pueden ser independientes.
-  \item Son independiente, $Y_1$ es una componente (una proyección) de
-    un vector independiente con $Y_3$. TODO: ¿funcion de una
-    independiente sigue siendo independiente?
-  \item Son independiente, $Y_2$ es una componente (una proyección) de
-    un vector independiente con $Y_3$.
+  \item $Y_1$ es una componente (una proyección) del vector
+    $(Y_1,Y_2)'$. Como este vector es independiente de $Y_3$ y las
+    proyecciones son funciones medibles, $Y_1$ e $Y_3$ son
+    independientes.
+  \item Son independiente por el mismo motivo, la proyección de la
+    segunda componente también es una función medible.
   \item Lo son, es justo lo que garantiza el Resultado 2 que comento
     arriba.
   \item Si fuesen independientes, $Y_1$ sería independiente de $Y_2$
-    por ser una función (proyección) de un vector independiente. Por
-    tanto, no lo son.
+    por ser una función medible (proyección) de un vector
+    independiente. Por tanto, no lo son.
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
-  \begin{enumerate}
-  \item 
+\begin{exercise} % Ejercicio 9
+  Utilizaremos el Resultado 3 de DNM caso no singular (ya que
+  $\Sigma>0$). Nos dice que la distribución condicionada de $Y$ dado
+  $X=x$ sigue una DNM de la forma:
+  \begin{align*}
+    N_2\Vast(
+      \begin{pmatrix}
+        3 \\ -2
+      \end{pmatrix}
++
+\begin{pmatrix}
+  15 & 0 & 3 \\
+  8 & 6 & -2
+\end{pmatrix}
+\begin{pmatrix}
+  50 & 8 & 5 \\
+  8 & 4 & 0 \\
+  5 & 0 & 1
+\end{pmatrix}^{-1}\left(x-
+  \begin{pmatrix}
+    4 \\ -3 \\ 5
+  \end{pmatrix}
+\right), \\
+\begin{pmatrix}
+  14 & -8 \\
+  -8 & 18 
+\end{pmatrix}-\begin{pmatrix}
+  15 & 0 & 3 \\
+  8 & 6 & -2
+\end{pmatrix}\begin{pmatrix}
+  50 & 8 & 5 \\
+  8 & 4 & 0 \\
+  5 & 0 & 1
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+  15 & 8 \\
+  0 & 6 \\
+  3 & -2
+\end{pmatrix}\Vast)
+  \end{align*}
+  Simplificando, \[(Y/X=x)\sim N_2\vast(
+      \begin{pmatrix}
+        0 & 0 & 3 \\
+        \frac{2}{3} & \frac{1}{6} & \frac{-16}{3}
+      \end{pmatrix}x+
+      \begin{pmatrix}
+        -12 \\ \frac{45}{2}
+      \end{pmatrix},
+      \begin{pmatrix}
+        5 & -2 \\
+        -2 & 1
+      \end{pmatrix}\vast)\]
+  \begin{enumerate}[a)]
+  \item Por tanto $E[Y/X]=\begin{pmatrix}
+        0 & 0 & 3 \\
+        \frac{2}{3} & \frac{1}{6} & \frac{-16}{3}
+      \end{pmatrix}x+
+      \begin{pmatrix}
+        -12 \\ \frac{45}{2}
+      \end{pmatrix}$
+    \item $\operatorname{Cov}(Y/X)=\begin{pmatrix}
+        5 & -2 \\
+        -2 & 1
+      \end{pmatrix}$
   \end{enumerate}
 \end{exercise}
 
