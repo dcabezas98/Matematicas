@@ -21,7 +21,7 @@ bookmarksnumbered=false, % true means bookmarks in
 bookmarksopen=false,     % true means only level 1
 % are displayed.
 colorlinks=true,
-linkcolor=webred]{hyperref}
+linkcolor=blue]{hyperref}
 
 \usepackage{beton}
 \usepackage[T1]{fontenc}
@@ -146,8 +146,6 @@ linkcolor=webred]{hyperref}
       \includegraphics[width=80mm]{tanh}
     \end{figure}
 
-    \newpage
-
     $\Phi(\theta_0,r)$ queda entonces de este modo (comparamos
     distintos valores de $\theta_0$).
     \begin{figure}[H] \centering
@@ -189,14 +187,13 @@ linkcolor=webred]{hyperref}
     \begin{align*}
       \frac{\sh A\ch A}{2} +\frac{A}{2} - \frac{1}{4} \frac{e^{2A}-e^{-2A}}{2} = \frac{A}{2} + \frac{1}{2}\frac{(e^A-e^{-A})}{2}\frac{(e^A+e^{-A})}{2}-\frac{1}{4}\frac{e^{2A}-e^{-2A}}{2}=\frac{A}{2}
     \end{align*}
-
-    
   \end{enumerate}
 \end{exercise}
 
 \newcommand{\T}{T_1(\mathbb{S}^2)}
 \newcommand{\E}{\mathcal{E}_*(e)}
 
+\newpage
 \begin{exercise}
 
   Se considera el grupo el grupo de rotaciones
@@ -312,7 +309,121 @@ linkcolor=webred]{hyperref}
     biyección, probablemente la haya, aunque no sea tan fácil de
     interpretar.
   \end{enumerate}
-  
+\end{exercise}
+
+\newpage
+\setcounter{exercise}{10}
+\begin{exercise}
+  Dado un campo $C^\infty$,
+  $V=(V_1,V_2):\mathbb{R}^2\rightarrow\mathbb{R}^2$ cumpliendo
+  $\operatorname{div}V=\frac{\partial V_1}{\partial x}+\frac{\partial
+    V_2}{\partial y}=1$, debemos encontrar $F\in C^\infty(\mathbb{R}^2)$
+  tal que
+  \begin{equation} \label{eq:V}
+    V=J\nabla F+V_*=\left(-\frac{\partial F}{\partial y},\frac{\partial F}{\partial x}\right)+V_*
+  \end{equation} 
+  donde $V_*:\mathbb{R}^2\rightarrow\mathbb{R}^2$ es fijo.
+
+  Dado $V$, supondremos que se puede expresar como en (\ref{eq:V})
+  para obtener condiciones sobre $F$ y $V_*$. Con estas condiciones
+  obtendremos candidatos a $F$ y $V_*$, para después comprobar que
+  efectivamente $V$ se puede expresar de esa forma.
+
+  Tomando divergencias en (\ref{eq:V}) y utilizando que la divergencia
+es un operador lineal, obtenemos
+\[1=\operatorname{div}V = -\frac{\partial^2 F}{\partial x\partial
+    y}+\frac{\partial^2 F}{\partial y\partial
+    x}+\operatorname{div}V_*\] Utilizando que
+$\dfrac{\partial^2 F}{\partial x\partial y}=\dfrac{\partial^2
+  F}{\partial y\partial x}$, obtenemos
+$\operatorname{div}V_*=1$. Observamos que si se cumpliese (\ref{eq:V})
+para un $V_*$, existiría una $F_0$ tal que el campo
+$V_0(x,y)=(\frac{x}{2},\frac{y}{2})$, que tiene divergencia 1, se
+expresase como
+$V_0=\left(-\frac{\partial F_0}{\partial y},\frac{\partial
+    F_0}{\partial x}\right)+V_*$. Por otra parte, dado cualquier $V$
+con divergencia 1, existiría $F$ tal que
+$V=\left(-\frac{\partial F}{\partial y},\frac{\partial F}{\partial
+    x}\right)+V_*$. Obtendríamos por tanto
+\[V=\left(-\frac{\partial F}{\partial y},\frac{\partial F}{\partial
+      x}\right)+V_0-\left(-\frac{\partial F_0}{\partial
+      y},\frac{\partial F_0}{\partial x}\right)=\left(-\frac{\partial
+      (F-F_0)}{\partial y},\frac{\partial (F-F_0)}{\partial
+      x}\right)+V_0\] Con esto hemos demostrado que no importa el
+$V_*$ que tomemos, ya que sólo hará que varíe la función $F$, pero no
+afectará a su existencia. Tomamos por tanto
+$V_*=V_0=(\frac{x}{2},\frac{y}{2})$.
+
+Discutamos ahora $F$. Dado $V=(V_1,V_2)$ con $\operatorname{div}V=1$,
+(\ref{eq:V}) nos proporciona un sistema de ecuaciones en derivadas
+parciales que tiene que cumplir $F$.
+
+\begin{align} 
+   V_1&=-\frac{\partial F}{\partial y}+\frac{x}{2} \label{eq:dy}\\
+   V_2&=\frac{\partial F}{\partial x}+\frac{y}{2} \label{eq:dx}
+\end{align}
+
+La existencia de $F$ dependerá de la existencia de solución para este
+sistema.
+
+Tomando primitivas respecto de $y$ en (\ref{eq:dy}) obtenemos:
+\begin{equation} \label{eq:Fc}
+  F(x,y)=\frac{xy}{2}-\int_0^y V_1(x,s)ds+c(x),
+\end{equation}
+ya que al tomar primitivas respecto de $y$ nos aparece una constante
+que puede depender de $x$ (constante respecto de $y$). Para determinar
+$F$, falta determinar $c(x)$, ya que el resto de sumandos son
+conocidos.
+
+Derivamos ahora respecto de $x$ ($c(x)$ es derivable, ya que la
+podemos despejar en función de derivables) y aplicamos el Teorema de
+Derivación Bajo el Signo Integral obteniendo:
+\[\frac{\partial F}{\partial x}(x,y)=\frac{y}{2}-\int_0^y
+  \frac{\partial V_1}{\partial x}(x,s)ds+c'(x)\] Notemos que en
+(\ref{eq:V}) sólo aparece el gradiente de $F$, por lo que debemos
+determinar $F$ salvo constante. Así que nos basta con determinar
+$c'(x)$. Igualamos está ecuación con (\ref{eq:dx}):
+\begin{equation} \label{eq:V2}
+  V_2(x,y)-\frac{y}{2}=\frac{y}{2}-\int_0^y
+  \frac{\partial V_1}{\partial x}(x,s)ds+c'(x)
+\end{equation}
+
+Primero resolveremos la integral, aplicando
+$\frac{\partial V_1}{\partial x}+\frac{\partial V_2}{\partial y}=1$ y
+utilizando la regla de Barrow:
+\begin{equation} \label{eq:int}
+  \int_0^y \frac{\partial V_1}{\partial x}(x,s)ds=\int_0^y
+  1-\frac{\partial V_2}{\partial y}(x,s)ds=y-\big(V_2(x,y)-V_2(x,0)\big)
+\end{equation}
+Sustituimos en (\ref{eq:V2}):
+\begin{equation} \label{eq:c'}
+  V_2(x,y)-\frac{y}{2}=\frac{y}{2}-y+V_2(x,y)-V_2(x,0)+c'(x)
+\end{equation}
+Simplificando $V_2$ e $y$, obtenemos $c'(x)=V_2(x,0)$ y tomamos
+$c(x)=\int_0^x V_2(t,0)dt$.
+
+Recuperando (\ref{eq:Fc}), obtenemos finalmente:
+\begin{equation}
+  \label{eq:F}
+  F(x,y)=\frac{xy}{2}-\int_0^y V_1(x,s)ds+\int_0^x V_2(t,0)dt
+\end{equation}
+que claramente es $C^1(\mathbb{R}^2)$, por serlo $V_1$ y $V_2$ y por
+los Teremas Fundamental del Cálculo y de Derivación Bajo el Signo
+Integral. Comprobamos ahora que efectivamente se cumple
+(\ref{eq:V}). Utilizando el Teorema de Derivación Bajo el Signo
+Integral y el Teorema Fundamental del Cálculo:
+\begin{equation*}
+  \left(-\frac{\partial F}{\partial y},\frac{\partial F}{\partial x}\right)=\left(-\frac{x}{2}+V_1(x,y),\frac{y}{2}-\int_0^y \frac{\partial V_1}{\partial x}(x,s)ds+V_2(x,0)\right)
+\end{equation*}
+Volvemos a utilizar $\operatorname{div}V=1$ y la regla de Barrow para
+calcular el valor de la integral como en (\ref{eq:int}), y
+simplificamos:
+\begin{align*}
+  \left(-\frac{\partial F}{\partial y},\frac{\partial F}{\partial x}\right)&=\left(-\frac{x}{2}+V_1(x,y),\frac{y}{2}-y+V_2(x,y)-V_2(x,0)+V_2(x,0)\right) \\
+  &=\left(-\frac{x}{2}+V_1(x,y),-\frac{y}{2}+V_2(x,y)\right)=V-V_*
+\end{align*}
+Viendo ahora que las derivadas parciales de $F$ son
+$C^\infty(\mathbb{R^2})$, concluimos que $F\in C^\infty(\mathbb{R}^2)$.
 \end{exercise}
 
 \end{document}
