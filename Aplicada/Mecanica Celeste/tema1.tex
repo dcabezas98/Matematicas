@@ -357,7 +357,6 @@ $V_*=V_0=(\frac{x}{2},\frac{y}{2})$.
 Discutamos ahora $F$. Dado $V=(V_1,V_2)$ con $\operatorname{div}V=1$,
 (\ref{eq:V}) nos proporciona un sistema de ecuaciones en derivadas
 parciales que tiene que cumplir $F$.
-
 \begin{align} 
    V_1&=-\frac{\partial F}{\partial y}+\frac{x}{2} \label{eq:dy}\\
    V_2&=\frac{\partial F}{\partial x}+\frac{y}{2} \label{eq:dx}
@@ -375,9 +374,11 @@ que puede depender de $x$ (constante respecto de $y$). Para determinar
 $F$, falta determinar $c(x)$, ya que el resto de sumandos son
 conocidos.
 
-Derivamos ahora respecto de $x$ ($c(x)$ es derivable, ya que la
-podemos despejar en función de derivables) y aplicamos el Teorema de
-Derivación Bajo el Signo Integral obteniendo:
+Considerando $y\in\mathbb{R}$ fijo,
+$c:\mathbb{R}\rightarrow\mathbb{R}$ viene dada por
+$c(x)=F(x,y)-\frac{xy}{2}+\int_0^y V_1(x,s)ds$. Utilizando el Teorema
+de Derivación Bajo el Signo Integral, obtenemos que
+$c\in C^1(\mathbb{R})$ y se cumple:
 \[\frac{\partial F}{\partial x}(x,y)=\frac{y}{2}-\int_0^y
   \frac{\partial V_1}{\partial x}(x,s)ds+c'(x)\] Notemos que en
 (\ref{eq:V}) sólo aparece el gradiente de $F$, por lo que debemos
@@ -407,11 +408,13 @@ Recuperando (\ref{eq:Fc}), obtenemos finalmente:
   \label{eq:F}
   F(x,y)=\frac{xy}{2}-\int_0^y V_1(x,s)ds+\int_0^x V_2(t,0)dt
 \end{equation}
-que claramente es $C^1(\mathbb{R}^2)$, por serlo $V_1$ y $V_2$ y por
-los Teremas Fundamental del Cálculo y de Derivación Bajo el Signo
-Integral. Comprobamos ahora que efectivamente se cumple
-(\ref{eq:V}). Utilizando el Teorema de Derivación Bajo el Signo
-Integral y el Teorema Fundamental del Cálculo:
+Utilizando el Teorema Fundamental del Cálculo, obtenemos que
+$\frac{\partial F}{\partial y}$ existe y es continua en todo
+$\mathbb{R}^2$, mientras que combinando el Teorema de Derivación Bajo
+el Signo Integral con el Teorema Fundamental del Cálculo, deducimos
+que $\frac{\partial F}{\partial x}$ existe y es continua en todo
+$\mathbb{R}^2$. Por tanto, $F$ es $C^1(\mathbb{R}^2)$. Comprobamos
+ahora que efectivamente se cumple (\ref{eq:V}) obteniendo las derivadas parciales de $F$:
 \begin{equation*}
   \left(-\frac{\partial F}{\partial y},\frac{\partial F}{\partial x}\right)=\left(-\frac{x}{2}+V_1(x,y),\frac{y}{2}-\int_0^y \frac{\partial V_1}{\partial x}(x,s)ds+V_2(x,0)\right)
 \end{equation*}
