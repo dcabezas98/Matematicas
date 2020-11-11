@@ -408,13 +408,18 @@ Recuperando (\ref{eq:Fc}), obtenemos finalmente:
   \label{eq:F}
   F(x,y)=\frac{xy}{2}-\int_0^y V_1(x,s)ds+\int_0^x V_2(t,0)dt
 \end{equation}
-Utilizando el Teorema Fundamental del Cálculo, obtenemos que
-$\frac{\partial F}{\partial y}$ existe y es continua en todo
-$\mathbb{R}^2$, mientras que combinando el Teorema de Derivación Bajo
-el Signo Integral con el Teorema Fundamental del Cálculo, deducimos
-que $\frac{\partial F}{\partial x}$ existe y es continua en todo
-$\mathbb{R}^2$. Por tanto, $F$ es $C^1(\mathbb{R}^2)$. Comprobamos
-ahora que efectivamente se cumple (\ref{eq:V}) obteniendo las derivadas parciales de $F$:
+
+Ya estamos en disposición de probar el enunciado del ejercicio. Dado
+un campo vectorial $V=(V_1,V_2)$ en las condiciones dadas, definimos
+$F:\mathbb{R}^2\rightarrow\mathbb{R}^2$ como en
+(\ref{eq:Fc}). Utilizando el Teorema Fundamental del Cálculo,
+obtenemos que $\frac{\partial F}{\partial y}$ existe y es continua en
+todo $\mathbb{R}^2$, mientras que combinando el Teorema de Derivación
+Bajo el Signo Integral con el Teorema Fundamental del Cálculo,
+deducimos que $\frac{\partial F}{\partial x}$ existe y es continua en
+todo $\mathbb{R}^2$. Por tanto, $F$ es
+$C^1(\mathbb{R}^2)$. Comprobamos ahora que efectivamente se cumple
+(\ref{eq:V}) obteniendo las derivadas parciales de $F$:
 \begin{equation*}
   \left(-\frac{\partial F}{\partial y},\frac{\partial F}{\partial x}\right)=\left(-\frac{x}{2}+V_1(x,y),\frac{y}{2}-\int_0^y \frac{\partial V_1}{\partial x}(x,s)ds+V_2(x,0)\right)
 \end{equation*}
