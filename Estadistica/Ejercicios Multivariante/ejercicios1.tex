@@ -16,14 +16,14 @@
 \definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
 \usepackage{tikz}
 \usepackage[bookmarks=true,
-            bookmarksnumbered=false, % true means bookmarks in 
-                                     % left window are numbered                         
-            bookmarksopen=false,     % true means only level 1
-                                     % are displayed.
-            colorlinks=true,
-            urlcolor=cyan,
-            linkcolor=webred]{hyperref}
-            
+bookmarksnumbered=false, % true means bookmarks in 
+% left window are numbered                         
+bookmarksopen=false,     % true means only level 1
+% are displayed.
+colorlinks=true,
+urlcolor=cyan,
+linkcolor=blue]{hyperref}
+
 \usepackage{beton}
 \usepackage[T1]{fontenc}
 
@@ -32,7 +32,6 @@
 \newcommand{\Vast}{\bBigg@{4}}
 \makeatother
 
-
 % Theorem environments
 
 %% \theoremstyle{plain} %% This is the default
@@ -40,20 +39,19 @@
 \newtheorem{corollary}[theorem]{Corolario}
 \newtheorem{lemma}[theorem]{Lema}
 \newtheorem{proposition}[theorem]{Proposici\'on}
-%\newtheorem{ax}{Axioma}
+% \newtheorem{ax}{Axioma}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definici\'on}[section]
 \newtheorem{algorithm}{\textrm{\bf Algoritmo}}[section]
 
-%\theoremstyle{remark}
+% \theoremstyle{remark}
 \newtheorem{remark}{Observaci\'on}
 \newtheorem{example}{Ejemplo}
 \newtheorem{exercise}{Ejercicio}
-%\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+% \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 \newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}}
 \newtheorem*{notation}{Notaci\'on}
-
 
 \title{Relación 1}
 
@@ -64,7 +62,7 @@
 \begin{document}
 \maketitle
 
-\begin{exercise} ~
+\begin{exercise} Abreviamos $\Sigma=\Sigma_X$ %Ej1
   \begin{enumerate}[a)]
   \item $Y$ sigue una DNM con vector de medias $\alpha$ y matriz de
     covarianzas $D\Sigma D'+\sigma^2 I$, utilizaremos la función
@@ -81,12 +79,98 @@
         t\right\}=\exp\left\{it'\alpha -\frac{1}{2}t'\big(D\Sigma
         D'+\sigma^2I\big)t\right\}.\] Por tanto,
     $Y\sim N_p\big(\alpha,D\Sigma D'+\sigma^2I\big)$.
-  \item 
+  \item Utilizando que $X$ y $Z$ son independientes y siguen ambas una
+    $DNM$ no singular, obtenemos para cada $\begin{psmallmatrix}
+        t_1 \\ t_2
+      \end{psmallmatrix}\in\mathbb{R}^{p+r}$ 
+    \begin{align*}
+      \Phi_{
+      \begin{psmallmatrix}
+        Z \\ X
+      \end{psmallmatrix}
+      }
+      \begin{psmallmatrix}
+        t_1 \\ t_2
+      \end{psmallmatrix}
+      &=\Phi_Z(t_1)\Phi_X(t_2)=\exp\left\{-\frac{1}{2}t_1'\sigma^2 It_1\right\}\exp\left\{-\frac{1}{2}t_2'\Sigma t_2\right\} \\
+      &=\exp\left\{-\frac{1}{2}\big(\sigma^2 t_1't_1+t_2'\Sigma t_2\big)\right\}=\exp\left\{-\frac{1}{2}
+      \begin{pmatrix}
+        t_1' & t_2'
+      \end{pmatrix}
+               \begin{pmatrix}
+                 \sigma^2I & 0 \\ 0 & \Sigma
+               \end{pmatrix}
+                              \begin{pmatrix}
+                                t_1 \\ t_2
+                              \end{pmatrix}
+      \right\}
+    \end{align*}
+    Por tanto, $\begin{pmatrix} Z \\ X
+    \end{pmatrix}\sim N_{p+r}\left(0,
+      \begin{pmatrix}
+        \sigma^2I & 0 \\ 0 & \Sigma
+      \end{pmatrix}
+    \right)$.
+
+    Utilizando, el Resultado para transformaciones lineales de rango
+    máximo para DNM caso no singular, obtenemos que
+    \[
+      \begin{pmatrix}
+        Y \\ X
+      \end{pmatrix}=
+      \begin{pmatrix}
+        \alpha+DX+Z \\ X
+      \end{pmatrix}=
+      \begin{pmatrix}
+        I & D \\ 0 & I
+      \end{pmatrix}
+      \begin{pmatrix}
+        Z \\ X
+      \end{pmatrix}+
+      \begin{pmatrix}
+        \alpha \\ 0
+      \end{pmatrix}
+    \]
+    sigue una distribución normal multivariante con vector de medias $
+    \begin{pmatrix}
+      \alpha \\ 0
+    \end{pmatrix}$ y matriz de covarianzas $
+    \begin{pmatrix}
+      I & D \\ 0 & I
+    \end{pmatrix}\begin{pmatrix}
+      \sigma^2I & 0 \\ 0 & \Sigma
+    \end{pmatrix}\begin{pmatrix}
+      I & 0 \\ D' & I
+    \end{pmatrix}=
+    \begin{pmatrix}
+      D\Sigma D'+\sigma^2I & D\Sigma \\ \Sigma D' & \Sigma
+    \end{pmatrix}$.
+  \item $\begin{pmatrix}
+        Y \\ X
+      \end{pmatrix}$ sigue una DNM con matriz de covarianzas definida
+      positiva, usamos por tanto el Resultado 3 de DNM no
+      singular. Obtenemos que la distribución condicionada de $X$ a
+      $Y=y$ sigue una DNM de la forma:
+      \[N_r\Big(0+\Sigma D'(D\Sigma
+        D'+\sigma^2I)^{-1}(y-\alpha),\Sigma-\Sigma D'(D\Sigma
+        D'+\sigma^2I)^{-1}D\Sigma\Big)\] Así, que
+      $E[X|Y]=\Sigma D'(D\Sigma D'+\sigma^2I)^{-1}(Y-\alpha)=\Sigma D'\Sigma_Y^{-1}(Y-\alpha)$
+    \item Utilizamos el mismo resultado, pero cambiamos los papeles de
+      $X$ e $Y$, obteniendo que $Y$ condicionado a $X$ sigue una DNM
+      con vector de medias
+      \[\alpha+D\Sigma\Sigma^{-1}(X-0)\]
+      y matriz de covarianzas
+      \[D\Sigma D'+\sigma^2I-D\Sigma\Sigma^{-1}\Sigma D'\]
+      Simplificando, obtenemos
+      \[Y|X\sim N_p\Big(\alpha+D X,\sigma^2I\Big)\]
   \end{enumerate}
 \end{exercise}
 
-\setcounter{exercise}{2}
-\begin{exercise} %3
+\begin{exercise} %Ej2
+  TODO
+\end{exercise}
+
+\begin{exercise} %Ej3
 
   Debemos tener en cuenta que $\alpha'(X-\mu)$ es una variable
   aleatoria unidimensional.
@@ -98,7 +182,7 @@
   Si $\alpha=0$, obtenemos otra trivialidad: $E[0]=0$. De lo
   contrario, podemos ver $\alpha'$ como una matriz $1\times p$ de
   rango máximo y aplicar el resultado sobre transformaciones lineales
-  de rango máximo (RESULTADO 4 de DNM para $\Sigma>0$) para concluir
+  de rango máximo (Resultado 4 de DNM para $\Sigma>0$) para concluir
   $Y\sim
   N(\alpha'\mu-\alpha'\mu,\alpha'\Sigma\alpha'')=N(0,\alpha'\Sigma\alpha)$.
   
@@ -124,8 +208,11 @@
   
 \end{exercise}
 
-\setcounter{exercise}{4}
-\begin{exercise} %5
+\begin{exercise} %Ej4
+  TODO
+\end{exercise}
+
+\begin{exercise} %Ej5
   \[\Sigma=
     \begin{pmatrix}
       1 & 0 & \sigma_{13} \\
@@ -171,8 +258,101 @@
   definida positiva.
 \end{exercise}
 
-\setcounter{exercise}{6}
-\begin{exercise}
+\begin{exercise} % Ej6
+  Dado $Z\sim_p(0,I_p)$, debemos encontrar una condición necesaria y
+  suficiente para las dos matrices $k_i\times p$, $C_i$, con
+  $k_i\leq p$ para $i=1,2$, que caracterice la independencia de
+  $Y_1=C_1 Z$ e $Y_2=C_2 Z$.
+
+  Partimos de la caracterización de independencia por medio de la
+  función característica: $Y_1$ e $Y_2$ son independientes si y solo si
+  \begin{equation} \label{indep-caracteristica}
+    \Phi_{
+      \begin{psmallmatrix}
+        Y_1 \\ Y_2
+      \end{psmallmatrix}
+    }(t)=\Phi_{Y_1}(t_1)\Phi_{Y_2}(t_2),\quad\text{para todo } t=\begin{pmatrix}
+      t_1 \\ t_2
+    \end{pmatrix}\in\mathbb{R}^{k_1+k_2}
+  \end{equation}
+  Utilizamos el resultado para transformaciones lineales de rango no
+  necesariamente máximo para el caso $\Sigma\geq 0$, y obtenemos que
+  \[\begin{pmatrix}
+      C_1 \\ C_2
+    \end{pmatrix}Z=\begin{pmatrix}
+      C_1 Z \\ C_2 Z
+    \end{pmatrix}=\begin{pmatrix}
+      Y_1 \\ Y_2
+    \end{pmatrix}\]
+  cumple
+  \[\begin{pmatrix}
+      Y_1 \\ Y_2
+    \end{pmatrix}\sim N_{k_1+k_2}\vast(0,\begin{pmatrix}
+      C_1 \\ C_2
+    \end{pmatrix} I_p \begin{pmatrix}
+      C_1' & C_2'
+    \end{pmatrix}\vast)\]
+  Llamando \[C=\begin{pmatrix}
+      C_1 \\ C_2
+    \end{pmatrix} I_p \begin{pmatrix}
+      C_1' & C_2'
+    \end{pmatrix}=\begin{pmatrix}
+      C_1 C_1' & C_1 C_2' \\ C_2 C_1' & C_2 C_2'
+    \end{pmatrix}\]
+  tenemos que \[\Phi_{
+      \begin{psmallmatrix}
+        Y_1 \\ Y_2
+      \end{psmallmatrix}
+    }(t)=\exp\left\{-\frac{1}{2}t'Ct\right\}\]
+  De forma análoga, tenemos para $Y_i=C_i Z$ ($i=1,2$)
+  \[Y_i\sim N_{k_i}(0,C_i I C_i'),\] por tanto
+  \[\Phi_{Y_i}(t_i)=\exp\left\{-\frac{1}{2}t_i'C_iC_i't_i\right\}\]
+  (\ref{indep-caracteristica}) queda ahora así:
+  \[\exp\left\{-\frac{1}{2}t'Ct\right\}=\exp\left\{-\frac{1}{2}t_1'C_1C_1't_1\right\}\exp\left\{-\frac{1}{2}t_2'C_2C_2't_2\right\},\quad\text{para todo } t=\begin{pmatrix}
+      t_1 \\ t_2
+    \end{pmatrix}\in\mathbb{R}^{k_1+k_2}\]
+  Y la inyectividad de la exponencial nos dice que la independencia
+  entre $Y_1$ e $Y_2$ equivale a
+  \[t'Ct=t_1'C_1C_1't_1+t_1'C_1C_1't_1\quad\text{para todo }
+    t=\begin{pmatrix} t_1 \\ t_2
+    \end{pmatrix}\in\mathbb{R}^{k_1+k_2}\]
+  Desarrollando, obtenemos
+  \[t'Ct=
+    \begin{pmatrix}
+      t_1' & t_2'
+    \end{pmatrix}
+    \begin{pmatrix}
+      C_1 C_1' & C_1 C_2' \\ C_2 C_1' & C_2 C_2'
+    \end{pmatrix}
+    \begin{pmatrix}
+      t_1 \\ t_2
+    \end{pmatrix}=t_1'C_1C_1't_1+t_1'C_1C_2't_2+t_2'C_2C_1't_1+t_2'C_2C_2't_2\]
+  Por tanto, $Y_1$ e $Y_2$ son independientes si y solo si
+  \[t_1'C_1C_2't_2+t_2'C_2C_1't_1=0,\quad\text{para todo }
+    \begin{pmatrix} t_1 \\ t_2
+    \end{pmatrix}\in\mathbb{R}^{k_1+k_2}\]
+  Tenemos la suma de dos escalares, así que podemos trasponer uno:
+  $t_2'C_2C_1't_1=(t_2'C_2C_1't_1)'=t_1'C_1C_2't_2$. Obteniendo así \begin{equation} \label{indep-condition} t_1'C_1C_2't_2=0,\quad\text{para todo }
+    \begin{pmatrix} t_1 \\ t_2
+    \end{pmatrix}\in\mathbb{R}^{k_1+k_2}\end{equation}
+  Claramente esto se satisface cuando $C_1C_2'=0$. Recíprocamente, si
+  $C_1C_2'=(d_{ij})$ tuviese una entrada $d_{ij}\neq 0$ para algunos
+  $i=1,\ldots,k_1$, $j=1,\ldots,k_2$, tomando $t_1(n)=
+  \begin{cases}
+    1 \text{ si } n=i \\
+    0 \text{ en otro caso}
+  \end{cases}
+  $ y $t_2(n)=
+  \begin{cases}
+    1 \text{ si } n=j \\
+    0 \text{ en otro caso}
+  \end{cases}
+  $ tendríamos $t_1'C_1C_2't_2=d_{ij}\neq 0$, luego
+  (\ref{indep-condition}) equivale a que $C_1C_2'=0$. Por tanto, $Y_1$
+  e $Y_2$ son independientes si y solo si $C_1C_2'=0$.
+\end{exercise}
+
+\begin{exercise} % Ej7 
   $Y\sim N_3(\mu,\Sigma)$, con
   \[\mu=
     \begin{pmatrix}
@@ -201,169 +381,167 @@
       Y
     \]
     Como la matriz $B=\begin{pmatrix}
-        2 & -1 & 3
-      \end{pmatrix}$ tiene rango 1, el resultado sobre
-      transformaciones lineales de máximo rango para $\Sigma>0$ nos
-      asegura que $Z\sim N_1(B\mu,B\Sigma B')=N_1(17,21)$.
-    \item $(Z_1,Z_2)$ donde $Z_1=Y_1+Y_2+Y_3$, $Z_2=Y_1-Y_2+2Y_3$.
-      \[\begin{pmatrix}
-          Z_1 \\
-          Z_2
-        \end{pmatrix}
-        =\begin{pmatrix}
-          1 & 1 & 1 \\
-          1 & -1 & 2
-        \end{pmatrix}Y=BY
-      \]
-      Esta vez el rango de $B=\begin{pmatrix}
-          1 & 1 & 1 \\
-          1 & -1 & 2
-        \end{pmatrix}$ es 2, y el mismo resultado nos da \\ $\begin{pmatrix}
-          Z_1 \\
-          Z_2
-        \end{pmatrix}\sim N_2\left(
-        \begin{pmatrix}
-          8 \\ 10
-        \end{pmatrix},
-        \begin{pmatrix}
-          29 & -1 \\
-          -1 & 9
-        \end{pmatrix}\right)$.
-      \item \[Y_2=
+      2 & -1 & 3
+    \end{pmatrix}$ tiene rango 1, el resultado sobre
+    transformaciones lineales de máximo rango para $\Sigma>0$ nos
+    asegura que $Z\sim N_1(B\mu,B\Sigma B')=N_1(17,21)$.
+  \item $(Z_1,Z_2)$ donde $Z_1=Y_1+Y_2+Y_3$, $Z_2=Y_1-Y_2+2Y_3$.
+    \[\begin{pmatrix}
+        Z_1 \\
+        Z_2
+      \end{pmatrix}
+      =\begin{pmatrix}
+        1 & 1 & 1 \\
+        1 & -1 & 2
+      \end{pmatrix}Y=BY
+    \]
+    Esta vez el rango de $B=\begin{pmatrix}
+      1 & 1 & 1 \\
+      1 & -1 & 2
+    \end{pmatrix}$ es 2, y el mismo resultado nos da \\ $\begin{pmatrix}
+      Z_1 \\
+      Z_2
+    \end{pmatrix}\sim N_2\left(
+      \begin{pmatrix}
+        8 \\ 10
+      \end{pmatrix},
+      \begin{pmatrix}
+        29 & -1 \\
+        -1 & 9
+      \end{pmatrix}\right)$.
+  \item \[Y_2=
       \begin{pmatrix}
         0 & 1 & 0
       \end{pmatrix}
       Y=BY
     \]
     El rango de $B$ sigue siendo máximo, por tanto $Y_2\sim N_1(1,13)$.
-    \item \[\begin{pmatrix}
-          Y_1 \\
-          Y_3
-        \end{pmatrix}
-        =\begin{pmatrix}
-          1 & 0 & 0 \\
-          0 & 0 & 1
-        \end{pmatrix}Y\] Una vez más el mismo resultado nos dice
-      que $\begin{pmatrix}
-          Y_1 \\
-          Y_2
-        \end{pmatrix}\sim N_2\left(
-        \begin{pmatrix}
-          3 \\ 4
-        \end{pmatrix},
-        \begin{pmatrix}
-          6 & -2 \\
-          -2 & 4
-        \end{pmatrix}\right)$.
-      \item \[\begin{pmatrix}
-          Y_1 \\
-          Y_3 \\
-          \frac{1}{2}(Y_1+Y_2)
-        \end{pmatrix}
-        =\begin{pmatrix}
-          1 & 0 & 0 \\
-          0 & 0 & 1 \\
-          \frac{1}{2} & \frac{1}{2} & 0
-        \end{pmatrix}Y\]
-      $\begin{pmatrix}
-         Y_1 \\
-         Y_3 \\
-         \frac{1}{2}(Y_1+Y_2)
-        \end{pmatrix}\sim N_3\left(
-        \begin{pmatrix}
-          3 \\ 4 \\ 2
-        \end{pmatrix},
-        \begin{pmatrix}
-          6 & -2 & \frac{7}{2} \\
-          -2 & 4 & 1 \\
-          \frac{7}{2} & 1 & \frac{21}{4}
-        \end{pmatrix}\right)$.
-    \item Encontrar $Z$ tal que $Z=(T')^{-1}(Y-\mu)\sim N_3(0,I)$. Con
-      $T$ la matriz correspondiente a la factorización de Cholesky,
-      $\Sigma=T'T$.
-
-      Utilizamos el algoritmo para la descomposición de Cholesky
-      implementado en la herramienta \href{https://www.sagemath.org}{\texttt{SageMath}}, y obtenemos
-      que (redondeando)
-      \[\Sigma=T'T=
-        \begin{pmatrix}
-          2.4495 & 0 & 0 \\
-          0.4082 & 3.5824 & 0 \\
-          -0.8165 & 1.2096 & 1.3675
-        \end{pmatrix}
-        \begin{pmatrix}
-          2.4495 & 0.4082 & -0.8165 \\
-          0 & 3.5824 & 1.2096 \\
-          0 & 0 & 1.3675
-        \end{pmatrix}
-      \]
-      También con \texttt{SageMath}, calculamos la inversa:
-      \[T^{-1}=\begin{pmatrix}
-          0.4082 & -0.0465 & 0.2849 \\
-          0 & 0.2791 & -0.2469 \\
-          0 & 0 & 0.7312
-        \end{pmatrix}\]
-      Luego \[Z=\begin{pmatrix}
-          0.4082 & -0.0465 & 0.2849 \\
-          0 & 0.2791 & -0.2469 \\
-          0 & 0 & 0.7312
-        \end{pmatrix}\left(Y-\mu\right)\]
-      Como $T'T=\Sigma$, se tiene $Z\sim N_3(0,I)$.
-    \item Encontrar $Z$ tal que
-      $Z=\Sigma^{-\frac{1}{2}}(Y-\mu)\sim N_3(0,I)$. Con
-      $\Sigma^{-\frac{1}{2}}$ la inversa de la matriz correspondiente
-      a la factorización raíz cuadrada,
-      $\Sigma=\Sigma^\frac{1}{2}\Sigma^\frac{1}{2}$.
-
-      Con la función
-      \href{https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html}{\texttt{np.linalg.eigh}},
-      obtenemos una matriz ortogonal
-      \[V=
-        \begin{pmatrix}
-          -0.4358 & 0.8996 & 0.0276 \\
-          0.3268 & 0.1296 & 0.9362 \\
-          -0.8386 & -0.417 & 0.3505
-        \end{pmatrix}
-      \] que cumple \[V'\Sigma V=
-        \begin{pmatrix}
-          1.4018 & 0 & 0 \\
-          0 & 7.0712 & 0 \\
-          0 & 0 & 14.527
-        \end{pmatrix}=D\]
-      Tomando \[D^\frac{1}{2}=
+  \item \[\begin{pmatrix}
+        Y_1 \\
+        Y_3
+      \end{pmatrix}
+      =\begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 1
+      \end{pmatrix}Y\] Una vez más el mismo resultado nos dice
+    que $\begin{pmatrix}
+      Y_1 \\
+      Y_2
+    \end{pmatrix}\sim N_2\left(
       \begin{pmatrix}
-          \sqrt{1.4018} & 0 & 0 \\
-          0 & \sqrt{7.0712} & 0 \\
-          0 & 0 & \sqrt{14.527}
-        \end{pmatrix}\]
-      tenemos usando que $V$ es ortogonal,
-      \[\Sigma=VDV'=VD^\frac{1}{2}D^\frac{1}{2}V'=VD^\frac{1}{2}V'VD^\frac{1}{2}V'\]
-      Por tanto debemos tomar $\Sigma^\frac{1}{2}=VD^\frac{1}{2}V'=
+        3 \\ 4
+      \end{pmatrix},
       \begin{pmatrix}
-        2.3798 & 0.2399 & -0.528 \\
-        0.2399 & 3.5115 & 0.7823 \\
-        -0.528 & 0.7823 & 1.7633
-      \end{pmatrix}$, que es simétrica. Calculamos su inversa también
-      con ayuda de \texttt{NumPy},
-      \[\Sigma^{-\frac{1}{2}}=
-        \begin{pmatrix}
-          0.465 & -0.0697 & 0.1702 \\
-          -0.0697 & 0.3265 & -0.1657 \\
-          0.1702 & -0.1657 & 0.6916
-        \end{pmatrix}\]
-        Luego \[Z=\begin{pmatrix}
-          0.465 & -0.0697 & 0.1702 \\
-          -0.0697 & 0.3265 & -0.1657 \\
-          0.1702 & -0.1657 & 0.6916
-        \end{pmatrix}\left(Y-\mu\right)\]
-      Como $\Sigma^\frac{1}{2}\Sigma^\frac{1}{2}=\Sigma$, se tiene $Z\sim N_3(0,I)$.
-    \end{enumerate}
-    
+        6 & -2 \\
+        -2 & 4
+      \end{pmatrix}\right)$.
+  \item \[\begin{pmatrix}
+        Y_1 \\
+        Y_3 \\
+        \frac{1}{2}(Y_1+Y_2)
+      \end{pmatrix}
+      =\begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        \frac{1}{2} & \frac{1}{2} & 0
+      \end{pmatrix}Y\]
+    $\begin{pmatrix}
+      Y_1 \\
+      Y_3 \\
+      \frac{1}{2}(Y_1+Y_2)
+    \end{pmatrix}\sim N_3\left(
+      \begin{pmatrix}
+        3 \\ 4 \\ 2
+      \end{pmatrix},
+      \begin{pmatrix}
+        6 & -2 & \frac{7}{2} \\
+        -2 & 4 & 1 \\
+        \frac{7}{2} & 1 & \frac{21}{4}
+      \end{pmatrix}\right)$.
+  \item Encontrar $Z$ tal que $Z=(T')^{-1}(Y-\mu)\sim N_3(0,I)$. Con
+    $T$ la matriz correspondiente a la factorización de Cholesky,
+    $\Sigma=T'T$.
+
+    Utilizamos el algoritmo para la descomposición de Cholesky
+    implementado en la herramienta \href{https://www.sagemath.org}{\texttt{SageMath}}, y obtenemos
+    que (redondeando)
+    \[\Sigma=T'T=
+      \begin{pmatrix}
+        2.4495 & 0 & 0 \\
+        0.4082 & 3.5824 & 0 \\
+        -0.8165 & 1.2096 & 1.3675
+      \end{pmatrix}
+      \begin{pmatrix}
+        2.4495 & 0.4082 & -0.8165 \\
+        0 & 3.5824 & 1.2096 \\
+        0 & 0 & 1.3675
+      \end{pmatrix}
+    \]
+    También con \texttt{SageMath}, calculamos la inversa:
+    \[T^{-1}=\begin{pmatrix}
+        0.4082 & -0.0465 & 0.2849 \\
+        0 & 0.2791 & -0.2469 \\
+        0 & 0 & 0.7312
+      \end{pmatrix}\]
+    Luego \[Z=\begin{pmatrix}
+        0.4082 & -0.0465 & 0.2849 \\
+        0 & 0.2791 & -0.2469 \\
+        0 & 0 & 0.7312
+      \end{pmatrix}\left(Y-\mu\right)\]
+    Como $T'T=\Sigma$, se tiene $Z\sim N_3(0,I)$.
+  \item Encontrar $Z$ tal que
+    $Z=\Sigma^{-\frac{1}{2}}(Y-\mu)\sim N_3(0,I)$. Con
+    $\Sigma^{-\frac{1}{2}}$ la inversa de la matriz correspondiente
+    a la factorización raíz cuadrada,
+    $\Sigma=\Sigma^\frac{1}{2}\Sigma^\frac{1}{2}$.
+
+    Con la función
+    \href{https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html}{\texttt{np.linalg.eigh}},
+    obtenemos una matriz ortogonal
+    \[V=
+      \begin{pmatrix}
+        -0.4358 & 0.8996 & 0.0276 \\
+        0.3268 & 0.1296 & 0.9362 \\
+        -0.8386 & -0.417 & 0.3505
+      \end{pmatrix}
+    \] que cumple \[V'\Sigma V=
+      \begin{pmatrix}
+        1.4018 & 0 & 0 \\
+        0 & 7.0712 & 0 \\
+        0 & 0 & 14.527
+      \end{pmatrix}=D\]
+    Tomando \[D^\frac{1}{2}=
+      \begin{pmatrix}
+        \sqrt{1.4018} & 0 & 0 \\
+        0 & \sqrt{7.0712} & 0 \\
+        0 & 0 & \sqrt{14.527}
+      \end{pmatrix}\]
+    tenemos usando que $V$ es ortogonal,
+    \[\Sigma=VDV'=VD^\frac{1}{2}D^\frac{1}{2}V'=VD^\frac{1}{2}V'VD^\frac{1}{2}V'\]
+    Por tanto debemos tomar $\Sigma^\frac{1}{2}=VD^\frac{1}{2}V'=
+    \begin{pmatrix}
+      2.3798 & 0.2399 & -0.528 \\
+      0.2399 & 3.5115 & 0.7823 \\
+      -0.528 & 0.7823 & 1.7633
+    \end{pmatrix}$, que es simétrica. Calculamos su inversa también
+    con ayuda de \texttt{NumPy},
+    \[\Sigma^{-\frac{1}{2}}=
+      \begin{pmatrix}
+        0.465 & -0.0697 & 0.1702 \\
+        -0.0697 & 0.3265 & -0.1657 \\
+        0.1702 & -0.1657 & 0.6916
+      \end{pmatrix}\]
+    Luego \[Z=\begin{pmatrix}
+        0.465 & -0.0697 & 0.1702 \\
+        -0.0697 & 0.3265 & -0.1657 \\
+        0.1702 & -0.1657 & 0.6916
+      \end{pmatrix}\left(Y-\mu\right)\]
+    Como $\Sigma^\frac{1}{2}\Sigma^\frac{1}{2}=\Sigma$, se tiene $Z\sim N_3(0,I)$.
+  \end{enumerate}
+  
 \end{exercise}
 
-\newpage
-
-\begin{exercise}
+\begin{exercise} %Ej 8
   $Y\sim N_3(\mu,\Sigma)$, con
   \[\mu=
     \begin{pmatrix}
@@ -387,22 +565,22 @@
     Y_2
   \end{pmatrix}$ y $(Y_3)$ son (mutuamente) independientes, y además
   \[\begin{pmatrix}
-    Y_1 \\
-    Y_2
-  \end{pmatrix}\sim N_2\left(\begin{pmatrix}
-      2 \\
-      -3
-    \end{pmatrix},\begin{pmatrix}
-      3 & -3 \\
-      -3 & 6
-    \end{pmatrix}\right),\qquad Y_3\sim N_1(4,5)\]
+      Y_1 \\
+      Y_2
+    \end{pmatrix}\sim N_2\left(\begin{pmatrix}
+        2 \\
+        -3
+      \end{pmatrix},\begin{pmatrix}
+        3 & -3 \\
+        -3 & 6
+      \end{pmatrix}\right),\qquad Y_3\sim N_1(4,5)\]
 
-Nos será útil el siguiente resultado: Si $X$ e $Y$ son vectores
-aleatorios independientes de $m$ y $n$ componentes respectivamente,
-para cada par de funciones medibles
-$f:\mathbb{R }^m\rightarrow\mathbb{R}^p$ y
-$g:\mathbb{R }^n\rightarrow\mathbb{R}^q$ se tiene que los vectores
-aleatorios $f(X)$ y $g(Y)$ son independientes.
+  Nos será útil el siguiente resultado: Si $X$ e $Y$ son vectores
+  aleatorios independientes de $m$ y $n$ componentes respectivamente,
+  para cada par de funciones medibles
+  $f:\mathbb{R }^m\rightarrow\mathbb{R}^p$ y
+  $g:\mathbb{R }^n\rightarrow\mathbb{R}^q$ se tiene que los vectores
+  aleatorios $f(X)$ y $g(Y)$ son independientes.
   
   \begin{enumerate}[a)]
   \item En la entrada $(1,2)$ de la matriz $\Sigma$, vemos que
@@ -422,74 +600,74 @@ aleatorios $f(X)$ y $g(Y)$ son independientes.
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise} % Ejercicio 9
+\begin{exercise} % Ej9
   Utilizaremos el Resultado 3 de DNM caso no singular (ya que
   $\Sigma>0$). Nos dice que la distribución condicionada de $Y$ dado
   $X=x$ sigue una DNM de la forma:
   \begin{align*}
     N_2\Vast(
-      \begin{pmatrix}
-        3 \\ -2
-      \end{pmatrix}
-+
-\begin{pmatrix}
-  15 & 0 & 3 \\
-  8 & 6 & -2
-\end{pmatrix}
-\begin{pmatrix}
-  50 & 8 & 5 \\
-  8 & 4 & 0 \\
-  5 & 0 & 1
-\end{pmatrix}^{-1}\left(x-
-  \begin{pmatrix}
-    4 \\ -3 \\ 5
-  \end{pmatrix}
-\right), \\
-\begin{pmatrix}
-  14 & -8 \\
-  -8 & 18 
-\end{pmatrix}-\begin{pmatrix}
-  15 & 0 & 3 \\
-  8 & 6 & -2
-\end{pmatrix}\begin{pmatrix}
-  50 & 8 & 5 \\
-  8 & 4 & 0 \\
-  5 & 0 & 1
-\end{pmatrix}^{-1}
-\begin{pmatrix}
-  15 & 8 \\
-  0 & 6 \\
-  3 & -2
-\end{pmatrix}\Vast)
+    \begin{pmatrix}
+      3 \\ -2
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+      15 & 0 & 3 \\
+      8 & 6 & -2
+    \end{pmatrix}
+              \begin{pmatrix}
+                50 & 8 & 5 \\
+                8 & 4 & 0 \\
+                5 & 0 & 1
+              \end{pmatrix}^{-1}\left(x-
+                        \begin{pmatrix}
+                          4 \\ -3 \\ 5
+                        \end{pmatrix}
+    \right), \\
+    \begin{pmatrix}
+      14 & -8 \\
+      -8 & 18 
+    \end{pmatrix}-\begin{pmatrix}
+      15 & 0 & 3 \\
+      8 & 6 & -2
+    \end{pmatrix}\begin{pmatrix}
+      50 & 8 & 5 \\
+      8 & 4 & 0 \\
+      5 & 0 & 1
+    \end{pmatrix}^{-1}
+              \begin{pmatrix}
+                15 & 8 \\
+                0 & 6 \\
+                3 & -2
+              \end{pmatrix}\Vast)
   \end{align*}
   Simplificando, \[(Y/X=x)\sim N_2\vast(
-      \begin{pmatrix}
-        0 & 0 & 3 \\
-        \frac{2}{3} & \frac{1}{6} & \frac{-16}{3}
-      \end{pmatrix}x+
-      \begin{pmatrix}
-        -12 \\ \frac{45}{2}
-      \end{pmatrix},
-      \begin{pmatrix}
-        5 & -2 \\
-        -2 & 1
-      \end{pmatrix}\vast)\]
+    \begin{pmatrix}
+      0 & 0 & 3 \\
+      \frac{2}{3} & \frac{1}{6} & \frac{-16}{3}
+    \end{pmatrix}x+
+    \begin{pmatrix}
+      -12 \\ \frac{45}{2}
+    \end{pmatrix},
+    \begin{pmatrix}
+      5 & -2 \\
+      -2 & 1
+    \end{pmatrix}\vast)\]
   \begin{enumerate}[a)]
   \item Por tanto $E[Y/X]=\begin{pmatrix}
-        0 & 0 & 3 \\
-        \frac{2}{3} & \frac{1}{6} & \frac{-16}{3}
-      \end{pmatrix}x+
-      \begin{pmatrix}
-        -12 \\ \frac{45}{2}
-      \end{pmatrix}$
-    \item $\operatorname{Cov}(Y/X)=\begin{pmatrix}
-        5 & -2 \\
-        -2 & 1
-      \end{pmatrix}$
+      0 & 0 & 3 \\
+      \frac{2}{3} & \frac{1}{6} & \frac{-16}{3}
+    \end{pmatrix}X+
+    \begin{pmatrix}
+      -12 \\ \frac{45}{2}
+    \end{pmatrix}$
+  \item $\operatorname{Cov}(Y/X)=\begin{pmatrix}
+      5 & -2 \\
+      -2 & 1
+    \end{pmatrix}$
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise} %Ej10
   La función de distribución marginal de $X$ es:
   \begin{align*}
     F_X(x)&=\int_{-\infty}^xf_X(t)dt=\int_{-\infty}^x\int_{-\infty}^{+\infty}f(t,y)dydt=\lim_{s\to+\infty}\int_{-\infty}^x\int_{-\infty}^sf(t,y)dydt=\lim_{s\to+\infty}F(x,s) \\
@@ -502,51 +680,53 @@ aleatorios $f(X)$ y $g(Y)$ son independientes.
   La situación de $Y$ es totalmente análoga.
 \end{exercise}
 
-\begin{exercise}
-  \begin{enumerate}[a)]
-    Calculamos la distribución conjunta de
-    \[
-      \begin{pmatrix}
-        X_1+X_2+X_3 \\
-        X_1-X_2-X_3 
-      \end{pmatrix}=
-      \begin{pmatrix}
-        1 & 1 & 1 \\
-        1 & -1 & -1 
-      \end{pmatrix}X
-    \]
-    utilizando que es una transformación lineal de rango máximo.
-    Obtenemos que \[
-      \begin{pmatrix}
-        X_1+X_2+X_3 \\
-        X_1-X_2-X_3 
-      \end{pmatrix}\sim N_2\left(
-        0,
-        \begin{pmatrix}
-          3+4\rho & -1-2\rho\\
-          -1-2\rho & 3
-      \end{pmatrix}
-        \right),
-    \]
-    su matriz de covarianzas es diagonal si $\rho=\dfrac{-1}{2}$, y
-    para ese mismo valor la matriz $\Sigma$ queda
-    \[\Sigma=
-      \begin{pmatrix}
-        1 & \frac{-1}{2} & 0 \\
-        \frac{-1}{2} & 1 & \frac{-1}{2} \\
-        0 & \frac{-1}{2} & 1
-      \end{pmatrix},
-    \] que es definida positiva: los determinantes menores de la
-    diagonal principal son: 1, $\frac{3}{4}$ y $\frac{1}{2}$, todos
-    positivos.
+\begin{exercise} %Ej11
+  TODO
+\end{exercise}
 
-    Para $\rho=\dfrac{-1}{2}$, $\begin{pmatrix}
-        X_1+X_2+X_3 \\
-        X_1-X_2-X_3 
-      \end{pmatrix}$ sigue una DNM con matriz de covarianzas no
-      singular y diagonal, así que sus componentes ($X_1+X_2+X_3$
-      y $X_1-X_2-X_3$) son independientes.
-  \end{enumerate}
+\begin{exercise} %Ej12
+  Calculamos la distribución conjunta de
+  \[
+    \begin{pmatrix}
+      X_1+X_2+X_3 \\
+      X_1-X_2-X_3 
+    \end{pmatrix}=
+    \begin{pmatrix}
+      1 & 1 & 1 \\
+      1 & -1 & -1 
+    \end{pmatrix}X
+  \]
+  utilizando que es una transformación lineal de rango máximo.
+  Obtenemos que \[
+    \begin{pmatrix}
+      X_1+X_2+X_3 \\
+      X_1-X_2-X_3 
+    \end{pmatrix}\sim N_2\left(
+      0,
+      \begin{pmatrix}
+        3+4\rho & -1-2\rho\\
+        -1-2\rho & 3
+      \end{pmatrix}
+    \right),
+  \]
+  su matriz de covarianzas es diagonal si $\rho=\dfrac{-1}{2}$, y
+  para ese mismo valor la matriz $\Sigma$ queda
+  \[\Sigma=
+    \begin{pmatrix}
+      1 & \frac{-1}{2} & 0 \\
+      \frac{-1}{2} & 1 & \frac{-1}{2} \\
+      0 & \frac{-1}{2} & 1
+    \end{pmatrix},
+  \] que es definida positiva: los determinantes menores de la
+  diagonal principal son: 1, $\frac{3}{4}$ y $\frac{1}{2}$, todos
+  positivos.
+
+  Para $\rho=\dfrac{-1}{2}$, $\begin{pmatrix}
+    X_1+X_2+X_3 \\
+    X_1-X_2-X_3 
+  \end{pmatrix}$ sigue una DNM con matriz de covarianzas no
+  singular y diagonal, así que sus componentes ($X_1+X_2+X_3$
+  y $X_1-X_2-X_3$) son independientes.
 \end{exercise}
 
 \end{document}
