@@ -30,6 +30,7 @@ linkcolor=blue]{hyperref}
 \makeatletter
 \newcommand{\vast}{\bBigg@{3}}
 \newcommand{\Vast}{\bBigg@{4}}
+\newcommand{\VAST}{\bBigg@{5.5}}
 \makeatother
 
 % Theorem environments
@@ -81,8 +82,8 @@ linkcolor=blue]{hyperref}
     $Y\sim N_p\big(\alpha,D\Sigma D'+\sigma^2I\big)$.
   \item Utilizando que $X$ y $Z$ son independientes y siguen ambas una
     $DNM$ no singular, obtenemos para cada $\begin{psmallmatrix}
-        t_1 \\ t_2
-      \end{psmallmatrix}\in\mathbb{R}^{p+r}$ 
+      t_1 \\ t_2
+    \end{psmallmatrix}\in\mathbb{R}^{p+r}$ 
     \begin{align*}
       \Phi_{
       \begin{psmallmatrix}
@@ -94,15 +95,15 @@ linkcolor=blue]{hyperref}
       \end{psmallmatrix}
       &=\Phi_Z(t_1)\Phi_X(t_2)=\exp\left\{-\frac{1}{2}t_1'\sigma^2 It_1\right\}\exp\left\{-\frac{1}{2}t_2'\Sigma t_2\right\} \\
       &=\exp\left\{-\frac{1}{2}\big(\sigma^2 t_1't_1+t_2'\Sigma t_2\big)\right\}=\exp\left\{-\frac{1}{2}
-      \begin{pmatrix}
-        t_1' & t_2'
-      \end{pmatrix}
-               \begin{pmatrix}
-                 \sigma^2I & 0 \\ 0 & \Sigma
-               \end{pmatrix}
-                              \begin{pmatrix}
-                                t_1 \\ t_2
-                              \end{pmatrix}
+        \begin{pmatrix}
+          t_1' & t_2'
+        \end{pmatrix}
+                 \begin{pmatrix}
+                   \sigma^2I & 0 \\ 0 & \Sigma
+                 \end{pmatrix}
+                                        \begin{pmatrix}
+                                          t_1 \\ t_2
+                                        \end{pmatrix}
       \right\}
     \end{align*}
     Por tanto, $\begin{pmatrix} Z \\ X
@@ -166,9 +167,10 @@ linkcolor=blue]{hyperref}
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise} %Ej2
-  \begin{enumerate}[a)] Especificaremos los matices que cambian en los
-    argumentos anteriores.
+\begin{exercise} \label{ej2} %Ej2
+  Especificaremos los matices que cambian en los argumentos
+  anteriores.
+  \begin{enumerate}[a)] 
   \item El razonamiento es también válido para $\Sigma\geq 0$.
   \item Aunque transformación lineal que utilizamos sigue siendo de
     rango máximo, el Resultado sobre transformaciones lineales de
@@ -177,18 +179,20 @@ linkcolor=blue]{hyperref}
     \begin{pmatrix}
       Z \\ X
     \end{pmatrix}$ siga una DNM con matriz de covarianzas semidefinida
-    positiva, lo que ocurre cuando $\Sigma$ sólo es definida positiva.
+    positiva, lo que ocurre cuando $\Sigma$ sólo es semidefinida
+    positiva.
   \item Ahora (caso singular) el resultado sobre condicionamiento nos
     da:
     \[X|Y\sim N_r\Big(0+\Sigma D'(D\Sigma
       D'+\sigma^2I)^-(y-\alpha),\Sigma-\Sigma D'(D\Sigma
       D'+\sigma^2I)^-D\Sigma\Big)\] Ahora probaremos que
-    $\Sigma_Y=D\Sigma D'+\sigma^2I$ es regular: si
-    $y\in \mathbb{R}^p\backslash\{0\}$,
+    $\Sigma_Y=D\Sigma D'+\sigma^2I$ es definida positiva y por tanto
+    regular: si $y\in \mathbb{R}^p\backslash\{0\}$,
     $y'\Sigma_Y y=y'(D\Sigma D'+\sigma^2I)y=y'D\Sigma
     D'y+y'\sigma^2Iy=y'D\Sigma D'y+\sigma^2\|y\|_2^2>y'D\Sigma D'y\geq
     0$, ya que $D\Sigma D'$ es semidefinida positiva. Por tanto,
-    $\Sigma_Y^-=\Sigma_Y^{-1}$ y tenemos lo que queremos.
+    $\Sigma_Y$ tiene inversa y $\Sigma_Y^-=\Sigma_Y^{-1}$. Lo que nos
+    permite concluir el ejercicio tenemos lo que queremos.
   \item Ahora el resultado sobre condicionamiento nos proporciona
     \[Y|X\sim N_p\Big(\alpha+D\Sigma\Sigma^-X,D\Sigma
       D'+\sigma^2I-D\Sigma\Sigma^-\Sigma D'\Big)\] Simplificando
@@ -742,8 +746,100 @@ linkcolor=blue]{hyperref}
   La situación de $Y$ es totalmente análoga.
 \end{exercise}
 
-\begin{exercise} %Ej11
-  TODO
+\begin{exercise} ~ %Ej11
+  \begin{enumerate}[a)]
+  \item Fijamos $N_1<N_2$. Utilizando que cada
+    $X_i\sim N_m(\mu,\Sigma)$ y que los $X_i,\ \ (i=1,2,\ldots)$ son
+    independientes, obtenemos la distribución de
+    $(X_1',\ldots,X_{N_2}')'$ usando la función característica
+  \begin{align*}\Phi_{
+    \begin{psmallmatrix} X_1 \\ \vdots \\ X_{N_2}
+    \end{psmallmatrix}}\begin{psmallmatrix} t_1 \\ \vdots \\ t_{N_2}
+  \end{psmallmatrix}
+    &=\prod_{j=1}^{N_2}\Phi_{X_j}(t_j)=\prod_{j=1}^{N_2}\exp\left\{it_j'\mu-\frac{1}{2}t_j'\Sigma
+      t_j\right\}=\exp\left\{i\sum_{j=1}^{N_2}t_j'\mu-\frac{1}{2}\sum_{j=1}^{N_2}t_j'\Sigma t_j\right\} \\
+    &=\exp\left\{i
+      \begin{pmatrix}
+        t_1' & \cdots & t_{N_2}'
+      \end{pmatrix}
+                        \begin{pmatrix}
+                          \mu \\ \vdots \\ \mu^{(N_2)}
+                        \end{pmatrix}
+    \mu-\frac{1}{2}\begin{pmatrix}
+      t_1' & \cdots & t_{N_2}'
+    \end{pmatrix}
+                      \begin{pmatrix}
+                        \Sigma & 0 & \cdots & 0 \\
+                        0 & \Sigma & \ddots & \vdots \\
+                        \vdots & \ddots & \ddots & 0\\
+                        0 & \cdots & 0 & \Sigma
+                      \end{pmatrix}
+                                         \begin{pmatrix}
+                                           t_1 \\ \vdots \\ t_{N_2}
+                                         \end{pmatrix}\right\}
+  \end{align*} Llegamos a \[\begin{pmatrix}
+      X_1 \\ \vdots \\ X_{N_2}
+    \end{pmatrix}\sim N_{N_2 m}\VAST(\begin{pmatrix}
+      \mu \\ \vdots \\ \mu^{(N_2)}
+    \end{pmatrix},\begin{pmatrix}
+      \Sigma & 0 & \cdots & 0 \\
+      0 & \Sigma & \ddots & \vdots \\
+      \vdots & \ddots & \ddots & 0\\
+      0 & \cdots & 0 & \Sigma
+    \end{pmatrix}\VAST)\]
+  Ahora escribimos $(S_{N_1}',S_{N_2}')'$ como
+  combinación lineal de este vector (siendo $I$ la matriz identidad de orden $m$)
+  \[
+    \begin{pmatrix} S_{N_1} \\ S_{N_2}
+    \end{pmatrix}=
+    \begin{pmatrix}
+      \sum_{i=1}^{N_1}X_i \\ \sum_{i=1}^{N_2}X_i
+    \end{pmatrix}=
+    \begin{pmatrix}
+      I & \cdots & I^{(N_1)} & 0 & \cdots & 0 \\
+      I & \cdots & \cdots & \cdots & \cdots & I^{(N_2)}
+    \end{pmatrix}
+    \begin{pmatrix}
+      X_1 \\ \vdots \\ X_{N_2}
+    \end{pmatrix}
+  \] Y el Resultado para transformaciones lineales de rango no
+  necesariamente máximo (aunque esta lo sea) para el caso de matriz de
+  covarianzas semidefinida positiva nos dice que
+  $(S_{N_1}',S_{N_2}')'$ sigue una distribución normal $2m$-variante
+  con vector de medias
+  \[\begin{pmatrix}
+      I & \cdots & I^{(N_1)} & 0 & \cdots & 0 \\
+      I & \cdots & \cdots & \cdots & \cdots & I^{(N_2)}
+    \end{pmatrix}\begin{pmatrix}
+      \mu \\ \vdots \\ \mu^{(N_2)}
+    \end{pmatrix}=
+    \begin{pmatrix}
+      N_1\mu \\ N_2\mu
+    \end{pmatrix}\]
+  y matriz de covarianzas
+  \[\begin{pmatrix}
+      I & \cdots & I^{(N_1)} & 0 & \cdots & 0 \\
+      I & \cdots & \cdots & \cdots & \cdots & I^{(N_2)}
+    \end{pmatrix}\begin{pmatrix}
+      \Sigma & 0 & \cdots & 0 \\
+      0 & \Sigma & \ddots & \vdots \\
+      \vdots & \ddots & \ddots & 0\\
+      0 & \cdots & 0 & \Sigma
+    \end{pmatrix}\begin{pmatrix}
+      I & I \\ \vdots & \vdots \\ I^{(N_1)} & \vdots \\ 0 & \vdots \\ \vdots & \vdots \\ 0 &I^{(N_2)}
+    \end{pmatrix}=
+    \begin{pmatrix}
+      N_1\Sigma & N_1\Sigma \\ N_1\Sigma & N_2\Sigma
+    \end{pmatrix}\]
+\item Utilizamos el Resultado sobre condicionamiento en DNM en el caso
+  de matriz de covarianzas semidefinida postivia (descrito en
+  Ejercicio \ref{ej2}). Obtenemos que $S_{N_1}|S_{N_2}$ sigue una
+  distribución normal $m$-variante con vector de medias
+  \[N_1\mu+N_1\Sigma(N_1\Sigma)^-(S_{N_2}-N_2\mu)=N_1\mu+\Sigma\Sigma^-(S_{N_2}-N_2\mu)\]
+  y matriz de covarianzas (utilizamos que la inversa generalizada
+  cumple $\Sigma\Sigma^-\Sigma=\Sigma$)
+  \[N_1\Sigma-N_1\Sigma(N_2\Sigma)^-N_1\Sigma=N_1\Big(\Sigma-N_1N_2^{-1}\Sigma\Sigma^-\Sigma\Big)=N_1\Big(\Sigma-N_1N_2^{-1}\Sigma\Big)\]
+  \end{enumerate}
 \end{exercise}
 
 \begin{exercise} %Ej12
