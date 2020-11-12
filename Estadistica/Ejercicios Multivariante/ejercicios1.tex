@@ -146,28 +146,55 @@ linkcolor=blue]{hyperref}
       D\Sigma D'+\sigma^2I & D\Sigma \\ \Sigma D' & \Sigma
     \end{pmatrix}$.
   \item $\begin{pmatrix}
-        Y \\ X
-      \end{pmatrix}$ sigue una DNM con matriz de covarianzas definida
-      positiva, usamos por tanto el Resultado 3 de DNM no
-      singular. Obtenemos que la distribución condicionada de $X$ a
-      $Y=y$ sigue una DNM de la forma:
-      \[N_r\Big(0+\Sigma D'(D\Sigma
-        D'+\sigma^2I)^{-1}(y-\alpha),\Sigma-\Sigma D'(D\Sigma
-        D'+\sigma^2I)^{-1}D\Sigma\Big)\] Así, que
-      $E[X|Y]=\Sigma D'(D\Sigma D'+\sigma^2I)^{-1}(Y-\alpha)=\Sigma D'\Sigma_Y^{-1}(Y-\alpha)$
-    \item Utilizamos el mismo resultado, pero cambiamos los papeles de
-      $X$ e $Y$, obteniendo que $Y$ condicionado a $X$ sigue una DNM
-      con vector de medias
-      \[\alpha+D\Sigma\Sigma^{-1}(X-0)\]
-      y matriz de covarianzas
-      \[D\Sigma D'+\sigma^2I-D\Sigma\Sigma^{-1}\Sigma D'\]
-      Simplificando, obtenemos
-      \[Y|X\sim N_p\Big(\alpha+D X,\sigma^2I\Big)\]
+      Y \\ X
+    \end{pmatrix}$ sigue una DNM con matriz de covarianzas definida
+    positiva, usamos por tanto el Resultado 3 de DNM no
+    singular. Obtenemos que la distribución condicionada de $X$ a
+    $Y=y$ sigue una DNM de la forma:
+    \[N_r\Big(0+\Sigma D'(D\Sigma
+      D'+\sigma^2I)^{-1}(y-\alpha),\Sigma-\Sigma D'(D\Sigma
+      D'+\sigma^2I)^{-1}D\Sigma\Big)\] Así, que
+    $E[X|Y]=\Sigma D'(D\Sigma D'+\sigma^2I)^{-1}(Y-\alpha)=\Sigma D'\Sigma_Y^{-1}(Y-\alpha)$
+  \item Utilizamos el mismo resultado, pero cambiamos los papeles de
+    $X$ e $Y$, obteniendo que $Y$ condicionado a $X$ sigue una DNM
+    con vector de medias
+    \[\alpha+D\Sigma\Sigma^{-1}(X-0)\]
+    y matriz de covarianzas
+    \[D\Sigma D'+\sigma^2I-D\Sigma\Sigma^{-1}\Sigma D'\]
+    Simplificando, obtenemos
+    \[Y|X\sim N_p\Big(\alpha+D X,\sigma^2I\Big)\]
   \end{enumerate}
 \end{exercise}
 
 \begin{exercise} %Ej2
-  TODO
+  \begin{enumerate}[a)] Especificaremos los matices que cambian en los
+    argumentos anteriores.
+  \item El razonamiento es también válido para $\Sigma\geq 0$.
+  \item Aunque transformación lineal que utilizamos sigue siendo de
+    rango máximo, el Resultado sobre transformaciones lineales de
+    rango no necesariamente máximo proporciona las mismas conclusiones
+    también en el caso de que $
+    \begin{pmatrix}
+      Z \\ X
+    \end{pmatrix}$ siga una DNM con matriz de covarianzas semidefinida
+    positiva, lo que ocurre cuando $\Sigma$ sólo es definida positiva.
+  \item Ahora (caso singular) el resultado sobre condicionamiento nos
+    da:
+    \[X|Y\sim N_r\Big(0+\Sigma D'(D\Sigma
+      D'+\sigma^2I)^-(y-\alpha),\Sigma-\Sigma D'(D\Sigma
+      D'+\sigma^2I)^-D\Sigma\Big)\] Ahora probaremos que
+    $\Sigma_Y=D\Sigma D'+\sigma^2I$ es regular: si
+    $y\in \mathbb{R}^p\backslash\{0\}$,
+    $y'\Sigma_Y y=y'(D\Sigma D'+\sigma^2I)y=y'D\Sigma
+    D'y+y'\sigma^2Iy=y'D\Sigma D'y+\sigma^2\|y\|_2^2>y'D\Sigma D'y\geq
+    0$, ya que $D\Sigma D'$ es semidefinida positiva. Por tanto,
+    $\Sigma_Y^-=\Sigma_Y^{-1}$ y tenemos lo que queremos.
+  \item Ahora el resultado sobre condicionamiento nos proporciona
+    \[Y|X\sim N_p\Big(\alpha+D\Sigma\Sigma^-X,D\Sigma
+      D'+\sigma^2I-D\Sigma\Sigma^-\Sigma D'\Big)\] Simplificando
+    $\Sigma\Sigma^-\Sigma=\Sigma$, y cancelando $D\Sigma D'$ obtenemos
+    \[Y|X\sim N_p\Big(\alpha+D\Sigma\Sigma^-X,\sigma^2I\Big)\]
+  \end{enumerate}
 \end{exercise}
 
 \begin{exercise} %Ej3
