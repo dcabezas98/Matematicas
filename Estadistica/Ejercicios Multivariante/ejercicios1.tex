@@ -209,7 +209,42 @@ linkcolor=blue]{hyperref}
 \end{exercise}
 
 \begin{exercise} %Ej4
-  TODO
+  De que $H$ sea ortogonal, obtenemos
+  \[I_p=HH'=
+    \begin{pmatrix}
+      H_1 & H_2
+    \end{pmatrix}
+    \begin{pmatrix}
+      H_1' \\ H_2'
+    \end{pmatrix}=H_1H_1'+H_2H_2'
+  \]
+  \[I_p=H'H=
+    \begin{pmatrix}
+      H_1' \\ H_2'
+    \end{pmatrix}
+    \begin{pmatrix}
+      H_1 & H_2
+    \end{pmatrix}=
+    \begin{pmatrix}
+      H_1'H_1 & H_1'H_2 \\ H_2'H_1 & H_2'H_2
+    \end{pmatrix}
+  \]
+  También sabemos que $\Sigma=H_1DH_1'$.
+  \begin{enumerate}[a)]
+  \item \[\Sigma\Sigma^+\Sigma=H_1DH_1'H_1D^{-1}H_1'H_1DH_1'\]
+    Usando que $H_1'H_1=I_k$,
+    \[\Sigma\Sigma^+\Sigma=H_1DD^{-1}DH_1'=H_1DH_1'=\Sigma\]
+  \item \[\Sigma^+\Sigma\Sigma^+=H_1D^{-1}H_1'H_1DH_1'H_1D^{-1}H_1'\]
+    De nuevo usando $H_1'H_1=I_k$,
+    \[\Sigma^+\Sigma\Sigma^+=H_1D^{-1}DD^{-1}H_1'=H_1D^{-1}H_1'=\Sigma^+\]
+  \item Utilizamos que tanto $\Sigma$ como $\Sigma^+$ son
+    simétricas, y otra vez más que $H_1'H_1=I_k$:
+    \[(\Sigma^+\Sigma)'=\Sigma\Sigma^+=H_1DH_1'H_1D^{-1}H_1'=H_1H_1'\]
+    Por otra parte
+    \[\Sigma^+\Sigma=H_1D^{-1}H_1'H_1DH_1'=H_1D^{-1}DH_1'=H_1H_1'\]
+  \item $(\Sigma\Sigma^+)=\Sigma^+\Sigma$, que por el apartado
+    anterior sabemos que coincide con $\Sigma\Sigma^+$.
+  \end{enumerate}
 \end{exercise}
 
 \begin{exercise} %Ej5
