@@ -325,7 +325,7 @@ linkcolor=blue]{hyperref}
 \end{exercise}
 
 \begin{exercise} % Ej6
-  Dado $Z\sim_p(0,I_p)$, debemos encontrar una condición necesaria y
+  Dado $Z\sim N_p(0,I_p)$, debemos encontrar una condición necesaria y
   suficiente para las dos matrices $k_i\times p$, $C_i$, con
   $k_i\leq p$ para $i=1,2$, que caracterice la independencia de
   $Y_1=C_1 Z$ e $Y_2=C_2 Z$.
@@ -832,10 +832,10 @@ linkcolor=blue]{hyperref}
       N_1\Sigma & N_1\Sigma \\ N_1\Sigma & N_2\Sigma
     \end{pmatrix}\]
 \item Utilizamos el Resultado sobre condicionamiento en DNM en el caso
-  de matriz de covarianzas semidefinida postivia (descrito en
+  de matriz de covarianzas semidefinida positiva (descrito en
   Ejercicio \ref{ej2}). Obtenemos que $S_{N_1}|S_{N_2}$ sigue una
   distribución normal $m$-variante con vector de medias
-  \[N_1\mu+N_1\Sigma(N_1\Sigma)^-(S_{N_2}-N_2\mu)=N_1\mu+\Sigma\Sigma^-(S_{N_2}-N_2\mu)\]
+  \[N_1\mu+N_1\Sigma(N_2\Sigma)^-(S_{N_2}-N_2\mu)=N_1\mu+N_1N_2^{-1}\Sigma\Sigma^-(S_{N_2}-N_2\mu)\]
   y matriz de covarianzas (utilizamos que la inversa generalizada
   cumple $\Sigma\Sigma^-\Sigma=\Sigma$)
   \[N_1\Sigma-N_1\Sigma(N_2\Sigma)^-N_1\Sigma=N_1\Big(\Sigma-N_1N_2^{-1}\Sigma\Sigma^-\Sigma\Big)=N_1\Big(\Sigma-N_1N_2^{-1}\Sigma\Big)\]
