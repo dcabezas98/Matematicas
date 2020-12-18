@@ -21,6 +21,7 @@ bookmarksnumbered=false, % true means bookmarks in
 bookmarksopen=false,     % true means only level 1
 % are displayed.
 colorlinks=true,
+urlcolor=cyan,
 linkcolor=blue]{hyperref}
 
 \usepackage{beton}
@@ -53,7 +54,7 @@ linkcolor=blue]{hyperref}
 \renewcommand\labelenumi{(\roman{enumi})}
 \renewcommand\theenumi{\labelenumi}
 
-\title{Mecánica Celeste: Problemas Tema 1}
+\title{Mecánica Celeste: Problemas}
 
 \author{David Cabezas Berrido}
 
@@ -227,9 +228,7 @@ linkcolor=blue]{hyperref}
 
     Claramente $\Phi$ es continua por ser la restricción a $SO(3)$ de
     la proyección de $\R^{3\times 3}$ a $\R^{3\times 2}$. Y
-    $\Phi^{-1}$ lo es por serlo el producto vectorial (consecuencia de
-    $|(x-u)\times (y-v)|$\\
-    $=|x-u||y-v|\sin(\sphericalangle(x-u,y-v))\leq |x-u||y-v|$), luego
+    $\Phi^{-1}$ lo es por serlo el producto vectorial, luego
     $\Phi$ homeomorfismo.
 
   \item $e\in]0,1[$, $\E$ espacio de órbitas keplerianas con
@@ -243,7 +242,7 @@ linkcolor=blue]{hyperref}
 
     Dado $\big((x,y),r\big)\in\T\times\R^+$, le hacemos corresponder
     el plano vectorial $V=x^\bot$ orientado con la orientación
-    inducida por cualquier base $\{v_1,v_2\}$ de $V$ que convierta a
+    inducida por cualquier base $(v_1,v_2)$ de $V$ que convierta a
     $(v_1,v_2,x)$ en una base positivamente orientada de $\R^3$, esto
     es: $\det(v_1,v_2,x)>0$.
 
@@ -286,7 +285,7 @@ linkcolor=blue]{hyperref}
     $x=\lambda\cdot v_1\times v_2$ con $\lambda >0$, o
     equivalentemente $\det(v_1,v_2,x)>0$. Los argumentos anteriores
     también prueban que dos bases de $V$ que definan la misma
-    orientación dan luegar al mismo $x$ (puesto que $\det M>0$).
+    orientación dan lugar al mismo $x$ (puesto que $\det M>0$).
 
     $y\in V$ será el vector unitario con el sentido del eje de
     excentricidad de $E$: $y=\dfrac{\vec{e}}{e}$. Como $x\in V^\bot$,
@@ -412,7 +411,7 @@ Recuperando (\ref{eq:Fc}), obtenemos finalmente:
 Ya estamos en disposición de probar el enunciado del ejercicio. Dado
 un campo vectorial $V=(V_1,V_2)$ en las condiciones dadas, definimos
 $F:\mathbb{R}^2\rightarrow\mathbb{R}^2$ como en
-(\ref{eq:Fc}). Utilizando el Teorema Fundamental del Cálculo,
+(\ref{eq:F}). Utilizando el Teorema Fundamental del Cálculo,
 obtenemos que $\frac{\partial F}{\partial y}$ existe y es continua en
 todo $\mathbb{R}^2$, mientras que combinando el Teorema de Derivación
 Bajo el Signo Integral con el Teorema Fundamental del Cálculo,
@@ -431,7 +430,160 @@ simplificamos:
   &=\left(-\frac{x}{2}+V_1(x,y),-\frac{y}{2}+V_2(x,y)\right)=V-V_*
 \end{align*}
 Viendo ahora que las derivadas parciales de $F$ son
-$C^\infty(\mathbb{R^2})$, concluimos que $F\in C^\infty(\mathbb{R}^2)$.
+$C^\infty(\mathbb{R}^2)$, concluimos que $F\in C^\infty(\mathbb{R}^2)$.
 \end{exercise}
 
-\end{document}
+\newpage
+\setcounter{exercise}{12}
+\begin{exercise}
+  Consideramos la ecuación de Kepler en el plano complejo
+  \[u-e\sin u = M,\qquad u\in\mathbb{C}\]
+  \begin{enumerate}[$i)$]
+  \item Dado $e\in]0,1[,\ M=0$, demostrar que existen soluciones no
+    triviales de
+    \begin{equation}\label{eq:kepler0}
+      u-e\sin u=0
+    \end{equation}
+    Probaremos con $u=i\rho$ con $\rho\in\mathbb{R}$.
+    Tenemos la ecuación $i\rho-e\sin i\rho=0$, lo que usando una
+    conocida propiedad del seno complejo, equivale a
+    $i\rho-e i\sh\rho=0$, donde $\sh$ denota la función seno
+    hiperbólico. Simplificando obtenemos $\rho-e \sh\rho=0$.
+
+    Tomamos $f(\rho)=\rho-e \sh\rho$, estudiaremos su
+    monotonía. Tenemos $f'(\rho)=1-e\ch\rho$ ($\ch$ denota la función
+    coseno hiperbólico), por lo que la derivada se anula si y solo si
+    $\ch\rho=\frac{1}{e}\Leftrightarrow \rho=\pm \ach\frac{1}{e}$
+    ($\ach$ denota la función arco coseno hiperbólico). Probando
+    valores, observamos que $f$ es estrictamente decreciente en
+    $]-\infty,-\ach\frac{1}{e}[$ y $]\ach\frac{1}{e},\infty[$, y
+    estrictamente creciente en el intervalo
+    $]-\ach\frac{1}{e},\ach\frac{1}{e}[$.
+
+    Además, es claro que
+    \[\lim_{\rho\to-\infty}f(\rho)=+\infty\qquad\lim_{\rho\to+\infty}f(\rho)=-\infty\]
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=100mm]{f-rho}
+      \caption{Monotonía de la función $f$.}
+      \label{fig:f-rho}
+    \end{figure}
+
+    De esto y de $f(0)=0$, se deduce fácilmente (la Figura
+    \ref{fig:f-rho} ayuda) que $f$ tiene dos raíces más, una
+    con $\rho>0$ y otra para $\rho<0$. Por tanto, la ecuación
+    \ref{eq:kepler0} tiene al menos dos soluciones no triviales.
+
+\item Se supone $M=\frac{\pi}{2}$, y elegimos un disco
+  \[D_\rho = \{u\in\mathbb{C}:|u-M|\leq\rho\}\]
+  Demostrar que si $|e|<\frac{\rho}{\ch \rho}$, la ecuación
+  \begin{equation}\label{eq:keplerpi2}
+      u-e\sin u=\frac{\pi}{2}
+    \end{equation}
+    tiene una única solución en $D_\rho$.
+  Utilizaremos el
+  \href{https://en.wikipedia.org/wiki/Rouch%C3%A9's_theorem}
+    {Teorema de Rouché}, que es el siguiente:
+
+    Sean $f$ y $g$ dos funciones holomorfas en una región $K$ con
+    frontera $\partial K$ cerrada y simple (sin
+    autointersecciones). Si $|g(z)|<|f(z)|$ para todo $z$ en
+    $\partial K$, entonces $f$ y $f+g$ tienen el mismo número de ceros
+    dentro de $K$ (contando multiplicidades).
+
+    Tomaremos $f(u)=u-M$, que obviamente tiene un única raíz ($u=M$),
+    $g(u)=-e\sin u$, y $K=D_\rho$. La frontera de $D_\rho$ es el
+    conjunto \[\partial D_\rho=\{u\in\mathbb{C}:|u-M|=\rho\}\]
+    claramente $|f(u)|=|u-M|=\rho$ en este conjunto. Para $g$ tenemos
+    usando la hipótesis $|e|<\frac{\rho}{\ch \rho}$
+    \[|g(u)|=|e||\sin u|\leq |e|\ch|\operatorname{Im}u|\leq
+      |e|\ch\rho<\rho=|f(u)|\] Por tanto, hay tantas raíces de $f+g$ como
+    raíces de $f$, luego $f+g$ tiene una única raíz en $D_\rho$. Como
+    las raíces de $f+g$ coinciden con las soluciones de
+    \ref{eq:keplerpi2}, obtenemos lo requerido.
+    \end{enumerate}
+  \end{exercise}
+
+\newpage
+  
+  [Ejercicio 2.20 del libro] \label{ej:2.20}
+  Sea $u:\mathbb{R}\rightarrow\mathbb{R}$ solución de la ecuación
+  diferencial:
+  \begin{equation} \label{eq:eq-diffU}
+    u'=\frac{1}{3-\cos u -\sin(2u)}
+  \end{equation}
+
+  \begin{enumerate}[a)]
+  \item Muestra que $u$ es un difeomorfismo de $\mathbb{R}$ sobre sí
+    mismo:
+
+    $u$ es una función $C^1(\mathbb{R})$, ya que su derivada es
+    continua. Claramente se cumple que
+    $u'(t)\in [\frac{1}{5},1]\ \ \forall t\in\mathbb{R}$ (acotando el
+    seno y el coseno), luego $u$ es estrictamente creciente y por
+    tanto inyectiva. Como $u'>0$, $u^{-1}$ será derivable en cada
+    punto de $u(\mathbb{R})$ por la Regla de Derivación de la Función
+    Inversa. Falta probar que $u$ es sobreyectiva y por tanto $u^{-1}$
+    está definida en todo $\mathbb{R}$. Efectivamente, el hecho de que
+    la pendiente de $u$ esté minorada por una constante positiva
+    fuerza que
+    \[\lim_{t\to-\infty}u(t)=-\infty\qquad \lim_{t\to+\infty}u(t)=+\infty\]
+    Se puede formalizar esta idea utilizando por ejemplo el Lema de Barbalat.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=140mm]{barbalat}
+      \caption{Lema de Barbalat. Fuente: Diapositivas de Ecuaciones Diferenciales II del profesor José Miguel Alonso Alonso.}
+      \label{fig:barbalat}
+    \end{figure}
+    Como $u$ es monótona, debe diverger o tener límite cuando
+    $t\to \pm\infty$, pero lo segundo es imposible, ya que el Lema de
+    Barbalat (versión débil) contradice a $u'(t)\in [\frac{1}{5},1]$.
+    
+  \item Muestra que existe $T>0$ tal que $u(t+T)=u(t)+2\pi$ para todo
+    $t\in\mathbb{R}$.
+
+    Primero resolvemos la ecuación \ref{eq:eq-diffU} (variables separadas) y obtenemos
+    que $u$ cumple la ecuación:
+    \begin{equation} \label{eq:eqU} 3u-\sin u + \frac{\cos(2u)}{2}=t+k
+    \end{equation}
+    para algún $k\in\mathbb{R}$. No conocemos una forma fácil de
+    resolver esta ecuación para obtener $u$, pero es fácil despejar
+    $t$ en función de $u$, obteniendo $u^{-1}$.
+    \begin{equation} \label{eq:u-1} t=u^{-1}(u)=3u-\sin u +
+      \frac{\cos(2u)}{2}-k
+    \end{equation}
+    Tenemos entonces
+    \[u^{-1}\big(u(t)+2\pi\big)=3u(t)+6\pi -\sin u(t)
+      +\frac{\cos\big(2u(t)\big)}{2}-k=u^{-1}\big(u(t)\big)+6\pi=t+6\pi\]
+    Y aplicando $u$ en ambos miembros, obtenemos lo requerido con
+    $T=6\pi$
+    \[u(t)+2\pi=u(t+6\pi)\]
+    
+  \item Muestra que $T$ es el periodo mínimo de la curva
+    $x:\mathbb{R}\rightarrow\mathbb{R}^2$ definida
+    por \[x(t)=\big(\cos u(t), \sin u(t)\big)\]
+
+    Es claro que $T$ es un periodo de $x$,
+    $x(t+T)=\big(\cos\big(u(t)+2\pi\big),\sin\big(u(t)+2\pi\big)\big)=\big(\cos
+    u(t),\sin u(t)\big)=x(t)$.
+
+    Si $A>0$ es un periodo de $x$, se tiene:
+    \begin{align*}
+      \cos u(t+A)&=\cos u(t) \\
+      \sin u(t+A)&=\sin u(t)
+    \end{align*}
+    Por tanto $u(t+A)=u(t)+2 k(t)\pi$, con $k(t)\in \mathbb{Z}$ para
+    todo $t\in\mathbb{R}$. Podemos despejar
+    \[k(t)=\frac{1}{2\pi}\big(u(t+A)-u(t)\big)\] y vemos que $k$ es
+    continua, luego constante por ser su imagen un conjunto
+    discreto. Además, como $u$ es estrictamente creciente y $A>0$, se
+    tendrá $u(t+A)-u(t)>0$, luego $k>0$. Resumiendo:
+    \[u(t+A)=u(t)+2k\pi\quad\text{ con } k\in\mathbb{N}\] Si $A<T$,
+    por ser $u$ estrictamente creciente se llega a una contradicción:
+    \[u(t)+2k\pi=u(t+A)<u(t+T)=u(t)+2\pi\] lo que impide que $k$ sea
+    un entero positivo. De modo que se tendrá $A\geq T$, por lo que
+    $T$ es el período mínimo.
+  \end{enumerate}
+  
+  \end{document}
