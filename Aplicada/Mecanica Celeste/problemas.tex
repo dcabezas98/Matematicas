@@ -519,15 +519,15 @@ $C^\infty(\mathbb{R}^2)$, concluimos que $F\in C^\infty(\mathbb{R}^2)$.
     mismo:
 
     $u$ es una función $C^1(\mathbb{R})$, ya que su derivada es
-    continua. Claramente se cumple que
-    $u'(t)\in [\frac{1}{5},1]\ \ \forall t\in\mathbb{R}$ (acotando el
-    seno y el coseno), luego $u$ es estrictamente creciente y por
-    tanto inyectiva. Como $u'>0$, $u^{-1}$ será derivable en cada
-    punto de $u(\mathbb{R})$ por la Regla de Derivación de la Función
-    Inversa. Falta probar que $u$ es sobreyectiva y por tanto $u^{-1}$
-    está definida en todo $\mathbb{R}$. Efectivamente, el hecho de que
-    la pendiente de $u$ esté minorada por una constante positiva
-    fuerza que
+    continua. Tenemos (acotando el seno y el coseno por 1 y -1)
+    \[1\leq 3-\cos u - \sin(2u)\leq 5,\] por tanto se cumple que
+    $u'(t)\in [\frac{1}{5},1]\ \ \forall t\in\mathbb{R}$, luego $u$ es
+    estrictamente creciente y por tanto inyectiva. Como $u'>0$,
+    $u^{-1}$ será derivable en cada punto de $u(\mathbb{R})$ por la
+    Regla de Derivación de la Función Inversa. Falta probar que $u$ es
+    sobreyectiva y por tanto $u^{-1}$ está definida en todo
+    $\mathbb{R}$. Efectivamente, el hecho de que la pendiente de $u$
+    esté minorada por una constante positiva fuerza que
     \[\lim_{t\to-\infty}u(t)=-\infty\qquad \lim_{t\to+\infty}u(t)=+\infty\]
     Se puede formalizar esta idea utilizando por ejemplo el Lema de Barbalat.
     \begin{figure}[H]
@@ -545,17 +545,17 @@ $C^\infty(\mathbb{R}^2)$, concluimos que $F\in C^\infty(\mathbb{R}^2)$.
 
     Primero resolvemos la ecuación \ref{eq:eq-diffU} (variables separadas) y obtenemos
     que $u$ cumple la ecuación:
-    \begin{equation} \label{eq:eqU} 3u-\sin u + \frac{\cos(2u)}{2}=t+k
+    \begin{equation} \label{eq:eqU} 3u-\sin u + \frac{\cos(2u)}{2}=t+c
     \end{equation}
-    para algún $k\in\mathbb{R}$. No conocemos una forma fácil de
+    para algún $c\in\mathbb{R}$. No conocemos una forma fácil de
     resolver esta ecuación para obtener $u$, pero es fácil despejar
     $t$ en función de $u$, obteniendo $u^{-1}$.
     \begin{equation} \label{eq:u-1} t=u^{-1}(u)=3u-\sin u +
-      \frac{\cos(2u)}{2}-k
+      \frac{\cos(2u)}{2}-c
     \end{equation}
     Tenemos entonces
     \[u^{-1}\big(u(t)+2\pi\big)=3u(t)+6\pi -\sin u(t)
-      +\frac{\cos\big(2u(t)\big)}{2}-k=u^{-1}\big(u(t)\big)+6\pi=t+6\pi\]
+      +\frac{\cos\big(2u(t)\big)}{2}-c=u^{-1}\big(u(t)\big)+6\pi=t+6\pi\]
     Y aplicando $u$ en ambos miembros, obtenemos lo requerido con
     $T=6\pi$
     \[u(t)+2\pi=u(t+6\pi)\]
