@@ -1,0 +1,225 @@
+\documentclass[12pt,spanish]{article}
+
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage{float}
+
+\usepackage{parskip}
+\usepackage[document]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage[dvips,usenames]{color}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage{tikz}
+\usepackage[bookmarks=true,
+bookmarksnumbered=false, % true means bookmarks in 
+% left window are numbered                         
+bookmarksopen=false,     % true means only level 1
+% are displayed.
+colorlinks=true,
+urlcolor=cyan,
+linkcolor=blue]{hyperref}
+
+\usepackage{beton}
+\usepackage[T1]{fontenc}
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3}}
+\newcommand{\Vast}{\bBigg@{4}}
+\newcommand{\VAST}{\bBigg@{5.5}}
+\makeatother
+
+% Theorem environments
+
+%% \theoremstyle{plain} %% This is the default
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+% \newtheorem{ax}{Axioma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definici\'on}[section]
+\newtheorem{algorithm}{\textrm{\bf Algoritmo}}[section]
+
+% \theoremstyle{remark}
+\newtheorem{remark}{Observaci\'on}
+\newtheorem{example}{Ejemplo}
+\newtheorem{exercise}{Ejercicio}
+% \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{solution}{\begin{proof}[Solución]}{\end{proof}}
+\newtheorem*{notation}{Notaci\'on}
+
+\title{Relación 2}
+
+\author{David Cabezas Berrido}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+% https://jamboard.google.com/d/1qo7vt7M-8Uo4hn0G4dLi6DuqZ1FQD63SQbvColz_DJo/viewer?f=2
+
+\begin{exercise} %1
+  Una generalización inmediata del resultado 5 II nos dice que las
+  $a_{ii}$ son independientes por ser la matriz $I_p$ diagonal por
+  cajas (de tamaño 1).
+
+  Además, el resultado 5 I nos asegura
+  que \[a_{ii}=\frac{a_{ii}}{1}\sim \chi^2_n,\qquad i=1,\ldots,p\]
+  
+  Utilizando que la distribución $\chi^2$ es reproductiva en los
+  grados de libertad y que los elementos de la diagonal son variables
+  aleatorias independientes, obtenemos
+  \[\operatorname{tr}(A)=\sum_{i=1}^pa_{ii}\sim \chi^2_{np}\]
+\end{exercise}
+
+\begin{exercise} %2
+
+  Aplicando el resultado 3 con $M=\begin{pmatrix}a' \\ b'\end{pmatrix}$ obtenemos:
+  \[B=
+    \begin{pmatrix}
+      a' \\ b'
+    \end{pmatrix} A
+    \begin{pmatrix}
+      a & b
+    \end{pmatrix}=
+    \begin{pmatrix}
+      a'Aa & a'Ab \\ b'Aa & b'A b
+    \end{pmatrix} \sim W_2\Bigg(n,\begin{pmatrix}
+      a' \\ b'
+    \end{pmatrix} \Sigma
+    \begin{pmatrix}
+      a & b
+    \end{pmatrix}\Bigg)\sim W_2\Bigg(n,\begin{pmatrix}
+      a'\Sigma a & a'\Sigma b \\ b'\Sigma a & b'\Sigma b
+    \end{pmatrix}\Bigg)
+  \]
+
+  El resultado 5 II nos asegura que si $a'\Sigma b={\Sigma_B}_{12}=0$,
+  entonces las variables $a'Aa=B_{11}$ y $b'Ab=B_{22}$ son
+  independientes.
+  
+  Resultado 3 me dice que a'Aa y b'Bb siguen Wishat centradas
+  univariantes con n grados de libertad y a'Sigma a, b'Sigma b.
+
+  Recíprocamente, si $a'Aa=B_{11}$ y $b'Ab=B_{22}$ son independientes,
+  en particular son incorreladas. Por tanto,
+  $\operatorname{Cov}(B_{11},B_{22})=0$. Utilizando ahora el resultado 1 obtenemos
+  \[0=\operatorname{Cov}(B_{11},B_{22})=n({\Sigma_B}_{12}^2+{\Sigma_B}_{12}^2)=2n(a'\Sigma b)^2,\]
+  lo que obliga a $a'\Sigma b=0$.
+\end{exercise}
+
+\begin{exercise} %3
+
+  Trabajaremos con la primera expresión de la función de verosimilitud, queremos maximizar en $\Sigma$:
+  \[L(\mu,\Sigma;x_1,\ldots,x_N)=\frac{1}{(2\pi)^\frac{pN}{2}|\Sigma|^\frac{N}{2}}\exp\left\{-\frac{1}{2}\sum_{\alpha=1}^N(x_\alpha-\mu)'\Sigma^{-1}(x_\alpha-\mu)\right\}\]
+
+  Usando que el logaritmo es estrictamente creciente, esto equivale a
+  maximizar:
+
+  \[\ln L(\mu,\Sigma;x_1,\ldots,x_N)=-\frac{pN}{2}\ln 2\pi-\frac{N}{2}\ln |\Sigma|-\frac{1}{2}\sum_{\alpha=1}^N(x_\alpha-\mu)'\Sigma^{-1}(x_\alpha-\mu)\]
+
+  Sólo tenemos que maximizar la parte que depende de $\Sigma$, también
+  utilizamos que el último sumando coincide con su traza por ser un
+  escalar y eliminamos el $\frac{1}{2}$. Tenemos que maximizar
+  entonces:
+  \[g(\Sigma)=-N\ln |\Sigma|-\operatorname{tr}\left(\sum_{\alpha=1}^N(x_\alpha-\mu)'\Sigma^{-1}(x_\alpha-\mu)\right)\]
+
+  Utilizamos la linealidad de la traza para sacar la sumatoria, y que
+  la traza es invariante por permutaciones en el producto de matrices.
+  \[g(\Sigma)=-N\ln |\Sigma|-\sum_{\alpha=1}^N\operatorname{tr}\left(\Sigma^{-1}(x_\alpha-\mu)(x_\alpha-\mu)'\right)\]
+
+  Aplicando otra vez la linealidad de la traza y que $\Sigma$ no depende de $\alpha$:
+  \[g(\Sigma)=-N\ln |\Sigma|-\operatorname{tr}\left(\Sigma^{-1}\sum_{\alpha=1}^N(x_\alpha-\mu)(x_\alpha-\mu)'\right)\]
+
+  Estamos en condiciones de aplicar el Lema de Watson con
+  $D=\sum_{\alpha=1}^N(x_\alpha-\mu)(x_\alpha-\mu)'$, que es
+  simétrica, [TODO: pero estamos asumiendo que $D$ es definida
+  positiva]. Obtenemos entonces que
+  $\hat{\Sigma}=\frac{1}{N}D=\frac{1}{N}\sum_{\alpha=1}^N(X_\alpha-\mu)(X_\alpha-\mu)'$
+  maximiza $g$ y por tanto $L$, luego es el EMV de $\Sigma$.
+
+  Para comprobar si es insesgado, hacemos uso de la linealidad de la
+  esperanza. Después utilizamos que las variables $X_\alpha$ están
+  identicamente distribuidas por una $N_p(\mu,\Sigma)$ y concluimos
+  que efectivamente $\hat{\Sigma}$ es insesgado en $\Sigma$.
+  \[E[\hat{\Sigma}]=\frac{1}{N}\sum_{\alpha=1}^NE[(X_\alpha-\mu)(X_\alpha-\mu)']=\frac{1}{N}\sum_{\alpha=1}^N\Sigma=\Sigma\]
+\end{exercise}
+
+\begin{exercise} %4
+  TODO
+\end{exercise}
+
+\begin{exercise} ~ %5
+  \begin{enumerate}[$a)$]
+  \item TODO
+  \item Buscaré primero una matriz $C$ tal que $C\textbf{X}=
+    C\begin{pmatrix}
+      X_1' \\ \vdots \\ X_N'
+    \end{pmatrix}=
+    \begin{pmatrix}
+      X_1'-\bar{X}' \\ \vdots \\ X_N'-\bar{X}'
+    \end{pmatrix}$. \\
+    Necesito entonces \[C\textbf{X}=I_N\textbf{X}-\frac{1}{N}\begin{pmatrix}
+      \sum_{\alpha=1}^N X_\alpha'\\ \vdots \\ \sum_{\alpha=1}^N X_\alpha'
+    \end{pmatrix}
+  \]
+  Desarrollando el segundo sumando:
+  \begin{align*}
+    \begin{pmatrix}
+      \sum_{\alpha=1}^N X_\alpha'\\ \vdots \\ \sum_{\alpha=1}^N X_\alpha'
+    \end{pmatrix}&=
+    \begin{pmatrix}
+      \sum_{\alpha=1}^N X_{\alpha 1} & \cdots & \sum_{\alpha=1}^N X_{\alpha p} \\ \vdots & & \vdots \\ \sum_{\alpha=1}^N X_{\alpha 1} & \cdots & \sum_{\alpha=1}^N X_{\alpha p}
+    \end{pmatrix}=
+    \begin{pmatrix}
+      1 & \cdots & 1 \\ \vdots & & \vdots \\ 1 & \cdots & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      X_{11} & \cdots & X_{1p} \\ \vdots & & \vdots \\ X_{N1} & \cdots & X_{Np}
+    \end{pmatrix}\\&=\begin{pmatrix}
+      1 & \cdots & 1 \\ \vdots & & \vdots \\ 1 & \cdots & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      X_1' \\ \vdots \\ X_N'
+    \end{pmatrix}=
+    \begin{pmatrix}
+      1 & \cdots & 1 \\ \vdots & & \vdots \\ 1 & \cdots & 1
+    \end{pmatrix}
+    \textbf{X}=\textbf{1}_N\textbf{X}
+  \end{align*}
+  Por tanto $C=I_N-\frac{1}{N}\textbf{1}_N$.
+Tenemos también
+\[
+  \begin{pmatrix}
+    X_1-\bar{X} & \cdots & X_N-\bar{X}
+  \end{pmatrix}=(C\textbf{X})'=\textbf{X}'C'=\textbf{X}'C
+\]
+Finalmente,
+\[A=\sum_{\alpha=1}^N(X_\alpha-\bar{X})(X_\alpha-\bar{X})'=\begin{pmatrix}
+    X_1-\bar{X} & \cdots & X_N-\bar{X}
+  \end{pmatrix}\begin{pmatrix}
+      X_1'-\bar{X}' \\ \vdots \\ X_N'-\bar{X}'
+    \end{pmatrix}=\textbf{X}'CC\textbf{X}\]
+  Luego obtenemos lo requerido para $B=C^2$.
+
+\item Por ser $A$ la matriz de dispersiones de una muestra aleatoria
+  simple (de tamaño $N>p$) de una distribución $N_p(\mu,\Sigma)$ con
+  $\Sigma>0$, sabemos que $A\sim W_p(N-1,\Sigma)$.
+
+  Siempre que $G$ sea de rango $p$, tendremos por el resultado 3
+  $GAG'\sim W_p(N-1, G\Sigma G')$. Como $\Sigma$ es simétrica y
+  definida positiva, admite una factorización de la forma $\Sigma=CC'$
+  con $C$ matriz cuadrada no singular de orden $p$. Tomamos
+  $G=C^{-1}$, que es una matriz no singular de orden $p$. Tenemos entonces
+  \[GAG'\sim W_p(N-1, G\Sigma G')=W_p(N-1, C^{-1}C C' {G^{-1}}')=W_p(N-1, I_p)\]
+\end{enumerate}
+\end{exercise}
+
+\end{document}
