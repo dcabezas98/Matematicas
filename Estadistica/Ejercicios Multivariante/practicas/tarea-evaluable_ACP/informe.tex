@@ -200,7 +200,7 @@ típica, para así igualar sus escalas.
   para trasladar la distribución al origen.
 \end{itemize}
 
-\subsection{Análisis de la correlación de las variables}
+\subsection{Análisis de la correlación de las variables} \label{sec:acp}
 
 Primero debemos preguntarnos si tiene sentido hacer un Análisis de
 Componentes Principales, en la matriz de correlación observamos altas
@@ -379,7 +379,7 @@ También hemos investigado acerca del
   {Método del Codo}.
   Para ello, obtenemos una representación de la varianza acumulada,
   Figura \ref{fig:cum-var}, (también se puede hacer con la explicada,
-  pero es algo más complejo de intertretar a simple vista) con puntos
+  pero es algo más complejo de interpretar a simple vista) con puntos
   y líneas.
   \begin{verbatim}
 > ggplot( data = data.frame(cum_var, pc = 1:8),
@@ -401,7 +401,7 @@ También hemos investigado acerca del
 
 También tenemos el codo de la curva para 3 componentes
 principales. Las tres primeras componentes principales acumulan una
-varianza explicada del 0.9518\%.
+varianza explicada del 95.18\%.
 
 \pagebreak
 
@@ -460,7 +460,18 @@ componente (como puede comprobarse en la Tabla \ref{tab:mat-x}),
 mientras que la empresa 13 tiene una coordenada en la primera
 componente cercana a 3 y en la segunda componente cercana a -0.5.
 
-TODO variables
+Observamos que respecto a lo que concierne a las dos primeras
+componentes principales, las variables X6, X7 y X8 están muy
+correladas, igual pasa con las variables X1, X2, y X3. Justamente las
+seis variables que acabamos de comentar son las que más contribuyen a
+las dos primeras componentes principales. En la Tabla
+\ref{tab:mat-rot} vemos que tienen pesos mayores en estas componentes
+que las variables X4 y X5. También observamos que los signos de los
+pesos concuerdan con la posición de las variables en la parte positiva
+o negativa de los ejes. Por último, cabe destacar que la variable X5
+queda proyectada muy cerca del eje de la primera componente, por lo
+que apenas contribuye a la segunda componente, de hecho en la Tabla
+\ref{tab:mat-rot} observamos que su peso es prácticamente nulo.
 
 \begin{verbatim}
 > fviz_pca(PCA, axes=c(1,3),
@@ -491,7 +502,14 @@ TODO variables
   \caption{Segunda y tercera componente principal}
   \label{fig:biplot23}
 \end{figure}
-
-
+\vspace{-5mm}
+Observando las otras dos gráficas, podemos hacer un análisis análogo
+al que hemos hecho para la primera. Por destacar alguna idea novedosa,
+observamos que las variables X1, X2, X3 aparecen también muy
+correladas para estos dos pares de componentes principales; y lo mismo
+ocurre con las variables X6, X7, X8. Si nos vamos a la matriz de
+correlación al principio de la Sección \ref{sec:acp}, observamos que
+entre estas variables existen correlaciones de entre el 96 y el 99\%,
+así que es lógico que esto ocurra.
 
 \end{document}
