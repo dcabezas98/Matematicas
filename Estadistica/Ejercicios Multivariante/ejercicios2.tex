@@ -140,8 +140,8 @@ linkcolor=blue]{hyperref}
 
   Estamos en condiciones de aplicar el Lema de Watson con
   $D=\sum_{\alpha=1}^N(x_\alpha-\mu)(x_\alpha-\mu)'$, que es
-  simétrica, [TODO: pero estamos asumiendo que $D$ es definida
-  positiva]. Obtenemos entonces que
+  simétrica, ya que esta matriz es definida postivia por
+  hipótesis. Obtenemos entonces que
   $\hat{\Sigma}=\frac{1}{N}D=\frac{1}{N}\sum_{\alpha=1}^N(X_\alpha-\mu)(X_\alpha-\mu)'$
   maximiza $g$ y por tanto $L$, luego es el EMV de $\Sigma$.
 
@@ -153,12 +153,137 @@ linkcolor=blue]{hyperref}
 \end{exercise}
 
 \begin{exercise} %4
-  TODO
+  Con la definición de esperanza con la función de densidad, tenemos que
+  \begin{equation}\label{ej4-E}
+    E[|A|^r]=\int_{M_S^+(p)}|A|^r\frac{|A|^\frac{n-p-1}{2}\exp\{-\frac{1}{2}\operatorname{tr}(\Sigma^{-1}A)\}}{2^\frac{np}{2}|\Sigma|^\frac{n}{2}\Gamma_p(\frac{n}{2})}dA=\int_{M_S^+(p)}\frac{|A|^\frac{n+2r-p-1}{2}\exp\{-\frac{1}{2}\operatorname{tr}(\Sigma^{-1}A)\}}{2^\frac{np}{2}|\Sigma|^\frac{n}{2}\Gamma_p(\frac{n}{2})}dA\end{equation}
+  donde $M_S^+(p)$ denota el espacio de matrices simétricas definidas positivas de orden $p$.
+
+  Para cada real $m>p-1$, sabemos que la función de densidad de la distribución $W_p(m,\Sigma)$ debe integrar 1, es decir
+  \begin{equation}\label{ej4-m}\int_{M_S^+(p)}\frac{|A|^\frac{m-p-1}{2}\exp\{-\frac{1}{2}\operatorname{tr}(\Sigma^{-1}A)\}}{2^\frac{mp}{2}|\Sigma|^\frac{m}{2}\Gamma_p(\frac{m}{2})}dA=1\end{equation}
+  Multiplicamos y dividimos en (\ref{ej4-E}) por los factores que
+  faltan para utilizar (\ref{ej4-m}) con $m=n+2r>n\geq p>p-1$:
+  $\Gamma_p(\frac{n+2r}{2})$, $2^\frac{2rp}{2}$ y $|\Sigma|^\frac{2r}{2}$. Obtenemos entonces:
+  \[E[|A|^r]=\int_{M_S^+(p)}\frac{|A|^\frac{n+2r-p-1}{2}\exp\{-\frac{1}{2}\operatorname{tr}(\Sigma^{-1}A)\}\Gamma_p(\frac{n+2r}{2})2^\frac{2rp}{2}|\Sigma|^\frac{2r}{2}}{2^\frac{np}{2}|\Sigma|^\frac{n}{2}\Gamma_p(\frac{n}{2})\Gamma_p(\frac{n+2r}{2})2^\frac{2rp}{2}|\Sigma|^\frac{2r}{2}}dA\]
+  Reagrupando y usando (\ref{ej4-m}) obtenemos:
+  \[E[|A|^r]=\frac{\Gamma_p(\frac{n+2r}{2})2^\frac{2rp}{2}|\Sigma|^\frac{2r}{2}}{\Gamma_p(\frac{n}{2})}\int_{M_S^+(p)}\frac{|A|^\frac{n+2r-p-1}{2}\exp\{-\frac{1}{2}\operatorname{tr}(\Sigma^{-1}A)\}}{2^\frac{(n+2r)p}{2}|\Sigma|^\frac{n+2r}{2}\Gamma_p(\frac{n+2r}{2})}dA=\frac{\Gamma_p(\frac{n+2r}{2})2^\frac{2rp}{2}|\Sigma|^\frac{2r}{2}}{\Gamma_p(\frac{n}{2})}\]
+  Por tanto, para cada $r>0$ tenemos
+  \[E[|A|^r]=\frac{\Gamma_p(\frac{n+2r}{2})2^{rp}|\Sigma|^r}{\Gamma_p(\frac{n}{2})}\]
 \end{exercise}
 
 \begin{exercise} ~ %5
   \begin{enumerate}[$a)$]
-  \item TODO
+  \item Sea $\mathcal{X}=\operatorname{vec}(\textbf{X})=
+    \begin{pmatrix}
+      X_1 \\ \vdots \\ X_N
+    \end{pmatrix}
+    $ el vector $pN\times 1$ formado por la concatenación de las
+    observaciones. Buscamos primero una matriz $E_\alpha$ de dimensión
+    $p\times pN$ tal que $X_\alpha=E_\alpha\mathcal{X}$, que claramente debe ser estar formada por $N-1$ cajas de ceros $p\times p$ y la identidad de orden $p$ en la posición $\alpha$: \[E_\alpha=
+    \begin{pmatrix}
+      0 & \cdots & 0 & I_p^{(\alpha)} & 0 & \cdots & 0
+    \end{pmatrix}\]
+
+  Podemos definir también
+  $\bar{E}=\frac{1}{N}\sum\limits_{\alpha=1}^{N} E_\alpha= \begin{pmatrix}
+        \frac{1}{N}I_p & \cdots & \frac{1}{N}I_p
+      \end{pmatrix}$, de tal forma que $\bar{X}=\bar{E}\mathcal{X}$.
+
+  Tenemos entonces \[
+    \begin{pmatrix}
+      \bar{X} \\ X_\alpha-\bar{X}
+    \end{pmatrix}=
+    \begin{pmatrix}
+        \bar{E} \\ E_\alpha-\bar{E}
+      \end{pmatrix}\mathcal{X}=
+    \begin{pmatrix}
+        \bar{E} \\ E_\alpha-\bar{E}
+      \end{pmatrix}\begin{pmatrix}
+      X_1 \\ \vdots \\ X_N
+    \end{pmatrix}
+  \]
+  Podemos notar
+  \[F_\alpha=\begin{pmatrix}
+        \bar{E} \\ E_\alpha-\bar{E}
+      \end{pmatrix}=
+      \begin{pmatrix}
+        \frac{1}{N}I_p & \cdots & \cdots & \cdots & \cdots & \cdots & \frac{1}{N}I_p \\
+        -\frac{1}{N}I_p & \cdots & -\frac{1}{N}I_p & I_p-\frac{1}{N}I_p~^{(\alpha)}& -\frac{1}{N}I_p & \cdots & -\frac{1}{N}I_p
+      \end{pmatrix}
+    \]
+
+    Por otra parte, como consecuencia de la independencia de las observaciones, tenemos
+    \[\mathcal{X}=
+    \begin{pmatrix}
+      X_1 \\ \vdots \\ X_N
+    \end{pmatrix}\sim N_{pN}\left(
+      \begin{pmatrix}
+        \mu \\ \vdots \\ \mu
+      \end{pmatrix},
+      \begin{pmatrix}
+        \Sigma & 0 & \cdots & 0 \\
+        0 & \Sigma & \ddots & \vdots \\
+        \vdots & \ddots & \ddots & 0\\
+        0 & \cdots & 0 & \Sigma
+      \end{pmatrix}\right)\]
+  De modo que $\begin{pmatrix}
+      \bar{X} \\ X_\alpha-\bar{X}
+    \end{pmatrix}$ sigue una normal $2p$-variante con vector de medias
+    \[F_\alpha\begin{pmatrix}
+        \mu \\ \vdots \\ \mu
+      \end{pmatrix} = \begin{pmatrix}
+        \frac{1}{N}I_p & \cdots & \cdots & \cdots & \cdots & \cdots & \frac{1}{N}I_p \\
+        -\frac{1}{N}I_p & \cdots & -\frac{1}{N}I_p & I_p-\frac{1}{N}I_p~^{(\alpha)}& -\frac{1}{N}I_p & \cdots & -\frac{1}{N}I_p
+      \end{pmatrix}\begin{pmatrix}
+        \mu \\ \vdots \\ \mu
+      \end{pmatrix}=
+      \begin{pmatrix}
+        N\frac{1}{N}\mu \\ \mu - N\frac{1}{N}\mu
+      \end{pmatrix}=
+      \begin{pmatrix}
+        \mu \\ 0
+      \end{pmatrix}
+    \]
+    y matriz de covarianzas
+    \begin{align*}
+      &F_\alpha\begin{pmatrix}
+        \Sigma & 0 & \cdots & 0 \\
+        0 & \Sigma & \ddots & \vdots \\
+        \vdots & \ddots & \ddots & 0\\
+        0 & \cdots & 0 & \Sigma
+      \end{pmatrix}F_\alpha' \\
+      =&\begin{pmatrix}
+        \frac{1}{N}I_p & \cdots & \cdots & \cdots & \cdots & \cdots & \frac{1}{N}I_p \\
+        -\frac{1}{N}I_p & \cdots & -\frac{1}{N}I_p & I_p-\frac{1}{N}I_p~^{(\alpha)} & -\frac{1}{N}I_p & \cdots & -\frac{1}{N}I_p
+      \end{pmatrix}
+    \begin{pmatrix}
+        \Sigma & 0 & \cdots & 0 \\
+        0 & \Sigma & \ddots & \vdots \\
+        \vdots & \ddots & \ddots & 0\\
+        0 & \cdots & 0 & \Sigma
+      \end{pmatrix}\begin{pmatrix}
+        \frac{1}{N}I_p & -\frac{1}{N}I_p \\ \vdots & \vdots \\ \vdots & -\frac{1}{N}I_p \\ \vdots & I_p-\frac{1}{N}I_p~^{(\alpha)} \\ \vdots & -\frac{1}{N}I_p \\ \vdots & \vdots \\ \frac{1}{N}I_p & -\frac{1}{N}I_p 
+      \end{pmatrix}\\
+      =&\begin{pmatrix}
+        \frac{1}{N}\Sigma & \cdots & \cdots & \cdots & \cdots & \cdots & \frac{1}{N}\Sigma \\
+        -\frac{1}{N}\Sigma & \cdots & -\frac{1}{N}\Sigma & \Sigma-\frac{1}{N}\Sigma~^{(\alpha)} & -\frac{1}{N}\Sigma & \cdots & -\frac{1}{N}\Sigma
+      \end{pmatrix}\begin{pmatrix}
+        \frac{1}{N}I_p & -\frac{1}{N}I_p \\ \vdots & \vdots \\ \vdots & -\frac{1}{N}I_p \\ \vdots & I_p-\frac{1}{N}I_p~^{(\alpha)} \\ \vdots & -\frac{1}{N}I_p \\ \vdots & \vdots \\ \frac{1}{N}I_p & -\frac{1}{N}I_p 
+      \end{pmatrix}=
+      \begin{pmatrix} \frac{1}{N}\Sigma & 0 \\ 0 & \Sigma - \frac{3}{N}\Sigma \end{pmatrix}
+    \end{align*}
+
+    Como $\begin{pmatrix}
+      \bar{X} \\ X_\alpha-\bar{X}
+    \end{pmatrix}$ sigue una distribución normal con matriz de
+    covarianzas diagonal por cajas, concluimos que que las variables
+    $\bar{X}$ y $X_\alpha-\bar{X}$ son independientes y por tanto
+    incorreladas: $\text{Cov}(\bar{X},X_\alpha-\bar{X})=0$.
+
+    Además, como $A$ es una función medible de las variables
+    $X_\alpha-\bar{X},\quad\alpha=1,\ldots,N$; y $\bar{X}$ es
+    independiente de todas ellas, deducimos que $\bar{X}$ y $A$ son
+    independientes.
+    
   \item Buscaré primero una matriz $C$ tal que $C\textbf{X}=
     C\begin{pmatrix}
       X_1' \\ \vdots \\ X_N'
