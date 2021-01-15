@@ -39,7 +39,7 @@ linkcolor=blue]{hyperref}
 \newtheorem{theorem}{Teorema}[section]
 \newtheorem{corollary}[theorem]{Corolario}
 \newtheorem{lemma}[theorem]{Lema}
-\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem*{proposition}{Proposici\'on}
 % \newtheorem{ax}{Axioma}
 
 \theoremstyle{definition}
@@ -63,12 +63,10 @@ linkcolor=blue]{hyperref}
 \begin{document}
 \maketitle
 
-% https://jamboard.google.com/d/1qo7vt7M-8Uo4hn0G4dLi6DuqZ1FQD63SQbvColz_DJo/viewer?f=2
-
 \begin{exercise} %1
-  Una generalización inmediata del resultado 5 II nos dice que las
-  $a_{ii}$ son independientes por ser la matriz $I_p$ diagonal por
-  cajas (de tamaño 1).
+  Una generalización del resultado 5 II (ver debajo del ejercicio) nos
+  dice que las $a_{ii}$ son independientes por ser la matriz $I_p$
+  diagonal por cajas (de tamaño 1).
 
   Además, el resultado 5 I nos asegura
   que \[a_{ii}=\frac{a_{ii}}{1}\sim \chi^2_n,\qquad i=1,\ldots,p\]
@@ -79,9 +77,50 @@ linkcolor=blue]{hyperref}
   \[\operatorname{tr}(A)=\sum_{i=1}^pa_{ii}\sim \chi^2_{np}\]
 \end{exercise}
 
+\begin{proposition}[Generalizacion del resultado 5 II] \label{generalizacion-5II}
+
+  Sea $A\sim W_p(n,\Sigma)$, si $\Sigma$ es diagonal por cajas,
+  consideramos las cajas del mismo orden en la diagonal de $A$, es
+  decir: \[A=
+  \begin{pmatrix}
+    A_{11} & \cdots & A_{1k} \\ \vdots & \ddots & \vdots \\ A_{k1} & \cdots & A_{kk}
+  \end{pmatrix},\quad \Sigma=\begin{pmatrix}
+    \Sigma_{11} & \cdots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \cdots & \Sigma_{kk}
+  \end{pmatrix}; \quad \begin{tabular}{c} \text{con $O(A_{jj})=O(\Sigma_{jj})$} \\ \text{para cada $j=1,\ldots,k$}\end{tabular}\]
+notando por $O(C)$ al orden de una matriz $C$. Entonces, para cada
+$j=1,\ldots,k$, \\ $A_{jj}\sim W_{O(A_{jj})}(n,\Sigma_{jj})$, y las $A_{jj}$ son independientes.
+\end{proposition}
+
+\begin{proof}
+  La prueba es análoga a la del resultado 5 II. El hecho de que
+  $A\sim W_p(n,\Sigma)$ nos asegura la existencia de $n$ vectores
+  aleatorios independientes $Z_1,\ldots, Z_n$ cada uno siguiendo una
+  $N_p(0,\Sigma)$ tal que $A$ se escribe como
+  $A=\sum\limits_{\alpha=1}^n Z_\alpha Z_\alpha'$. Podemos dividir
+  cada vector $Z_\alpha$ en subvectores con tantas componentes como
+  las cajas de la diagonal de $A$:
+  $Z_\alpha'=(Z_{\alpha 1}' \cdots Z_{\alpha k}')$, donde
+  $Z_{\alpha j}$ tiene $O(A_{jj})$ componentes.
+
+  Tenemos entonces que, para cada $j=1,\ldots, k$,
+  $A_{jj}=\sum\limits_{\alpha=1}^n Z_{\alpha j} Z_{\alpha j}'$, y cada
+  $Z_{\alpha j}\sim N_{O(A_{jj})}(0,\Sigma_{jj})$, de modo que
+  $A_{jj}\sim W_{O(A_{jj})}(n,\Sigma_{jj})$.
+
+  Además, como $\Sigma$ es diagonal por cajas, no sólo los vectores
+  $Z_1,\ldots,Z_n$ son independientes, sino que los subvectores
+  $Z_{\alpha j}$ con $\alpha=1,\ldots n$ y $j=1,\ldots, k$ son
+  independientes. De modo que las cajas $A_{jj}$ con $j=1,\ldots, k$
+  son independientes.
+\end{proof}
+
 \begin{exercise} %2
 
-  Aplicando el resultado 3 con $M=\begin{pmatrix}a' \\ b'\end{pmatrix}$ obtenemos:
+  En el caso de que $a$ y $b$ sean linealmente independientes, la matriz $
+  \begin{pmatrix}
+    a & b
+  \end{pmatrix}$ tiene rango máximo, aplicando entonces el resultado 3
+  con $M=\begin{pmatrix}a' \\ b'\end{pmatrix}$ obtenemos:
   \[B=
     \begin{pmatrix}
       a' \\ b'
@@ -105,14 +144,39 @@ linkcolor=blue]{hyperref}
   entonces las variables $a'Aa=B_{11}$ y $b'Ab=B_{22}$ son
   independientes.
   
-  Resultado 3 me dice que a'Aa y b'Bb siguen Wishat centradas
-  univariantes con n grados de libertad y a'Sigma a, b'Sigma b.
+  El resultado 3 nos dice que $a'Aa$ y $b'Ab$ siguen Wishart centradas
+  univariantes con $n$ grados de libertad y $a'\Sigma a$, $b'\Sigma b$.
 
   Recíprocamente, si $a'Aa=B_{11}$ y $b'Ab=B_{22}$ son independientes,
   en particular son incorreladas. Por tanto,
   $\operatorname{Cov}(B_{11},B_{22})=0$. Utilizando ahora el resultado 1 obtenemos
   \[0=\operatorname{Cov}(B_{11},B_{22})=n({\Sigma_B}_{12}^2+{\Sigma_B}_{12}^2)=2n(a'\Sigma b)^2,\]
   lo que obliga a $a'\Sigma b=0$.
+
+  En el caso de que $a$ y $b$ sean linealmente dependientes, existen
+  dos formas de razonar: La primera es extender el resultado 3 al caso
+  en el que la matriz $M$ no sea de rango máximo, la demostración es
+  exactamente la misma al caso de rango máximo pero utilizando la
+  propiedad de la DNM con transformaciones lineales de rango no
+  necesariamente básico. Este razonamiento también es válido en el
+  caso $\Sigma \geq 0$.
+
+  La segunda es distinguir los casos en los que $a$ y $b$ sean
+  linealmente dependientes:
+
+  \begin{itemize}
+  \item Si $a=0$ ó $b=0$, una (al menos) de las variables $a'Aa$ y
+    $b'Ab$ es degenerada (constante $=0$), por lo que claramente son
+    independientes. Mientras que $a'\Sigma b=0$, de modo que se sigue
+    cumpliendo lo requerido.
+  \item Si ambos son no nulos, existirá una constante $\lambda\neq 0$
+    tal que $b=\lambda a$. Las variables continuas y no degeneradas
+    $a'Aa$ y $b'Ab=\lambda^2 a'Aa$ claramente no son
+    independientes. Por otra parte, al ser $\Sigma>0$, se tendrá
+    $a'\Sigma b=\lambda a'\Sigma a\neq 0$. Así que una vez más se
+    cumple lo requerido.
+  \end{itemize}
+  
 \end{exercise}
 
 \begin{exercise} %3
@@ -139,9 +203,8 @@ linkcolor=blue]{hyperref}
   \[g(\Sigma)=-N\ln |\Sigma|-\operatorname{tr}\left(\Sigma^{-1}\sum_{\alpha=1}^N(x_\alpha-\mu)(x_\alpha-\mu)'\right)\]
 
   Estamos en condiciones de aplicar el Lema de Watson con
-  $D=\sum_{\alpha=1}^N(x_\alpha-\mu)(x_\alpha-\mu)'$, que es
-  simétrica, ya que esta matriz es definida postivia por
-  hipótesis. Obtenemos entonces que
+  $D=\sum_{\alpha=1}^N(x_\alpha-\mu)(x_\alpha-\mu)'$, que es simétrica
+  y definida positiva (esto último por hipótesis). Obtenemos entonces que
   $\hat{\Sigma}=\frac{1}{N}D=\frac{1}{N}\sum_{\alpha=1}^N(X_\alpha-\mu)(X_\alpha-\mu)'$
   maximiza $g$ y por tanto $L$, luego es el EMV de $\Sigma$.
 
@@ -170,6 +233,8 @@ linkcolor=blue]{hyperref}
   \[E[|A|^r]=\frac{\Gamma_p(\frac{n+2r}{2})2^{rp}|\Sigma|^r}{\Gamma_p(\frac{n}{2})}\]
 \end{exercise}
 
+\pagebreak
+
 \begin{exercise} ~ %5
   \begin{enumerate}[$a)$]
   \item Sea $\mathcal{X}=\operatorname{vec}(\textbf{X})=
@@ -178,7 +243,7 @@ linkcolor=blue]{hyperref}
     \end{pmatrix}
     $ el vector $pN\times 1$ formado por la concatenación de las
     observaciones. Buscamos primero una matriz $E_\alpha$ de dimensión
-    $p\times pN$ tal que $X_\alpha=E_\alpha\mathcal{X}$, que claramente debe ser estar formada por $N-1$ cajas de ceros $p\times p$ y la identidad de orden $p$ en la posición $\alpha$: \[E_\alpha=
+    $p\times pN$ tal que $X_\alpha=E_\alpha\mathcal{X}$, que claramente debe estar formada por $N-1$ cajas de ceros $p\times p$ y la identidad de orden $p$ en la posición $\alpha$: \[E_\alpha=
     \begin{pmatrix}
       0 & \cdots & 0 & I_p^{(\alpha)} & 0 & \cdots & 0
     \end{pmatrix}\]
@@ -269,7 +334,7 @@ linkcolor=blue]{hyperref}
       \end{pmatrix}\begin{pmatrix}
         \frac{1}{N}I_p & -\frac{1}{N}I_p \\ \vdots & \vdots \\ \vdots & -\frac{1}{N}I_p \\ \vdots & I_p-\frac{1}{N}I_p~^{(\alpha)} \\ \vdots & -\frac{1}{N}I_p \\ \vdots & \vdots \\ \frac{1}{N}I_p & -\frac{1}{N}I_p 
       \end{pmatrix}=
-      \begin{pmatrix} \frac{1}{N}\Sigma & 0 \\ 0 & \Sigma - \frac{3}{N}\Sigma \end{pmatrix}
+      \begin{pmatrix} \frac{1}{N}\Sigma & 0 \\ 0 & \Sigma - \frac{1}{N}\Sigma \end{pmatrix}
     \end{align*}
 
     Como $\begin{pmatrix}
@@ -343,7 +408,7 @@ Finalmente,
   definida positiva, admite una factorización de la forma $\Sigma=CC'$
   con $C$ matriz cuadrada no singular de orden $p$. Tomamos
   $G=C^{-1}$, que es una matriz no singular de orden $p$. Tenemos entonces
-  \[GAG'\sim W_p(N-1, G\Sigma G')=W_p(N-1, C^{-1}C C' {G^{-1}}')=W_p(N-1, I_p)\]
+  \[GAG'\sim W_p(N-1, G\Sigma G')=W_p(N-1, C^{-1}C C' {C^{-1}}')=W_p(N-1, I_p)\]
 \end{enumerate}
 \end{exercise}
 
