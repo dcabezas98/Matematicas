@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage{float}
+
+\usepackage{parskip}
+\usepackage[document]{ragged2e}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsfonts,amssymb,latexsym}
+\usepackage{enumerate}
+\usepackage[dvips,usenames]{color}
+\definecolor{RojoAnayelRey}{rgb}{1,.25,.25}
+\usepackage{tikz}
+\usepackage[bookmarks=true,
+            bookmarksnumbered=false, % true means bookmarks in 
+                                     % left window are numbered                         
+            bookmarksopen=false,     % true means only level 1
+                                     % are displayed.
+            colorlinks=true,
+            urlcolor=cyan,
+            linkcolor=blue]{hyperref}
+            
+\usepackage[T1]{fontenc}
+
+\title{Ejercicios sobre la distribución $T^2$ de Hotelling}
+
+\author{David Cabezas Berrido}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Contraste sobre $\mu$ para $\Sigma$ desconocida}
+
+Tenemos los datos de 20 individuos, la Altura (pulgadas) y el Peso
+(libras). Suponiendo que siguen una distribución $N_2(\mu,\Sigma)$ con
+$\Sigma$ matriz definida no negativa, queremos contrastar las
+hipótesis:
+
+\[H_0:\quad \mu=
+  \begin{pmatrix}
+    70 \\ 170
+  \end{pmatrix}=\mu_0;\qquad H_1:\quad \mu\neq \begin{pmatrix}
+    70 \\ 170
+  \end{pmatrix}=\mu_0
+\]
+
+En el caso de que la matriz $\Sigma$ sea desconocida.
+
+Obtenemos los siguientes estadísticos muestrales básicos:
+
+\[\bar{x}=
+  \begin{pmatrix}
+    71.45 \\ 164.7
+  \end{pmatrix} \qquad S_n=
+  \begin{pmatrix}
+    14.576 & 128.88 \\ 128.88 & 1441.2653
+  \end{pmatrix} \qquad r_{12}=0.889\]
+
+Introducimos estos datos en R:
+\begin{verbatim}
+mu0=matrix(c(70,170), nrow=2, ncol=1) # Valor de mu para la hipótesis nula
+x=matrix(c(71.45, 164.7), nrow = 2, ncol = 1) # Vector de medias muestral
+# Matriz de cuasi-covarianzas muestral
+Sn=matrix(c(14.576,128.88,128.88,1441.2653),nrow=2,ncol=2)
+p=2
+N=20
+n=N-1
+r12=0.889 # Coeficiente de correlación muestral
+\end{verbatim}
+
+Calculamos el valor del estadístico de contraste:
+
+\begin{verbatim}
+> # Estadístico de contraste para Sigma desconocida:
+> t=20*t(x-mu0)%*%solve(Sn)%*%(x-mu0)
+> t
+         [,1]
+[1,] 24.65119
+\end{verbatim}
+
+\[t=N(\bar{x}-\mu_0)'S_n^{-1}(\bar{x}-\mu_0)=24.65119\]
+
+Valores de comparación teóricos bajo $H_0$ a distintos niveles de significación:
+
+\begin{verbatim}
+f01=qf(0.1, 2, 18, lower.tail = FALSE)*38/18 # alpha=0.1
+f005=qf(0.05, 2, 18, lower.tail = FALSE)*38/18 # alpha=0.05
+f001=qf(0.01, 2, 18, lower.tail = FALSE)*38/18 # alpha=0.01
+\end{verbatim}
+
+\begin{verbatim}
+> f01
+[1] 5.539444
+> f005
+[1] 7.504065
+> f001
+[1] 12.69391
+\end{verbatim}
+
+\[\frac{38}{18}F_{2,28;0.1}=5.539444 ; \qquad \frac{38}{18}F_{2,28;0.05}=7.504065 ; \qquad \frac{38}{18}F_{2,28;0.01}=12.69391\]
+
+Para los tres niveles de significación se tiene
+$24.65119=t>\frac{38}{18}F_{2,28;\alpha}$, por lo que en los tres casos
+rechazaríamos la hipótesis nula.
+
+\section{Regiones de confianza en torno a $\mu_0$ para distintos
+  valores del nivel de confianza}
+
+\subsection{Caso de $\Sigma$ conocida}
+
+\subsection{Caso de $\Sigma$ desconocida}
+
+
+\end{document}
