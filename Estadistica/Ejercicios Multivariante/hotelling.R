@@ -21,31 +21,51 @@ f001
 
 library("ellipse")
 
-e1<-ellipse(x=r12, centre=as.vector(mu0), t=sqrt(f01))
-plot(e1, type='l', xlim=c(66,74), ylim=c(164,174), col="red", xlab="Altura", ylab="Peso", main="Región de confianza")
-points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(x)[2]), pch=20)
-text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(x)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+# Regiones de confianza (elipses) para los distintos niveles de significación
+e1<-ellipse(x=Sn/N, centre=as.vector(mu0), t=sqrt(f01))
+plot(e1, type='l', xlim=c(67,73), ylim=c(140,200), col="red", xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.9")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
 
-e2<-ellipse(x=r12, centre=as.vector(mu0), t=sqrt(f005))
-plot(e2, type='l', xlim=c(66,74), ylim=c(164,174), col="red", xlab="Altura", ylab="Peso", main="Región de confianza")
-points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(x)[2]), pch=20)
-text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(x)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+e2<-ellipse(x=Sn/N, centre=as.vector(mu0), t=sqrt(f005))
+plot(e2, type='l', xlim=c(67,73), ylim=c(140,200), col="red", xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.95")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
 
-e3<-ellipse(x=r12, centre=as.vector(mu0), t=sqrt(f001))
-plot(e3, type='l', xlim=c(66,74), ylim=c(164,174), col="red", xlab="Altura", ylab="Peso", main="Región de confianza")
-points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(x)[2]), pch=20)
-text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(x)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+e3<-ellipse(x=Sn/N, centre=as.vector(mu0), t=sqrt(f001))
+plot(e3, type='l', xlim=c(67,73), ylim=c(140,200), col="red", xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.99")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
 
 # Representaciones para Sigma conocida
-Sigma=matrix(c(20,200,200,1000),nrow = 2, ncol = 2)
-Sigma
-eigen(Sigma)
+Sigma=matrix(c(20,100,100,1000),nrow = 2, ncol = 2)
 
 # Estadístico de contraste para Sigma conocida
 u=20*t(X-mu0)%*%solve(Sigma)%*%(X-mu0)
 u
-s=solve(Sigma)
 
-eigen(s)
+# Valores de comparación teóricos bajo H0 para distintos niveles de significación
+c01=qchisq(0.1,2,lower.tail=FALSE)
+c005=qchisq(0.05,2,lower.tail=FALSE)
+c001=qchisq(0.01,2,lower.tail=FALSE)
 
-st(X-mu0)%*%solve(Sigma)
+c01
+c005
+c001
+
+# Regiones de confianza (elipses) para los distintos niveles de significación
+e1<-ellipse(x=Sigma/N, centre=as.vector(mu0), t=sqrt(c01))
+plot(e1, type='l', xlim=c(67,73), ylim=c(145,195), col="red", xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.9")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+
+e2<-ellipse(x=Sigma/N, centre=as.vector(mu0), t=sqrt(c005))
+plot(e2, type='l', xlim=c(67,73), ylim=c(145,195), col="red", xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.95")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+
+e3<-ellipse(x=Sigma/N, centre=as.vector(mu0), t=sqrt(c001))
+plot(e3, type='l', xlim=c(67,73), ylim=c(145,195), col="red", xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.99")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]), pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+

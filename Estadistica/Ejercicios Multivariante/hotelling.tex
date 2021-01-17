@@ -4,6 +4,7 @@
 \setlength{\parindent}{0mm}
 
 \usepackage{float}
+\usepackage{subfigure}
 
 \usepackage{parskip}
 \usepackage[document]{ragged2e}
@@ -65,7 +66,7 @@ Obtenemos los siguientes estadísticos muestrales básicos:
 Introducimos estos datos en R:
 \begin{verbatim}
 mu0=matrix(c(70,170), nrow=2, ncol=1) # Valor de mu para la hipótesis nula
-x=matrix(c(71.45, 164.7), nrow = 2, ncol = 1) # Vector de medias muestral
+X=matrix(c(71.45, 164.7), nrow = 2, ncol = 1) # Vector de medias muestral
 # Matriz de cuasi-covarianzas muestral
 Sn=matrix(c(14.576,128.88,128.88,1441.2653),nrow=2,ncol=2)
 p=2
@@ -114,7 +115,122 @@ rechazaríamos la hipótesis nula.
 
 \subsection{Caso de $\Sigma$ conocida}
 
+Queremos representar la elipse de ecuación
+\[U=N(x-\mu_0)'\Sigma^{-1}(x-\mu_0)\]
+
+Con $N=20$, $\mu_0=
+\begin{pmatrix}
+  70 \\ 170
+\end{pmatrix}$ y $\Sigma=
+\begin{pmatrix}
+  20 & 100 \\ 100 & 1000
+\end{pmatrix}
+$. Y para los distintos valores de $U$:
+\[\chi^2_{2;0.1}=4.60517;\quad \chi^2_{2;0.05}=5.991465;\quad \chi^2_{2;0.01}=9.21034\]
+que obtenemos mediante el siguiente código de R:
+\begin{verbatim}
+c01=qchisq(0.1,2,lower.tail=FALSE)
+c005=qchisq(0.05,2,lower.tail=FALSE)
+c001=qchisq(0.01,2,lower.tail=FALSE)
+\end{verbatim}
+
+Esto lo logramos con el paquete \href{https://cran.r-project.org/web/packages/ellipse/ellipse.pdf}{\texttt{ellipse}} de R.
+
+\begin{verbatim}
+library("ellipse")
+
+# Regiones de confianza (elipses) para los distintos niveles de significación
+e1<-ellipse(x=Sigma/N, centre=as.vector(mu0), t=sqrt(c01))
+plot(e1, type='l', xlim=c(67,73), ylim=c(145,195), col="red",
+     xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.9")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]),
+       y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]),
+     pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+\end{verbatim}
+
+Primero definimos la elipse con la función \texttt{ellipse}, indicando
+la matriz ($\frac{1}{N}\Sigma$), el centro ($\mu_0$) y el valor de
+$U$, introducimos la raíz del valor correspondiente a cada nivel de
+confianza. Con esto obtenemos 100 puntos de la elipse, que dibujamos
+con \texttt{plot} en color rojo, manteniendo fijo el tamaño de los
+ejes para comparar fácilmente el tamaño de las distintas elipses para
+los distintos valores de $\alpha$. Después representamos y etiquetamos
+el centro de la elipse ($\mu_0$) y el vector de medias muestral
+($\bar{x}$). Se rechaza la hipótesis nula cuando el vector $\bar{x}$
+cae fuera de la elipse.
+
+Este código representa la elipse para el nivel de confianza $1-\alpha=0.9$.
+\vspace{-4mm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=120mm]{elipses/con-01}
+  \caption{Región de confianza para el nivel $1-\alpha=0.9$. $\Sigma$ conocida.}
+  \label{fig:con-01}
+\end{figure}
+
+Análogamente, los valores $\chi^2_{2;0.05}$ y $\chi^2_{2;0.01}$ nos
+permiten dibujar las regiones de confianza para los niveles de
+confianza $0.95$ y $0.99$ respectivamente.
+\vspace{-4mm}
+\begin{figure}[H]
+  \centering
+  \subfigure[Región de confianza al nivel $0.95$]{
+    \includegraphics[width=83mm]{elipses/con-005}}
+  \subfigure[Región de confianza al nivel $0.99$]{
+  \includegraphics[width=83mm]{elipses/con-001}}
+  \caption{Regiones de confianza para los niveles $0.95$ y $0.99$. $\Sigma$ conocida.}
+  \label{fig:con-005-001}
+\end{figure}
+
+Nótese que la única figura en la que el vector $\bar{x}$ está dentro
+de la elipse es la última (nivel de confianza $0.99$), por lo que
+sería el único caso de los tres en el que no rechazaríamos $H_0$, lo
+cual concuerda con los cálculos realizados en teoría.
+
 \subsection{Caso de $\Sigma$ desconocida}
 
+Seguimos un proceso análogo al anterior, esta vez con la ecuación
+\[T^2=N(x-\mu_0)'S_n^{-1}(x-\mu_0)\]
+y los valores para $T^2$:
+\[\frac{38}{18}F_{2,18;0.1}=5.539444; \qquad \frac{38}{18}F_{2,18;0.05}=7.504065; \qquad \frac{38}{18}F_{2,18;0.01}=12.69391\]
+
+Con este código en R dibujamos la primera de las elipses:
+\begin{verbatim}
+# Regiones de confianza (elipses) para los distintos niveles de significación
+e1<-ellipse(x=Sn/N, centre=as.vector(mu0), t=sqrt(f01))
+plot(e1, type='l', xlim=c(67,73), ylim=c(140,200), col="red",
+     xlab="Altura", ylab="Peso", main="Región de confianza para nivel 0.9")
+points(x=c(as.vector(mu0)[1], as.vector(X)[1]),
+       y=c(as.vector(mu0)[2], as.vector(X)[2]), pch=20)
+text(x=c(as.vector(mu0)[1], as.vector(X)[1]), y=c(as.vector(mu0)[2], as.vector(X)[2]),
+     pos=2, offset=0.3, labels=c('mu0', 'x'), cex=0.7, font=2)
+\end{verbatim}
+
+\vspace{-4mm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=120mm]{elipses/desc-01}
+  \caption{Región de confianza para el nivel $1-\alpha=0.9$. $\Sigma$ desconocida.}
+  \label{fig:desc-01}
+\end{figure}
+
+Análogamente, los valores $\frac{38}{18}F_{2,18;0.05}$ y $\frac{38}{18}F_{2,18;0.01}$ nos
+permiten dibujar las regiones de confianza para los niveles de
+confianza $0.95$ y $0.99$ respectivamente.
+\vspace{-4mm}
+\begin{figure}[H]
+  \centering
+  \subfigure[Región de confianza al nivel $0.95$]{
+    \includegraphics[width=83mm]{elipses/desc-005}}
+  \subfigure[Región de confianza al nivel $0.99$]{
+  \includegraphics[width=83mm]{elipses/desc-001}}
+  \caption{Regiones de confianza para los niveles $0.95$ y $0.99$. $\Sigma$ desconocida.}
+  \label{fig:desc-005-001}
+\end{figure}
+
+En los tres casos, el vector $\bar{x}$ aparece fuera de la región de
+confianza, por lo que rechazamos $H_0$ en todos los casos, lo que
+concuerda con los cálculos realizados en el test.
 
 \end{document}
