@@ -36,6 +36,9 @@ for ( i in 1:6){
 persp(x=1:6,y=1:6,resultados, xlab='Dado 1', ylab='Dado 2', zlab='', r=4,
       axes=T, ticktype='detailed', col='yellow', theta=30, phi=30, shade=0.2)
 
+# Como los sucesos son equiprobables, las frecuencias son similares, luego recorrido
+# del eje vertical es pequeño. La superficie teórica sería la constante 100000/36=2777.7778
+
 # Suponiendo que el dado no está cargado, los sucesos elementalos son equiprobables.
 # Para calcular la probabilidad de que la suma de ambas puntuaciones sea mayor
 # que 9, basta dividir el número de casos favorables entre el número de posibles.
