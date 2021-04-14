@@ -26,7 +26,6 @@ X <- function(){ # Simulamos la variable aleatoria
   }
   return(x)
 }
-monedas
 
 X()
 

@@ -123,9 +123,9 @@ extract5()
 
 # Frecuencias relativas
 
-dosBlancas/repeticiones # Prob teórica = , obtengo
-dosBlancas1roja/repeticiones # Prob teórica = , obtengo
-dosNegrasAlMenos/repeticiones # Prob teórica = , obtengo
+dosBlancas/repeticiones # Prob teórica = 0.358974 , obtengo 0.365
+dosBlancas1roja/repeticiones # Prob teórica = 0.0961537, obtengo 0.0944
+dosNegrasAlMenos/repeticiones # Prob teórica = 0.2142857, obtengo 0.2106
 
 # Como siempre, las probabilidades difieren de las frecuencias relativas,
 # pero son bastante similares
