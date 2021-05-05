@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 3</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 4</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+<!--begin.rcode
+set.seed(18)
+end.rcode-->
+
+<p>La urna contiene 5 bolas rojas (R), 8 blancas (B) y 3 negras(N)</p>
+
+<p>En los sucesos a y b entiendo sacar exactamente esas bolas, no más.</p>
+
+<p>Extracción sin reemplazamiento de 5 bolas.</p>
+<!--begin.rcode
+extract5 <- function(){
+  return( sample(c(rep('R',5),rep('B',8),rep('N',3)), 5, F) )
+}
+end.rcode-->
+
+<p>Extracción con reemplazamiento de 5 bolas.</p>
+<!--begin.rcode
+extract5Reemp <- function(){
+  return( sample(c('R','B','N'), 5, T, c(5, 8, 3)) )
+}
+
+extract5()
+extract5Reemp()
+end.rcode-->
+
+<p>Programaremos una función que compruebe si ocurre un suceso en una extracción.</p>
+<!--begin.rcode
+sucesos<-function(extracciones){
+  blancas=sum(extracciones=='B')
+  rojas=sum(extracciones=='R')
+  negras=sum(extracciones=='N')
+  return( list( dosBlancas=(blancas==2), dosBlancas1roja=(blancas==2 && rojas==1),
+                dosNegrasAlMenos=(negras>=2) ) )
+}
+
+x=extract5()
+x
+sucesos(x)
+
+x=extract5Reemp()
+x
+sucesos(x)
+end.rcode-->
+
+<h4>Con reemplazamiento</h4>
+
+<p>
+ La probabilidad de sacar una bola blanca en una extraccion es de 8/(8+5+3)=1/2.<br/>
+ Al ser con reemplazamiento, esta probabilidad no cambia entre extracciones,<br/>
+ luego nos encontramos ante una binomial con N=5 y p=0.5,<br/>
+ la probabilidad de obtener el valor 2 es 0.3125=5C2*0.5^2*0.5^3.
+ </p>
+
+<p>
+ La probabilidad de obtener 2 blancas y una roja se obtiene por la fórmula que
+ relaciona la probabilidad condicionada con la intersección. <br/>
+ P(2 blancas y 1 roja) = P(2 blancas)*P(1 roja / 2 blancas).<br/>
+ Falta calcular la probabilidad de obtener una bola roja condicionada a que salen
+ dos blancas.<br/>
+ Suponiendo que salen dos blancas, en las otras tres bolas solo pueden salir negras y rojas.
+ Como hay 5 rojas y 3 negras, y es con reemplazamiento, la probabilidad de sacar
+ roja en cada una de las 3 extracciones es 5/(5+3)=5/8=0.625. Por tanto, estamos 
+ en una binomial con N=3, p=0.625, y la probabilidad de obtener el valor 1 es <br/>
+ 3C1*0.625^1*(1-0.625)^2=0.263672. Multiplicando esa probabilidad por la de obtener
+ dos bolas blancas, concluimos que la probabilidad de sacar dos blancas y una roja
+ es de 0.0823975 (redondeando).
+ </p>
+
+<p>
+ La probabilidad de sacar bola negra no cambia entre extracciones, así que estamos
+ en una binomial N=5, p=3/16=0.1875. La probabilidad de obtener 2 o más es 1 menos
+ la de obtener 1 ó 0:
+</p>
+<!--begin.rcode
+1-5*0.1875*(1-0.1875)^4-(1-0.1875)^5 # 0.237339
+end.rcode-->
+
+<p>Ahora realizamos la simulación.</p>
+<!--begin.rcode
+repeticiones=15000
+
+dosBlancas=0
+dosBlancas1roja=0
+dosNegrasAlMenos=0
+for (i in 1:repeticiones){
+  x <- extract5Reemp()
+  res <- sucesos(x)
+  dosBlancas=dosBlancas+res$dosBlancas
+  dosBlancas1roja=dosBlancas1roja+res$dosBlancas1roja
+  dosNegrasAlMenos=dosNegrasAlMenos+res$dosNegrasAlMenos
+}
+end.rcode-->
+
+<p>Frecuencias relativas.</p>
+
+<!--begin.rcode
+dosBlancas/repeticiones # Prob teórica = 0.3125
+dosBlancas1roja/repeticiones # Prob teórica = 0.0823975
+dosNegrasAlMenos/repeticiones # Prob teórica = 0.237339
+end.rcode-->
+
+<p>Una vez más, las probabilidades difieren de las frecuencias relativas,
+pero son bastante similares.</p>
+
+<h4>Sin reemplazamiento</h4>
+
+<p>
+La probabilidad de sacar dos bolas blancas en 5 extracciones sin reemplazamiento en una urna
+ con 16 bolas de las cuales 8 son blancas se cualcula usando la función de densidad de una
+ hipergeométrica. Los parámetros son N=16, N1=8, n=5. Obtenemos 8C2*8C3/16C5=14/39=0.358974.
+</p>
+
+<p>
+ La probabilidad de obtener 2 blancas y una roja se obtiene por la fórmula que
+ relaciona la probabilidad condicionada con la intersección.<br/>
+ P(2 blancas y 1 roja) = P(2 blancas)*P(1 roja / 2 blancas)<br/>
+ Falta calcular la probabilidad de obtener una bola roja condicionada a que salen
+ dos blancas.<br/>
+ Suponiendo que salen exactamente dos blancas, en las otras tres bolas solo pueden salir negras y rojas.
+ Como hay 5 rojas y 3 negras, y es sin reemplazamiento, nos encontramos otra vez ante una
+ hipergeométrica con N=8, N1=5, n=3; y la probabilidad de obtener una bola roja es
+ 5C1*3C2/8C3=15/56=0.267857.<br/>
+ Por tanto, multiplicando esa probabilidad por la de obtener dos bolas blancas, concluimos
+ que la probabilidad de sacar dos blancas y una roja es de 0.0961537 (redondeando).
+</p>
+
+<p>
+ Para las bolas negras, tenemos una hipergeométrica de N=16, N1=3, n=5. La probabilidad de obtener
+ dos o más bolas negras es la de obtener 2 más la de obtener 3 (no hay más opciones, puesto que sólo hay
+ 3 bolas negras). Por tanto, obtnemos 3C2*13C3/16C5+3C3*13C2/16C5=3/14=0.2142857.
+</p>
+
+<p>Ahora realizamos la simulación.</p>
+<!--begin.rcode
+repeticiones=15000
+
+dosBlancas=0
+dosBlancas1roja=0
+dosNegrasAlMenos=0
+for (i in 1:repeticiones){
+  x <- extract5()
+  res <- sucesos(x)
+  dosBlancas=dosBlancas+res$dosBlancas
+  dosBlancas1roja=dosBlancas1roja+res$dosBlancas1roja
+  dosNegrasAlMenos=dosNegrasAlMenos+res$dosNegrasAlMenos
+}
+
+extract5()
+end.rcode-->
+
+<p>Frecuencias relativas.</p>
+
+<!--begin.rcode
+dosBlancas/repeticiones # Prob teórica = 0.358974
+dosBlancas1roja/repeticiones # Prob teórica = 0.0961537
+dosNegrasAlMenos/repeticiones # Prob teórica = 0.2142857
+end.rcode-->
+
+<p>
+Como en el resto de ejercicios, las probabilidades difieren de las frecuencias relativas,
+pero son bastante similares.</p>
+
+</body>
+</html>

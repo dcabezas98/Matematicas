@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 1</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 1</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<p>
+Al lanzar dos monedas al aire (las numeramos como moneda 1 y moneda 2) tenemos 4 resultados posibles:
+HH, HT, TH, TT <br>
+donde H significa cara (Heads) y T cruz (Tails); la primera letra es el
+resultado de la moneda 1 y la segunda de la 2. <br>
+Suponiendo que las monedas están equilibradas, los 4 resultados son equiprobables. Por tanto, la probabilidad
+de cada suceso puede calcularse como casos favorables entre casos posibles. <br>
+a) La probabilidad de dos caras es 1/4=0.25. <br>
+b) La probabilidad de dos cruces es 1/4=0.25. <br>
+c) La probabilidad de una cara y una cruz es 2/4=1/2=0.5. <br>
+</p>
+
+<p>
+Función que simula una realización del experimento. <br>
+Es más cómodo trabajar con datos numéricos pongamos que el 0 es cara y el 1 es cruz. <br>
+</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">monedas</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(){</span>
+  <span class="hl kwd">return</span><span class="hl std">(</span> <span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">),</span><span class="hl num">2</span><span class="hl std">,T,</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">)) )</span>  <span class="hl com"># Devuelve un vector con los resultados de los dos lanzamientos</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+
+<p>
+Ya que conocemos la probabilidad de cada suceso, podríamos simplemente extraer un resultado con
+<code>sample(c('HH','TT','HT'),1,F,c(1,1,2))</code>.
+</p>
+
+<p>
+Si la suma del vector es 0, tenemos doble cara; si es 2, tenemos doble cruz; y si es 1, cara y cruz (o cruz y cara).<br>
+Repetimos el experimento 15000 veces y observamos el número de veces que se obtiene cada resultado.
+</p>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">resultados</span><span class="hl kwb">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">)</span> <span class="hl com"># Para contar el número de veces que se da cada resultado</span>
+
+<span class="hl std">repeticiones</span><span class="hl kwb">=</span><span class="hl num">15000</span>
+
+<span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">repeticiones) {</span>
+  <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl kwd">sum</span><span class="hl std">(</span><span class="hl kwd">monedas</span><span class="hl std">())</span><span class="hl opt">+</span><span class="hl num">1</span> <span class="hl com"># Posición 1 para doble cara, posición 2 para una cara y una cruz y posición 3 para doble cruz</span>
+  <span class="hl std">resultados[i]</span><span class="hl kwb">=</span><span class="hl std">resultados[i]</span><span class="hl opt">+</span><span class="hl num">1</span>
+<span class="hl std">}</span>
+
+<span class="hl com"># Proporción de dobles caras:</span>
+<span class="hl std">resultados[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl std">repeticiones</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.2504
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Proporción de dobles cruces:</span>
+<span class="hl std">resultados[</span><span class="hl num">3</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl std">repeticiones</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.2478
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Proporción de veces que obtenemos una cara una cruz:</span>
+<span class="hl std">resultados[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl std">repeticiones</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.5018
+</pre></div>
+</div></div>
+
+<p>
+Los resultados obtenidos difieren ligeramente de las probabilidades teóricas, pero se asemejan mucho.
+</p>
+
+</body>
+</html>

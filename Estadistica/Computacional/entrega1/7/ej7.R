@@ -12,6 +12,7 @@
 # la apuesta y B se llevará 5/16.
 
 # Los puntos en la interrupción y el total de lanzamientos acertados para ganar son arbitrarios
+# Notemos que el juego está obligado a terminar en un número finito de rondas
 simular <- function(A=0, B=0, lim=6){ 
   puntos=c(A,B)
   while(puntos[1]<lim && puntos[2]<lim){ # Hasta que uno gane
@@ -28,10 +29,10 @@ simular <- function(A=0, B=0, lim=6){
 
 simular(4,1)
 
-repetir <- function(n=10000){ # Simula n veces
+repetir <- function(n=10000, lim=6){ # Simula n veces
   ganadas=c(0,0)
   for (i in 1:n){
-    ganador=simular(A=4,B=3)
+    ganador=simular(A=4,B=3, lim=lim)
     ganadas[ganador]=ganadas[ganador]+1 # Una partida ganada para el jugador 1 (A) o 2 (B)
   }
   return(ganadas)
@@ -44,3 +45,4 @@ ganadas[1]/partidas # Proporción de partidas ganadas por A, obtengo 0.6887663
 ganadas[2]/partidas # Proporción de partidas ganadas por B, obtengo 0.3112337
 
 # 5/16 = 0.3125, la proporción de partidas que gana B es similar a la probabilidad que calculamos
+

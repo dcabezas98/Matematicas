@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 6</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 6</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<p>Función que simula un paso.</p>
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">paso</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">,</span><span class="hl kwc">y</span><span class="hl std">) {</span>
+
+  <span class="hl std">dados</span> <span class="hl kwb">=</span> <span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">6</span><span class="hl std">,</span><span class="hl num">3</span><span class="hl std">,T)</span> <span class="hl com"># Lanzo los tres dados</span>
+
+  <span class="hl kwa">if</span> <span class="hl std">(dados[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">&lt;=</span><span class="hl num">2</span><span class="hl std">){</span> <span class="hl com"># Si primer dado es 1 ó 2, una unidad a la derecha</span>
+    <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl std">x</span><span class="hl opt">+</span><span class="hl num">1</span>
+  <span class="hl std">}</span>
+  <span class="hl kwa">else</span><span class="hl std">{</span> <span class="hl com"># Si no, una a la izquierda</span>
+    <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl std">x</span><span class="hl opt">-</span><span class="hl num">1</span>
+  <span class="hl std">}</span>
+
+  <span class="hl kwa">if</span> <span class="hl std">(dados[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl std">dados[</span><span class="hl num">3</span><span class="hl std">]</span><span class="hl opt">&lt;</span><span class="hl num">5</span><span class="hl std">){</span> <span class="hl com"># Si la suma de los dados 2 y 3 es menor  que 5, una unidad hacia arriba</span>
+    <span class="hl std">y</span><span class="hl kwb">=</span><span class="hl std">y</span><span class="hl opt">+</span><span class="hl num">1</span>
+  <span class="hl std">}</span>
+  <span class="hl kwa">else</span><span class="hl std">{</span> <span class="hl com"># Si no, una hacia abajo</span>
+    <span class="hl std">y</span><span class="hl kwb">=</span><span class="hl std">y</span><span class="hl opt">-</span><span class="hl num">1</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(x,y))</span> <span class="hl com"># Devuelvo el punto actualizado</span>
+<span class="hl std">}</span>
+
+<span class="hl kwd">paso</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1]  1 -1
+</pre></div>
+</div></div>
+
+<p>Función que simula el movimiento.</p>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">desplazamiento</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">lim</span><span class="hl std">=</span><span class="hl num">10000</span><span class="hl std">){</span>
+  <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl std">y</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl std">t</span><span class="hl kwb">=</span><span class="hl num">2</span>
+  <span class="hl std">progresionX</span><span class="hl kwb">=</span><span class="hl kwd">rep</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,lim)</span>
+  <span class="hl std">progresionY</span><span class="hl kwb">=</span><span class="hl kwd">rep</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,lim)</span>
+  <span class="hl kwa">while</span> <span class="hl std">(t</span><span class="hl opt">&lt;=</span><span class="hl std">lim){</span>
+    <span class="hl std">P</span><span class="hl kwb">=</span><span class="hl kwd">paso</span><span class="hl std">(x,y)</span> <span class="hl com"># Desplazamiento</span>
+    <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span>
+    <span class="hl std">y</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span>
+    <span class="hl std">progresionX[t]</span><span class="hl kwb">=</span><span class="hl std">x</span>     <span class="hl com"># Guardo sucesión</span>
+    <span class="hl std">progresionY[t]</span><span class="hl kwb">=</span><span class="hl std">y</span>
+    <span class="hl kwa">if</span> <span class="hl std">(</span><span class="hl kwd">abs</span><span class="hl std">(x)</span><span class="hl opt">&gt;</span><span class="hl num">100</span><span class="hl std">){</span> <span class="hl com"># Condición de parada</span>
+      <span class="hl kwa">break</span>
+    <span class="hl std">}</span>
+    <span class="hl std">t</span><span class="hl kwb">=</span><span class="hl std">t</span><span class="hl opt">+</span><span class="hl num">1</span>
+  <span class="hl std">}</span>
+  <span class="hl std">salida</span><span class="hl kwb">=</span><span class="hl std">t</span><span class="hl opt">&lt;=</span><span class="hl std">lim</span> <span class="hl com"># Si no llegó al límite, alcanzó la condición de salida</span>
+
+  <span class="hl kwa">if</span> <span class="hl std">(</span><span class="hl opt">!</span><span class="hl std">salida){</span> <span class="hl com"># Si llega al limite no se procesa el ultimo valor de t</span>
+    <span class="hl std">t</span><span class="hl kwb">=</span><span class="hl std">t</span><span class="hl opt">-</span><span class="hl num">1</span>
+  <span class="hl std">}</span>
+
+  <span class="hl std">progresionX</span><span class="hl kwb">=</span><span class="hl std">progresionX[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">t]</span>
+  <span class="hl std">progresionY</span><span class="hl kwb">=</span><span class="hl std">progresionY[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">t]</span>
+  <span class="hl std">progresion</span><span class="hl kwb">=</span><span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=progresionX,</span><span class="hl kwc">y</span><span class="hl std">=progresionY)</span>
+
+  <span class="hl kwd">return</span><span class="hl std">(</span> <span class="hl kwd">list</span><span class="hl std">(</span> <span class="hl kwc">progresion</span><span class="hl std">=progresion,</span> <span class="hl com"># Hasta donde recorrió, lo demás son ceros</span>
+                <span class="hl kwc">pasos</span><span class="hl std">=t</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl com"># Número de desplazamientos, llamadas a la función desplazamiento</span>
+                <span class="hl kwc">salida</span><span class="hl std">=salida</span>
+                <span class="hl std">) )</span>
+<span class="hl std">}</span>
+
+<span class="hl std">resultado</span><span class="hl kwb">=</span><span class="hl kwd">desplazamiento</span><span class="hl std">(</span><span class="hl num">10000</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<p>Representación del movimiento con un camino terminado en flecha
+Código modificado de <a href="https://stackoverflow.com/questions/16571390/making-a-trajectory-plot-using-r">este post</a>.
+<p>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(</span><span class="hl str">&quot;ggplot2&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">library</span><span class="hl std">(grid)</span> <span class="hl com"># needed for arrow function</span>
+<span class="hl kwd">library</span><span class="hl std">(data.table)</span>
+<span class="hl com"># see http://docs.ggplot2.org/current/geom_segment.html</span>
+<span class="hl kwd">qplot</span><span class="hl std">(x, y,</span> <span class="hl kwc">data</span> <span class="hl std">= resultado</span><span class="hl opt">$</span><span class="hl std">progresion)</span><span class="hl opt">+</span>
+  <span class="hl kwd">geom_path</span><span class="hl std">(</span><span class="hl kwc">linetype</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">size</span><span class="hl std">=</span><span class="hl num">0.5</span><span class="hl std">,</span> <span class="hl kwc">arrow</span><span class="hl std">=</span><span class="hl kwd">arrow</span><span class="hl std">(</span><span class="hl kwc">angle</span><span class="hl std">=</span><span class="hl num">15</span><span class="hl std">,</span> <span class="hl kwc">length</span><span class="hl std">=</span><span class="hl kwd">unit</span><span class="hl std">(</span><span class="hl num">0.08</span><span class="hl std">,</span><span class="hl str">'inches'</span><span class="hl std">),</span> <span class="hl kwc">ends</span><span class="hl std">=</span><span class="hl str">'last'</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;closed&quot;</span><span class="hl std">),</span> <span class="hl kwc">color</span><span class="hl std">=</span><span class="hl str">'red'</span><span class="hl std">)</span><span class="hl opt">+</span>
+  <span class="hl kwd">geom_point</span> <span class="hl std">(</span><span class="hl kwc">shape</span><span class="hl std">=</span><span class="hl str">'.'</span><span class="hl std">,</span> <span class="hl kwc">size</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+</body>
+</html>

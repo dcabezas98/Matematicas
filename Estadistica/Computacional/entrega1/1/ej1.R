@@ -1,5 +1,8 @@
 # David Cabezas
 
+# Fijamos la semilla.
+set.seed(18)
+
 # Al lanzar dos monedas al aire (las numeramos como moneda 1 y moneda 2) tenemos 4 resultados posibles:
 # HH, HT, TH, TT
 # donde H significa cara (Heads) y T cruz (Tails); la primera letra es el
@@ -32,14 +35,14 @@ for (i in 1:repeticiones) {
   resultados[i]=resultados[i]+1
 }
 
-resultados                      # En mi simulación: 3741 7496 3763
+resultados                     
 sum(resultados) # Deben sumar 15000
 
 # Proporción de dobles caras:
-resultados[1]/repeticiones      # En mi simulación: 0.2494
+resultados[1]/repeticiones      
 # Proporción de dobles cruzes:
-resultados[3]/repeticiones      # En mi simulación: 0.2508667
+resultados[3]/repeticiones      
 # Proporción de veces que obtenemos una cara una cruz:
-resultados[2]/repeticiones      # En mi simulación: 0.4997333
+resultados[2]/repeticiones      
 
 # Los resultados obtenidos difieren ligeramente de las probabilidades teóricas, pero se asemejan mucho.

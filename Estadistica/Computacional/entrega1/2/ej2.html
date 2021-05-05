@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 2</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 2</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<p>
+Función que simula una realización del experimento, suponiendo que los seis números del dado tienen
+la misma probabilidad de salir.
+</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dado2</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(){</span>
+  <span class="hl kwd">return</span><span class="hl std">(</span> <span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">6</span><span class="hl std">,</span><span class="hl num">2</span><span class="hl std">,T) )</span>  <span class="hl com"># Devuelve un vector con los resultados de los dos lanzamientos</span>
+<span class="hl std">}</span>
+
+<span class="hl kwd">dado2</span><span class="hl std">()</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 2 1
+</pre></div>
+</div></div>
+
+<p>
+Repetimos el experimento 100000 veces almacenando el número de veces que se da cada resultado en una matriz,
+la fila indica el resultado del primer lanzamiento y la columna el del segundo.
+</p>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">resultados</span><span class="hl kwb">=</span><span class="hl kwd">matrix</span><span class="hl std">(</span><span class="hl kwc">data</span><span class="hl std">=</span><span class="hl kwd">rep</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl kwc">len</span><span class="hl std">=</span><span class="hl num">6</span><span class="hl opt">*</span><span class="hl num">6</span><span class="hl std">),</span> <span class="hl kwc">nrow</span><span class="hl std">=</span><span class="hl num">6</span><span class="hl std">,</span> <span class="hl kwc">ncol</span><span class="hl std">=</span><span class="hl num">6</span><span class="hl std">)</span> <span class="hl com"># Comenzamos con 0 en el contador de cada posible resultado</span>
+
+<span class="hl std">repeticiones</span><span class="hl kwb">=</span><span class="hl num">100000</span>
+
+<span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">repeticiones) {</span>
+  <span class="hl std">res</span><span class="hl kwb">=</span><span class="hl kwd">dado2</span><span class="hl std">()</span>
+  <span class="hl std">resultados[res[</span><span class="hl num">1</span><span class="hl std">],res[</span><span class="hl num">2</span><span class="hl std">]]</span><span class="hl kwb">=</span><span class="hl std">resultados[res[</span><span class="hl num">1</span><span class="hl std">],res[</span><span class="hl num">2</span><span class="hl std">]]</span><span class="hl opt">+</span><span class="hl num">1</span>
+<span class="hl std">}</span>
+
+<span class="hl std">resultados</span> <span class="hl com"># Frecuencia de cada posible resultado</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,] 2783 2826 2876 2760 2787 2817
+## [2,] 2828 2710 2765 2827 2635 2742
+## [3,] 2734 2706 2703 2808 2822 2699
+## [4,] 2769 2778 2814 2865 2769 2741
+## [5,] 2830 2781 2820 2812 2711 2826
+## [6,] 2701 2768 2798 2816 2792 2781
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">sum</span><span class="hl std">(resultados)</span> <span class="hl com"># Deben sumar 100000</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 1e+05
+</pre></div>
+</div></div>
+
+<p>Frecuencias de cada posible resultado.</p>
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwa">for</span> <span class="hl std">( i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">){</span>
+  <span class="hl kwa">for</span> <span class="hl std">(j</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">){</span>
+    <span class="hl kwd">cat</span><span class="hl std">(resultados[i,j])</span> <span class="hl com"># Frecuencia del resultado (i,j), valor i en el primer lanzamiento y valor j en el segundo</span>
+    <span class="hl kwd">cat</span><span class="hl std">(</span><span class="hl str">' '</span><span class="hl std">)</span>
+    <span class="hl std">}</span>
+  <span class="hl kwd">cat</span><span class="hl std">(</span><span class="hl str">'\n'</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## 2783 2826 2876 2760 2787 2817 
+## 2828 2710 2765 2827 2635 2742 
+## 2734 2706 2703 2808 2822 2699 
+## 2769 2778 2814 2865 2769 2741 
+## 2830 2781 2820 2812 2711 2826 
+## 2701 2768 2798 2816 2792 2781
+</pre></div>
+</div></div>
+
+<p>Superficie con las frecuencias.</p>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">persp</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">,</span><span class="hl kwc">y</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">,resultados,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">'Dado 1'</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">'Dado 2'</span><span class="hl std">,</span> <span class="hl kwc">zlab</span><span class="hl std">=</span><span class="hl str">''</span><span class="hl std">,</span> <span class="hl kwc">r</span><span class="hl std">=</span><span class="hl num">4</span><span class="hl std">,</span>
+      <span class="hl kwc">axes</span><span class="hl std">=T,</span> <span class="hl kwc">ticktype</span><span class="hl std">=</span><span class="hl str">'detailed'</span><span class="hl std">,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">'yellow'</span><span class="hl std">,</span> <span class="hl kwc">theta</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span> <span class="hl kwc">phi</span><span class="hl std">=</span><span class="hl num">30</span><span class="hl std">,</span> <span class="hl kwc">shade</span><span class="hl std">=</span><span class="hl num">0.2</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+
+<p>
+Como los sucesos son equiprobables, las frecuencias son similares, luego recorrido
+del eje vertical es pequeño. La superficie teórica sería la constante 100000/36=2777.7778.
+</p>
+
+<p>
+ Suponiendo que el dado no está cargado, los sucesos elementalos son equiprobables.
+ Para calcular la probabilidad de que la suma de ambas puntuaciones sea mayor
+ que 9, basta dividir el número de casos favorables entre el número de posibles.
+ Para que los resultados sumen 10 o más (mayor que 9) hay 6 sucesos favorables: <br/>
+ (4,6), (5,5), (5,6), (6,4), (6,5), (6,6) <br/>
+ Por tanto, la probabilidad es 6/36=1/6.
+ </p>
+
+<p>Resultados favorables en la simulación:</p>
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">favorables</span><span class="hl kwb">=</span><span class="hl num">0</span>
+<span class="hl kwa">for</span> <span class="hl std">( i</span> <span class="hl kwa">in</span> <span class="hl num">4</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">){</span>
+  <span class="hl kwa">for</span> <span class="hl std">(j</span> <span class="hl kwa">in</span> <span class="hl num">4</span><span class="hl opt">:</span><span class="hl num">6</span><span class="hl std">){</span>
+    <span class="hl kwa">if</span><span class="hl std">( i</span><span class="hl opt">+</span><span class="hl std">j</span><span class="hl opt">&gt;</span><span class="hl num">9</span><span class="hl std">){</span>
+      <span class="hl std">favorables</span><span class="hl kwb">=</span><span class="hl std">favorables</span><span class="hl opt">+</span><span class="hl std">resultados[i,j]</span>
+    <span class="hl std">}</span>
+  <span class="hl std">}</span>
+<span class="hl std">}</span>
+
+<span class="hl std">favorables</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 16667
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Frecuencia relativa</span>
+<span class="hl std">favorables</span><span class="hl opt">/</span><span class="hl std">repeticiones</span> <span class="hl com"># 1/6 = 0.1666667</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.16667
+</pre></div>
+</div></div>
+
+<p>La frecuencia relativa difiere ligeramente de la probabilidad real, pero
+es muy similar.</p>
+
+</body>
+</html>

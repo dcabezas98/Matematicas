@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 5</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 5</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+
+
+<!--begin.rcode
+set.seed(18)
+end.rcode-->
+
+<p>La probabilidad de obtener cara es tres veces la de obtener cruz, imponiendo
+que sumen 1 obtenemos P(H)=0.75 y P(T)=0.25; donde H=cara y T=cruz.</p>
+
+<p>
+ La variable toma los valores 1 si sale (H,T) y 2 si sale (T,H); según el que salga antes.
+ Puesto que los lanzamientos son independientes, la probabilidad de (H,T) es 0.75*0.25=0.1875,
+ mientras que la de (T,H) es 0.25*0.75=0.1875. Los dos sucesos, (H,T) y (T,H) son igual de probables,
+ luego ambos tienen igual probabilidad de ocurrir primero. Por tanto, X toma los valores 1 y 2 con
+ igual probabilidad.</p>
+
+<p>
+ Aunque la variable aleatoria esté descrita de una forma complicada, su
+ función de densidad es muy simple. Simulamos la función de densidad de la forma
+ descrita en el enunciado para comprobar nuestros cálculos.</p>
+
+<!--begin.rcode
+X <- function(maximo=10000){ # Simulamos la variable aleatoria
+  x=0
+  lanzamientos=0 # Para evitar que la función pueda ejecutarse indefinidamente
+  while(x==0){
+    lanzamientos=lanzamientos+1
+    if(lanzamientos>maximo){
+      return(NA)
+    }
+    monedas=sample(c('H','T'),2,T,c(0.75,0.25))
+    if (all(monedas==c('H','T'))){
+      x = 1 
+    }
+    else if (all(monedas==c('T','H'))){
+      x = 2
+    }
+  }
+  return(x)
+}
+
+X()
+end.rcode-->
+<p>15000 repeticiones.</p>
+<!--begin.rcode  
+repeticiones = 15000
+
+veces=c(0,0) # Veces que sale 1 y 2 respectivamente
+
+for (i in 1:repeticiones){
+  x=X()
+  if (!is.na(x)){
+    veces[x]=veces[x]+1
+  }
+}
+
+# Frecuencias relativas
+veces[1]/repeticiones 
+veces[2]/repeticiones 
+end.rcode-->
+<p>Las frecuencias relativas son bastante cercanas a las probabilidades teóricas que calculamos.</p>
+
+</body>
+</html>

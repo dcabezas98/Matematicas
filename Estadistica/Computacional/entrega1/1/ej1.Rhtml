@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 1</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 1</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+<!--begin.rcode
+set.seed(18)
+end.rcode-->
+
+<p>
+Al lanzar dos monedas al aire (las numeramos como moneda 1 y moneda 2) tenemos 4 resultados posibles:
+HH, HT, TH, TT <br>
+donde H significa cara (Heads) y T cruz (Tails); la primera letra es el
+resultado de la moneda 1 y la segunda de la 2. <br>
+Suponiendo que las monedas están equilibradas, los 4 resultados son equiprobables. Por tanto, la probabilidad
+de cada suceso puede calcularse como casos favorables entre casos posibles. <br>
+a) La probabilidad de dos caras es 1/4=0.25. <br>
+b) La probabilidad de dos cruces es 1/4=0.25. <br>
+c) La probabilidad de una cara y una cruz es 2/4=1/2=0.5. <br>
+</p>
+
+<p>
+Función que simula una realización del experimento. <br>
+Es más cómodo trabajar con datos numéricos pongamos que el 0 es cara y el 1 es cruz. <br>
+</p>
+
+<!--begin.rcode
+monedas <- function(){
+  return( sample(c(0,1),2,T,c(1,1)) )  # Devuelve un vector con los resultados de los dos lanzamientos
+}
+end.rcode-->
+
+<p>
+Ya que conocemos la probabilidad de cada suceso, podríamos simplemente extraer un resultado con
+<code>sample(c('HH','TT','HT'),1,F,c(1,1,2))</code>.
+</p>
+
+<p>
+Si la suma del vector es 0, tenemos doble cara; si es 2, tenemos doble cruz; y si es 1, cara y cruz (o cruz y cara).<br>
+Repetimos el experimento 15000 veces y observamos el número de veces que se obtiene cada resultado.
+</p>
+
+<!--begin.rcode
+resultados=c(0,0,0) # Para contar el número de veces que se da cada resultado
+
+repeticiones=15000
+
+for (i in 1:repeticiones) {
+  i = sum(monedas())+1 # Posición 1 para doble cara, posición 2 para una cara y una cruz y posición 3 para doble cruz
+  resultados[i]=resultados[i]+1
+}
+
+# Proporción de dobles caras:
+resultados[1]/repeticiones
+# Proporción de dobles cruces:
+resultados[3]/repeticiones
+# Proporción de veces que obtenemos una cara una cruz:
+resultados[2]/repeticiones
+end.rcode-->
+
+<p>
+Los resultados obtenidos difieren ligeramente de las probabilidades teóricas, pero se asemejan mucho.
+</p>
+
+</body>
+</html>

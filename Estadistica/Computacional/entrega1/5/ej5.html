@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 5</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 5</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<p>La probabilidad de obtener cara es tres veces la de obtener cruz, imponiendo
+que sumen 1 obtenemos P(H)=0.75 y P(T)=0.25; donde H=cara y T=cruz.</p>
+
+<p>
+ La variable toma los valores 1 si sale (H,T) y 2 si sale (T,H); según el que salga antes.
+ Puesto que los lanzamientos son independientes, la probabilidad de (H,T) es 0.75*0.25=0.1875,
+ mientras que la de (T,H) es 0.25*0.75=0.1875. Los dos sucesos, (H,T) y (T,H) son igual de probables,
+ luego ambos tienen igual probabilidad de ocurrir primero. Por tanto, X toma los valores 1 y 2 con
+ igual probabilidad.</p>
+
+<p>
+ Aunque la variable aleatoria esté descrita de una forma complicada, su
+ función de densidad es muy simple. Simulamos la función de densidad de la forma
+ descrita en el enunciado para comprobar nuestros cálculos.</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">X</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">maximo</span><span class="hl std">=</span><span class="hl num">10000</span><span class="hl std">){</span> <span class="hl com"># Simulamos la variable aleatoria</span>
+  <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl std">lanzamientos</span><span class="hl kwb">=</span><span class="hl num">0</span> <span class="hl com"># Para evitar que la función pueda ejecutarse indefinidamente</span>
+  <span class="hl kwa">while</span><span class="hl std">(x</span><span class="hl opt">==</span><span class="hl num">0</span><span class="hl std">){</span>
+    <span class="hl std">lanzamientos</span><span class="hl kwb">=</span><span class="hl std">lanzamientos</span><span class="hl opt">+</span><span class="hl num">1</span>
+    <span class="hl kwa">if</span><span class="hl std">(lanzamientos</span><span class="hl opt">&gt;</span><span class="hl std">maximo){</span>
+      <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">NA</span><span class="hl std">)</span>
+    <span class="hl std">}</span>
+    <span class="hl std">monedas</span><span class="hl kwb">=</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">'H'</span><span class="hl std">,</span><span class="hl str">'T'</span><span class="hl std">),</span><span class="hl num">2</span><span class="hl std">,T,</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0.75</span><span class="hl std">,</span><span class="hl num">0.25</span><span class="hl std">))</span>
+    <span class="hl kwa">if</span> <span class="hl std">(</span><span class="hl kwd">all</span><span class="hl std">(monedas</span><span class="hl opt">==</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">'H'</span><span class="hl std">,</span><span class="hl str">'T'</span><span class="hl std">))){</span>
+      <span class="hl std">x</span> <span class="hl kwb">=</span> <span class="hl num">1</span>
+    <span class="hl std">}</span>
+    <span class="hl kwa">else if</span> <span class="hl std">(</span><span class="hl kwd">all</span><span class="hl std">(monedas</span><span class="hl opt">==</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">'T'</span><span class="hl std">,</span><span class="hl str">'H'</span><span class="hl std">))){</span>
+      <span class="hl std">x</span> <span class="hl kwb">=</span> <span class="hl num">2</span>
+    <span class="hl std">}</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(x)</span>
+<span class="hl std">}</span>
+
+<span class="hl kwd">X</span><span class="hl std">()</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 2
+</pre></div>
+</div></div>
+<p>15000 repeticiones.</p>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">repeticiones</span> <span class="hl kwb">=</span> <span class="hl num">15000</span>
+
+<span class="hl std">veces</span><span class="hl kwb">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">)</span> <span class="hl com"># Veces que sale 1 y 2 respectivamente</span>
+
+<span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">repeticiones){</span>
+  <span class="hl std">x</span><span class="hl kwb">=</span><span class="hl kwd">X</span><span class="hl std">()</span>
+  <span class="hl kwa">if</span> <span class="hl std">(</span><span class="hl opt">!</span><span class="hl kwd">is.na</span><span class="hl std">(x)){</span>
+    <span class="hl std">veces[x]</span><span class="hl kwb">=</span><span class="hl std">veces[x]</span><span class="hl opt">+</span><span class="hl num">1</span>
+  <span class="hl std">}</span>
+<span class="hl std">}</span>
+
+<span class="hl com"># Frecuencias relativas</span>
+<span class="hl std">veces[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl std">repeticiones</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.5075333
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">veces[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl std">repeticiones</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.4924667
+</pre></div>
+</div></div>
+<p>Las frecuencias relativas son bastante cercanas a las probabilidades teóricas que calculamos.</p>
+
+</body>
+</html>

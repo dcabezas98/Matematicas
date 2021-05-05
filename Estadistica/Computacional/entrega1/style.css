@@ -1,0 +1,127 @@
+@charset "iso-8859-1";
+
+
+<style type="text/css">
+
+/*Pongo una primera orden vacía porque en algunos casos esta orden será ignorada*/
+body
+    {
+    	
+    }
+
+body 	
+	{ 
+        background-color:#fffff0;
+        margin-left: 10%; 
+        margin-right: 10%; 
+	}
+/* 
+Las cabeceras de nivel 1 se escribirán con letra roja
+*/	
+h1 	
+    { 
+        color: blue;
+    }
+
+h1, h2, h3, h4, h5, h6
+    { 
+        margin-left: 1%; 
+        text-align: center;
+    }
+h2 
+    { 
+        margin-top: 1em; 
+        margin-bottom: 1;
+    }
+h2.subsection 
+    { 
+        margin-top: 8em; 
+        margin-bottom: 3em;
+    }
+h1 
+    { 
+        font-size: 200%; 
+    }
+h2 
+    { 
+        font-size: 150%; 
+    }
+h3 
+    { 
+        font-size: 125%; 
+    }
+    
+/* 
+Los párrafos se escribirán sangrados dos emes, 
+con un margen superior de 10 píxeles e inferior de 0,
+y alineando a derecha e izquierda
+*/
+p 
+    { 
+        /*text-indent: 2em; */
+        margin-top: 10; 
+        margin-bottom: 0;
+        text-align: justify;
+    }
+
+.ejemplo
+    {
+        background-color: yellow;
+        border-style:solid;
+        border-width: 1px;
+        padding: 10px;
+    }	
+
+div.caja
+    { 
+        border: solid; 
+        border-width: thick; 
+        width: 80%;
+        padding: 10%;
+        border-color: red;
+    }
+
+div.color 
+    {
+        background: #98fb98;
+        padding: 0.5em;
+        border: none;
+    }
+
+p.cambiado
+	{
+    	padding-left: 0.2em;
+    	border-left: solid;
+    	border-right: solid;
+    	border-top: solid;
+    	border-bottom: solid;
+    	border-color: red;
+  	}
+
+table
+    {
+        margin-top: 10px;
+    }
+
+#fondoamarillo
+    {
+        background: yellow;
+    }
+
+#tintaverde
+	{
+    	color: green;
+	}
+
+p.azul
+	{
+    	background: #afeeee;
+	} 
+.rojo
+	{
+    	background: #ff6347;
+	} 
+   
+   
+
+</style>

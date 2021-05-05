@@ -13,9 +13,14 @@
 # función de densidad es muy simple. Simulamos la función de densidad de la forma
 # descrita en el enunciado para comprobar nuestros cálculos.
 
-X <- function(){ # Simulamos la variable aleatoria
+X <- function(maximo=10000){ # Simulamos la variable aleatoria
   x=0
+  lanzamientos=0 # Para evitar que la función pueda ejecutarse indefinidamente
   while(x==0){
+    lanzamientos=lanzamientos+1
+    if(lanzamientos>maximo){
+      return(NA)
+    }
     monedas=sample(c('H','T'),2,T,c(0.75,0.25))
     if (all(monedas==c('H','T'))){
       x = 1 
@@ -36,7 +41,9 @@ veces=c(0,0) # Veces que sale 1 y 2 respectivamente
 
 for (i in 1:repeticiones){
   x=X()
-  veces[x]=veces[x]+1
+  if (!is.na(x)){
+    veces[x]=veces[x]+1
+  }
 }
 
 # Frecuencias relativas
