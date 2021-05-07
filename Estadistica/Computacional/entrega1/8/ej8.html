@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 8</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 8</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<p>Suponemos los dados no cargados.</p>
+
+<p>
+ La probabilidad de sacar un 6 en un lanzamiento de dado es de 1/6, utilizamos una binomial
+ de parámetros N=4, p=1/6 para calcular la probabilidad requerida. <br/> La probabilidad de sacar
+ al menos un 6 en 4 lanzamientos será 1 menos la de no sacar ningún 6: 1-(5/6)^4=0.517747. <br/>
+ Es ventajoso apostar a que se consigue al menos un 6.</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">seises</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">4</span><span class="hl std">){</span>
+  <span class="hl std">n_seises</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n){</span>
+    <span class="hl std">dado</span><span class="hl kwb">=</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">6</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">,T)</span>
+    <span class="hl kwa">if</span><span class="hl std">(dado</span><span class="hl opt">==</span><span class="hl num">6</span><span class="hl std">){</span>
+      <span class="hl std">n_seises</span><span class="hl kwb">=</span><span class="hl std">n_seises</span><span class="hl opt">+</span><span class="hl num">1</span>
+    <span class="hl std">}</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(n_seises)</span>
+<span class="hl std">}</span>
+
+<span class="hl kwd">seises</span><span class="hl std">()</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0
+</pre></div>
+</div></div>
+
+<p>Repetimos 10000 veces la simulación.</p>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">repetirSeises</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">4</span><span class="hl std">,</span> <span class="hl kwc">j</span><span class="hl std">=</span><span class="hl num">10000</span><span class="hl std">){</span>
+  <span class="hl std">veces</span><span class="hl kwb">=</span><span class="hl kwd">rep</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,n</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">)</span> <span class="hl com"># Veces que se obtiene cada resultado</span>
+  <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">j){</span>
+    <span class="hl std">n_seises</span><span class="hl kwb">=</span><span class="hl kwd">seises</span><span class="hl std">(n)</span>
+    <span class="hl std">veces[n_seises</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">veces[n_seises</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl num">1</span> <span class="hl com"># 0 seises en pos 1, 1 seis en pos 2, etc.</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(veces)</span>
+<span class="hl std">}</span>
+
+<span class="hl std">veces</span><span class="hl kwb">=</span><span class="hl kwd">repetirSeises</span><span class="hl std">()</span>
+<span class="hl std">veces</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 4886 3741 1216  153    4
+</pre></div>
+</div></div>
+
+<p>Proporción de casos con al menos 1 seis.</p>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl num">1</span><span class="hl opt">-</span><span class="hl std">veces[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl num">10000</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.5114
+</pre></div>
+</div></div>
+
+<p>Difiere ligeramente de la prob. teórica, pero es muy similar.</p>
+
+<p>La probabilidad de sacar un doble 6 en un lanzamiento con par de dados es 1/36. <br/> Hacemos lo mismo
+ que antes pero ahora con los parámetros N=24, p=1/36. <br/> La probabilidad de sacar al menos un doble 6
+ es 1-(35/36)^24=0.491404. <br/> No es ventajoso apostar a que se consigue al menos un doble 6.</p>
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">doblesSeises</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">24</span><span class="hl std">){</span>
+  <span class="hl std">n_doblesSeises</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n){</span>
+    <span class="hl std">dados</span><span class="hl kwb">=</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">6</span><span class="hl std">,</span><span class="hl num">2</span><span class="hl std">,T)</span> <span class="hl com"># Tiro dos dados</span>
+    <span class="hl kwa">if</span><span class="hl std">(dados[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl std">dados[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">==</span><span class="hl num">12</span><span class="hl std">){</span> <span class="hl com"># Si son dos seises ...</span>
+      <span class="hl std">n_doblesSeises</span><span class="hl kwb">=</span><span class="hl std">n_doblesSeises</span><span class="hl opt">+</span><span class="hl num">1</span>
+    <span class="hl std">}</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(n_doblesSeises)</span>
+<span class="hl std">}</span>
+
+<span class="hl kwd">doblesSeises</span><span class="hl std">()</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0
+</pre></div>
+</div></div>
+
+<p>Repetimos 10000 veces la simulación.</p>
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">repetirDoblesSeises</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">24</span><span class="hl std">,</span> <span class="hl kwc">j</span><span class="hl std">=</span><span class="hl num">10000</span><span class="hl std">){</span>
+  <span class="hl std">veces</span><span class="hl kwb">=</span><span class="hl kwd">rep</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,n</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">)</span> <span class="hl com"># Veces que se obtiene cada resultado</span>
+  <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">j){</span>
+    <span class="hl std">n_dobles_seises</span><span class="hl kwb">=</span><span class="hl kwd">doblesSeises</span><span class="hl std">(n)</span>
+    <span class="hl std">veces[n_dobles_seises</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">veces[n_dobles_seises</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl num">1</span> <span class="hl com"># 0 dobles seises en pos 1, 1 doble seis en pos 2, etc.</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(veces)</span>
+<span class="hl std">}</span>
+
+<span class="hl std">veces</span><span class="hl kwb">=</span><span class="hl kwd">repetirDoblesSeises</span><span class="hl std">()</span>
+<span class="hl std">veces</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##  [1] 5162 3446 1133  227   29    3    0    0    0    0    0    0    0    0    0
+## [16]    0    0    0    0    0    0    0    0    0    0
+</pre></div>
+</div></div>
+
+<p>Proporción de casos con al menos 1 doble seis.</p>
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl num">1</span><span class="hl opt">-</span><span class="hl std">veces[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl num">10000</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.4838
+</pre></div>
+</div></div>
+
+<p>Difiere ligeramente de la prob. teórica, pero es muy similar.</p>
+
+</body>
+</html>

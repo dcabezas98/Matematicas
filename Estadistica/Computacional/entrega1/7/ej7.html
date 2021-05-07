@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <meta charset="UTF-8"> 
+  <title>Ejercicio 7</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<center>
+  <H1>Entrega 1: Ejercicio 7</H1>
+  <h2> David Cabezas </h2>
+</center> 
+
+<p>
+Fijamos la semilla.
+</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+
+<p>
+ El juego acabará con seguridad en los próximos 4 lanzamientos, puede que antes. <br/>
+ Podemos escribir posibles resultados de los próximos 4 lanzamientos como una palabra con
+ los símbolos A y B, según quien gane. <br/> Por ejemplo: AAAB (gana A), ABBA (gana A), ABBB (gana B). <br/>
+ El número de palabras de longitud 4 que pueden formarse con 2 símbolos es 2^4=16.
+</p>
+
+<p>
+ En los 16 casos que acabamos de describir, el jugador B gana en los casos con 3 o más Bs. <br/>
+ Como todos los casos son equiprobables, basta contar el número de casos en los que gana B. <br/>
+ B gana en BBBB, y en todos los que tienen 3Bs y una A, que son 4 (hay 4 posiciones posibles para la A). <br/>
+ Por tanto la probabilidad de que gane B es 5/16, y la de A es 9/16. De modo que A se llevará 9/16 de
+ la apuesta y B se llevará 5/16.
+ </p>
+
+<p> Los puntos en la interrupción y el total de lanzamientos acertados para ganar son arbitrarios. <br/>
+ Notemos que el juego está obligado a terminar en un número finito de rondas.
+ </p>
+ 
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">simular</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">A</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">B</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">lim</span><span class="hl std">=</span><span class="hl num">6</span><span class="hl std">){</span>
+  <span class="hl std">puntos</span><span class="hl kwb">=</span><span class="hl kwd">c</span><span class="hl std">(A,B)</span>
+  <span class="hl kwa">while</span><span class="hl std">(puntos[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">&lt;</span><span class="hl std">lim</span> <span class="hl opt">&amp;&amp;</span> <span class="hl std">puntos[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">&lt;</span><span class="hl std">lim){</span> <span class="hl com"># Hasta que uno gane</span>
+    <span class="hl std">ganador</span> <span class="hl kwb">=</span> <span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">,T)</span>
+    <span class="hl std">puntos[ganador]</span><span class="hl kwb">=</span><span class="hl std">puntos[ganador]</span><span class="hl opt">+</span><span class="hl num">1</span> <span class="hl com"># 1 punto para el ganador de la ronda</span>
+  <span class="hl std">}</span>
+  <span class="hl kwa">if</span> <span class="hl std">(puntos[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">==</span><span class="hl std">lim){</span> <span class="hl com"># Gana A, jugador 1</span>
+    <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">)</span>
+  <span class="hl std">}</span>
+  <span class="hl kwa">else</span><span class="hl std">{</span> <span class="hl com"># Gana B, jugador 2</span>
+    <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">)</span>
+  <span class="hl std">}</span>
+<span class="hl std">}</span>
+
+<span class="hl kwd">simular</span><span class="hl std">(</span><span class="hl num">4</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 2
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">repetir</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">10000</span><span class="hl std">,</span> <span class="hl kwc">lim</span><span class="hl std">=</span><span class="hl num">6</span><span class="hl std">){</span> <span class="hl com"># Simula n veces</span>
+  <span class="hl std">ganadas</span><span class="hl kwb">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">)</span>
+  <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n){</span>
+    <span class="hl std">ganador</span><span class="hl kwb">=</span><span class="hl kwd">simular</span><span class="hl std">(</span><span class="hl kwc">A</span><span class="hl std">=</span><span class="hl num">4</span><span class="hl std">,</span><span class="hl kwc">B</span><span class="hl std">=</span><span class="hl num">3</span><span class="hl std">,</span> <span class="hl kwc">lim</span><span class="hl std">=lim)</span>
+    <span class="hl std">ganadas[ganador]</span><span class="hl kwb">=</span><span class="hl std">ganadas[ganador]</span><span class="hl opt">+</span><span class="hl num">1</span> <span class="hl com"># Una partida ganada para el jugador 1 (A) o 2 (B)</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(ganadas)</span>
+<span class="hl std">}</span>
+
+<span class="hl std">partidas</span><span class="hl kwb">=</span><span class="hl num">98765</span>
+<span class="hl std">ganadas</span><span class="hl kwb">=</span><span class="hl kwd">repetir</span><span class="hl std">(partidas)</span>
+<span class="hl std">ganadas</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 68143 30622
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">ganadas[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl std">partidas</span> <span class="hl com"># Proporción de partidas ganadas por A</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.6899509
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">ganadas[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">/</span><span class="hl std">partidas</span> <span class="hl com"># Proporción de partidas ganadas por B</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.3100491
+</pre></div>
+</div></div>
+
+<p> 5/16 = 0.3125, la proporción de partidas que gana B es similar a la probabilidad que calculamos. </p>
+
+</body>
+</html>
