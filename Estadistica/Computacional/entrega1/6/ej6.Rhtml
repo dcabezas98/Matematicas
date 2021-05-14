@@ -1,20 +1,34 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8"> 
-  <title>Ejercicio 6</title>
-  <link rel="stylesheet" type="text/css" href="../style.css">
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-<center>
-  <H1>Entrega 1: Ejercicio 6</H1>
-  <h2> David Cabezas </h2>
-</center> 
+    <title>Ejercicio 6</title>
 
-<p>
-Fijamos la semilla.
-</p>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../sticky-footer.css" rel="stylesheet">
+  </head>
+  
+  <body>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <h1 class="mt-5">Entrega 1: Ejercicio 6</h1>
+      <p class="lead">David Cabezas</p>
+      
+      <p>
+      Fijamos la semilla.
+      </p>
 
 <!--begin.rcode
 set.seed(18)
@@ -96,5 +110,17 @@ qplot(x, y, data = resultado$progresion)+
   geom_path(linetype=1, size=0.5, arrow=arrow(angle=15, length=unit(0.08,'inches'), ends='last', type="closed"), color='red')+
   geom_point (shape='.', size=1)
 end.rcode-->
-</body>
+
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">David Cabezas Berrido.
+        Plantilla <a href="https://getbootstrap.com/docs/4.0/examples/sticky-footer">sticky footer</a>
+        con modificaciones de <a href="https://stackoverflow.com/questions/19330611/fixed-footer-in-bootstrap">este post</a>. 
+        </span> 
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,26 +64,39 @@
   font-weight: bold;
 }
 </style>
-  <meta charset="UTF-8"> 
-  <title>Ejercicio 3</title>
-  <link rel="stylesheet" type="text/css" href="../style.css">
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-<center>
-  <H1>Entrega 1: Ejercicio 4</H1>
-  <h2> David Cabezas </h2>
-</center> 
+    <title>Ejercicio 4</title>
 
-<p>
-Fijamos la semilla.
-</p>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../sticky-footer.css" rel="stylesheet">
+  </head>
+  
+  <body>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <h1 class="mt-5">Entrega 1: Ejercicio 4</h1>
+      <p class="lead">David Cabezas</p>
+      
+      <p>
+      Fijamos la semilla.
+      </p>
 
 <div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
 </pre></div>
 </div></div>
 
-<p>La urna contiene 5 bolas rojas (R), 8 blancas (B) y 3 negras(N)</p>
+  <p>La urna contiene 5 bolas rojas (R), 8 blancas (B) y 3 negras(N)</p>
 
 <p>En los sucesos a y b entiendo sacar exactamente esas bolas, no más.</p>
 
@@ -246,7 +260,7 @@ La probabilidad de sacar dos bolas blancas en 5 extracciones sin reemplazamiento
 <p>
  Para las bolas negras, tenemos una hipergeométrica de N=16, N1=3, n=5. La probabilidad de obtener
  dos o más bolas negras es la de obtener 2 más la de obtener 3 (no hay más opciones, puesto que sólo hay
- 3 bolas negras). Por tanto, obtnemos 3C2*13C3/16C5+3C3*13C2/16C5=3/14=0.2142857.
+ 3 bolas negras). Por tanto, obtenemos 3C2*13C3/16C5+3C3*13C2/16C5=3/14=0.2142857.
 </p>
 
 <p>Ahora realizamos la simulación.</p>
@@ -288,6 +302,15 @@ La probabilidad de sacar dos bolas blancas en 5 extracciones sin reemplazamiento
 <p>
 Como en el resto de ejercicios, las probabilidades difieren de las frecuencias relativas,
 pero son bastante similares.</p>
+    </main>
 
-</body>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">David Cabezas Berrido.
+        Plantilla <a href="https://getbootstrap.com/docs/4.0/examples/sticky-footer">sticky footer</a>
+        con modificaciones de <a href="https://stackoverflow.com/questions/19330611/fixed-footer-in-bootstrap">este post</a>. 
+        </span> 
+      </div>
+    </footer>
+  </body>
 </html>
