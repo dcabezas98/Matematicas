@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Ejercicio 1</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/style.css">
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="../images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                           <ul class="navbar-nav mr-auto">
+                              <li class="nav-item active">
+                                 <a class="nav-link" href="#inicio">Inicio</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado1"> Recinto </a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado2"> Movimiento</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado3"> Número de pasos</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end header inner -->
+      </header>
+      <!-- end header -->
+      <!-- banner -->
+      <section class="banner_main">
+         <div id="inicio" class="container">
+            <div class="row d_flex">
+               <div class="col-md-6">
+                  <div class="text-bg">
+                     <h1>Ejercicio 1</h1>
+                     <span>Entrega 2</span>
+                     <p><strong>David Cabezas Berrido</strong></p>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="text-img">
+                     <figure><img src="../images/yo.jpg" /></figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end banner -->
+      <!-- Contenido -->
+      <div id="" class="hosting">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     Fijamos la semilla.
+<!--begin.rcode
+set.seed(18)
+end.rcode-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado1" class="hosting">
+         <div class="container">
+            <h2>Recinto</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     <p>Comenzamos representanto el triángulo verde, dentro pondremos
+                     el cuadrado rojo.</p>
+<!--begin.rcode
+plot(x=c(-2100,2100), y=c(-100,2100), type="n", xlab="", ylab="")
+polygon(x=c(0,-2000,2000), y=c(2000,0,0), col=rgb(0,1,0,0.5))
+polygon(x=c(-5,5,5,-5), y=c(1000,1000,1010,1010), col="red")
+end.rcode-->
+<p>El cuadrado es mucho más pequeño que el triángulo, por lo que parece un simple punto.</p>
+<p>Representamos un zoom de la anterior figura para verlo mejor, y aprovechamos para
+representar el punto <code>P</code>, que generamos aleatoriamente.</p>
+<!--begin.rcode
+P=c(runif(1,min=-5,max=5),runif(1,min=1000,max=1010))
+P # Punto P generado según una uniforme en el cuadrado
+
+plot(x=c(-10,10), y=c(995,1015), type="n", xlab="", ylab="")
+polygon(x=c(0,-2000,2000), y=c(2000,0,0), col=rgb(0,1,0,0.5))
+polygon(x=c(-5,5,5,-5), y=c(1000,1000,1010,1010), col="red")
+points(P[1], P[2], col="black", pch=16)
+text(P[1], P[2], labels=c("P"),pos=4)
+end.rcode-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado2" class="hosting">
+         <div class="container">
+            <h2>Movimiento</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     <p>Para programar la función que simula el movimiento desde un punto inicial usaremos la siguiente función auxiliar, que comprueba si el punto está dentro del triángulo.</p>
+<!--begin.rcode
+dentro<-function(P){
+  return(P[2]>=0 && P[1]+P[2]<=2000 && P[2]-P[1]<=2000)
+}
+end.rcode-->
+<p>Función que simula el movimiento <code>n</code> veces. Parte de un punto (de dentro)
+que recibe como parámetro. Realiza un número máximo de pasos para garantizar que termine, y devuelve <code>NA</code> si no consigue salir del triángulo.</p>
+<!--begin.rcode
+movimiento<-function(inicio=c(0,1005), max=100000){
+  progresionX=vector(mode="numeric", length = max)
+  progresionY=vector(mode="numeric", length = max)
+  P=inicio
+  pasos=0
+  progresionX[pasos+1]=P[1]
+  progresionY[pasos+1]=P[2]
+  
+  while(dentro(P) && pasos < max){
+    dados=sample(6,3,T) # Resultado de los tres dados (los suponemos no cargados)
+    
+    if(dados[1]<=2 || dados[1]==6) # Si el primer dado es 1, 2 ó 6
+      P[1]=P[1]+1 # A la derecha
+    else
+      P[1]=P[1]-1 # A la derecha
+    
+    if(dados[2]+dados[3]<7) # Si la suma del segundo dado y el tercero es menor que 7
+      P[2]=P[2]+1 # Hacia arriba
+    else
+      P[2]=P[2]-1 # Hacia abajo
+    
+    pasos=pasos+1
+    progresionX[pasos+1]=P[1]
+    progresionY[pasos+1]=P[2]
+  }
+  if(dentro(P))
+    return(NA)
+  else
+    return( list(pasos=pasos, progresionX=progresionX[1:(pasos+1)], progresionY=progresionY[1:(pasos+1)]) )
+}
+end.rcode-->
+<p>Simulamos un movimiento usando <code>P</code> como punto de partida. Comprobamos que ha salido por la parte de abajo del triángulo, ya que el último valor de la coordenada Y es negativo.</p>
+<!--begin.rcode
+mov=movimiento(P)
+mov$pasos
+mov$progresionX[1:5]
+mov$progresionX[(mov$pasos-4):mov$pasos+1]
+mov$progresionY[1:5]
+mov$progresionY[(mov$pasos-4):mov$pasos+1] 
+end.rcode-->
+<p>Representamos el movimiento en azul, sobre el recinto.</p>
+<!--begin.rcode
+plot(x=c(-2100,2100), y=c(-100,2100), type="n", xlab="", ylab="")
+polygon(x=c(0,-2000,2000), y=c(2000,0,0), col=rgb(0,1,0,0.5)) # Triángulo
+polygon(x=c(-5,5,5,-5), y=c(1000,1000,1010,1010), col="red") # Cuadrado
+points(P[1], P[2], col="black", pch=16) # Punto P
+text(P[1], P[2], labels=c("P"),pos=4) # Etiqueta del punto P
+points(mov$progresionX, mov$progresionY, col="blue", type="l") # Trayectoria
+end.rcode-->
+<p>La trayectoria nos sugiere que la probabilidad de desplazarse a la derecha es similar a la de desplazarse a la derecha, y efectivamente son 1/2 y 1/2, ya que cada acción tiene asociada tres valres del dado. También nos indica que la probabilidad de desplazarse hacia abajo parece mayor que la de desplazarse hacia arriba, y efectivamente son 21/36 y 15/36 respectivamente.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado3" class="hosting">
+         <div class="container">
+            <h2>Número de pasos</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+<p>La siguiente función simula el experimento anterior el número de veces que se indique
+y almacena el número de pasos necesarios en cada simulación. El inicio es aleatorio
+en cada simulación, pero se puede fijar uno para todas las simulaciones.</p>
+<!--begin.rcode
+repite<-function(n=100, inicio=NULL){
+  pasos=vector(mode="integer", length = n)
+  for (i in 1:n){
+    if(is.null(inicio))
+      P=c(runif(1,min=-5,max=5),runif(1,min=1000,max=1010))
+    else
+      P=inicio
+    mov=movimiento(P)
+    pasos[i]=mov$pasos
+  }
+  return(pasos)
+}
+pasos=repite(inicio=c(0,1005))
+summary(pasos)
+end.rcode-->
+<p>Hemos realizado 100 simulaciones (el proceso es algo lento) pariendo desde el centro del cuadrado. El máximo está por debajo de 100000, así que estamos seguros de que ha conseguido salir del recinto en todas las simulaciones.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end Contenido -->
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+         <div class="container">
+               <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                     <div class="cont">
+                        <h3>Declaración de originalidad:</h3>
+                        <span>Trabajo original realizado por David Cabezas Berrido</span>
+                        <p> Las únicas referencias consultadas han sido el manual de la asignatura y la documentación de R.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>Plantilla tomada de <a href="https://www.free-css.com/free-css-templates/page266/data-web">https://www.free-css.com/free-css-templates/page266/data-web</a></p>
+                        
+                        <p>© 2019 All Rights Reserved. <a href="https://html.design/">Free html Templates</a></p>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/custom.js"></script>
+   </body>
+</html>
+

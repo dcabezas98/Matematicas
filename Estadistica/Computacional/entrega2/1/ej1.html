@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+   <head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Ejercicio 1</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/style.css">
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="../images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                           <ul class="navbar-nav mr-auto">
+                              <li class="nav-item active">
+                                 <a class="nav-link" href="#inicio">Inicio</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado1"> Recinto </a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado2"> Movimiento</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado3"> Número de pasos</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end header inner -->
+      </header>
+      <!-- end header -->
+      <!-- banner -->
+      <section class="banner_main">
+         <div id="inicio" class="container">
+            <div class="row d_flex">
+               <div class="col-md-6">
+                  <div class="text-bg">
+                     <h1>Ejercicio 1</h1>
+                     <span>Entrega 2</span>
+                     <p><strong>David Cabezas Berrido</strong></p>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="text-img">
+                     <figure><img src="../images/yo.jpg" /></figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end banner -->
+      <!-- Contenido -->
+      <div id="" class="hosting">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     Fijamos la semilla.
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado1" class="hosting">
+         <div class="container">
+            <h2>Recinto</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     <p>Comenzamos representanto el triángulo verde, dentro pondremos
+                     el cuadrado rojo.</p>
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">2100</span><span class="hl std">,</span><span class="hl num">2100</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">100</span><span class="hl std">,</span><span class="hl num">2100</span><span class="hl std">),</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">polygon</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl opt">-</span><span class="hl num">2000</span><span class="hl std">,</span><span class="hl num">2000</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">2000</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">rgb</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0.5</span><span class="hl std">))</span>
+<span class="hl kwd">polygon</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl num">1010</span><span class="hl std">,</span><span class="hl num">1010</span><span class="hl std">),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+<p>El cuadrado es mucho más pequeño que el triángulo, por lo que parece un simple punto.</p>
+<p>Representamos un zoom de la anterior figura para verlo mejor, y aprovechamos para
+representar el punto <code>P</code>, que generamos aleatoriamente.</p>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">P</span><span class="hl kwb">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl kwc">min</span><span class="hl std">=</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">5</span><span class="hl std">),</span><span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl kwc">min</span><span class="hl std">=</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">1010</span><span class="hl std">))</span>
+<span class="hl std">P</span> <span class="hl com"># Punto P generado según una uniforme en el cuadrado</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1]    3.228963 1007.101996
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">10</span><span class="hl std">,</span><span class="hl num">10</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">995</span><span class="hl std">,</span><span class="hl num">1015</span><span class="hl std">),</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">polygon</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl opt">-</span><span class="hl num">2000</span><span class="hl std">,</span><span class="hl num">2000</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">2000</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">rgb</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0.5</span><span class="hl std">))</span>
+<span class="hl kwd">polygon</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl num">1010</span><span class="hl std">,</span><span class="hl num">1010</span><span class="hl std">),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">points</span><span class="hl std">(P[</span><span class="hl num">1</span><span class="hl std">], P[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl num">16</span><span class="hl std">)</span>
+<span class="hl kwd">text</span><span class="hl std">(P[</span><span class="hl num">1</span><span class="hl std">], P[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">labels</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;P&quot;</span><span class="hl std">),</span><span class="hl kwc">pos</span><span class="hl std">=</span><span class="hl num">4</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado2" class="hosting">
+         <div class="container">
+            <h2>Movimiento</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     <p>Para programar la función que simula el movimiento desde un punto inicial usaremos la siguiente función auxiliar, que comprueba si el punto está dentro del triángulo.</p>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">dentro</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">P</span><span class="hl std">){</span>
+  <span class="hl kwd">return</span><span class="hl std">(P[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">&gt;=</span><span class="hl num">0</span> <span class="hl opt">&amp;&amp;</span> <span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">&lt;=</span><span class="hl num">2000</span> <span class="hl opt">&amp;&amp;</span> <span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">-</span><span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">&lt;=</span><span class="hl num">2000</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+<p>Función que simula el movimiento <code>n</code> veces. Parte de un punto (de dentro)
+que recibe como parámetro. Realiza un número máximo de pasos para garantizar que termine, y devuelve <code>NA</code> si no consigue salir del triángulo.</p>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">movimiento</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">inicio</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1005</span><span class="hl std">),</span> <span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">100000</span><span class="hl std">){</span>
+  <span class="hl std">progresionX</span><span class="hl kwb">=</span><span class="hl kwd">vector</span><span class="hl std">(</span><span class="hl kwc">mode</span><span class="hl std">=</span><span class="hl str">&quot;numeric&quot;</span><span class="hl std">,</span> <span class="hl kwc">length</span> <span class="hl std">= max)</span>
+  <span class="hl std">progresionY</span><span class="hl kwb">=</span><span class="hl kwd">vector</span><span class="hl std">(</span><span class="hl kwc">mode</span><span class="hl std">=</span><span class="hl str">&quot;numeric&quot;</span><span class="hl std">,</span> <span class="hl kwc">length</span> <span class="hl std">= max)</span>
+  <span class="hl std">P</span><span class="hl kwb">=</span><span class="hl std">inicio</span>
+  <span class="hl std">pasos</span><span class="hl kwb">=</span><span class="hl num">0</span>
+  <span class="hl std">progresionX[pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span>
+  <span class="hl std">progresionY[pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span>
+
+  <span class="hl kwa">while</span><span class="hl std">(</span><span class="hl kwd">dentro</span><span class="hl std">(P)</span> <span class="hl opt">&amp;&amp;</span> <span class="hl std">pasos</span> <span class="hl opt">&lt;</span> <span class="hl std">max){</span>
+    <span class="hl std">dados</span><span class="hl kwb">=</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">6</span><span class="hl std">,</span><span class="hl num">3</span><span class="hl std">,T)</span> <span class="hl com"># Resultado de los tres dados (los suponemos no cargados)</span>
+
+    <span class="hl kwa">if</span><span class="hl std">(dados[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">&lt;=</span><span class="hl num">2</span> <span class="hl opt">||</span> <span class="hl std">dados[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">==</span><span class="hl num">6</span><span class="hl std">)</span> <span class="hl com"># Si el primer dado es 1, 2 ó 6</span>
+      <span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl num">1</span> <span class="hl com"># A la derecha</span>
+    <span class="hl kwa">else</span>
+      <span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl opt">-</span><span class="hl num">1</span> <span class="hl com"># A la derecha</span>
+
+    <span class="hl kwa">if</span><span class="hl std">(dados[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl std">dados[</span><span class="hl num">3</span><span class="hl std">]</span><span class="hl opt">&lt;</span><span class="hl num">7</span><span class="hl std">)</span> <span class="hl com"># Si la suma del segundo dado y el tercero es menor que 7</span>
+      <span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">+</span><span class="hl num">1</span> <span class="hl com"># Hacia arriba</span>
+    <span class="hl kwa">else</span>
+      <span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span><span class="hl opt">-</span><span class="hl num">1</span> <span class="hl com"># Hacia abajo</span>
+
+    <span class="hl std">pasos</span><span class="hl kwb">=</span><span class="hl std">pasos</span><span class="hl opt">+</span><span class="hl num">1</span>
+    <span class="hl std">progresionX[pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">1</span><span class="hl std">]</span>
+    <span class="hl std">progresionY[pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span><span class="hl kwb">=</span><span class="hl std">P[</span><span class="hl num">2</span><span class="hl std">]</span>
+  <span class="hl std">}</span>
+  <span class="hl kwa">if</span><span class="hl std">(</span><span class="hl kwd">dentro</span><span class="hl std">(P))</span>
+    <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">NA</span><span class="hl std">)</span>
+  <span class="hl kwa">else</span>
+    <span class="hl kwd">return</span><span class="hl std">(</span> <span class="hl kwd">list</span><span class="hl std">(</span><span class="hl kwc">pasos</span><span class="hl std">=pasos,</span> <span class="hl kwc">progresionX</span><span class="hl std">=progresionX[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">)],</span> <span class="hl kwc">progresionY</span><span class="hl std">=progresionY[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">(pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">)]) )</span>
+<span class="hl std">}</span>
+</pre></div>
+</div></div>
+<p>Simulamos un movimiento usando <code>P</code> como punto de partida. Comprobamos que ha salido por la parte de abajo del triángulo, ya que el último valor de la coordenada Y es negativo.</p>
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">mov</span><span class="hl kwb">=</span><span class="hl kwd">movimiento</span><span class="hl std">(P)</span>
+<span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">pasos</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 5862
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">progresionX[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">5</span><span class="hl std">]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 3.228963 4.228963 5.228963 4.228963 5.228963
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">progresionX[(mov</span><span class="hl opt">$</span><span class="hl std">pasos</span><span class="hl opt">-</span><span class="hl num">4</span><span class="hl std">)</span><span class="hl opt">:</span><span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] -150.771 -151.771 -150.771 -151.771 -152.771
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">progresionY[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">5</span><span class="hl std">]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 1007.102 1008.102 1009.102 1010.102 1011.102
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">progresionY[(mov</span><span class="hl opt">$</span><span class="hl std">pasos</span><span class="hl opt">-</span><span class="hl num">4</span><span class="hl std">)</span><span class="hl opt">:</span><span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">pasos</span><span class="hl opt">+</span><span class="hl num">1</span><span class="hl std">]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1]  1.1019958  0.1019958  1.1019958  0.1019958 -0.8980042
+</pre></div>
+</div></div>
+<p>Representamos el movimiento en azul, sobre el recinto.</p>
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">2100</span><span class="hl std">,</span><span class="hl num">2100</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">100</span><span class="hl std">,</span><span class="hl num">2100</span><span class="hl std">),</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">polygon</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl opt">-</span><span class="hl num">2000</span><span class="hl std">,</span><span class="hl num">2000</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">2000</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">rgb</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">0.5</span><span class="hl std">))</span> <span class="hl com"># Triángulo</span>
+<span class="hl kwd">polygon</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">),</span> <span class="hl kwc">y</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl num">1010</span><span class="hl std">,</span><span class="hl num">1010</span><span class="hl std">),</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">)</span> <span class="hl com"># Cuadrado</span>
+<span class="hl kwd">points</span><span class="hl std">(P[</span><span class="hl num">1</span><span class="hl std">], P[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;black&quot;</span><span class="hl std">,</span> <span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl num">16</span><span class="hl std">)</span> <span class="hl com"># Punto P</span>
+<span class="hl kwd">text</span><span class="hl std">(P[</span><span class="hl num">1</span><span class="hl std">], P[</span><span class="hl num">2</span><span class="hl std">],</span> <span class="hl kwc">labels</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;P&quot;</span><span class="hl std">),</span><span class="hl kwc">pos</span><span class="hl std">=</span><span class="hl num">4</span><span class="hl std">)</span> <span class="hl com"># Etiqueta del punto P</span>
+<span class="hl kwd">points</span><span class="hl std">(mov</span><span class="hl opt">$</span><span class="hl std">progresionX, mov</span><span class="hl opt">$</span><span class="hl std">progresionY,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;blue&quot;</span><span class="hl std">,</span> <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;l&quot;</span><span class="hl std">)</span> <span class="hl com"># Trayectoria</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+<p>La trayectoria nos sugiere que la probabilidad de desplazarse a la derecha es similar a la de desplazarse a la derecha, y efectivamente son 1/2 y 1/2, ya que cada acción tiene asociada tres valres del dado. También nos indica que la probabilidad de desplazarse hacia abajo parece mayor que la de desplazarse hacia arriba, y efectivamente son 21/36 y 15/36 respectivamente.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado3" class="hosting">
+         <div class="container">
+            <h2>Número de pasos</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+<p>La siguiente función simula el experimento anterior el número de veces que se indique
+y almacena el número de pasos necesarios en cada simulación. El inicio es aleatorio
+en cada simulación, pero se puede fijar uno para todas las simulaciones.</p>
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">repite</span><span class="hl kwb">&lt;-</span><span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">100</span><span class="hl std">,</span> <span class="hl kwc">inicio</span><span class="hl std">=</span><span class="hl kwa">NULL</span><span class="hl std">){</span>
+  <span class="hl std">pasos</span><span class="hl kwb">=</span><span class="hl kwd">vector</span><span class="hl std">(</span><span class="hl kwc">mode</span><span class="hl std">=</span><span class="hl str">&quot;integer&quot;</span><span class="hl std">,</span> <span class="hl kwc">length</span> <span class="hl std">= n)</span>
+  <span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl std">n){</span>
+    <span class="hl kwa">if</span><span class="hl std">(</span><span class="hl kwd">is.null</span><span class="hl std">(inicio))</span>
+      <span class="hl std">P</span><span class="hl kwb">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl kwc">min</span><span class="hl std">=</span><span class="hl opt">-</span><span class="hl num">5</span><span class="hl std">,</span><span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">5</span><span class="hl std">),</span><span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl kwc">min</span><span class="hl std">=</span><span class="hl num">1000</span><span class="hl std">,</span><span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">1010</span><span class="hl std">))</span>
+    <span class="hl kwa">else</span>
+      <span class="hl std">P</span><span class="hl kwb">=</span><span class="hl std">inicio</span>
+    <span class="hl std">mov</span><span class="hl kwb">=</span><span class="hl kwd">movimiento</span><span class="hl std">(P)</span>
+    <span class="hl std">pasos[i]</span><span class="hl kwb">=</span><span class="hl std">mov</span><span class="hl opt">$</span><span class="hl std">pasos</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">return</span><span class="hl std">(pasos)</span>
+<span class="hl std">}</span>
+<span class="hl std">pasos</span><span class="hl kwb">=</span><span class="hl kwd">repite</span><span class="hl std">(</span><span class="hl kwc">inicio</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1005</span><span class="hl std">))</span>
+<span class="hl kwd">summary</span><span class="hl std">(pasos)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    5112    5752    6017    6014    6269    6980
+</pre></div>
+</div></div>
+<p>Hemos realizado 100 simulaciones (el proceso es algo lento) pariendo desde el centro del cuadrado. El máximo está por debajo de 100000, así que estamos seguros de que ha conseguido salir del recinto en todas las simulaciones.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end Contenido -->
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+         <div class="container">
+               <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                     <div class="cont">
+                        <h3>Declaración de originalidad:</h3>
+                        <span>Trabajo original realizado por David Cabezas Berrido</span>
+                        <p> Las únicas referencias consultadas han sido el manual de la asignatura y la documentación de R.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>Plantilla tomada de <a href="https://www.free-css.com/free-css-templates/page266/data-web">https://www.free-css.com/free-css-templates/page266/data-web</a></p>
+                        
+                        <p>© 2019 All Rights Reserved. <a href="https://html.design/">Free html Templates</a></p>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/custom.js"></script>
+   </body>
+</html>
+
