@@ -354,7 +354,28 @@ hombres tienden a ser más altos y pesados que las mujeres.</p>
             <div class="row">
                <div class="col-md-12">
                   <div class="web_hosting">
-                     
+                 <p>Vamos a contrastar que el peso medio de los hombres y el de las mujeres sean iguales (hipótesis nula, que es la que en principio suponemos cierta) frente a que sean diferentes (hipótesis alternativa). Para ello, haremos uso del <i>test t</i>.</p>
+                 <p>Debemos tener en cuenta que al aplicar el test asumimos que las medias de ambas distribuciones (pesos de los hombres y pesos de las mujeres) siguen una distribución normal, algo que aproxima el Teorema Central del Límite cuando el tamaño muestral es suficientemente grande. También se asumen que las varianzas son similares y que las muestras son independientes. No podemos garantizar todas estas hipótesis, pero afortunadamente el test es
+medianamente robusto frente al incumplimiento (moderado) de las hipótesis.</p>
+<div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">t.test</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Peso, mujeres</span><span class="hl opt">$</span><span class="hl std">Peso)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## 
+## 	Welch Two Sample t-test
+## 
+## data:  hombres$Peso and mujeres$Peso
+## t = 8.0607, df = 33.764, p-value = 2.247e-09
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  12.07727 20.22273
+## sample estimates:
+## mean of x mean of y 
+##     77.90     61.75
+</pre></div>
+</div></div>
+<p>El resultado del test sugiere que rechacemos la hipótesis nula y
+seleccionemos la alternativa como verdadera. El p-valor es menor que 0.05 (de hecho es muy cercano a 0), por lo que rechazamos la hipótesis nula al nivel de significación 1-0.05=0.95.</p>
+<p>La salida de <code>t.test</code> ofrece más información. Con probabilidad
+0.95, podemos asegurar que la diferencia entre las medias está comprendida entre los valores 12.07727 y 20.22273.</p>
                   </div>
                </div>
             </div>
@@ -366,7 +387,40 @@ hombres tienden a ser más altos y pesados que las mujeres.</p>
             <div class="row">
                <div class="col-md-12">
                   <div class="web_hosting">
-                     
+<p>Calculamos las rectas de regresión con la función <code>lm</code>.</p>
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">recta_hombres</span><span class="hl kwb">=</span><span class="hl kwd">lm</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Peso</span><span class="hl opt">~</span><span class="hl std">hombres</span><span class="hl opt">$</span><span class="hl std">Altura)</span>
+<span class="hl std">recta_hombres</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## 
+## Call:
+## lm(formula = hombres$Peso ~ hombres$Altura)
+## 
+## Coefficients:
+##    (Intercept)  hombres$Altura  
+##       -60.5772          0.7788
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">recta_mujeres</span><span class="hl kwb">=</span><span class="hl kwd">lm</span><span class="hl std">(mujeres</span><span class="hl opt">$</span><span class="hl std">Peso</span><span class="hl opt">~</span><span class="hl std">mujeres</span><span class="hl opt">$</span><span class="hl std">Altura)</span>
+<span class="hl std">recta_mujeres</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## 
+## Call:
+## lm(formula = mujeres$Peso ~ mujeres$Altura)
+## 
+## Coefficients:
+##    (Intercept)  mujeres$Altura  
+##        -7.5636          0.4154
+</pre></div>
+</div></div>
+<p>Podemos visualizar ambas rectas (la de los hombre en rojo y la de las mujeres en verde) en el siguiente gráfico, acompañadas de los puntos de ambos grupos.</p>
+<div class="chunk" id="unnamed-chunk-13"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Altura, mujeres</span><span class="hl opt">$</span><span class="hl std">Altura),</span> <span class="hl kwd">c</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Peso, mujeres</span><span class="hl opt">$</span><span class="hl std">Peso),</span>
+     <span class="hl kwc">type</span><span class="hl std">=</span><span class="hl str">&quot;n&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Altura&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Peso&quot;</span><span class="hl std">)</span> <span class="hl com"># Ejes en los que quepan todos</span>
+<span class="hl kwd">points</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Altura,hombres</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;red&quot;</span><span class="hl std">,</span> <span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
+<span class="hl kwd">points</span><span class="hl std">(mujeres</span><span class="hl opt">$</span><span class="hl std">Altura,mujeres</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;green&quot;</span><span class="hl std">,</span> <span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl num">6</span><span class="hl std">)</span>
+<span class="hl kwd">abline</span><span class="hl std">(recta_hombres,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;darkred&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">abline</span><span class="hl std">(recta_mujeres,</span> <span class="hl kwc">col</span><span class="hl std">=</span><span class="hl str">&quot;darkgreen&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">legend</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">=</span><span class="hl num">155</span><span class="hl std">,</span><span class="hl kwc">y</span><span class="hl std">=</span><span class="hl num">89</span><span class="hl std">,</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;Hombres&quot;</span><span class="hl std">,</span><span class="hl str">&quot;Mujeres&quot;</span><span class="hl std">),</span><span class="hl kwc">cex</span><span class="hl std">=</span><span class="hl num">.8</span><span class="hl std">,</span><span class="hl kwc">col</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;red&quot;</span><span class="hl std">,</span><span class="hl str">&quot;green&quot;</span><span class="hl std">),</span><span class="hl kwc">pch</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">6</span><span class="hl std">))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" class="plot" /></div></div>
                   </div>
                </div>
             </div>
@@ -385,9 +439,10 @@ hombres tienden a ser más altos y pesados que las mujeres.</p>
                         <span>Trabajo original realizado por David Cabezas Berrido</span>
                         <p> Referencias consultadas:</p>
                         <ul>
-                        <li>Manual de la asignatura.</li>
+                        <li>Manual de la asignatura (Estadística Computacional).</li>
                         <li>Documentación de R.</li>
                         <li>Para el diagrama de sectores: <a href="https://www.statmethods.net/graphs/pie.html">https://www.statmethods.net/graphs/pie.html</a>.</li>
+                        <li>Para las asunciones del <i>test t</i>: Apuntes de la asignatura Inferencia Estadística.</li>
                         </ul>
                      </div>
                   </div>

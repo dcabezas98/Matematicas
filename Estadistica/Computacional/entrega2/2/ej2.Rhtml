@@ -214,7 +214,16 @@ hombres tienden a ser más altos y pesados que las mujeres.</p>
             <div class="row">
                <div class="col-md-12">
                   <div class="web_hosting">
-                     
+                 <p>Vamos a contrastar que el peso medio de los hombres y el de las mujeres sean iguales (hipótesis nula, que es la que en principio suponemos cierta) frente a que sean diferentes (hipótesis alternativa). Para ello, haremos uso del <i>test t</i>.</p>
+                 <p>Debemos tener en cuenta que al aplicar el test asumimos que las medias de ambas distribuciones (pesos de los hombres y pesos de las mujeres) siguen una distribución normal, algo que aproxima el Teorema Central del Límite cuando el tamaño muestral es suficientemente grande. También se asumen que las varianzas son similares y que las muestras son independientes. No podemos garantizar todas estas hipótesis, pero afortunadamente el test es
+medianamente robusto frente al incumplimiento (moderado) de las hipótesis.</p>
+<!--begin.rcode
+t.test(hombres$Peso, mujeres$Peso)
+end.rcode-->
+<p>El resultado del test sugiere que rechacemos la hipótesis nula y
+seleccionemos la alternativa como verdadera. El p-valor es menor que 0.05 (de hecho es muy cercano a 0), por lo que rechazamos la hipótesis nula al nivel de significación 1-0.05=0.95.</p>
+<p>La salida de <code>t.test</code> ofrece más información. Con probabilidad
+0.95, podemos asegurar que la diferencia entre las medias está comprendida entre los valores 12.07727 y 20.22273.</p>
                   </div>
                </div>
             </div>
@@ -226,7 +235,23 @@ hombres tienden a ser más altos y pesados que las mujeres.</p>
             <div class="row">
                <div class="col-md-12">
                   <div class="web_hosting">
-                     
+<p>Calculamos las rectas de regresión con la función <code>lm</code>.</p>
+<!--begin.rcode 
+recta_hombres=lm(hombres$Peso~hombres$Altura)
+recta_hombres
+recta_mujeres=lm(mujeres$Peso~mujeres$Altura)
+recta_mujeres
+end.rcode-->
+<p>Podemos visualizar ambas rectas (la de los hombre en rojo y la de las mujeres en verde) en el siguiente gráfico, acompañadas de los puntos de ambos grupos.</p>
+<!--begin.rcode fig.width=7, fig.height=5
+plot(c(hombres$Altura, mujeres$Altura), c(hombres$Peso, mujeres$Peso), 
+     type="n", xlab="Altura", ylab="Peso") # Ejes en los que quepan todos
+points(hombres$Altura,hombres$Peso, col="red", pch=1)
+points(mujeres$Altura,mujeres$Peso, col="green", pch=6)
+abline(recta_hombres, col="darkred")
+abline(recta_mujeres, col="darkgreen")
+legend(x=155,y=89,c("Hombres","Mujeres"),cex=.8,col=c("red","green"),pch=c(1,6))
+end.rcode-->                     
                   </div>
                </div>
             </div>
@@ -245,9 +270,10 @@ hombres tienden a ser más altos y pesados que las mujeres.</p>
                         <span>Trabajo original realizado por David Cabezas Berrido</span>
                         <p> Referencias consultadas:</p>
                         <ul>
-                        <li>Manual de la asignatura.</li>
+                        <li>Manual de la asignatura (Estadística Computacional).</li>
                         <li>Documentación de R.</li>
                         <li>Para el diagrama de sectores: <a href="https://www.statmethods.net/graphs/pie.html">https://www.statmethods.net/graphs/pie.html</a>.</li>
+                        <li>Para las asunciones del <i>test t</i>: Apuntes de la asignatura Inferencia Estadística.</li>
                         </ul>
                      </div>
                   </div>
