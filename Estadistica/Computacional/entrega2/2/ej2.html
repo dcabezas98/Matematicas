@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+   <head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Ejercicio 2</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/style.css">
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="../images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                           <ul class="navbar-nav mr-auto">
+                              <li class="nav-item active">
+                                 <a class="nav-link" href="#inicio">Inicio</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado1">Lectura y resumen</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado2">Resumen por sexos</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado3">Test de contraste</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado4">Rectas de regresión</a>
+                              </li>
+                              
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end header inner -->
+      </header>
+      <!-- end header -->
+      <!-- banner -->
+      <section class="banner_main">
+         <div id="inicio" class="container">
+            <div class="row d_flex">
+               <div class="col-md-6">
+                  <div class="text-bg">
+                     <h1>Ejercicio 2</h1>
+                     <span>Entrega 2</span>
+                     <p><strong>David Cabezas Berrido</strong></p>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="text-img">
+                     <figure><img src="../images/yo.jpg" /></figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end banner -->
+      <!-- Contenido -->
+      <div id="" class="hosting">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     Fijamos la semilla.
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">18</span><span class="hl std">)</span>
+</pre></div>
+</div></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado1" class="hosting">
+         <div class="container">
+            <h2>Lectura y resumen</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                  <p>Leemos los datos directamente de la URL en una hoja de datos. Aunque sea un archivo de texto, podemos leerlo con <code>read.csv</code>. <br/>
+                  La variable Sexo es categórica y <code>summary</code> no sabe tratarla
+                  si no lo indicamos explícitamente.</p>
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">data</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read.csv</span><span class="hl std">(</span><span class="hl str">&quot;http://www.ugr.es/~andresgc/Datos.txt&quot;</span><span class="hl std">)</span>
+<span class="hl std">data</span><span class="hl opt">$</span><span class="hl std">Sexo</span><span class="hl kwb">&lt;-</span><span class="hl kwd">as.factor</span><span class="hl std">(data</span><span class="hl opt">$</span><span class="hl std">Sexo)</span>
+</pre></div>
+</div></div>
+<p>Comprobamos que se han leído correctamente y hacemos un resumen estadístico de los datos.</p>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">head</span><span class="hl std">(data)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##   Peso Altura Edad   Sexo
+## 1   75    175   21 Hombre
+## 2   81    178   22 Hombre
+## 3   56    162   22  Mujer
+## 4   68    180   21  Mujer
+## 5   79    182   24 Hombre
+## 6   89    185   22 Hombre
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">tail</span><span class="hl std">(data)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad   Sexo
+## 31   82    190   21 Hombre
+## 32   59    155   22  Mujer
+## 33   63    173   21  Mujer
+## 34   75    177   24 Hombre
+## 35   62    174   21  Mujer
+## 36   81    183   22 Hombre
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">summary</span><span class="hl std">(data)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##       Peso           Altura           Edad           Sexo   
+##  Min.   :55.00   Min.   :155.0   Min.   :21.00   Hombre:20  
+##  1st Qu.:62.00   1st Qu.:164.5   1st Qu.:21.00   Mujer :16  
+##  Median :71.50   Median :174.0   Median :22.00              
+##  Mean   :70.72   Mean   :172.9   Mean   :22.14              
+##  3rd Qu.:78.25   3rd Qu.:181.0   3rd Qu.:23.00              
+##  Max.   :89.00   Max.   :190.0   Max.   :25.00
+</pre></div>
+</div></div>
+<p>También podemos generar algunas gráficas para hacernos una idea de
+la distribución de los datos. Por ejemplo, una visualización de las
+variables por pares nos permite descubrir las relaciones existentes entre las variables (dos a dos).</p>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">2</span><span class="hl std">,</span><span class="hl num">2</span><span class="hl std">))</span>
+<span class="hl kwd">plot</span><span class="hl std">(data)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+<p>Observamos que el Sexo (1=Hombre, 2=Mujer) parece influir en las localizaciones las distribuciones de Peso y Altura. También apreciamos cierta dependencia lineal creciente entre el Peso y la Altura. Por último,
+la Edad no parece influir en el resto de variables, peso sí observamos que abundan más las instancias con menor edad (21 y 22 años).</p>
+
+<p>Para visualizar las distribuciones de las variables por
+separado podemos usar un <i>box and whisker plot</i>. Esto nos permite consultar los pesos y alturas más comunes y nos confirma
+que la distribución de Edad está concentrada en las personas más
+jóvenes (entre 21 y 23 años).</p>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">3</span><span class="hl std">))</span>
+<span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">3</span><span class="hl std">){</span>
+  <span class="hl kwd">boxplot</span><span class="hl std">(data[,i],</span> <span class="hl kwc">notch</span><span class="hl std">=T);</span> <span class="hl com"># Le ponemos muescas a la caja con notch</span>
+  <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl kwd">names</span><span class="hl std">(data)[i])</span>
+<span class="hl std">}</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+<p>Los histogramas ofrecen esta información con más detalle. Aunque no proporcionen los cuartiles ni los extremos (máximo y mínimo) de la distribución, nos permiten comprobar que tanto en peso como altura hay dos grupos ligeramente separados, y hay menos personas con pesos entre 65 y 70 Kg o con altura entre 165 y 170. No podíamos apreciar esto en los diagramas de cajas y bigotes. Estos dos grupos podrían ser los hombres y mujeres, pero esto lo comprobaremos más adelante.</p>
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">3</span><span class="hl std">))</span>
+<span class="hl kwa">for</span> <span class="hl std">(i</span> <span class="hl kwa">in</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">3</span><span class="hl std">){</span>
+  <span class="hl kwd">hist</span><span class="hl std">(data[,i],</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Histograma de&quot;</span><span class="hl std">,</span> <span class="hl kwd">names</span><span class="hl std">(data)[i]),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl kwd">names</span><span class="hl std">(data)[i],</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">);</span>
+<span class="hl std">}</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div></div>
+<p>Como el Sexo no es una variable numérica sino categórica, podemos
+visualizar su distribución (proporción de hombres y mujeres) con un diagrama
+de sectores.</p>
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">1</span><span class="hl std">))</span>
+<span class="hl std">t</span><span class="hl kwb">=</span><span class="hl kwd">table</span><span class="hl std">(data</span><span class="hl opt">$</span><span class="hl std">Sexo)</span>
+<span class="hl std">l</span><span class="hl kwb">=</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl kwd">names</span><span class="hl std">(t),</span><span class="hl str">&quot;: &quot;</span><span class="hl std">,t,</span> <span class="hl str">&quot; (&quot;</span><span class="hl std">,</span> <span class="hl kwd">round</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl opt">*</span><span class="hl std">t</span><span class="hl opt">/</span><span class="hl kwd">sum</span><span class="hl std">(t),</span><span class="hl num">2</span><span class="hl std">),</span> <span class="hl str">&quot;%)&quot;</span><span class="hl std">,</span> <span class="hl kwc">sep</span><span class="hl std">=</span><span class="hl str">&quot;&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">pie</span><span class="hl std">(t,</span> <span class="hl kwc">labels</span><span class="hl std">=l,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl str">&quot;Distribución del Sexo&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+<p>Hay algunos hombres más que mujeres, pero la proporción es similar.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado2" class="hosting">
+         <div class="container">
+            <h2>Resumen por sexos</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+<p>Filtramos los datos por Sexo, ahora tenemos dos tablas de datos.</p>
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">hombres</span><span class="hl kwb">=</span><span class="hl std">data[data</span><span class="hl opt">$</span><span class="hl std">Sexo</span><span class="hl opt">==</span><span class="hl str">&quot;Hombre&quot;</span><span class="hl std">,]</span>
+<span class="hl std">mujeres</span><span class="hl kwb">=</span><span class="hl std">data[data</span><span class="hl opt">$</span><span class="hl std">Sexo</span><span class="hl opt">==</span><span class="hl str">&quot;Mujer&quot;</span><span class="hl std">,]</span>
+
+<span class="hl kwd">head</span><span class="hl std">(hombres)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad   Sexo
+## 1    75    175   21 Hombre
+## 2    81    178   22 Hombre
+## 5    79    182   24 Hombre
+## 6    89    185   22 Hombre
+## 9    83    180   23 Hombre
+## 11   72    174   21 Hombre
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">tail</span><span class="hl std">(hombres)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad   Sexo
+## 26   75    174   23 Hombre
+## 28   68    178   21 Hombre
+## 30   89    185   22 Hombre
+## 31   82    190   21 Hombre
+## 34   75    177   24 Hombre
+## 36   81    183   22 Hombre
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">summary</span><span class="hl std">(hombres)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##       Peso           Altura           Edad           Sexo   
+##  Min.   :58.00   Min.   :162.0   Min.   :21.00   Hombre:20  
+##  1st Qu.:75.00   1st Qu.:174.0   1st Qu.:21.75   Mujer : 0  
+##  Median :78.00   Median :178.0   Median :22.00              
+##  Mean   :77.90   Mean   :177.8   Mean   :22.35              
+##  3rd Qu.:81.25   3rd Qu.:182.0   3rd Qu.:23.00              
+##  Max.   :89.00   Max.   :190.0   Max.   :25.00
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">head</span><span class="hl std">(mujeres)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad  Sexo
+## 3    56    162   22 Mujer
+## 4    68    180   21 Mujer
+## 7    62    157   21 Mujer
+## 8    59    165   22 Mujer
+## 10   55    160   22 Mujer
+## 12   56    161   23 Mujer
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">tail</span><span class="hl std">(mujeres)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##    Peso Altura Edad  Sexo
+## 22   55    163   24 Mujer
+## 27   60    167   21 Mujer
+## 29   68    182   22 Mujer
+## 32   59    155   22 Mujer
+## 33   63    173   21 Mujer
+## 35   62    174   21 Mujer
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">summary</span><span class="hl std">(mujeres)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##       Peso           Altura           Edad           Sexo   
+##  Min.   :55.00   Min.   :155.0   Min.   :21.00   Hombre: 0  
+##  1st Qu.:58.25   1st Qu.:160.8   1st Qu.:21.00   Mujer :16  
+##  Median :62.00   Median :164.0   Median :22.00              
+##  Mean   :61.75   Mean   :166.9   Mean   :21.88              
+##  3rd Qu.:65.00   3rd Qu.:173.2   3rd Qu.:22.00              
+##  Max.   :71.00   Max.   :182.0   Max.   :24.00
+</pre></div>
+</div></div>
+<p>En los resúmenes podemos observar cambios en las distribuciones de
+hombres y mujeres, pero es mucho más sencillo observarlos en los gráficos. Aquí los vemos en boxplot.</p>
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">4</span><span class="hl std">))</span>
+<span class="hl kwd">boxplot</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">55</span><span class="hl std">,</span><span class="hl num">90</span><span class="hl std">))</span>
+<span class="hl kwd">title</span><span class="hl std">(</span><span class="hl str">&quot;Peso Hombres&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">boxplot</span><span class="hl std">(mujeres</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">55</span><span class="hl std">,</span><span class="hl num">90</span><span class="hl std">))</span>
+<span class="hl kwd">title</span><span class="hl std">(</span><span class="hl str">&quot;Peso Mujeres&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">boxplot</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Altura,</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">155</span><span class="hl std">,</span><span class="hl num">190</span><span class="hl std">))</span>
+<span class="hl kwd">title</span><span class="hl std">(</span><span class="hl str">&quot;Altura Hombres&quot;</span><span class="hl std">)</span>
+<span class="hl kwd">boxplot</span><span class="hl std">(mujeres</span><span class="hl opt">$</span><span class="hl std">Altura,</span> <span class="hl kwc">ylim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">155</span><span class="hl std">,</span><span class="hl num">190</span><span class="hl std">))</span>
+<span class="hl kwd">title</span><span class="hl std">(</span><span class="hl str">&quot;Altura Mujeres&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+<p>Y aquí en histogramas.</p>
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">par</span><span class="hl std">(</span><span class="hl kwc">mfrow</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span><span class="hl num">4</span><span class="hl std">))</span>
+<span class="hl kwd">hist</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Altura,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Hombres&quot;</span><span class="hl std">),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Altura&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">155</span><span class="hl std">,</span><span class="hl num">190</span><span class="hl std">));</span>
+<span class="hl kwd">hist</span><span class="hl std">(mujeres</span><span class="hl opt">$</span><span class="hl std">Altura,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Mujeres&quot;</span><span class="hl std">),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Altura&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">155</span><span class="hl std">,</span><span class="hl num">190</span><span class="hl std">));</span>
+<span class="hl kwd">hist</span><span class="hl std">(hombres</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Hombres&quot;</span><span class="hl std">),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Peso&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">55</span><span class="hl std">,</span><span class="hl num">90</span><span class="hl std">));</span>
+<span class="hl kwd">hist</span><span class="hl std">(mujeres</span><span class="hl opt">$</span><span class="hl std">Peso,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Mujeres&quot;</span><span class="hl std">),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Peso&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlim</span><span class="hl std">=</span><span class="hl kwd">range</span><span class="hl std">(</span><span class="hl num">55</span><span class="hl std">,</span><span class="hl num">90</span><span class="hl std">));</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div></div>
+<p>En ambos tipos de gráficos hemos ajustado el rango
+del eje para poder compararlos a simple vista. Observamos que los
+hombres tienden a ser más altos y pesados que las mujeres.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado3" class="hosting">
+         <div class="container">
+            <h2>Test de contraste</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado4" class="hosting">
+         <div class="container">
+            <h2>Rectas de regresión</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end Contenido -->
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+         <div class="originalidad">
+         <div class="container">
+               <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                     <div class="cont">
+                        <h3>Declaración de originalidad:</h3>
+                        <span>Trabajo original realizado por David Cabezas Berrido</span>
+                        <p> Referencias consultadas:</p>
+                        <ul>
+                        <li>Manual de la asignatura.</li>
+                        <li>Documentación de R.</li>
+                        <li>Para el diagrama de sectores: <a href="https://www.statmethods.net/graphs/pie.html">https://www.statmethods.net/graphs/pie.html</a>.</li>
+                        </ul>
+                     </div>
+                  </div>
+                  </div>
+               </div>
+            </div>
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>Plantilla tomada de <a href="https://www.free-css.com/free-css-templates/page266/data-web">https://www.free-css.com/free-css-templates/page266/data-web</a></p>
+                        
+                        <p>© 2019 All Rights Reserved. <a href="https://html.design/">Free html Templates</a></p>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/custom.js"></script>
+   </body>
+</html>
+

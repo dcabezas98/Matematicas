@@ -121,6 +121,7 @@ ol {
      margin: 0px;
      padding: 0px;
      list-style: none;
+     color: white;
 }
 
 p {
@@ -706,9 +707,17 @@ button {
 }
 
 .copyright a:hover {
-     color: #0c0f38;
+     color: blue;
 }
 
+.originalidad a {
+    color: cyan;
+}
+
+.originalidad a:hover {
+    color: blue;
+}
 
 /** end footer **/
+
 

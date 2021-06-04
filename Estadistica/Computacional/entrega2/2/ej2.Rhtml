@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Ejercicio 2</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/style.css">
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="../images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <!-- header inner -->
+         <div class="header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                           <ul class="navbar-nav mr-auto">
+                              <li class="nav-item active">
+                                 <a class="nav-link" href="#inicio">Inicio</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado1">Lectura y resumen</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado2">Resumen por sexos</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado3">Test de contraste</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#apartado4">Rectas de regresión</a>
+                              </li>
+                              
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end header inner -->
+      </header>
+      <!-- end header -->
+      <!-- banner -->
+      <section class="banner_main">
+         <div id="inicio" class="container">
+            <div class="row d_flex">
+               <div class="col-md-6">
+                  <div class="text-bg">
+                     <h1>Ejercicio 2</h1>
+                     <span>Entrega 2</span>
+                     <p><strong>David Cabezas Berrido</strong></p>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="text-img">
+                     <figure><img src="../images/yo.jpg" /></figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end banner -->
+      <!-- Contenido -->
+      <div id="" class="hosting">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     Fijamos la semilla.
+<!--begin.rcode
+set.seed(18)
+end.rcode-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado1" class="hosting">
+         <div class="container">
+            <h2>Lectura y resumen</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                  <p>Leemos los datos directamente de la URL en una hoja de datos. Aunque sea un archivo de texto, podemos leerlo con <code>read.csv</code>. <br/>
+                  La variable Sexo es categórica y <code>summary</code> no sabe tratarla
+                  si no lo indicamos explícitamente.</p>
+<!--begin.rcode
+data <- read.csv("http://www.ugr.es/~andresgc/Datos.txt")
+data$Sexo<-as.factor(data$Sexo)
+end.rcode-->
+<p>Comprobamos que se han leído correctamente y hacemos un resumen estadístico de los datos.</p>
+<!--begin.rcode
+head(data)
+tail(data)
+summary(data)
+end.rcode-->
+<p>También podemos generar algunas gráficas para hacernos una idea de
+la distribución de los datos. Por ejemplo, una visualización de las
+variables por pares nos permite descubrir las relaciones existentes entre las variables (dos a dos).</p>
+<!--begin.rcode
+par(mfrow=c(2,2))
+plot(data)
+end.rcode-->
+<p>Observamos que el Sexo (1=Hombre, 2=Mujer) parece influir en las localizaciones las distribuciones de Peso y Altura. También apreciamos cierta dependencia lineal creciente entre el Peso y la Altura. Por último,
+la Edad no parece influir en el resto de variables, peso sí observamos que abundan más las instancias con menor edad (21 y 22 años).</p>
+
+<p>Para visualizar las distribuciones de las variables por
+separado podemos usar un <i>box and whisker plot</i>. Esto nos permite consultar los pesos y alturas más comunes y nos confirma
+que la distribución de Edad está concentrada en las personas más
+jóvenes (entre 21 y 23 años).</p>
+<!--begin.rcode
+par(mfrow=c(1,3))
+for (i in 1:3){
+  boxplot(data[,i], notch=T); # Le ponemos muescas a la caja con notch
+  title(names(data)[i])
+}
+end.rcode-->
+<p>Los histogramas ofrecen esta información con más detalle. Aunque no proporcionen los cuartiles ni los extremos (máximo y mínimo) de la distribución, nos permiten comprobar que tanto en peso como altura hay dos grupos ligeramente separados, y hay menos personas con pesos entre 65 y 70 Kg o con altura entre 165 y 170. No podíamos apreciar esto en los diagramas de cajas y bigotes. Estos dos grupos podrían ser los hombres y mujeres, pero esto lo comprobaremos más adelante.</p>
+<!--begin.rcode
+par(mfrow=c(1,3))
+for (i in 1:3){
+  hist(data[,i], main=paste("Histograma de", names(data)[i]), xlab=names(data)[i], ylab="Frecuencia");
+}
+end.rcode-->
+<p>Como el Sexo no es una variable numérica sino categórica, podemos
+visualizar su distribución (proporción de hombres y mujeres) con un diagrama
+de sectores.</p>
+<!--begin.rcode
+par(mfrow=c(1,1))
+t=table(data$Sexo)
+l=paste(names(t),": ",t, " (", round(100*t/sum(t),2), "%)", sep="")
+pie(t, labels=l, main="Distribución del Sexo")
+end.rcode-->
+<p>Hay algunos hombres más que mujeres, pero la proporción es similar.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado2" class="hosting">
+         <div class="container">
+            <h2>Resumen por sexos</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+<p>Filtramos los datos por Sexo, ahora tenemos dos tablas de datos.</p>
+<!--begin.rcode
+hombres=data[data$Sexo=="Hombre",]
+mujeres=data[data$Sexo=="Mujer",]
+
+head(hombres)
+tail(hombres)
+summary(hombres)
+
+head(mujeres)
+tail(mujeres)
+summary(mujeres)
+end.rcode-->
+<p>En los resúmenes podemos observar cambios en las distribuciones de
+hombres y mujeres, pero es mucho más sencillo observarlos en los gráficos. Aquí los vemos en boxplot.</p>
+<!--begin.rcode fig.width=10
+par(mfrow=c(1,4))
+boxplot(hombres$Peso, ylim=range(55,90))
+title("Peso Hombres")
+boxplot(mujeres$Peso, ylim=range(55,90))
+title("Peso Mujeres")
+boxplot(hombres$Altura, ylim=range(155,190))
+title("Altura Hombres")
+boxplot(mujeres$Altura, ylim=range(155,190))
+title("Altura Mujeres")
+end.rcode-->
+<p>Y aquí en histogramas.</p>
+<!--begin.rcode fig.width=12, fig.height=8
+par(mfrow=c(1,4))
+hist(hombres$Altura, main=paste("Hombres"), xlab="Altura", ylab="Frecuencia", xlim=range(155,190));
+hist(mujeres$Altura, main=paste("Mujeres"), xlab="Altura", ylab="Frecuencia", xlim=range(155,190));
+hist(hombres$Peso, main=paste("Hombres"), xlab="Peso", ylab="Frecuencia", xlim=range(55,90));
+hist(mujeres$Peso, main=paste("Mujeres"), xlab="Peso", ylab="Frecuencia", xlim=range(55,90));
+end.rcode-->
+<p>En ambos tipos de gráficos hemos ajustado el rango
+del eje para poder compararlos a simple vista. Observamos que los
+hombres tienden a ser más altos y pesados que las mujeres.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado3" class="hosting">
+         <div class="container">
+            <h2>Test de contraste</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="apartado4" class="hosting">
+         <div class="container">
+            <h2>Rectas de regresión</h2>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="web_hosting">
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end Contenido -->
+      <!--  footer -->
+      <footer>
+         <div class="footer">
+         <div class="originalidad">
+         <div class="container">
+               <div class="row">
+                  <div class="col-md-10 offset-md-1">
+                     <div class="cont">
+                        <h3>Declaración de originalidad:</h3>
+                        <span>Trabajo original realizado por David Cabezas Berrido</span>
+                        <p> Referencias consultadas:</p>
+                        <ul>
+                        <li>Manual de la asignatura.</li>
+                        <li>Documentación de R.</li>
+                        <li>Para el diagrama de sectores: <a href="https://www.statmethods.net/graphs/pie.html">https://www.statmethods.net/graphs/pie.html</a>.</li>
+                        </ul>
+                     </div>
+                  </div>
+                  </div>
+               </div>
+            </div>
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>Plantilla tomada de <a href="https://www.free-css.com/free-css-templates/page266/data-web">https://www.free-css.com/free-css-templates/page266/data-web</a></p>
+                        
+                        <p>© 2019 All Rights Reserved. <a href="https://html.design/">Free html Templates</a></p>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="../js/jquery.min.js"></script>
+      <script src="../js/custom.js"></script>
+   </body>
+</html>
+
