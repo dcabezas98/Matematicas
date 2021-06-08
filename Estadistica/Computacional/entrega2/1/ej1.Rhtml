@@ -217,10 +217,25 @@ repite<-function(n=100, inicio=NULL){
   }
   return(pasos)
 }
-pasos=repite(inicio=c(0,1005))
+pasos=repite(n=500, inicio=c(0,1005))
+any(is.na(pasos))
 summary(pasos)
 end.rcode-->
-<p>Hemos realizado 100 simulaciones (el proceso es algo lento) pariendo desde el centro del cuadrado. El máximo está por debajo de 100000, así que estamos seguros de que ha conseguido salir del recinto en todas las simulaciones.</p>
+<p>Hemos realizado 500 simulaciones (el proceso es algo lento) partiendo desde el centro del cuadrado. No aparece el valor <code>NA</code> en el vector, así que estamos seguros de que ha conseguido salir del recinto en todas las simulaciones.</p>
+<p>A continuación procedemos a hacer un análisis descriptivo de la distribución basándonos en nuestras 500 observaciones independientes (suponiendo que los números pseudoaleatorios generados son independientes). Los gráficos son mucho más cómodos de interpretar que <code>summary</code>. </p>
+<!--begin.rcode
+  boxplot(pasos, notch=T); # Le ponemos muescas a la caja con notch
+  title("Número de pasos para salir")
+end.rcode-->
+<p>En el diagrama de caja, observamos que la distribución está bastante
+concentrada alrededor del 6000, aunque llega a tomar un rango de valores
+bastante amplio. Los valores concretos sí que podemos observarlos en el
+<code>summary</code>.</p>
+<!--begin.rcode
+hist(pasos, main=paste("Histograma del número de pasos para salir"), xlab="Pasos", ylab="Frecuencia")
+end.rcode-->
+<p>En el histograma, observamos que la distribución es más bien leptocúrtica,
+y toma valores entre 5500 y 6500 en la mayoría de las simulaciones que hemos hecho.</p>
                   </div>
                </div>
             </div>

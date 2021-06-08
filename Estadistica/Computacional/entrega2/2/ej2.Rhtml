@@ -215,15 +215,19 @@ hombres tienden a ser más altos y pesados que las mujeres.</p>
                <div class="col-md-12">
                   <div class="web_hosting">
                  <p>Vamos a contrastar que el peso medio de los hombres y el de las mujeres sean iguales (hipótesis nula, que es la que en principio suponemos cierta) frente a que sean diferentes (hipótesis alternativa). Para ello, haremos uso del <i>test t</i>.</p>
-                 <p>Debemos tener en cuenta que al aplicar el test asumimos que las medias de ambas distribuciones (pesos de los hombres y pesos de las mujeres) siguen una distribución normal, algo que aproxima el Teorema Central del Límite cuando el tamaño muestral es suficientemente grande. También se asumen que las varianzas son similares y que las muestras son independientes. No podemos garantizar todas estas hipótesis, pero afortunadamente el test es
-medianamente robusto frente al incumplimiento (moderado) de las hipótesis.</p>
+<p>Debemos tener en cuenta que el test está diseñado para poblaciones
+normales y muestras independientes. No podemos garantizar todas estas
+hipótesis, pero afortunadamente el test es
+medianamente robusto frente al incumplimiento (moderado) de las hipótesis.
+También es deseable que los tamaños muestrales sean el mismo, en este
+caso son similares: 20 y 16.</p>
 <!--begin.rcode
 t.test(hombres$Peso, mujeres$Peso)
 end.rcode-->
 <p>El resultado del test sugiere que rechacemos la hipótesis nula y
 seleccionemos la alternativa como verdadera. El p-valor es menor que 0.05 (de hecho es muy cercano a 0), por lo que rechazamos la hipótesis nula al nivel de significación 1-0.05=0.95.</p>
-<p>La salida de <code>t.test</code> ofrece más información. Con probabilidad
-0.95, podemos asegurar que la diferencia entre las medias está comprendida entre los valores 12.07727 y 20.22273.</p>
+<p>La salida de <code>t.test</code> ofrece más información, como el intervalo de confianza al nivel de confianza 0.95. A este nivel de confianza,
+podemos asegurar que la diferencia entre las medias está comprendida entre los valores 12.07727 y 20.22273.</p>
                   </div>
                </div>
             </div>
@@ -273,7 +277,6 @@ end.rcode-->
                         <li>Manual de la asignatura (Estadística Computacional).</li>
                         <li>Documentación de R.</li>
                         <li>Para el diagrama de sectores: <a href="https://www.statmethods.net/graphs/pie.html">https://www.statmethods.net/graphs/pie.html</a>.</li>
-                        <li>Para las asunciones del <i>test t</i>: Apuntes de la asignatura Inferencia Estadística.</li>
                         </ul>
                      </div>
                   </div>

@@ -294,14 +294,32 @@ en cada simulación, pero se puede fijar uno para todas las simulaciones.</p>
   <span class="hl std">}</span>
   <span class="hl kwd">return</span><span class="hl std">(pasos)</span>
 <span class="hl std">}</span>
-<span class="hl std">pasos</span><span class="hl kwb">=</span><span class="hl kwd">repite</span><span class="hl std">(</span><span class="hl kwc">inicio</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1005</span><span class="hl std">))</span>
-<span class="hl kwd">summary</span><span class="hl std">(pasos)</span>
+<span class="hl std">pasos</span><span class="hl kwb">=</span><span class="hl kwd">repite</span><span class="hl std">(</span><span class="hl kwc">n</span><span class="hl std">=</span><span class="hl num">500</span><span class="hl std">,</span> <span class="hl kwc">inicio</span><span class="hl std">=</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span><span class="hl num">1005</span><span class="hl std">))</span>
+<span class="hl kwd">any</span><span class="hl std">(</span><span class="hl kwd">is.na</span><span class="hl std">(pasos))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] FALSE
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">summary</span><span class="hl std">(pasos)</span>
 </pre></div>
 <div class="output"><pre class="knitr r">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    5112    5752    6017    6014    6269    6980
+##    4774    5708    6017    6029    6332    7570
 </pre></div>
 </div></div>
-<p>Hemos realizado 100 simulaciones (el proceso es algo lento) pariendo desde el centro del cuadrado. El máximo está por debajo de 100000, así que estamos seguros de que ha conseguido salir del recinto en todas las simulaciones.</p>
+<p>Hemos realizado 500 simulaciones (el proceso es algo lento) partiendo desde el centro del cuadrado. No aparece el valor <code>NA</code> en el vector, así que estamos seguros de que ha conseguido salir del recinto en todas las simulaciones.</p>
+<p>A continuación procedemos a hacer un análisis descriptivo de la distribución basándonos en nuestras 500 observaciones independientes (suponiendo que los números pseudoaleatorios generados son independientes). Los gráficos son mucho más cómodos de interpretar que <code>summary</code>. </p>
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl kwd">boxplot</span><span class="hl std">(pasos,</span> <span class="hl kwc">notch</span><span class="hl std">=T);</span> <span class="hl com"># Le ponemos muescas a la caja con notch</span>
+  <span class="hl kwd">title</span><span class="hl std">(</span><span class="hl str">&quot;Número de pasos para salir&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+<p>En el diagrama de caja, observamos que la distribución está bastante
+concentrada alrededor del 6000, aunque llega a tomar un rango de valores
+bastante amplio. Los valores concretos sí que podemos observarlos en el
+<code>summary</code>.</p>
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">hist</span><span class="hl std">(pasos,</span> <span class="hl kwc">main</span><span class="hl std">=</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Histograma del número de pasos para salir&quot;</span><span class="hl std">),</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Pasos&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;Frecuencia&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div></div>
+<p>En el histograma, observamos que la distribución es más bien leptocúrtica,
+y toma valores entre 5500 y 6500 en la mayoría de las simulaciones que hemos hecho.</p>
                   </div>
                </div>
             </div>
