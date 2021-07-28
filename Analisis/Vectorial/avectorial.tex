@@ -18,6 +18,8 @@
 
 \usepackage{parskip}
 
+\usepackage{float}
+
 \usepackage[document]{ragged2e}
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
@@ -87,7 +89,7 @@
 
 \maketitle
 
-Vamos a presentar los tres principales resultados de la asignatura Análisis Vectorial: el Teorema de Green, el Teorema de la Stokes y el Teorema de la Divergencia. Todos ellos establecen propiedades relativas a las integrales en curvas y superficies de funciones reales de varias variables, normalmente en dimensión 2 y 3.
+Vamos a presentar los principales resultados de la asignatura Análisis Vectorial: el Teorema de Green, el Teorema de la Stokes y el Teorema de la Divergencia. Todos ellos establecen propiedades relativas a las integrales en curvas y superficies de funciones reales de varias variables, normalmente en dimensión 2 y 3.
 
 A continuación, introducimos los conceptos necesarios para la comprensión de cada uno de estos resultados. Seguidamente, iremos presentando los teoremas principales, en cada caso incluiremos una breve explicación intuitiva y un ejemplo donde comprobaremos que se verifica el resultado.
 
@@ -136,13 +138,67 @@ Si $f:\Omega\rightarrow\mathbb{R}$ es un campo escalar continuo con $\Omega\subs
 \subsubsection*{Integral de línea de un campo vectorial}
 
 Si $F:\Omega\rightarrow\mathbb{R}^N$ es un campo escalar continuo con $\Omega\subset\mathbb{R}^N$ y $\gamma:[a,b]\rightarrow\Omega$ es un camino regular a trozos, definimos la \emph{integral de línea de $F$ a lo largo de $\gamma$} como
-\[\int_\gamma F dl=\int_a^b \left\langle F\big(\gamma(t)\big)\middle|\gamma'(t)\right\rangle dt.\]
+\[\int_\gamma F dl=\int_a^b \left\langle F\big(\gamma(t)\big),\gamma'(t)\right\rangle dt.\]
 
-TODO: superficies
+\subsubsection*{Integral de superficie de un campo escalar}
+
+Si una superficie $S\subset \mathbb{R}^3$ admite una parametrización simple y suave, para cada función continua $f:S\rightarrow\mathbb{R}$, la \emph{integral de superficie del campo escalar $f$ sobre la superficie $S$} viene definida mediante la igualdad
+\[\iint_S f ds=\iint_\Phi f ds=\iint_W f\big(\Phi(u,v)\big)\|\Phi_u\times \Phi_v\| du dv,\]
+donde $\Phi:W\rightarrow\mathbb{R}^3$ es cualquier parametrización simple (inyectiva) y suave ($\Phi_u\times \Phi_v$ no se anula en $W$).
+
+Este valor es independiente de la parametrización $\Phi$ elegida.
+
+\subsubsection*{Integral de superficie de un campo vectorial}
+
+Sea $\Phi$ una parametrización simple y suave de $S$ y supongamos que $F:S\rightarrow\mathbb{R}^3$ es una función continua. La \emph{integral de superficie del campo vectorial $F$ sobre la superficie $S$ orientada mediante $\dfrac{\Phi_u\times \Phi_v}{\|\Phi_u\times \Phi_v\|}$} viene dada por la igualdad
+\[\iint_S F ds=\iint_\Phi F ds=\iint_W \left\langle F\big(\Phi(u,v)\big), \Phi_u\times \Phi_v\right\rangle du dv.\]
+
+Este valor es independiente de la parametrización $\Phi$ elegida siempre que se respete la misma orientación \Big(siempre que el vector $\dfrac{\Phi_u\times \Phi_v}{\|\Phi_u\times \Phi_v\|}$ sea el mismo\Big). Obtendríamos el valor opuesto si eligiésemos una parametrización simple y suave que determine la orientación opuesta. Esto depende de si el vector $\dfrac{\Phi_u\times \Phi_v}{\|\Phi_u\times \Phi_v\|}$ es normal exterior o interior a la superficie.
 
 \section{Teorema de Green}
 
-TODO: pag 11
+El Teorema de Green asegura que el valor de la integral de línea de un campo vectorial de clase $C^1$ y dimensión 2 a lo largo de una curva de Jordan viene determinado por la integral doble de su rotacional en la región interior a la curva. 
+
+\begin{theorem}[Teorema de Green]
+	Sea $\gamma$ un camino en $\mathbb{R}^2$, regular a trozos, cerrado y simple, que recorre una curva de Jordan $\Gamma$ en sentido positivo (antihorario). Sea $D$ la región interior a $\Gamma$, y $F=(F_1,F_2):\Omega\rightarrow\mathbb{R}^2$ un campo vectorial de clase $C^1$ en un abierto $\Omega\subset\mathbb{R}^2$ tal que $D\cup\Gamma\subset\Omega$. Entonces,
+	\[\int_\gamma F dl = \iint_D \operatorname{rot}F dx dy.\]
+\end{theorem}
+
+Más explícitamente, esto puede escribirse como
+\[\int_\gamma F_1 dx+F_2 dy=\iint_D \left(\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right) dx dy.\]
+
+\subsection*{Ejemplo}
+
+Comprobemos ahora el Teorema de Green en un ejemplo concreto.
+
+Consideremos el campo vectorial $F:\mathbb{R}^2\rightarrow\mathbb{R}^2$ dado por $F(x,y)=(x+2y,3x-5y)$, y la región $D=\{(x,y)\in\mathbb{R}^2: x^2+4y^2\leq 4\}$.
+
+Tenemos $F_1(x,y)=x+2y$ y $F_2(x,y)=3x-5y$, por tanto
+\[\operatorname{rot}F=\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}=3-2=1.\]
+
+Por una parte, la integral en $D$ de la función constante 1 coincide con el área de $D$. $D$ es el área encerrada por una elipse centrada en el origen con ejes de longitud $2$ y $1$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=120mm]{images/region-ejemplo-green}
+\end{figure}
+
+El área de una elipse cuyos ejes tienen longitud $a$ y $b$ es $\pi a b$, por tanto el área de $D$ es $\pi\cdot1\cdot 2=2\pi$.
+
+Por tanto, $\displaystyle{\iint_D \operatorname{rot}F dx dy}=2\pi$.
+
+Para la otra integral, parametrizamos la elipse que encierra a $D$ con la curva $\gamma:[0,2\pi]\rightarrow\mathbb{R}^2$ dada por $\gamma(t)=(2\cos t, \sin t)$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=120mm]{images/region-ejemplo-green-flechas}
+\end{figure}
+
+Tenemos $\gamma'(t)=(-2\sin t, \cos t)$, y la integral queda entonces:
+\[\int_\gamma F dl = \int_0^{2\pi}\left\langle F\big(\gamma(t)\big),\gamma'(t)\right\rangle dt=\int_0^{2\pi}\left\langle (2\cos t+2\sin t,6\cos t-5\sin t),(-2\sin t, \cos t)\right\rangle dt.\]
+Simplificando obtenemos
+\[\int_\gamma F dl=-4\int_0^{2\pi}\sin^2 t dt +6\int_0^{2\pi}\cos^2 t dt=-4\pi+6\pi=2\pi,\]
+y comprobamos que se verifica el Teorema de Green.
 
 \section{Teorema de la Divergencia en $\mathbb{R}^2$}
 
