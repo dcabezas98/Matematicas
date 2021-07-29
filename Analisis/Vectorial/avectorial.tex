@@ -161,7 +161,7 @@ El Teorema de Green asegura que el valor de la integral de línea de un campo ve
 
 \begin{theorem}[Teorema de Green]
 	Sea $\gamma$ un camino en $\mathbb{R}^2$, regular a trozos, cerrado y simple, que recorre una curva de Jordan $\Gamma$ en sentido positivo (antihorario). Sea $D$ la región interior a $\Gamma$, y $F=(F_1,F_2):\Omega\rightarrow\mathbb{R}^2$ un campo vectorial de clase $C^1$ en un abierto $\Omega\subset\mathbb{R}^2$ tal que $D\cup\Gamma\subset\Omega$. Entonces,
-	\[\int_\gamma F dl = \iint_D \operatorname{rot}F dx dy.\]
+	\[\int_\gamma F dl = \iint_D \operatorname{rot}F dA.\]
 \end{theorem}
 
 Más explícitamente, esto puede escribirse como
@@ -202,13 +202,63 @@ y comprobamos que se verifica el Teorema de Green.
 
 \section{Teorema de la Divergencia en $\mathbb{R}^2$}
 
-TODO: pag 13
+El Teorema de la Divergencia permite, dado un campo vectorial, calcular fácilmente el flujo saliente de una región. El flujo saliente se expresa como la integral del producto escalar entre el campo y la normal exterior a la frontera (curva, superficie o hipersuperficie) del recinto a lo largo de la frontera. Gracias a este teorema, podemos obtener el flujo saliente integrando la divergencia del campo (que es una función escalar) en la región del espacio.
+
+\begin{theorem}[Teorema de la Divergencia en $\mathbb{R}^2$]
+	Sea $\Omega$ un dominio de $\mathbb{R}^2$ y $F=(F_1,F_2):\Omega\rightarrow\mathbb{R}^2$ un campo vectorial de clase $C^1$.
+	Sea $\Gamma\subset\Omega$ una curva de Jordan $C^1$ a trozos orientada positivamente, y $D$ la región interior a $\Gamma$. Tomamos la normal exterior a $\Gamma$. Esto es, si $\gamma(t)=(x(t),y(t))$ es una parametrización que recorre $\Gamma$ en el sentido positivo y $\gamma'(t)=(x'(t),y'(t))$, la normal exterior a $\Gamma$ es $n(t)=\dfrac{(y'(t),-x'(t))}{\|\gamma'(t)\|}$. Entonces, 
+	\[\int_\Gamma \langle F,n\rangle dl=\iint_D\operatorname{div} F dA=\iint_D\left(\frac{\partial F_1}{\partial x}+\frac{\partial F_2}{\partial y}\right) dx dy.\]
+\end{theorem}
+
+\begin{proof}
+	Utilizando la definición de integral curvilínea de un campo escalar y desarollando el producto obtenemos
+	\begin{align*}
+	\int_\Gamma \langle F,n\rangle dl&=\int_a^b\frac{F_1\big(\gamma(t)\big)y'(t)-F_2\big(\gamma(t)\big)x'(t)}{\|\gamma'(t)\|}\|\gamma'(t)\|dt \\
+	&=\int_a^b F_1\big(\gamma(t)\big)y'(t)-F_2\big(\gamma(t)\big)x'(t)dt = \int_a^bF_1\big(\gamma(t)\big)dy-F_2\big(\gamma(t)\big)dx \\
+	&=\int_\Gamma F_1 dy-F_2dx.
+	\end{align*}
+	Finalmente, el Teorema de Green aplicado al campo $(-F_2,F_1)$ nos asegura que 
+	\[\int_\Gamma \langle F,n\rangle dl=\int_\Gamma F_1 dy-F_2dx=\iint_D\left(\frac{\partial F_1}{\partial x}+\frac{\partial F_2}{\partial y}\right) dx dy.\]
+\end{proof}
+
+\subsection*{Ejemplo}
+
+Comprobemos que este teorema se verifica en el ejemplo anterior, con el campo $F(x,y)=x+2y,3x-5y$ y la región $D=\{(x,y)\in\mathbb{R}^2: x^2+4y^2\leq 4\}$.
+
+Por una parte, tenemos $\operatorname{div}F=1-5=-4$, y el resultado de integrar en $D$ es el mismo que obtenemos multiplicando por el área:
+\[\iint_D\operatorname{div} F dA= -4\cdot 2\pi=-8\pi.\]
+
+Por otra parte, utilizaremos la misma parametrización que recorre la curva en sentido positivo, $\gamma:[0,2\pi]\rightarrow\mathbb{R}^2$ con $\gamma(t)=(2\cos t, \sin t)$. Tenemos $\gamma'(t)=(-2\sin t, \cos t)$, luego $n(t)=\dfrac{(\cos t,2\sin t)}{\sqrt{\cos^2 t+4\sin^2 t}}$.
+
+Desarrollando obtenemos:
+\begin{align*}
+\int_\Gamma \langle F,n\rangle dl&=\int_0^{2\pi} \left\langle F(2\cos t, \sin t),\frac{(\cos t,2\sin t)}{\sqrt{\cos^2 t+4\sin^2 t}}\right\rangle\sqrt{\cos^2 t+4\sin^2 t} dt \\
+&=\int_0^{2\pi} \langle (2\cos t+2\sin t,6\cos t-5\sin t),(\cos t,2\sin t)\rangle dt.
+\end{align*}
+
+Ahora simplificamos, lo que nos deja con
+
+\[\int_\gamma F dl=2\int_0^{2\pi}\cos^2 t dt -10\int_0^{2\pi}\sin^2 t dt =2\pi-10\pi=-8\pi,\]
+y comprobamos que se verifica el Teorema de la Divergencia en este caso.
 
 \section{Teorema de Stokes}
 
-TODO: pag 19
+El Teorema de Stokes es una generalización del Teorema de Green, que permite obtener la misma tesis para superficies que tienen curvas alabeadas como bordes, en lugar de para regiones del plano con curvas planas como bordes. Por tanto, trabajaremos en dimensión 3.
 
-\section{Teorema de la divergencia en $\mathbb{R}^N$}
+\begin{theorem}[Teorema de Stokes]
+	Sea $S$ una superficie orientada definida mediante una parametrización simple y suave $\Phi:D\rightarrow S$, donde $D$ es una región del plano verificando las hipótesis del Teorema de Green (su frontera es una curva de Jordan regular a trozos). Sea $\partial S=\Phi(\partial D)$ la frontera de $S$ con la orientación positiva (inducida por $\Phi$). Sea $F$ un campo vectorial de clase $C^1$ en un abierto que contine a $S$. Entonces,
+	\[\iint_S \operatorname{rot}F ds=\int_{\partial S} F dl.\]
+\end{theorem}
+
+\begin{proof}
+	TODO
+\end{proof}
+
+\subsection*{Ejemplo}
+
+TODO
+
+\section{Teorema de la Divergencia en $\mathbb{R}^N$}
 
 \subsection{Preámbulo}
 
