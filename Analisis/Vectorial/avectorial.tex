@@ -251,7 +251,27 @@ El Teorema de Stokes es una generalización del Teorema de Green, que permite ob
 \end{theorem}
 
 \begin{proof}
-	TODO
+	Supondremos que $S$ es la gráfica de una función, $S=\{(x,y,f(x,y)): (x,y)\in D\}$ con $f\in C^2(D)$. En este caso, $\partial S=\{(x,y,f(x,y)): (x,y)\in \partial D\}$.
+	
+	Sea $c:[a,b]\rightarrow \partial D$, $c(t)=(x(t),y(t))$ una parametrización en el sentido positivo de $\partial D$. Entonces, $p:[a,b]\rightarrow \partial S$, $p(t)=\big(x(t),y(t),f(x(t),y(t))\big)$ es una parametrización en el sentido positivo de $\partial S$.
+	
+	Si $F=(F_1,F_2,F_3)$ con $F_1,F_2,F_3\in C^1$, tenemos
+	\[\operatorname{rot F}=\left(\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z},\frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x},\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right).\]
+	
+	$S$ es la gráfica de una función, luego su vector perpendicular \big($\Phi_x\times \Phi_y$ para la parametrización $\Phi(x,y)=(x,y,f(x,y))$\big) en el punto $(x,y,z=f(x,y))$ es $(-z_x,-z_y,1)$. Por tanto,
+	\begin{align*}
+	\iint_S \operatorname{rot}F ds=\iint_D -z_x\left(\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z}\right) -z_y\left(\frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x}\right)+\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y} dx dy.
+	\end{align*}
+	
+	Por otra parte,
+	\begin{align*}
+	\int_{\partial S} F dl=\int_a^b \big(F_1 x'(t) + F_2 y'(t) + F_3 z'(t)\big) dt,
+	\end{align*}
+	y aplicando que $z'(t)=\dfrac{\partial z}{\partial x}\dfrac{d x}{d t}+\dfrac{\partial z}{\partial y}\dfrac{d y}{d t}$, obtenemos
+	\begin{align*}
+	\int_{\partial S} F dl=\int_a^b\left[\left(F_1+F_3\dfrac{\partial z}{\partial x}\right)\dfrac{d x}{d t}+\left(F_2+F_3\dfrac{\partial z}{\partial y}\right)\dfrac{d y}{d t}\right]dt
+	\end{align*}
+	
 \end{proof}
 
 \subsection*{Ejemplo}
