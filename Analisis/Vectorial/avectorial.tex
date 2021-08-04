@@ -386,13 +386,34 @@ Dividiremos la demostración en tres pasos.
 
 \begin{proof}[Demostración del Teorema de la Divergencia] ~
 	
-	\underline{\textbf{Caso 1: $\Omega$ es un cubo}}
+	\underline{\textbf{Caso 1: $\Omega$ es un hipercubo}}
 	
-	TODO
+	Un cubo no es un dominio regular, lo que provoca que la normal exterior no esté definida en las aristas. Sin embargo, a efectos de integración esto no supone ningún problema, ya que las aristas tienen medida $(N-1)$-dimensional nula.
+	
+	Tenemos $\displaystyle{\Omega=\prod_{k=1}^{N}(a_k,b_k)}$, donde cada $(a_k,b_k)$ es un intervalo de $\mathbb{R}$.
+	
+	Usando el Teorema de Fubini y la regla de Barrow obtenemos
+	\begin{align*}
+	\int_\Omega \frac{\partial F_1}{\partial x_1}(x)dx&=\int_{a_N}^{b_N}\cdots\int_{a_1}^{b_1}\frac{\partial F_1}{\partial x_1}(x_1,\ldots x_N) dx_1\cdots dx_N \\ &=\int_{a_N}^{b_N}\cdots\int_{a_2}^{b_2}F_1(b_1,\ldots x_N)-F_1(a_1,\ldots x_N) dx_2\cdots dx_N \\ &=\int_{A_1\cup B_1}\langle F(x),n(x)\rangle dx,
+	\end{align*}
+	donde en la última igualdad tenemos lo siguiente: $A_1=\{(a_1,x_2,\ldots,x_N): x_k\in(a_k,b_k), \ k\geq 2\}$ y $B_1=\{(b_1,x_2,\ldots,x_N): x_k\in(a_k,b_k), \ k\geq 2\}$ son dos tapas opuestas del cilindro, y sus normales exteriores son $(-1,0,\ldots,0)$ y $(1,0,\ldots,0)$ respectivamente.
+	
+	El mismo argumento es válido para $k\geq 2$ (se pueden reordenar las integrales con Fubini), sumando obtenemos lo requerido.
+	\begin{align*}
+	\int_\Omega\operatorname{div}F(x) dx_1\cdots dx_N&=\sum_{k=1}^N \int_\Omega\frac{\partial F_k}{\partial x_k}(x_1,\ldots x_N) dx_1\cdots dx_N \\
+	&=\sum_{k=1}^N\int_{A_k\cup B_k}\langle F(x),n(x)\rangle dx \\ &=\int_{\bigcup\limits_{k=1}^N (A_k\cup B_k)}\langle F(x),n(x)\rangle dx=\int_{\partial\Omega}\langle F(x),n(x)\rangle dx.
+	\end{align*}
 	
 	\underline{\textbf{Caso 2: $\Omega$ es un ``prisma'' cuya tapa es la gráfica de una función}}
 	
-	TODO
+	En este caso tenemos $\Omega=\{(\bar{x},x_N):\bar{x}\in D, \ x_N\in (0,h(\bar{x}))\}\subset D\times\mathbb{R}$, donde $\bar{x}=(x_1,\ldots,x_{N-1})$, $\displaystyle{D=\prod_{k=1}^{N-1}(a_k,b_k)}$ y $h:D\rightarrow(0,+\infty)$ es de clase $C^1$.
+	Es decir, $\Omega$ es un (hiper)prisma con base rectangular y tapa la gráfica de la función $h$.
+	
+	Calculamos primero la integral del último sumando de la divergencia.
+	
+	\begin{align*}
+	\int_\Omega\frac{\partial F_N}{\partial x_N}(x)dx= \int_D\int_0^{h(\bar{x})}\frac{\partial F_N}{\partial x_N}(\bar{x},x_N)d x_N d\bar{x} = TODO
+	\end{align*}
 	
 	\underline{\textbf{Caso 3: Caso general, $\Omega$ es un dominio acotado y regular}}
 	
