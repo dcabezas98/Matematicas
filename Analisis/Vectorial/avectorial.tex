@@ -58,8 +58,7 @@
 %\newtheorem{ax}{Axioma}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definici\'on}[section]
-\newtheorem{algorithm}{\textrm{\bf Algoritmo}}[section]
+\newtheorem{definition}[theorem]{Definici\'on}
 
 \theoremstyle{remark}
 \newtheorem{remark}{Observaci\'on}[section]
@@ -298,6 +297,11 @@ El Teorema de Stokes es una generalización del Teorema de Green, que permite ob
 Comprobemos el teorema en un sencillo ejemplo concreto. Consideremos el campo $F(x,y)=(x-y+z,2x+y,y+6z)$ y la superficie \[S=\big\{(x,y,z)\in\mathbb{R}^3: x^2+y^2\leq 1, \  z=\sqrt{1-x^2-y^2}\big\},\]
 que corresponde a la mitad superior de la esfera unidad.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=80mm]{images/superficie-ejemplo-stokes}
+\end{figure}
+
 El borde de la superficie es la circunferencia unidad en el plano $\{(x,y,0):x,y\in\mathbb{R}\}$. Lo parametrizamos con la curva $\gamma(t)=(\cos t,\sin t, 0)$ con $t\in[0,2\pi]$, cuya derivada es $\gamma'(t)=(-\sin t, \cos t, 0)$. De modo que la integral de línea queda:
 \begin{align*}
 \int_{\partial S} F dl&=\int_0^{2\pi}\langle F(\cos t,\sin t, 0),(-\sin t, \cos t, 0) \rangle dt \\ 
@@ -324,9 +328,79 @@ Como era de esperar, ambas integrales coinciden.
 
 \section{Teorema de la Divergencia en $\mathbb{R}^N$}
 
-\subsection{Preámbulo}
+Para enunciar el Teorema de la Divergencia con mayor generalidad, necesitamos generalizar la noción de normal exterior. 
 
-TODO: dominio regular (se puede hablar de normal exterior a la frontera).
+\begin{definition}
+	Sea $\Omega$ un dominio de $\mathbb{R}^N$. Diremos que $\Omega$ es \textbf{regular} en un punto $x_0\in\partial\Omega$ cuando exista un entorno $U\subset\mathbb{R}^N$ de $x_0$ y una función $\varphi\in C^1(U)$ tales que:
+	\begin{enumerate}[$(a)$]
+		\item $\nabla \varphi(x)\neq 0\quad\forall x\in U$.
+		\item $\partial\Omega\cap U=\{x\in U:\varphi(x)=0\}$.
+		\item $\Omega\cap U=\{x\in U:\varphi(x)<0\}$.
+	\end{enumerate}
+En tal caso, podemos definir la \textbf{normal exterior} en $x_0$ por $n(x_0)=\dfrac{\nabla \varphi(x_0)}{\|\nabla \varphi(x_0)\|}$, esta definición generaliza la normal exterior ``clásica'' en dimensiones 2 y 3.
+
+Un dominio se dice regular si lo es en todo punto de su frontera, esto es, su frontera es una variedad regular $(n-1)$-dimensional.
+\end{definition}
+
+La siguiente propiedad de los conjuntos regulares será de utilidad en la demostración del teorema.
+
+\begin{lemma}
+	Si $\Omega$ es regular en un punto $z=(z_1,\ldots,z_N)\in\partial\Omega$, entonces existen una variable, pongamos $x_N$, y un entorno $W\subset\mathbb{R}^{N-1}$ de $(z_1,\ldots,z_{N-1})$, un entorno $V\subset\mathbb{R}^N$ de $z$ en $\mathbb{R}^N$, y una función de clase $C^1$ $h:W\rightarrow \mathbb{R}$ cumpliendo:
+	\begin{enumerate}[$(a)$]
+		\item Si $(x_1,\ldots,x_N)\in V$, entonces $(x_1,\ldots,x_{N-1})\in W$.
+		\item Si $(x_1,\ldots,x_N)\in \partial\Omega\cap V$, entonces $h(x_1,\ldots,x_{N-1})=x_N$.
+	\end{enumerate}
+Es decir, la frontera de $\Omega$ es localmente la gráfica de una función en alguna variable.
+\end{lemma}
+
+\begin{proof}
+	Tomando $U$ y $\varphi$ de la definición de regularidad tenemos $\nabla\varphi(z)\neq 0$, por lo que tendrá al menos una componente distinta de 0. El Teorema de la Función Implícita proporciona la tesis requerida.
+\end{proof}
+
+Enunciamos ya el último de los resultados más relevantes de la asignatura.
+
+\begin{theorem}[Teorema de la Divergencia]
+	Sea $\Omega$ un dominio de $\mathbb{R}^N$ acotado y regular. Sea $F=(F_1,\ldots,F_N):\overline{\Omega}\rightarrow\mathbb{R}^N$ un campo vectorial de clase $C^1$.
+	Entonces,
+	\[\int_{\partial\Omega}\langle F(x),n(x)\rangle dS=\int_\Omega \operatorname{div}F(x)dx.\]
+\end{theorem}
+
+Para la demostración requerimos la siguiente herramienta.
+
+\begin{definition}
+	Sea $X$ un espacio topológico y $\{U_i \ | \ i \in I\}$ un recubrimiento de $X$ por abiertos. Una \textbf{partición continua de la unidad subordinada al recubrimiento} es un conjunto de funciones $\{\Phi_i:X\rightarrow[0,1] \ | \ i\in I\}$ coninuas tal que:
+	\begin{enumerate}[$(a)$]
+		\item El soporte de cada $\Phi_i$ se queda dentro del correspondiente $U_i$, $\operatorname{supp}\Phi_i\subset U_i\ \ \forall i\in I$.
+		\item Para cada $x\in X$, existe un entorno $V$ tal que $\Phi_i|_V\equiv 0$ salvo para un número finito de índices. Además, \[
+		\sum_{i\in I}\Phi(y)=1\quad\forall y\in V.\]
+	\end{enumerate}
+\end{definition}
+
+En concreto, lo aplicaremos al siguiente caso particular.
+
+\begin{lemma}
+	Sea $\overline{\Omega}\subset\mathbb{R}^N$ compacto. Entonces, cualquier recubrimiento por abiertos de $\overline{\Omega}$ tiene un subrecubrimiento finito y una partición continua de la unidad (finita) subordinada a dicho subrecubrimiento.
+\end{lemma}
+
+Dividiremos la demostración en tres pasos.
+
+\begin{proof}[Demostración del Teorema de la Divergencia] ~
+	
+	\underline{\textbf{Caso 1: $\Omega$ es un cubo}}
+	
+	TODO
+	
+	\underline{\textbf{Caso 2: $\Omega$ es un ``prisma'' cuya tapa es la gráfica de una función}}
+	
+	TODO
+	
+	\underline{\textbf{Caso 3: Caso general, $\Omega$ es un dominio acotado y regular}}
+	
+	TODO
+	
+\end{proof}
+
+\subsection{Preámbulo}
 
 En un regular se puede despejar en la frontera una componente en función de las demás.
 
