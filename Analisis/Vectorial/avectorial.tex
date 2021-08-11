@@ -320,7 +320,7 @@ Tenemos también $\operatorname{rot} F=(1-0,1-0,2-(-1))=(1,1,3)$.
 
 La integral de superficie queda entonces:
 \begin{align*}
-\iint_{S}\operatorname{rot} F dl&=\int_0^1\int_0^{2\pi}\frac{\rho}{\sqrt{1-\rho^2}}\left\langle(1,1,3),\big(\rho\cos \theta, \rho\sin\theta, \sqrt{1-\rho^2}\big)\right\rangle d\theta d\rho \\ 
+\iint_{S}\operatorname{rot} F ds&=\int_0^1\int_0^{2\pi}\frac{\rho}{\sqrt{1-\rho^2}}\left\langle(1,1,3),\big(\rho\cos \theta, \rho\sin\theta, \sqrt{1-\rho^2}\big)\right\rangle d\theta d\rho \\ 
 &=\int_0^1\int_0^{2\pi}\frac{\rho}{\sqrt{1-\rho^2}}\left[\rho\cos\theta+\rho\sin\theta+3\sqrt{1-\rho^2} \right] d\theta d\rho \\
 &= 6\pi\int_0^1 \rho d\rho=3\pi.
 \end{align*}
@@ -412,7 +412,31 @@ Dividiremos la demostración en tres pasos.
 	Calculamos primero la integral del último sumando de la divergencia.
 	
 	\begin{align*}
-	\int_\Omega\frac{\partial F_N}{\partial x_N}(x)dx= \int_D\int_0^{h(\bar{x})}\frac{\partial F_N}{\partial x_N}(\bar{x},x_N)d x_N d\bar{x} = TODO
+	\int_\Omega\frac{\partial F_N}{\partial x_N}(x)dx&= \int_D\int_0^{h(\bar{x})}\frac{\partial F_N}{\partial x_N}(\bar{x},x_N)d x_N d\bar{x} = \int_D  F_N(\bar{x},h(\bar{x}))-F_N(\bar{x},0) d\bar{x} \\ 
+	&= \int_D  F_N(\bar{x},h(\bar{x}))d\bar{x}+\int_{C_0}\langle F(y),(0,\ldots,0,-1) \rangle dy.
+	\end{align*}
+	Donde $C_0=D\times \{0\}\subset\partial\Omega$ tiene normal exterior $n(y)=(0,\ldots,0,-1)$. Por tanto,
+	\[\int_{C_0}\langle F(y),(0,\ldots,0,-1) \rangle dy=\int_{C_0}\langle F(y),n(y)\rangle dy=\int_{C_0}F ds.\]
+	
+	Por otra parte, hacemos el resto de sumandos de la divergencia. Todos se calculan de forma análoga, así que mostraremos sólo el primero.
+	\begin{align*}
+	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx&= \int_D\int_0^{h(\bar{x})}\frac{\partial F_1}{\partial x_1}(\bar{x},x_N)d x_N d\bar{x}
+	\end{align*}
+	Comenzamos con el cambio de variable $x_N=s h(\bar{x})$, tenemos $dx_N=h(\bar{x})ds$. También sumamos y restamos $\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh(\bar{x})h_{x_1}(\bar{x})$, con $h_{x_1}(\bar{x})=\dfrac{\partial h}{\partial x_1}(\bar{x})$.
+	\begin{align*}
+	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx&= \int_D\int_0^1\frac{\partial F_1}{\partial x_1}(\bar{x},s h(\bar{x})) h(\bar{x})ds d\bar{x} \\
+	&=\int_D\int_0^1 h(\bar{x})\left(\frac{\partial F_1}{\partial x_1}(\bar{x},sh(\bar{x}))+\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh_{x_1}(\bar{x})\right)\\
+	&~\hspace{12mm}-\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh(\bar{x})h_{x_1}(\bar{x}) \ dsd\bar{x}.
+	\end{align*}
+	Utilizamos que \[\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))=\frac{\partial F_1}{\partial x_1}(\bar{x},sh(\bar{x}))+\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh_{x_1}(\bar{x}),\]
+	y la integral queda del siguiente modo:
+	\begin{align*}
+	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx
+	&=\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))-\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh(\bar{x})h_{x_1}(\bar{x}) \ dsd\bar{x}.
+	\end{align*}
+	Hacemos partes para resolver la primera integral. Notamos $D=(a_1,b_1)\times \tilde{D}$, $\bar{x}=(x_1,\tilde{x})\in D$, y tomamos las partes $h(\bar{x})=u$, $dv=\dfrac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))dx_1$.
+	\begin{align*}
+	\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))=
 	\end{align*}
 	
 	\underline{\textbf{Caso 3: Caso general, $\Omega$ es un dominio acotado y regular}}
