@@ -35,7 +35,7 @@
             bookmarksopen=false,     % true means only level 1
                                      % are displayed.
             colorlinks=true,
-            linkcolor=webred]{hyperref}
+            linkcolor=blue]{hyperref}
 \definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
 \definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
 \definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
@@ -430,14 +430,42 @@ Dividiremos la demostración en tres pasos.
 	\end{align*}
 	Utilizamos que \[\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))=\frac{\partial F_1}{\partial x_1}(\bar{x},sh(\bar{x}))+\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh_{x_1}(\bar{x}),\]
 	y la integral queda del siguiente modo:
-	\begin{align*}
+	\begin{align}\label{eq:div-1}
 	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx
 	&=\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))-\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh(\bar{x})h_{x_1}(\bar{x}) \ dsd\bar{x}.
-	\end{align*}
+	\end{align}
 	Hacemos partes para resolver la primera integral. Notamos $D=(a_1,b_1)\times \tilde{D}$, $\bar{x}=(x_1,\tilde{x})\in D$, y tomamos las partes $h(\bar{x})=u$, $dv=\dfrac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))dx_1$.
 	\begin{align*}
-	\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))=
+	\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))&=\int_{\tilde{D}}\int_0^1 F_1(b_1,\tilde{x}, sh(b_1,\tilde{x})) h(b_1,\tilde{x}) ds d\tilde{x}\\&-\int_{\tilde{D}}\int_0^1 F_1(a_1,\tilde{x}, sh(a_1,\tilde{x})) h(a_1,\tilde{x}) ds d\tilde{x}\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x},
 	\end{align*}
+	y desacemos el cambio de variable en las dos primeras integrales:
+	
+	\begin{align*}
+	\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))&=\int_{\tilde{D}}\int_0^{h(b_1,\tilde{x})} F_1(b_1,\tilde{x}, x_N) dx_N d\tilde{x}\\&-\int_{\tilde{D}}\int_0^{h(a_1,\tilde{x})} F_1(a_1,\tilde{x}, x_N) dx_N d\tilde{x}\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x},
+	\end{align*}
+	
+	Notando $B_1=\partial\Omega\cap\{x_1=b_1\}$ y $A_1=\partial\Omega\cap\{x_1=a_1\}$, tenemos $n(y)=(1,0,\ldots,0)$ en $B_1$ y $n(y)=(-1,0,\ldots,0)$ en $A_1$. Por tanto,
+	\begin{align*}
+	\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))&=\int_{B_1}\langle F(y),n(y)\rangle dy+\int_{A_1}\langle F(y),n(y)\rangle dy\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x} \\
+	&=\int_{B_1}F ds+\int_{A_1}F ds-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x}.
+	\end{align*}
+	Sustituyendo en \eqref{eq:div-1} obtenemos
+	\begin{align*}
+	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx
+	&=\int_{A_1\cup B_1}F ds\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x}+\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh(\bar{x})h_{x_1}(\bar{x}) \ dsd\bar{x}.
+	\end{align*}
+	
+	Por otra parte, nos damos cuenta de que
+	\begin{align*}
+	\frac{d}{ds}\big[F_1(\bar{x},sh(\bar{x}))sh_{x_1}(\bar{x})\big]=F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})+\frac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))h(\bar{x})sh_{x_1}(\bar{x}).
+	\end{align*}
+	Y sustituyendo queda
+	\begin{align*}
+	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx
+	&=\int_{A_1\cup B_1}F ds-\int_D F_1(\bar{x},h(\bar{x}))h_{x_1}(\bar{x})d\bar{x}.
+	\end{align*}
+	
+	TODO: ahora agrupar todos
 	
 	\underline{\textbf{Caso 3: Caso general, $\Omega$ es un dominio acotado y regular}}
 	
