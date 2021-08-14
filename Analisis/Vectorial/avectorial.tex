@@ -362,7 +362,7 @@ Enunciamos ya el último de los resultados más relevantes de la asignatura.
 \begin{theorem}[Teorema de la Divergencia]
 	Sea $\Omega$ un dominio de $\mathbb{R}^N$ acotado y regular. Sea $F=(F_1,\ldots,F_N):\overline{\Omega}\rightarrow\mathbb{R}^N$ un campo vectorial de clase $C^1$.
 	Entonces,
-	\[\int_{\partial\Omega}\langle F(x),n(x)\rangle dS=\int_\Omega \operatorname{div}F(x)dx.\]
+	\[\int_{\partial\Omega}\langle F(x),n(x)\rangle dx=\int_\Omega \operatorname{div}F(x)dx.\]
 \end{theorem}
 
 Para la demostración requerimos la siguiente herramienta.
@@ -416,7 +416,7 @@ Dividiremos la demostración en tres pasos.
 	&= \int_D  F_N(\bar{x},h(\bar{x}))d\bar{x}+\int_{C_0}\langle F(y),(0,\ldots,0,-1) \rangle dy.
 	\end{align*}
 	Donde $C_0=D\times \{0\}\subset\partial\Omega$ tiene normal exterior $n(y)=(0,\ldots,0,-1)$. Por tanto,
-	\[\int_{C_0}\langle F(y),(0,\ldots,0,-1) \rangle dy=\int_{C_0}\langle F(y),n(y)\rangle dy=\int_{C_0}F ds.\]
+	\[\int_{C_0}\langle F(y),(0,\ldots,0,-1) \rangle dy=\int_{C_0}\langle F(y),n(y)\rangle dy.\]
 	
 	Por otra parte, hacemos el resto de sumandos de la divergencia. Todos se calculan de forma análoga, así que mostraremos sólo el primero.
 	\begin{align*}
@@ -447,12 +447,12 @@ Dividiremos la demostración en tres pasos.
 	Notando $B_1=\partial\Omega\cap\{x_1=b_1\}$ y $A_1=\partial\Omega\cap\{x_1=a_1\}$, tenemos $n(y)=(1,0,\ldots,0)$ en $B_1$ y $n(y)=(-1,0,\ldots,0)$ en $A_1$. Por tanto,
 	\begin{align*}
 	\int_D\int_0^1 h(\bar{x})\frac{d F_1}{d x_1}(\bar{x},sh(\bar{x}))&=\int_{B_1}\langle F(y),n(y)\rangle dy+\int_{A_1}\langle F(y),n(y)\rangle dy\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x} \\
-	&=\int_{B_1}F ds+\int_{A_1}F ds-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x}.
+	&=\int_{B_1}\langle F(y),n(y)\rangle dy+\int_{A_1}\langle F(y),n(y)\rangle dy\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x}.
 	\end{align*}
 	Sustituyendo en \eqref{eq:div-1} obtenemos
 	\begin{align*}
 	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx
-	&=\int_{A_1\cup B_1}F ds\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x}+\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh(\bar{x})h_{x_1}(\bar{x}) \ dsd\bar{x}.
+	&=\int_{A_1\cup B_1}\langle F(y),n(y)\rangle dy\\&-\int_D\int_0^1 F_1(\bar{x},sh(\bar{x}))h_{x_1}(\bar{x})dsd\bar{x}+\dfrac{\partial F_1}{\partial x_N}(\bar{x},sh(\bar{x}))sh(\bar{x})h_{x_1}(\bar{x}) \ dsd\bar{x}.
 	\end{align*}
 	
 	Por otra parte, nos damos cuenta de que
@@ -462,10 +462,26 @@ Dividiremos la demostración en tres pasos.
 	Y sustituyendo queda
 	\begin{align*}
 	\int_\Omega\frac{\partial F_1}{\partial x_1}(x)dx
-	&=\int_{A_1\cup B_1}F ds-\int_D F_1(\bar{x},h(\bar{x}))h_{x_1}(\bar{x})d\bar{x}.
+	&=\int_{A_1\cup B_1}\langle F(y),n(y)\rangle dy-\int_D F_1(\bar{x},h(\bar{x}))h_{x_1}(\bar{x})d\bar{x}.
 	\end{align*}
 	
-	TODO: ahora agrupar todos
+	Ahora agrupamos todos los términos:
+	\begin{align*}
+	\int_\Omega \operatorname{div}F(x)dx&=\sum_{k=1}^{N-1}\int_\Omega\frac{\partial F_k}{\partial x_k}(x)dx+\int_\Omega\frac{\partial F_N}{\partial x_N}(x)dx\\
+	&=\int_{A_1\cup B_1\cup\cdots\cup A_{N-1}\cup B_{N-1}}\langle F(y),n(y)\rangle dy-\int_D\sum_{k=1}^{N-1}F_k(\bar{x},h(\bar{x}))h_{x_k}(\bar{x})d\bar{x}\\
+	&+\int_{C_0}\langle F(y),n(y)\rangle dy + \int_D F_N(\bar{x},h(\bar{x}))d\bar{x} \\
+	&=\int_{\partial\Omega\backslash C_N}\langle F(y),n(y)\rangle dy+\int_D F_N(\bar{x},h(\bar{x}))-\sum_{k=1}^{N-1}F_k(\bar{x},h(\bar{x}))h_{x_k}(\bar{x}) \ d\bar{x}.
+	\end{align*}
+	Donde $C_N=\partial\Omega \backslash\left(C_0\cup A_1\cup B_1\cup\cdots\cup A_{N-1}\cup B_{N-1}\right)=\{(\bar{x},h(\bar{x})):\bar{x}\in D\}$ es la tapa de arriba del prisma, la gráfica de la función $h$. En esta superficie (la gráfica de $h$), el vector perpendicular es $(-h_{x_1},\ldots,-h_{x_{N-1}},1)$, por lo que la integral queda del siguiente modo:
+	\begin{align*}
+	\int_{C_N} \langle F(y),n(y)\rangle dy &= \int_D \langle F(\bar{x},h(\bar{x})),(-h_{x_1},\ldots,-h_{x_{N-1}},1)\rangle d\bar{x} \\
+	&=\int_D F_N(\bar{x},h(\bar{x}))-\sum_{k=1}^{N-1}F_k(\bar{x},h(\bar{x}))h_{x_k}(\bar{x}) \ d\bar{x}.
+	\end{align*}
+	Finalmente obtenemos lo requerido:
+	\begin{align*}
+	\int_\Omega \operatorname{div}F(x)dx=\int_{\partial\Omega\backslash C_N}\langle F(y),n(y)\rangle dy+\int_{C_N} \langle F(y),n(y)\rangle dy=\int_{\partial\Omega}\langle F(y),n(y)\rangle dy.
+	\end{align*}
+	
 	
 	\underline{\textbf{Caso 3: Caso general, $\Omega$ es un dominio acotado y regular}}
 	
