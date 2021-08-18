@@ -80,7 +80,7 @@
 
 \title{Principales resultados de Análisis Vectorial}
 
-\author{David Cabezas Berrido}
+%\author{David Cabezas Berrido}
 
 \date{}
 
@@ -344,7 +344,7 @@ Un dominio se dice regular si lo es en todo punto de su frontera, esto es, su fr
 
 La siguiente propiedad de los conjuntos regulares será de utilidad en la demostración del teorema.
 
-\begin{lemma}
+\begin{lemma} \label{lm:regular-despejar}
 	Si $\Omega$ es regular en un punto $z=(z_1,\ldots,z_N)\in\partial\Omega$, entonces existen una variable, pongamos $x_N$, y un entorno $W\subset\mathbb{R}^{N-1}$ de $(z_1,\ldots,z_{N-1})$, un entorno $V\subset\mathbb{R}^N$ de $z$ en $\mathbb{R}^N$, y una función de clase $C^1$ $h:W\rightarrow \mathbb{R}$ cumpliendo:
 	\begin{enumerate}[$(a)$]
 		\item Si $(x_1,\ldots,x_N)\in V$, entonces $(x_1,\ldots,x_{N-1})\in W$.
@@ -365,6 +365,9 @@ Enunciamos ya el último de los resultados más relevantes de la asignatura.
 	\[\int_{\partial\Omega}\langle F(x),n(x)\rangle dx=\int_\Omega \operatorname{div}F(x)dx.\]
 \end{theorem}
 
+Nótese, que en el caso de 3 dimensiones se tiene:
+\[\iint_{\partial\Omega} F ds=\iint_{\partial\Omega}\langle F(x),n(x)\rangle dx=\iiint_\Omega \operatorname{div}F(x)dx.\]
+
 Para la demostración requerimos la siguiente herramienta.
 
 \begin{definition}
@@ -378,7 +381,7 @@ Para la demostración requerimos la siguiente herramienta.
 
 En concreto, lo aplicaremos al siguiente caso particular.
 
-\begin{lemma}
+\begin{lemma}\label{lm:particion-subrecubrimiento}
 	Sea $\overline{\Omega}\subset\mathbb{R}^N$ compacto. Entonces, cualquier recubrimiento por abiertos de $\overline{\Omega}$ tiene un subrecubrimiento finito y una partición continua de la unidad (finita) subordinada a dicho subrecubrimiento.
 \end{lemma}
 
@@ -485,19 +488,77 @@ Dividiremos la demostración en tres pasos.
 	
 	\underline{\textbf{Caso 3: Caso general, $\Omega$ es un dominio acotado y regular}}
 	
-	TODO
-	
+	Para cada $x\in\overline{\Omega}$, tomamos un entorno $U_x$ en la topología inducida de $\overline{\Omega}$ de forma que:
+	\begin{itemize}
+		\item Si $x\in\Omega$, tomamos $U_x$ de forma que sea un hipercubo y que su frontera quede completamente dentro de $\Omega$: $x\in U_x\subset\overline{U_x}\subset\Omega$.
+		\item Si $x\in\partial\Omega$, tomamos $U_x$ como en el Caso 2: la cara que ``contiene'' a $x$ (no llega a contenerlo porque no es cerrado) será la gráfica de una función. Esto es posible gracias al Lema \ref{lm:regular-despejar}.
+	\end{itemize}
+Claramente, la familia $\{U_x:x\in\overline{\Omega}\}$ es un recubrimiento por abiertos de $\overline{\Omega}$, que es compacto. Tomamos un subrecubrimiento finito $U_1,\ldots, U_m$, y (por el Lema \ref{lm:particion-subrecubrimiento}) una partición continua de la unidad $\Phi_1,\ldots,\Phi_m$ subordinada a dicho recubrimiento.
+
+Por tanto, tomando $F_j=F\cdot \Phi_j$, se tiene $\operatorname{supp}F_j\subset U_j\ \ \forall j=1,\ldots,m$ y $\sum\limits_{j=1}^m F_j=F$.
+
+Tenemos entonces para cada $j=\ldots,m$, aplicando el teorema en los Casos 1 y 2,
+\[\int_\Omega\operatorname{div} F_j(x)dx=\int_{U_j}\operatorname{div} F_j(x)dx=\int_{\partial U_j}\langle F_j(x),n(x) \rangle dx=\int_{\partial\Omega}\langle F_j(x),n(x) \rangle dx.\] % Creo que la última igualdad no es cierta en general. Sería cierta al sumar si tomásemos una subdivisión de $\Omega$ en hipercubos disjuntos, algunos de los cuales tendrían una de sus caras como gráfica de una función. En este caso se cancelarían al sumar las integrales en las fronteras interiores (hipersuperficies con distinta ``orientación'') y quedarían las exteriores, la de $\Omega$.
+Finalmente, al agrupar todos los sumandos, obtenemos lo requerido.
 \end{proof}
 
-\subsection{Preámbulo}
+\subsection*{Ejemplo}
 
-En un regular se puede despejar en la frontera una componente en función de las demás.
+Comprobemos el teorema en un sencillo ejemplo concreto. Consideremos el campo $F(x,y)=(x-y+z,2x+y,y+6z)$ y la superficie \[S=\big\{(x,y,z)\in\mathbb{R}^3: x^2+y^2\leq 1, \  z\in\{\sqrt{1-x^2-y^2},0\}\big\},\]
+que corresponde a la mitad superior de la esfera unidad tapada por abajo. $\Omega$ denorará a la región que encierra $S$.
 
-Particiones continuas de la unidad, caso compacto (cierre de acotado)
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=80mm]{images/superficie-ejemplo-divergencia}
+\end{figure}
 
-\subsection{Resultado pricipal}
+Por una parte tenemos $\operatorname{div}F(x,y,z)=1+2+6=8$. Como es constante, el valor de la integral en la parte superior de la bola será su producto por el volumen:
+\[\int_\Omega\operatorname{div}F dv=8\cdot \frac{2}{3}\pi 1^3=\frac{16}{3}\pi.\]
+Ahora calcularemos el flujo saliente a través de la superficie $S$, este será la suma del flujo saliente a través de la semiesfera superior ($S_1$) y la tapa de abajo ($S_2$).
 
-TODO: pag 26
+En el caso de $S_2$, la normal exterior es $(0,0,-1)$. Utilizamos la parametrización por polares.
+\begin{gather*}
+(\rho,\theta)\in[0,1]\times[0,2\pi];\quad (x,y,z)=\Phi(\rho,\theta)=\big(\rho\cos \theta, \rho\sin\theta, 0\big)
+\end{gather*}
+
+\[\iint_{S_2}\langle F,n\rangle ds=\int_0^1\int_0^{2\pi}\langle F(\rho \cos\theta, \rho \sin\theta,0),(0,0,-1)\rangle d\theta d\rho=-\int_0^1\int_0^{2\pi}\rho\sin\theta d\theta d\rho=0.\]
+
+Por otra parte, para $S_1$ tenemos:
+\begin{gather*}
+(\rho,\theta)\in[0,1]\times[0,2\pi];\quad (x,y,z)=\Phi(\rho,\theta)=\big(\rho\cos \theta, \rho\sin\theta, \sqrt{1-\rho^2}\big).
+\end{gather*}
+Calculamos el vector $\Phi_\rho\times \Phi_\theta=\left(\cos\theta,\sin\theta,\frac{-\rho}{\sqrt{1-\rho^2}}\right)\times (-\rho\sin\theta,\rho\cos\theta,0)$ haciendo el producto vectorial y obtenemos
+\[\Phi_\rho\times \Phi_\theta=\left(\frac{\rho^2\cos\theta}{\sqrt{1-\rho^2}},\frac{\rho^2\sin\theta}{\sqrt{1-\rho^2}},\rho\right)=\frac{\rho}{\sqrt{1-\rho^2}}\Phi(\rho,\theta).\]
+
+La integral de superficie queda entonces:
+
+\begin{align*}
+\iint_{S} F ds&=\int_0^1\int_0^{2\pi}\Big\langle \big(\rho\cos \theta-\rho\sin\theta+\sqrt{1-\rho^2},2\rho\cos \theta+\rho\sin\theta,\rho\sin\theta+6\sqrt{1-\rho^2}\big), \\ &~\hspace{21.5mm}\big(\rho\cos \theta, \rho\sin\theta, \sqrt{1-\rho^2}\big)\Big\rangle \frac{\rho}{\sqrt{1-\rho^2}} d\theta d\rho \\ 
+&=\int_0^1\int_0^{2\pi}\frac{\rho}{\sqrt{1-\rho^2}}\Big(\rho^2\cos^2\theta-\rho^2\sin\theta\cos\theta +\rho\cos\theta\sqrt{1-\rho^2}  \\
+&+2\rho^2\sin\theta\cos\theta+\rho^2\sin^2\theta+\rho\sqrt{1-\rho^2}\sin\theta+6(1-\rho^2)\Big)d\theta d\rho.
+\end{align*}
+Sabemos por experiencia que cada uno de los sumandos $\rho\cos\theta\sqrt{1-\rho^2}$, $\rho^2\sin\theta\cos\theta$, $2\rho^2\sin\theta\cos\theta$ y $\rho\sqrt{1-\rho^2}\sin\theta$ se anularán al integrar respecto de $\theta$ entre $0$ y $2\pi$, por tanto podemos simplificar:
+\begin{align*}
+\iint_{S} F ds&=\int_0^1\int_0^{2\pi}\frac{\rho}{\sqrt{1-\rho^2}}(\rho^2+6-6\rho^2)d\theta d\rho\\
+&=2\pi\int_0^1\frac{\rho}{\sqrt{1-\rho^2}}(6-5\rho^2) d\rho.
+\end{align*}
+Resolvemos las integrales por separado:
+
+Para la primera hacemos el cambio $u=1-\rho^2$, $du=-2\rho d\rho$.
+\begin{align*}
+\int_0^1\frac{\rho}{\sqrt{1-\rho^2}}d\rho=\int_1^0 \frac{\rho}{\sqrt{u}}\frac{du}{-2\rho}=\int_0^1\frac{du}{2\sqrt{u}}=\left[\sqrt{u}\right]_0^1=1.
+\end{align*}
+
+La segunda la resolvemos con el cambio $u=\sqrt{1-\rho^2}$, $u^2=1-\rho^2$, $2udu=-2\rho d\rho$, luego $udu=-\rho d\rho$.
+\begin{align*}
+\int_0^1\frac{\rho^3}{\sqrt{1-\rho^2}}d\rho=\int_1^0 \frac{\rho^3}{u}\frac{udu}{-\rho}=\int_0^1\rho^2 du=\int_0^1 1-u^2 du=1-\frac{1}{3}=\frac{2}{3}.
+\end{align*}
+
+Obtenemos finalmente, 
+\begin{align*}
+\iint_{S} F ds&=2\pi\Big(6\cdot 1-5\cdot \frac{2}{3}\Big)=\frac{16}{3}\pi.
+\end{align*}
+Hemos comprobado que en este caso se satisface el teorema.
 
 \end{document}
 
