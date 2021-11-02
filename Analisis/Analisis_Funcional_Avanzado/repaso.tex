@@ -88,11 +88,20 @@ En el contexto de espacios de Banach:
 
 \textbf{Soluci\'on:}
 
-A lo largo del ejercicio, $X$ e $Y$ serán dos espacios de Banach y $T:X\rightarrow Y$ una aplicación lineal continua.
+A lo largo del ejercicio, $X$ e $Y$ serán dos espacios de Banach y $T:X\rightarrow Y$ una aplicación lineal.
 
 \begin{enumerate}
-	\item Supongamos que $T$ es sobreyectiva, debemos probar que es abierta. Como $T$ es continua, $\ker(T)$ es cerrado en $Y$, luego el cociente $X/\ker(T)$ es un espacio de Banach. La descomposición canónica nos asegura que la aplicación $\tilde{T}:X/\ker(T)\rightarrow T(X)=Y$ dada por $\tilde{T}(x+\ker(T))=T(x)$ es una biyección lineal continua. Por el teorema de los isomorfismos de Banach, $\tilde{T}$ es un isomorfismo, en particular abierta.
-	\item 
+	\item Supongamos que $T$ es continua y sobreyectiva, debemos probar que es abierta. Como $T$ es continua, $\ker(T)$ es cerrado en $X$. Al ser $X$ completo, el cociente $X/\ker(T)$ es un espacio de Banach. La descomposición canónica nos asegura que la aplicación $\tilde{T}:X/\ker(T)\rightarrow T(X)=Y$ dada por $\tilde{T}(x+\ker(T))=T(x)$ es una biyección lineal continua. Por el teorema de los isomorfismos de Banach $\tilde{T}$ es un isomorfismo, en particular abierta. Como $T$ es la composición de $\tilde{T}$ con la proyección cociente (que siempre es abierta), concluimos que $T$ es abierta.
+	
+	\smallskip
+	
+	\item Supongamos ahora que $T$ tiene gráfica cerrada, debemos probar que es continua. Como $\operatorname{Gr}T$ es un subespacio cerrado del espacio de Banach $X\times Y$ (producto de Banach), $\operatorname{Gr}T$ es Banach. Consideramos la aplicación $\Phi:\operatorname{Gr}T\rightarrow X$ dada por $\Phi(x,T(x))=x$, que es continua (es una proyección) y claramente sobreyectiva, luego el teorema de la aplicación abierta nos garantiza que $\Phi$ es abierta. La función $\Phi$ es biyectiva con $\Phi^{-1}(x)=(x,T(x))$, y el hecho de que $\Phi$ sea abierta nos dice que $\Phi^{-1}$ es continua. Concluimos que $T$ es continua por ser una componente de $\Phi^{-1}$.
+	
+	\smallskip
+	
+	\item Supongamos que $T$ es continua y biyectiva, debemos probar que es un isomorfismo, es decir, que $T^{-1}:Y\rightarrow X$ es continua. En vista del teorema de la gráfica cerrada, nos basta con comprobar que $\operatorname{Gr}T^{-1}$ es un subconjunto cerrado de $Y\times X$. Usando que $T$ es una biyección obtenemos
+	\[\operatorname{Gr}T^{-1}=\{(y,T^{-1}(y)):y\in Y\}=\{(T(x),x):x\in X\}.\]
+	Observamos que $\operatorname{Gr}T^{-1}$ es la imagen de $\operatorname{Gr}T$ por el isomorfismo de $X\times Y$ en $Y\times X$ dado por $(x,y)\mapsto(y,x)$. Como $T$ es continua, $\operatorname{Gr}T$ es cerrada en $X\times Y$, luego $\operatorname{Gr}T^{-1}$ es cerrada en $Y\times X$.
 \end{enumerate}
 
 \bigskip
