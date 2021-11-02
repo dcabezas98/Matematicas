@@ -1,0 +1,145 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+
+\def\diam{\mathrm{diam}}
+\def\dom{\mathrm{dom}}
+\def\card{\mathrm{card}}
+\def\Re{\mathrm{Re}}
+\def\Im{\mathrm{Im}}
+\def\lin{\mathrm{lin}}
+\def\dim{\mathrm{dim}}
+\def\codim{\mathrm{codim}}
+\def\co{\mathrm{co}}
+\def\Int{\mathrm{Int}}
+
+\usepackage{vmargin}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+\begin{document}
+
+\begin{center}
+\textbf{Problemas de An\'{a}lisis Funcional Avanzado}
+
+\textbf{Tema 1: Principios fundamentales del An\'{a}lisis Funcional (repaso)}
+
+\bigskip
+
+David Cabezas Berrido
+
+\end{center}
+
+\bigskip
+
+\textbf{Ejercicio 1:} Sean $X$ e $Y$ espacios de Banach y $T\colon X\to Y$ una aplicaci\'{o}n lineal y continua. Pruebe que las siguientes afirmaciones son equivalentes:
+\begin{enumerate}
+	\item $\ker(T)=\{0_X\}$ y $T(X)$ es cerrado en $Y$.
+	\item Existe una constante $\alpha>0$ tal que $\alpha \left\|x\right\|\leq\left\|T(x)\right\|$ para todo $x\in X$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+	Supongamos (1) y consideremos $T$ como una aplicación sobreyectiva sobre su imagen, $T:X\rightarrow T(X)$. Además, la condición $\ker(T)=\{0_X\}$ nos dice que $T$ es inyectiva, luego tenemos una biyección. Por otra parte, al ser $T(X)$ un subespacio cerrado de un espacio completo $Y$, deducimos que $T(X)$ es también un espacio de Banach.
+	
+	Aplicando el teorema de los isomorfismos de Banach concluimos que $T:X\rightarrow T(X)$ es un isomorfismo, por tanto $T^{-1}:T(X)\rightarrow X$ es continua. Esto equivale a que exista $M>0$ tal que
+	\[\|T^{-1}(y)\|\leq M\|y\|\quad\forall y\in T(X).\]
+	
+	Como $T:X\rightarrow T(X)$ es una biyección, decir $y\in T(X)$ es tan arbitrario como decir $T(x)$ con $x\in X$, luego tenemos
+	\[\|x\|=\|T^{-1}(T(x))\|\leq M\|T(x)\|\quad\forall x\in X.\]
+	Tomando $\alpha=M^{-1}>0$ obtenemos la condición deseada, (2).
+	
+	\smallskip
+	
+	Para la implicación inversa, la desigualdad en (2) nos dice que si $x\in\ker(T)$, entonces $\alpha\|x\|\leq\|T(x)\|=0$, lo que fuerza (por ser $\alpha>0$) que $x=0$. Concluimos que $\ker(T)=\{0\}$ y que $T:X\rightarrow T(X)$ es una biyección.
+	
+	Ahora tomamos una sucesión convergente cualquiera $\{y_n\}\to y\in Y$ de elementos de $T(X)$, nuestro objetivo es probar que $y\in T(X)$. Sea $\{x_n\}$ la sucesión de elementos de $X$ definida por $x_n=T^{-1}(y_n)$, la condición (2) nos dice que
+	\[\|x_n-x_m\|\leq \alpha^{-1}\|T(x_n-x_m)\|=\alpha^{-1}\|y_n-y_m\| \quad\forall n,m\in\mathbb{N}.\]
+	La sucesión $\{y_n\}$ es convergente y por tanto de Cauchy, luego la desigualdad anterior nos asegura que $\{x_n\}$ también es de Cauchy. Como $X$ es completo, existe $x\in X$ tal que $\{x_n\}\to x$. Finalmente, la continuidad de $T$ nos permite deducir que
+	\[T(x)=T\left(\lim\limits_{n\to\infty}x_n\right)=\lim\limits_{n\to\infty}y_n=y.\]
+	Concluimos que $y\in T(X)$, y de la arbitrariedad de la sucesión llegamos a que $T(X)$ es cerrado en $Y$.
+
+\bigskip
+
+\textbf{Ejercicio 2:}
+En el contexto de espacios de Banach:
+\begin{enumerate}
+\item Pruebe el teorema de la aplicaci\'{o}n abierta usando el teorema de los isomorfismos de Banach.
+\item Demuestre el teorema de la gr\'{a}fica cerrada usando el teorema de la aplicaci\'{o}n abierta.
+\item Pruebe el teorema de los isomorfismos de Banach usando el teorema de la gr\'{a}fica cerrada.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+A lo largo del ejercicio, $X$ e $Y$ serán dos espacios de Banach y $T:X\rightarrow Y$ una aplicación lineal continua.
+
+\begin{enumerate}
+	\item Supongamos que $T$ es sobreyectiva, debemos probar que es abierta. Como $T$ es continua, $\ker(T)$ es cerrado en $Y$, luego el cociente $X/\ker(T)$ es un espacio de Banach. La descomposición canónica nos asegura que la aplicación $\tilde{T}:X/\ker(T)\rightarrow T(X)=Y$ dada por $\tilde{T}(x+\ker(T))=T(x)$ es una biyección lineal continua. Por el teorema de los isomorfismos de Banach, $\tilde{T}$ es un isomorfismo, en particular abierta.
+	\item 
+\end{enumerate}
+
+\bigskip
+
+\textbf{Ejercicio 3:} Sea $\left\{y(n)\right\}_{n\in\N}$ una sucesi\'{o}n de n\'umeros reales o complejos tal que la serie $\sum_{n\in\N}x(n)y(n)$ es convergente para toda sucesi\'{o}n $\left\{x(n)\right\}_{n\in\N}\in c_0$. Compruebe que la serie $\sum_{n\in\N}\left|y(n)\right|$ converge.
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+\bigskip
+
+\textbf{Ejercicio 4:} 
+Sean $X$ e $Y$ espacios normados y $x_0\in X\backslash \{0_X\}$. Dado $y_0\in Y$, pruebe que existe $T\in L(X,Y)$ tal que $T(x_0)=y_0$ y $\left\|T\right\| \left\| x_0\right\| =\left\| y_0\right\| $.
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+\bigskip
+
+\textbf{Ejercicio 5:} 
+Sea $X$ un espacio normado separable. Pruebe que existe un subconjunto numerable de $X^{*}$ que separa los puntos de $X$.
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+\bigskip
+
+\textbf{Ejercicio 6:} 
+Sea $X$ un espacio de Banach, $Y$ un espacio normado y $T\colon X\to Y$ una aplicaci\'{o}n lineal. Se define una nueva norma en $X$ mediante la expresi\'{o}n: 
+\[
+\Vert x\Vert _1=\Vert x\Vert +\Vert T(x)\Vert ,\quad \forall x\in X.
+\]
+Pruebe que las siguientes afirmaciones son equivalentes:
+\begin{enumerate}
+\item  $T$ es continua.
+\item  $\Vert \cdot \Vert _1$ es equivalente a $\Vert \cdot \Vert $.
+\item  $\Vert \cdot \Vert _1$ es una norma completa.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+\bigskip
+
+\end{document}
+
