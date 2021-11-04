@@ -112,6 +112,15 @@ A lo largo del ejercicio, $X$ e $Y$ serán dos espacios de Banach y $T:X\rightarr
 
 \textbf{Soluci\'on:}
 
+Comenzamos considerando para cada $n\in\mathbb{N}$ el funcional $f_n:c_0\rightarrow\mathbb{K}$ dado por
+\[f_n(x)=\sum_{k=1}^n x(k)y(k),\quad \forall x\in c_0.\] Claramente cada $f_n$ es un funcional lineal, y comprobamos que es continuo con $\|f_n\|=\sum\limits_{k=1}^n|y(k)|$:
+para cada $x\in c_0$ tenemos
+\[|f_n(x)|\leq\sum_{k=1}^n |x(k)| |y(k)|\leq \sum_{k=1}^n \|x\| |y(k)|=\|x\|\sum\limits_{k=1}^n|y(k)|,\]
+pero tomando $x(k)=\frac{\overline{y(k)}}{|y(k)|}$ para $k\leq n$ y $x(k)=0$ para $k>n$ se obtiene la igualdad en la expresión anterior.
+
+La hipótesis de partida nos dice justamente que la familia de funcionales $\{f_n:n\in\mathbb{N}\}\subset c_0^*$ está puntualmente acotada en $c_0$, y el principio de acotación uniforme para espacios de Banach ($c_0$ es Banach) nos permite concluir que dicha familia está acotada en norma, luego el conjunto $\{\|f_n\|:n\in\mathbb{N}\}$ está acotado. Esto quiere decir que las sumas parciales de la serie $\sum_{n\in\N}\left|y(n)\right|$ están acotadas, y por monotonía deducimos que la serie converge.
+
+
 \bigskip
 
 \textbf{Ejercicio 4:} 
@@ -120,6 +129,15 @@ Sean $X$ e $Y$ espacios normados y $x_0\in X\backslash \{0_X\}$. Dado $y_0\in Y$
 \bigskip
 
 \textbf{Soluci\'on:}
+
+Como $x_0\neq 0$, $\mathbb{K}x_0$ es un subespacio de dimensión 1 de $X$. Definimos el funcional $g(\lambda x_0)=\lambda$ para cada $\lambda\in\mathbb{K}$, claramente se tiene $g\in(\mathbb{K}x_0)^*$. La igualdad
+\[|g(\lambda x_0)|=|\lambda|=\|\lambda x_0\|\frac{1}{\|x_0\|}\]
+asegura que $\|g\|=\frac{1}{\|x_0\|}$, y además que la norma se alcanza en cada punto de $\mathbb{K}x_0$. Utilizando el teorema de extensión Hahn-Banach para espacios normados encontramos un funcional $f\in X^*$ tal que $f(\lambda x_0)=\lambda$ para cada $\lambda\in\mathbb{K}$ y $\|f\|=\|g\|=\frac{1}{\|x_0\|}$.
+
+Definimos ahora $T:X\rightarrow Y$ por $T(x)=f(x)y_0$, claramente $T\in L(X,Y)$. Tenemos $T(x_0)=f(1\cdot x_0)y_0=1\cdot y_0$, además
+\[\|T(x)\|=|f(x)|\|y_0\|\leq \|f\|\|x\|\|y_0\|=\|x\|\frac{\|y_0\|}{\|x_0\|},\]
+luego $\|T\|\leq\|f\|\|y_0\|=\frac{\|y_0\|}{\|x_0\|}$. La igualdad se alcanza precisamente en $x_0$ (de hecho en todo $\mathbb{K}x_0$):
+\[\|T(x_0)\|=\|y_0\|=\|x_0\|\frac{\|y_0\|}{\|x_0\|}.\]
 
 \bigskip
 
