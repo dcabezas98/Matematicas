@@ -148,6 +148,14 @@ Sea $X$ un espacio normado separable. Pruebe que existe un subconjunto numerable
 
 \textbf{Soluci\'on:}
 
+Sea $E$ un subconjunto denso numerable de $X$. Si $X$ es trivial no hay nada que demostrar, en otro caso para cada $x\in E$ existe (como consecuencia del teorema de Hahn-Banach) $f_x\in X^*$ tal que $\|f_x\|=1$ y $f_x(x)=\|x\|$.
+
+Dados $z,y\in X$ con $z\neq y$, tenemos $z-y\neq 0$. Tomamos $\varepsilon=\|z-y\|>0$, por la densidad existe $x\in E$ tal que $\|x-(z-y)\|<\frac{\varepsilon}{3}$, luego $\|x\|=\|x-(z-y)+(z-y)\|\geq \|z-y\|-\|x-(z-y)\|>\varepsilon-\frac{\varepsilon}{3}=\frac{\varepsilon}{2}$.
+
+Por tanto, $|f_x(z-y)|=|f_x((z-y)-x)+f_x(x)|\geq |f_x(x)|-|f_x((z-y)-x)|\geq\|x\|-\|f_x\|\|(z-y)-x\|>\frac{\varepsilon}{2}-1\cdot\frac{\varepsilon}{3}>0$. Lo cual implica que $f_x(z)\neq f_x(y)$.
+
+Hemos probado que dados dos puntos diferentes de $X$, existe un funcional del conjunto $\{f_x:x\in E\}\subset X^*$ que los separa. La numerabilidad de $E$ nos asegura que $\{f_x:x\in E\}$ es el subconjunto que buscamos.
+	
 \bigskip
 
 \textbf{Ejercicio 6:} 
@@ -166,7 +174,29 @@ Pruebe que las siguientes afirmaciones son equivalentes:
 
 \textbf{Soluci\'on:}
 
-\bigskip
+Probaremos que tanto (3) como (1) son equivalentes a (2).
+
+\smallskip
+
+Si ambas normas son equivalentes, dan lugar a las mismas sucesiones convergentes y a las mismas sucesiones de Cauchy, luego la complitud de una de ellas implica la de la otra. Por tanto, es claro que (2) implica (3).
+
+\smallskip
+
+Supongamos (3). Como las normas $\|\cdot\|_1$ y $\|\cdot\|$ son ambas completas, para ver que son equivalentes basta probar que son comparables en vista de un corolario del teorema de los isomorfismos de Banach. Pero esto es obvio, ya que $\|x\|_1\geq\|x\|$ para cada $x\in X$. Tenemos así (2).
+
+\smallskip
+
+Ahora supondremos (2) y probaremos (1). Si ambas normas son equivalentes, debe existir una constante $M>0$ tal que
+\[\|x\|+\|T(x)\|=\|x\|_1\leq M \|x\|\]
+para cada $x\in X$. Tenemos entonces para todo $x\in X$
+\[\|T(x)\|\leq (M-1)\|x\|,\]
+lo que prueba que $T$ es continua con $\|T\|\leq M-1$.
+
+\smallskip
+
+Falta comprobar que (1) implica (2). Si $T$ es continua, existe una constante $M>0$ tal que $\|T(x)\|\leq M\|x\|$ para todo $x\in X$. Luego
+\[\|x\|\leq \|x\|_1=\|x\|+\|T(x)\|\leq \|x\|+M \|x\|=(M+1)\|x\|\]
+para cada $x\in X$. Obtenemos así (2).
 
 \end{document}
 

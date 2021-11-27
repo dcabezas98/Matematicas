@@ -1,0 +1,76 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\usepackage{parskip}
+
+\def\diam{\mathrm{diam}}
+\def\dom{\mathrm{dom}}
+\def\card{\mathrm{card}}
+\def\Re{\mathrm{Re}}
+\def\Im{\mathrm{Im}}
+\def\lin{\mathrm{lin}}
+\def\dim{\mathrm{dim}}
+\def\codim{\mathrm{codim}}
+\def\co{\mathrm{co}}
+\def\Int{\mathrm{Int}}
+
+\setlength{\parindent}{0mm}
+
+\usepackage{vmargin}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+\begin{document}
+
+\begin{center}
+\textbf{Problemas de An\'{a}lisis Funcional Avanzado}
+
+\textbf{Tema 2: Espacios localmente convexos. \\
+	Teorema de Krein-Milman}
+
+\smallskip
+
+David Cabezas Berrido
+
+\end{center}
+
+\smallskip
+
+\textbf{Ejercicio 1:} 
+
+\smallskip
+
+Sea $X$ un espacio vectorial sobre $\mathbb{C}$, $X'$ su dual algebraico y $X_\mathbb{R}$, $(X')_\mathbb{R}$ los correspondientes espacios reales subyacentes. Prueba que la aplicación $f\mapsto\Re f$ es una biyección $\mathbb{R}$-lineal de $(X')_\mathbb{R}$ en $(X_\mathbb{R})'$.
+
+
+\textbf{Soluci\'on:}
+
+Si $f\in (X')_\mathbb{R}$, en particular $f\in X'$ (son idénticos como conjuntos), luego $f(\lambda x+y)=\lambda f(x)+f(y)$ para cada $\lambda\in\mathbb{C}$ y $x,y\in X$. Podemos escribir $f$ como $f=\Re f+i\Im f$, de modo que $\Re f(\lambda x+y)+i\Im f(\lambda x+y)=\lambda(\Re f(x)+i\Im f(x))+\Re f(y)+i\Im f(y)$ para cada $\lambda\in\mathbb{C}$ y $x,y\in X$. En el caso de que $\lambda$ sea real tendremos $\Re f(\lambda x+y)=\lambda\Re f(x)+\Re f(y)$, lo que demuestra ($\lambda\in\mathbb{R}$ y $x,y\in X$ son arbitrarios) que $\Re f\in (X_\mathbb{R})'$.
+
+Dado $g\in (X_\mathbb{R})'$, tomando $f(x):=g(x)-ig(ix)$ para cada $x\in X$ se tiene
+\begin{align*}
+f(\lambda x+y)&=g(\lambda x+y)-ig(i\lambda x+iy)=\lambda g(x)+g(y)-i(\lambda g(ix)+g(iy)) \\
+&=\lambda g(x)-\lambda ig(ix)+g(y)-ig(iy)=\lambda f(x)+f(y)
+\end{align*}
+para $x,y\in X$ y $\lambda\in\mathbb{R}$. Esto demuestra que $f$ es $\mathbb{R}$-lineal, pero además
+\[f(ix)=g(ix)-ig(-x)=i(-i)g(ix)+ig(x)=i(g(x)-ig(ix))=if(x)\]
+para cada $x\in X$. Concluimos que $f$ es ($\mathbb{C}$-)lineal y por tanto $f\in X'=(X')_\mathbb{R}$ (como conjuntos). Como es claro que $\Re f=g$, deducimos que la aplicación es sobreyectiva.
+
+La identidad $\Im f(x)=\Re(-i f(x))=-\Re f(ix)$ sugiere que $f$ viene unívocamente determinado por su parte real, luego en realidad tenemos una biyección.
+
+Finalmente, es claro que la función parte real es $\mathbb{R}$-lineal.
+
+\smallskip
+
+\textbf{Ejercicio 2:}
+\smallskip
+
+\end{document}
+
