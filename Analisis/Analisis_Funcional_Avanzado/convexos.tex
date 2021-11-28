@@ -4,6 +4,7 @@
 \usepackage[latin1]{inputenc}
 
 \usepackage{parskip}
+\usepackage{enumerate}
 
 \def\diam{\mathrm{diam}}
 \def\dom{\mathrm{dom}}
@@ -49,7 +50,6 @@ David Cabezas Berrido
 
 Sea $X$ un espacio vectorial sobre $\mathbb{C}$, $X'$ su dual algebraico y $X_\mathbb{R}$, $(X')_\mathbb{R}$ los correspondientes espacios reales subyacentes. Prueba que la aplicación $f\mapsto\Re f$ es una biyección $\mathbb{R}$-lineal de $(X')_\mathbb{R}$ en $(X_\mathbb{R})'$.
 
-
 \textbf{Soluci\'on:}
 
 Si $f\in (X')_\mathbb{R}$, en particular $f\in X'$ (son idénticos como conjuntos), luego $f(\lambda x+y)=\lambda f(x)+f(y)$ para cada $\lambda\in\mathbb{C}$ y $x,y\in X$. Podemos escribir $f$ como $f=\Re f+i\Im f$, de modo que $\Re f(\lambda x+y)+i\Im f(\lambda x+y)=\lambda(\Re f(x)+i\Im f(x))+\Re f(y)+i\Im f(y)$ para cada $\lambda\in\mathbb{C}$ y $x,y\in X$. En el caso de que $\lambda$ sea real tendremos $\Re f(\lambda x+y)=\lambda\Re f(x)+\Re f(y)$, lo que demuestra ($\lambda\in\mathbb{R}$ y $x,y\in X$ son arbitrarios) que $\Re f\in (X_\mathbb{R})'$.
@@ -72,5 +72,76 @@ Finalmente, es claro que la función parte real es $\mathbb{R}$-lineal.
 \textbf{Ejercicio 2:}
 \smallskip
 
-\end{document}
+Sean $X$ e $Y$ espacios vectoriales y $g:X\rightarrow Y$ una aplicación. Prueba que las siguientes afirmaciones son equivalentes:
+\begin{enumerate}[i)]
+	\item $g$ es afín.
+	\item Existe una aplicación $\mathbb{R}$-lineal $f:X\rightarrow Y$ y un vector $b\in Y$ tales que $g(x)=f(x)+b$ para todo $x\in X$.
+\end{enumerate}
 
+\textbf{Soluci\'on:}
+
+Supongamos primero (ii). Dados $x,y\in X$ y $t\in[0,1]$, tenemos
+\begin{align*}
+g((1-t)x+ty)&=f((1-t)x+ty)+b=(1-t)f(x)+tf(y)+(1-t)b+tb\\&=(1-t)(f(x)+b)+t(f(y)+b)=(1-t)g(x)+tg(y),
+\end{align*}
+lo que demuestra que $g$ es afín.
+
+Suponiendo (i), tomamos $f:X\rightarrow Y$ dada por $f(x)=g(x)-g(0)$. Sólo necesitamos probar que $f$ es $\mathbb{R}$-lineal.
+ Primero comprobamos que $f$ preserva el producto por escalares de $[0,1]$, sean $x\in X$ y $t\in[0,1]$:
+ \begin{align*}
+f(tx)=g(tx)-g(0)=g(tx+(1-t)0)-g(0)=tg(x)+(1-t)g(0)-g(0)=tg(x)-tg(0)=tf(x).
+\end{align*}
+Ahora vemos que $f$ separa sumas. Si $x,y\in X$, tenemos
+\begin{align*}
+f(x+y)&=g\Big(\frac{2x+2y}{2}\Big)-g(0)=\frac{1}{2}g(2x)+\frac{1}{2}g(2y)-\frac{1}{2}g(0)-\frac{1}{2}g(0) \\
+&=\frac{1}{2}f(2x)+\frac{1}{2}f(2y)=f(x)+f(y),
+\end{align*}
+donde hemos aplicado lo anterior para cancelar los $\frac{1}{2}$ de fuera con los $2$ de dentro de $f$.
+
+Utilizando la aditividad un número arbitrario de veces podemos concluir que $f(nx)=nf(x)$ para cada $n\in\mathbb{N}\cup\{0\}$ y $x\in X$. Todo real positivo $r\in\mathbb{R}^+$ se puede escribir como $r=n+t$ con $n\in\mathbb{N}\cup\{0\}$ y $t\in[0,1]$. Por tanto,
+\[f(rx)=f(nx+tx)=f(nx)+f(tx)=nf(x)+tf(x)=rf(x),\] lo que demuestra que $f$ preserva homotecias de razón positiva.
+Finalmente, la igualdad
+\[0=f(0)=f(x+(-x))=f(x)+f(-x)\]
+lleva a $f(-x)=-f(x)$ para todo $x\in X$. Concluimos así que $f$ es $\mathbb{R}$-lineal.
+
+\smallskip
+
+\textbf{Ejercicio 3:}
+\smallskip
+
+Sea $X$ un espacio vectorial, $n$ un natural, $B_j$ con subconjunto convexo de $X$ para todo $j\in\{1,\ldots,n\}$ y $B=\bigcup_{j=1}^n B_j$. Prueba que
+\[\co(B)=\left\{\sum_{j=1}^n t_j x_j: t_j\in[0,1], \ x_j\in B_j \ \forall j=1,\ldots,n, \ \sum_{j=1}^n t_j=1\right\}.\]
+Observa como consecuencia que si $b_1,\ldots,b_n$ son elementos de $X$,
+\[\co(\{b_1,\ldots, b_n\})=\left\{\sum_{j=1}^n t_j b_j: t_j\in[0,1] \ \forall j=1,\ldots,n, \ \sum_{j=1}^n t_j=1\right\}.\]
+
+\textbf{Soluci\'on:}
+
+La segunda igualdad es un caso particular en la que cada $B_j$ se reduce a un punto, por lo que basta con demostrar la primera.
+Además, la inclusión hacia la derecha ($\supset$) es trivial por la Proposición 3.1.1, ya que cada $B_j$ está contenido en $B$.
+
+Dado $x\in \co(B)$, podemos escribir $x=\sum_{i=1}^m \lambda_i y_i$ con $m\in\mathbb{N}$, $\lambda_i\in[0,1]$, $y_i\in B$ para cada $i=1,\ldots,m$ (Proposición 3.1.1) y $\sum_{i=1}^m \lambda_i=1$.
+Nuestro objetivo es escribir $x$ con $n$ sumandos cada uno en un conjunto $B_j$ y manteniendo la misma condición sobre los pesos (deben ser no negativos y sumar 1).
+
+Supongamos que hubiese dos elementos $y_i,y_{i'}\in B$ con $i,i'\in\{1,\ldots,m\}$, $i\neq i'$, y $y_i,y_{i'}\in B_j$ para algún $j=1,\ldots,n$. Reordenando y renombrando si es preciso, podemos suponer que son $y_{m-1},y_m\in B_j$. Por la convexidad de $B_j$ tenemos
+\[y:=\frac{\lambda_{m-1}}{\lambda_{m-1}+\lambda_m}y_{m-1}+\frac{\lambda_m}{\lambda_{m-1}+\lambda_m}y_m\in B_j\subset B,\]
+y podemos escribir
+\[x=\sum_{i=1}^{m-2} \lambda_i y_i+(\lambda_{m-1}+\lambda_m)y.\]
+Hemos expresado $x$ utilizando un sumando menos y es obvio que se sigue cumpliendo la condición sobre los nuevos puntos y pesos.
+
+Podemos repetir este proceso siempre que existan dos índices distintos tales que los puntos correspondientes están en un mismo $B_j$, de modo que en un número finito de pasos llegaríamos a expresar $x$ como una combinación convexa en la que cada $y_i$ pertenece a un único $B_i$, lo que forzaría a que esa combinación tuviese como máximo $n$ sumandos. En caso de haber menos, podríamos añadir nuevos elementos a la combinación otorgándoles peso 0, de forma que todos los $B_j$ tengan (como mínimo) un representante.
+
+\pagebreak
+
+\textbf{Ejercicio 4:}
+\smallskip
+
+Sea $X$ un espacio vectorial y $\mathcal{B}$ una familia no vacía de subconjuntos absorbentes y equilibrados de $X$ de modo que
+\begin{enumerate}[i)]
+	\item $\forall U,V\in\mathcal{B}, \ \exists W\in \mathcal{B}: W\subset U\cap V$.
+	\item $\forall U\in\mathcal{B}, \ \exists V\in \mathcal{B}: V+V\subset U$.
+\end{enumerate}
+Prueba que existe una única topología vectorial en $X$ con respecto a la cual $\mathcal{B}$ es una base de entornos de cero.
+
+\textbf{Soluci\'on:}
+
+\end{document}
