@@ -153,6 +153,40 @@ Veamos ahora que $\mathcal{T}$ es una topología vectorial. Fijamos un punto $(x,
 Para el producto por escalares fijamos un punto $(\lambda, x)\in \mathbb{K}\times X$. Cualquier entorno del punto $\lambda x$ contendrá un conjunto de la forma $\lambda x+U$ con $U\in\mathcal{B}$. Asumiré que he encontrado $V\in\mathcal{B}$ y $\varepsilon>0$ tales que $(\lambda+\varepsilon\mathbb{D})(x+V)\subset \lambda x+U$ y veré qué tienen que cumplir. En caso de existir dichos $V$ y $\varepsilon$ quedará probada la continuidad del producto por escalares y concluiremos la demostración.
 \[(\lambda+\varepsilon\mathbb{D})(x+V)\subset \lambda x+\lambda V+\varepsilon\mathbb{D}x+\varepsilon\mathbb{D}V,\]
 luego necesito $\lambda V+\varepsilon\mathbb{D}x+\varepsilon\mathbb{D}V\subset U$. Utilizando (ii) inductivamente puedo conseguir $V\in\mathcal{B}$ cumpliendo $nV+V+V\subset \sum\limits_{j=1}^{n+2}V\subset U$ para $n\geq|\lambda|$. Por ser $V$ equilibrado tengo
-\[\lambda V=\lambda\mathbb{D}V=|\lambda|\mathbb{D}V=\subset n \mathbb{D}V=nV.\]
+\[\lambda V=\lambda\mathbb{D}V=|\lambda|\mathbb{D}V\subset n \mathbb{D}V=nV.\]
 Por otra parte, si tomo $\varepsilon\leq 1$ y uso que $V$ es equilibrado obtengo $\varepsilon\mathbb{D}V\subset \mathbb{D}V=V$. Sólo falta ver si $\varepsilon\mathbb{D}x\subset V$. Como $V$ es absorbente tengo $r\in\mathbb{R}^+$ tal que $rx\in V$, y siempre que $\varepsilon\leq r$ tendremos \[\varepsilon\mathbb{D}x\subset r\mathbb{D}x= \mathbb{D}rx\subset \mathbb{D}V=V.\]
+
+\textbf{Ejercicio 5:}
+\smallskip
+
+Sea $\varphi:X\rightarrow\mathbb{R}$ una pseudonorma. Probar
+\begin{enumerate}[a)]
+	\item $\varphi(0)=0$.
+	\item $\varphi(x)\geq 0$ para todo $x\in X$.
+	\item Toda seminorma es pseudonorma.
+	\item Existe un única topología vectorial $\tau$ en $X$ con respecto a la cual la familia $\mathcal{B}=\{U_\varepsilon:\varepsilon\in\mathbb{R}^+\}$ es base de entornos de cero, donde $U_\varepsilon=\{x\in X:\varphi(x)<\varepsilon\}$ para cada $\varepsilon\in\mathbb{R}^+$.
+\end{enumerate}
+
+\pagebreak
+
+\textbf{Soluci\'on:}
+\begin{enumerate}[a)]
+	\item Para cada $n\in\mathbb{N}$, se tiene $\varphi(0)=\varphi\big(\frac{1}{n}0\big)$. Por tanto, $\varphi(0)=\lim\limits_{n\to\infty}\varphi\big(\frac{1}{n}0\big)=0$, donde hemos usado (i) con $x=0$.
+	\item Tomando $\alpha=-1$ en (iii) obtenemos $\varphi(-x)\leq\varphi(x)$, pero haciendo lo mismo para $-x$ llegamos a $\varphi(x)=\varphi((-1)(-x))\leq\varphi(-x)$, luego  $\varphi(x)=\varphi(-x)$ para cada $x\in X$. De (a) y (ii) deducimos entonces que $0=\varphi(0)=\varphi(x-x)\leq\varphi(x)+\varphi(-x)=2\varphi(x)$ para cada $x\in X$.
+	\item Supongamos ahora que $\psi$ es una seminorma. La propiedad (ii) ya la cumple una seminorma. La propiedad $\psi\big(\frac{1}{n}\cdot x\big)=\frac{1}{n}\psi(x)$ deja claro que $\psi\big(\frac{1}{n}\cdot x\big)$ converge a 0 cuando $n$ tiende a infinito, obteniéndo así (i). Para (iii) usamos simplemente $\psi(\alpha x)=|\alpha|\psi(x)\leq\psi(x)$, ya que $|\alpha|\leq 1$. Por tanto, $\psi$ es una pseudonorma.
+	\item En vista de lo probado en el Ejercicio 4, basta comprobar que la familia $\mathcal{B}=\{U_\varepsilon:\varepsilon\in\mathbb{R}^+\}$ está formada por subconjuntos absorbentes y equilibrados de $X$ que cumplen
+	\begin{enumerate}[1)]
+		\item $\forall U,V\in\mathcal{B}, \ \exists W\in \mathcal{B}: W\subset U\cap V$.
+		\item $\forall U\in\mathcal{B}, \ \exists V\in \mathcal{B}: V+V\subset U$.
+	\end{enumerate}
+	
+	Empezamos probando que son equilibrados. Dado $x\in U_\varepsilon\in\mathcal{B}$ y $\lambda\in\mathbb{D}$, tenemos $\varphi(\lambda x)\leq\varphi(x)<\varepsilon$, luego $\lambda x\in U_\varepsilon$. Por tanto, $\mathbb{D} U_\varepsilon\subset U_\varepsilon$.
+	
+	Para ver que son absorbentes, sea $U_\varepsilon\in\mathcal{B}$. Dado cualquier $x\in X$, la condición (i) garantiza la existencia de $n\in\mathbb{N}$ tal que $\varphi\big(\frac{1}{n}x\big)<\varepsilon$, luego $\frac{1}{n}x\in U_\varepsilon$ y $x\in nU_\varepsilon$.
+	
+	Dados ahora $U_\varepsilon,U_\delta\in\mathcal{B}$, tomando $\gamma=\min\{\varepsilon,\delta\}>0$ es claro que $U_\gamma\subset U_\varepsilon\cap U_\delta$, lo que prueba (1).
+	
+	Sólo falta probar (2). Dado $U_\varepsilon\in\mathcal{B}$, tomamos $\delta=\varepsilon/2$. Para cada $x,y\in U_\delta$ tenemos $\varphi(x),\varphi(y)<\delta$, y la propiedad (ii) nos dice que $\varphi(x+y)\leq\varphi(x)+\varphi(y)<\delta+\delta=\varepsilon$. Por tanto, $x+y\in U_\varepsilon$, y la arbitrariedad de $x$ e $y$ nos permite deducir que $U_\delta\subset U_\varepsilon$.
+\end{enumerate}
+
 \end{document}
