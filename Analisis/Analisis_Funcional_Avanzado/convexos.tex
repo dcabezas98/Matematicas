@@ -189,4 +189,32 @@ Sea $\varphi:X\rightarrow\mathbb{R}$ una pseudonorma. Probar
 	Sólo falta probar (2). Dado $U_\varepsilon\in\mathcal{B}$, tomamos $\delta=\varepsilon/2$. Para cada $x,y\in U_\delta$ tenemos $\varphi(x),\varphi(y)<\delta$, y la propiedad (ii) nos dice que $\varphi(x+y)\leq\varphi(x)+\varphi(y)<\delta+\delta=\varepsilon$. Por tanto, $x+y\in U_\varepsilon$, y la arbitrariedad de $x$ e $y$ nos permite deducir que $U_\delta\subset U_\varepsilon$.
 \end{enumerate}
 
+\smallskip
+
+\textbf{Ejercicio 6:}
+\smallskip
+	
+Sea $\{\varphi_\lambda:\lambda\in\Lambda\}$ una familia no vacía de pseudonormas en un espacio vectorial $X$. Para cada $\varepsilon\in\mathbb{R}^+$ y $F\in\mathcal{P}_f(\Lambda)$, sea $U_{\varepsilon,F}=\{x\in X:\varphi_\lambda(x)<\varepsilon \ \forall\lambda\in F\}$. Prueba que existe una única topología vectorial $\tau$ en $X$ tal que la familia $\mathcal{B}=\{U_{\varepsilon,F}:\varepsilon\in\mathbb{R}^+, \ F\in\mathcal{P}_f(\Lambda)\}$.
+
+\textbf{Soluci\'on:}
+
+De nuevo en vista de lo probado en el Ejercicio 4, basta comprobar que la familia $\mathcal{B}$ está formada por subconjuntos absorbentes y equilibrados de $X$ que cumplen
+\begin{enumerate}[1)]
+	\item $\forall U,V\in\mathcal{B}, \ \exists W\in \mathcal{B}: W\subset U\cap V$.
+	\item $\forall U\in\mathcal{B}, \ \exists V\in \mathcal{B}: V+V\subset U$.
+\end{enumerate}
+
+Para cada $\varepsilon\in\mathbb{R}^+$ y $F\in\mathcal{P}_f(\Lambda)$, es claro que se tiene \[U_{\varepsilon,F}=\bigcap\limits_{\lambda\in F}U_{\varepsilon,\lambda}=\bigcap\limits_{\lambda\in F}\{x\in X:\varphi_\lambda(x)<\varepsilon\}.\]
+El Ejercicio 5d asegura que para cada $\lambda\in\Lambda$, los conjuntos $U_{\varepsilon,\lambda}$ con $\varepsilon>0$ cumplen las condiciones requeridas. Nuestra familia $\mathcal{B}$ está formada por intersecciones finitas de subconjuntos de esta forma. Por tanto, basta comprobar que las propiedades absorbente y equilibrado se preservan por intersecciones finitas. Podemos suponer intersecciones de dos elementos, ya que un razonamiento inductivo muy sencillo extiende el razonamiento a intersecciones de cualquier número de subconjuntos.
+
+Si $A$ y $B$ son dos conjuntos equilibrados, tenemos $\mathbb{D}(A\cap B)\subset \mathbb{D}A\cap \mathbb{D}B=A\cap B$. En efecto, si $\alpha\in\mathbb{D}$ y $a\in A\cap B$, se tiene $\alpha a\in \mathbb{D}A$ y $\alpha a\in \mathbb{D}B$. Esto prueba que la intersección de equilibrados lo sigue siendo.
+
+Si $A$ y $B$ son dos conjuntos absorbentes y equilibrados, para cada $x\in X$ tenemos $rx\in A$ y $sx\in B$ para algunos $r,s\in\mathbb{R}^+$. Sea $\rho=\min\{r,s\}$, tenemos \[\rho x=\frac{\rho}{r}rx\in \mathbb{D}A=A,\]
+\[\rho x=\frac{\rho}{s}sx\in \mathbb{D}B=B,\]
+luego $\rho x\in A\cap B$. Por tanto, $A\cap B$ es absorbente.
+
+Dados $\varepsilon,\delta\in\mathbb{R}^+$ y $F,G\in \mathcal{P}_f(\Lambda)$, tomando $\gamma=\min\{\varepsilon,\delta\}$ y $H=G\cup F$, se comprueba rutinariamente que $U_{\gamma,H}\subset U_{\varepsilon,F}\cap U_{\delta,G}$. Por tanto, se satisface (1).
+
+Finalmente, para cada $\varepsilon\in\mathbb{R}^+$ y $F\in \mathcal{P}_f(\Lambda)$, se tiene que $U_{\varepsilon/2,F}+U_{\varepsilon/2,F}\subset U_{\varepsilon,F}$. En efecto, para cada $\lambda\in F$, $x,y\in U_{\varepsilon/2,F}$, tenemos $\varphi_\lambda(x+y)\leq \varphi_\lambda(x)+\varphi_\lambda(y)<\varepsilon/2+\varepsilon/2=\varepsilon$. Obtenemos así (2).
+
 \end{document}
