@@ -217,4 +217,22 @@ Dados $\varepsilon,\delta\in\mathbb{R}^+$ y $F,G\in \mathcal{P}_f(\Lambda)$, tom
 
 Finalmente, para cada $\varepsilon\in\mathbb{R}^+$ y $F\in \mathcal{P}_f(\Lambda)$, se tiene que $U_{\varepsilon/2,F}+U_{\varepsilon/2,F}\subset U_{\varepsilon,F}$. En efecto, para cada $\lambda\in F$, $x,y\in U_{\varepsilon/2,F}$, tenemos $\varphi_\lambda(x+y)\leq \varphi_\lambda(x)+\varphi_\lambda(y)<\varepsilon/2+\varepsilon/2=\varepsilon$. Obtenemos así (2).
 
+\textbf{Ejercicio 7:}
+\smallskip
+
+Sea $n$ un natural, $X_1,\ldots,X_n$, $Y_1,\ldots,Y_n$ espacios topológicos y, para todo $j\in \{1,\ldots,n\}$, $f_j:X_j\rightarrow Y_j$ una aplicación. Consideremos además la aplicación $f:X_1\times\cdots\times X_n\rightarrow Y_1\times\cdots\times Y_n$ dada por
+\[f(x_1,\ldots,x_n)=\big(f_1(x_1),\ldots,f_n(x_n)\big),\ \forall (x_1,\ldots,x_n)\in X_1,\ldots,X_n.\]
+
+Prueba que $f$ es continua (con respecto a las topologías producto de los espacios $X_1\times\cdots\times X_n$ e $Y_1\times\cdots\times Y_n$) si, y solo si, $f_j$ es continua para todo $j\in\{1,\ldots,n\}$.
+
+\textbf{Soluci\'on:}
+
+Una implicación es clara. Como la topología producto hace continuas a las proyecciones, si $f$ es continua está claro que cada $f_j=\pi_j\circ f$ es continua para cada $j=1,\ldots,n$. Donde $\pi_j:Y_1\times\cdots\times Y_n\rightarrow Y_j$ denota la proyección natural sobre $Y_j$ para cada $j$.
+
+Para la otra implicación, supongamos que cada $f_j$ ($j=1,\ldots,n$) es continua. Tomemos un abierto $A$ de $Y_1\times\cdots\times Y_n$, que podemos suponer básico:
+$A=A_1\times\cdots\times A_n$ con $A_j$ abierto de $Y_j$ para cada $j=1,\ldots,n$. Nuestro objetivo es demostrar que $f^{-1}(A)$ es abierto en $X_1\times\cdots\times X_n$.
+
+Es claro que $f^{-1}(A)=f^{-1}(A_1\times\cdots\times A_n)=f_1^{-1}(A_1)\times\cdots\times f_n^{-1}(A_n)$. Pero como cada $f_j$ es continua por hipótesis, obtenemos que $f_j^{-1}(A_j)$ es abierto en $X_j$ para cada $j\in\{1,\ldots, n\}$. Por tanto, $f^{-1}(A)$ es abierto en $X_1\times\cdots\times X_n$ como producto de abiertos.
+
+%Para cada $j\in\{1,\ldots,n\}$, tenemos \[\pi_j^{-1}(A_j)=Y_1\times\cdots\times Y_{j-1}\times A_j\times Y_{j+1}\times\cdots\times Y_n,\]luego \[A=A_1\times\cdots\times A_n=\bigcap_{j=1}^n\pi_j^{-1}(A_j).\]
 \end{document}
