@@ -1,0 +1,86 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\usepackage{parskip}
+\usepackage{enumerate}
+
+\def\diam{\mathrm{diam}}
+\def\dom{\mathrm{dom}}
+\def\card{\mathrm{card}}
+\def\Re{\mathrm{Re}}
+\def\Im{\mathrm{Im}}
+\def\lin{\mathrm{lin}}
+\def\dim{\mathrm{dim}}
+\def\codim{\mathrm{codim}}
+\def\co{\mathrm{co}}
+\def\Int{\mathrm{Int}}
+
+\setlength{\parindent}{0mm}
+
+\usepackage{vmargin}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+\begin{document}
+
+\begin{center}
+\textbf{Problemas de An\'{a}lisis Funcional Avanzado}
+
+\textbf{Tema 3: Topologías débiles}
+
+\smallskip
+
+David Cabezas Berrido
+
+\end{center}
+
+\smallskip
+
+\textbf{Ejercicio 1:} Sean $X,Y$ espacios normados. Caracterizar las aplicaciones lineales de $X$ en $Y$ que son $(n-w)$-continuas.
+
+\smallskip
+
+\textbf{Soluci\'on:}
+
+Sea $T:X\rightarrow Y$ una aplicación lineal. Sabemos por las propiedades de la topología inicial y por la definición de la topología débil que $T$ es $(n-w)$-continua si y solo si $y^*\circ T: X\rightarrow \mathbb{K}$ es continua (considerando la topología $\tau_X$) para cada $y^*\in Y^*$. En tal caso, se tiene $y^*\circ T\in X^*$ para todo $y^*\in Y^*$ (la composición de aplicaciones lineales es claramente lineal). Por tanto, las aplicaciones lineales de $X$ en $Y$ que son $(n-w)$-continuas son aquellas $T:X\rightarrow Y$ que cumplen $y^*\circ T\in X^*$ para todo $y^*\in Y^*$.
+
+\smallskip
+
+\textbf{Ejercicio 2:} Sean $X$ un espacio normado, $Y$ un espacio de Banach. Caracterizar las aplicaciones lineales de $X$ en $Y^*$ que son $(n-w^*)$-continuas.
+
+\smallskip
+
+\textbf{Soluci\'on:} Sea $T:X\rightarrow Y^*$ una aplicación lineal. Sabemos por las propiedades de la topología inicial y por la definición de la topología débil* que $T$ es $(n-w^*)$-continua si y solo si $\delta_y\circ T: X\rightarrow \mathbb{K}$ es continua para cada $\delta_y\in J_Y(Y)$. Fijado $y\in Y$ y dada una red en $X$ convergente a un punto de $X$ ($\{x_\lambda\}\to x\in X$), que $\delta_y\circ T$ sea continua en $x$ implica que la red $\{T(x_\lambda)(y)\}$ converge a $T(x)(y)$ en $\mathbb{K}$. Pero si esto pasa para toda red $\{x_\lambda\}\to x$, justamente significa que $\delta_y\circ T$ es continua en $x$. Por tanto, una aplicación lineal $T:X\rightarrow Y^*$ es continua si y solo si la red de imágenes de toda red convergente en $X$ es una red de $Y^*$ puntualmente convergente a la imagen del límite. Por la linealidad, basta con que para toda red en $X$ convergente a $0$ (en la topología de la norma), la red de imágenes converja puntualmente al funcional nulo $0\in Y^*$.
+
+Otra forma de verlo: Como la composición de aplicaciones lineales es lineal, podemos asegurar que $T:X\rightarrow Y^*$ es continua si y solo si $\delta_y\circ T\in X^*$ para cada $\delta_y\in J_Y(Y)$.
+
+\smallskip
+
+\textbf{Ejercicio 3:} Sean $X,Y$ espacios normados. Caracterizar las aplicaciones lineales de $X$ en $Y$ que son $(w-n)$-continuas.
+
+\smallskip
+
+\textbf{Soluci\'on:} Sea $T:X\rightarrow Y$ una aplicación lineal. Tomemos $\{x_\lambda\}$ una red en $X$ $w$-convergente a 0: $\{x^*(x_\lambda)\}\to 0 \ \ \forall x^*\in X^*$. Para que $T$ sea continua, es necesario que $\{T(x_\lambda)\}$ converja a 0 en la topología de la norma de $Y$. Recíprocamente, $T$ es continua si esto le ocurre a toda red débilmente convergente a 0. Por tanto, $T$ es continua si y solo si para toda red $\{x_\lambda\}$ en $X$ satisfaciendo $\{x^*(x_\lambda)\}\to 0 \ \ \forall x^*\in X^*$, se tiene $\{\|T(x_\lambda)\|_Y\}\rightarrow 0$.
+
+Otra forma de verlo: Como estamos tratando con topologías vectoriales, basta con que la preimagen de todo entorno de 0 en $Y$ sea $w$-entorno de 0 en $X$. Además, como las homotecias son homeomorfismos, basta comprobarlo para la bola cerrada unidad de $Y$. Ser un entorno débil de 0 equivale a contener a un básico: que existan $\varepsilon>0$ y $f_1,\ldots,f_n\in X^*$ tales que
+\[U(0,\varepsilon,f_1,\ldots,f_n)=\{x\in X:|f_k(x)|<\varepsilon \ \ \forall k=1,\ldots,n\}\subset T^{-1}(B_Y).\]
+Por tanto, $T$ es continua si y solo si existen $\varepsilon>0$ y $f_1,\ldots,f_n\in X^*$ tales que
+\[T\left(\bigcap_{k=1}^n f_k^{-1}\big(D(0,\varepsilon)\big)\right)\subset B_Y.\]
+
+\smallskip
+
+\textbf{Ejercicio 4:} Sean $X$ un espacio normado, $Y$ un espacio de Banach. Caracterizar las aplicaciones lineales de $X$ en $Y^*$ que son $(w-w^*)$-continuas.
+
+\smallskip
+
+\textbf{Soluci\'on:} 
+
+
+\end{document}
