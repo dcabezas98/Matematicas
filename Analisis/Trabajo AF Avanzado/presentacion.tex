@@ -1,0 +1,382 @@
+% This text is proprietary.
+% It's a part of presentation made by myself.
+% It may not used commercial.
+% The noncommercial use such as private and study is free
+% Dec 2007
+% Author: Sascha Frank 
+% University Freiburg 
+% www.informatik.uni-freiburg.de/~frank/
+%
+
+\documentclass{beamer}
+\usetheme{Warsaw}
+\setbeamertemplate{navigation symbols}{}
+%gets rid of bottom navigation bars
+\setbeamertemplate{footline}[frame number]
+
+\usepackage[english,spanish]{babel}
+
+\usepackage{floatrow}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\usepackage{amssymb}
+
+\usepackage{ bbm }
+
+\usepackage{subfigure}
+
+\usepackage{enumerate}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes, backgrounds, automata, positioning}
+\tikzset{
+	every point/.style = {radius={\pgflinewidth}, opacity=1, draw, solid, fill=white},
+	pt/.pic = {
+		\begin{pgfonlayer}{foreground}
+			\path[every point, #1] circle;
+		\end{pgfonlayer}
+	},
+	point/.style={insert path={pic{pt={#1}}}}, point/.default={},
+	colored point/.style = {point={fill=#1}},
+	point name/.style = {insert path={coordinate (#1)}}
+}
+
+\beamersetuncovermixins{\opaqueness<1>{10}}{\opaqueness<2->{5}}
+
+\AtBeginSection[]
+{
+	\begin{frame}<beamer>{Índice}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\makeatletter
+\AtBeginPart{%
+	\beamer@tocsectionnumber=0\relax
+	\setcounter{section}{0}
+	\frame{\partpage}%
+}
+\makeatother
+
+\newenvironment{redblock}[1]{%
+	\setbeamercolor{block body}{bg=red!10, fg=black}
+	\setbeamercolor{block title}{bg=red!70!black, fg=white}
+	\begin{block}{#1}}{\end{block}}
+
+\newenvironment{greenblock}[1]{%
+	\setbeamercolor{block body}{bg=green!10, fg=black}
+	\setbeamercolor{block title}{bg=green!60!black, fg=white}
+	\begin{block}{#1}}{\end{block}}
+
+\newenvironment{cyanblock}[1]{%
+	\setbeamercolor{block body}{bg=cyan!10, fg=black}
+	\setbeamercolor{block title}{bg=cyan!50, fg=white}
+	\begin{block}{#1}}{\end{block}}
+
+\newcommand{\co}[1]{\operatorname{co}(#1)}
+\newcommand{\cloco}[1]{\overline{\operatorname{co}}(#1)}
+
+\begin{document}
+\title{El Teorema de Russo-Dye y refinamientos}  
+\author{David Cabezas Berrido}
+\date{\vspace{-3mm}} 
+
+\begin{frame}
+	~\vspace{-10mm}
+\titlepage
+\vspace{-10mm}
+
+\begin{center}
+Trabajo final de la asignatura \\ \smallskip Métodos Avanzados de Análisis Funcional y Análisis de Fourier
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Índice}\tableofcontents
+\end{frame} 
+
+\section{Introducción}
+
+\begin{frame}
+		
+\begin{greenblock}{R.R. Phelps en ``Extreme points in function algebras'' (1965)}
+	¿De qué formas se puede expresar un elemento de una C*-álgebra como combinación convexa de elementos unitarios?
+\end{greenblock}
+
+\pause
+
+\begin{block}{R.R. Phelps en ``Extreme points in function algebras'' (1965)}
+	En una C*-álgebra conmutativa y unital, la envolvente convexa de los elementos unitarios es densa en la bola cerrada unidad.
+\end{block}
+
+\pause
+
+\begin{redblock}{Teorema de Russo-Dye (1966)}
+	En una C*-álgebra unital, la envolvente convexa de los elementos unitarios es densa en la bola cerrada unidad.
+\end{redblock}
+
+\pause
+
+\begin{itemize}
+	\item Manifiesta la abundancia de elementos unitarios en una C*-álgebra (unital). \pause
+	\item Posteriormente refinado y versionado.
+\end{itemize}
+
+\end{frame}
+
+\section{Preliminares}
+
+\subsection*{Notación}
+\begin{frame}\frametitle{Notación}
+	\begin{itemize}
+		\setlength\itemsep{0.5cm}
+		\item $A$ C*-álgebra unital sobre el cuerpo $\mathbb{K}\in\{\mathbb{R},\mathbb{C}\}$.
+		\item $\mathbbm{1}\in A$ su unidad. \pause
+		\item $A_1=\{a\in A: \|a\|<1\}$	bola abierta unidad de $A$.
+		\item $B_A=\{a\in A: \|a\|\leq 1\}$ bola cerrada unidad de $A$. \pause
+		\item $U=\mathcal{U}(A)$ grupo de elementos unitarios de $A$.
+	\end{itemize}
+\end{frame}
+
+\subsection{Descomposición polar de elementos invertibles}
+
+\begin{frame}\frametitle{Descomposición polar de invertibles}
+\begin{block}{Lema}
+	Todo elemento invertible $a\in A$ admite una \emph{descomposición polar} de la forma $a=u|a|$, donde $|a|=(a^*a)^{1/2}$ es positivo y $u$ es unitario.
+\end{block}
+\pause
+\begin{cyanblock}{Demostración}
+{\small
+	$|a|^2:=a^*a\in A$ invertible y positivo, admite raíz cuadrada $|a|$ (CFC). \pause
+	\vspace{-2mm}\begin{gather*}
+	|a|(|a||a|^{-2})=(|a||a|)|a|^{-2}=|a|^2|a|^{-2}=\mathbbm{1}\\
+	(|a|^{-2}|a|)|a|=|a|^{-2}(|a||a|)=|a|^{-2}|a|^2=\mathbbm{1},
+	\end{gather*}\vspace{-6mm}
+	
+	$|a|$ invertible con $|a|^{-1}=|a||a|^{-2}=|a|^{-2}|a|\Rightarrow |a|^{-1}|a|^{-1}=|a|^{-2}$.
+}
+\end{cyanblock}
+
+\end{frame}
+
+\begin{frame}\frametitle{Descomposición polar de invertibles}
+	\begin{block}{Lema}
+		Todo elemento invertible $a\in A$ admite una \emph{descomposición polar} de la forma $a=u|a|$, donde $|a|=(a^*a)^{1/2}$ es positivo y $u$ es unitario.
+	\end{block}
+	\begin{cyanblock}{Demostración}
+		{\small
+			$u:=a|a|^{-1}\in A$ invertible. \pause Como $|a|^{-1}$ auto-adjunto,
+			\vspace{-2mm}\begin{gather*}
+			uu^*=a|a|^{-1}|a|^{-1}a^*=a|a|^{-2}a^*=a(a^*a)^{-1}a^*=aa^{-1}(a^*)^{-1}a^*=\mathbbm{1}\\
+			u^*u=|a|^{-1}a^*a|a|^{-1}=|a|^{-1}|a|^2|a|^{-1}=|a|^{-1}|a||a||a|^{-1}=\mathbbm{1},
+			\end{gather*}\vspace{-6mm}
+			
+		$u$ unitario. \hfill$\square$
+		}
+	\end{cyanblock}
+	
+\end{frame}
+
+\section{Teorema de Russo-Dye}
+
+\subsection*{Resultado}
+\begin{frame}\frametitle{El resultado}
+
+\begin{redblock}{Teorema de Russo-Dye (1966)}
+Sea $A$ una C*-algebra unital y $U=\mathcal{U}(A)$ su grupo de unitarios. Entonces, $B_A=\cloco{U}$.
+\end{redblock}
+
+\pause
+
+Original: ``A note in unitary operators in C$^*$-algebras'' (A.H. Dye \& B. Russo, 1966). \\ \vspace{2mm} \pause
+
+Prueba elemental: ``Shorter Notes: An Elementary Proof of the Russo-Dye Theorem'' (L.T. Gardner, 1984).
+
+\end{frame}
+
+\subsection*{Demostración}
+\begin{frame}%\frametitle{Demostración}
+	
+	\begin{cyanblock}{Demostración}
+		{\small
+			Basta probar $A_1\subset\cloco{U}$. \pause Tomamos $x\in A_1$, $u\in U$ cualesquiera, sea $y:=\dfrac{x+u}{2}=\dfrac{xu^*+\mathbbm{1}}{2}u$. \pause
+			$\|xu^*\|\leq \|x\|\|u^*\|=\|x\|<1\Rightarrow xu^*+\mathbbm{1}$ invertible (también $y$). \pause Podemos escribir $y=v|y|$ con $v\in U$ y $|y|=(y^*y)^{1/2}\in B_A$ positivo.\vspace{2mm} \\ \pause
+			
+			$\||y|^2\|=\|y^*y\|=\|y\|^2<1\Rightarrow|y|^2\leq \||y|^2\|\mathbbm{1}\leq \mathbbm{1}\Rightarrow\mathbbm{1}-|y|^2\geq 0$
+			admite raíz cuadrada. \pause Por tanto, $|y|=(w+w^*)/2$, donde \vspace{-2mm}
+			\[w=|y|+i(\mathbbm{1}-|y|^2)^{1/2},\quad w^*=|y|-i(\mathbbm{1}-|y|^2)^{1/2}.\]\vspace{-7mm} \pause
+			
+			Además, $w,w^*=w^{-1}$ unitarios, ya que $|y|$ y $\mathbbm{1}-|y|^2$ conmutan.\vspace{1mm} \pause
+			
+			\textcolor{red}{Hemos probado $x+u=vw+vw^*\Rightarrow A_1+U\subset U+U$ ($*$).} \vspace{1mm} \pause
+			
+			{\scriptsize $\dfrac{x+U}{2}\subset\co{U}\Leftrightarrow U\subset 2\co{U}-x\Rightarrow \co{U}\subset 2\co{U}-x\Rightarrow\dfrac{x+\co{U}}{2}\subset \co{U}$} \vspace{1mm} \pause
+			 
+			Por tanto, la sucesión $x_0=u$ y $x_{n+1}=(x+x_n)/2$ yace en $\co{U}$. Claramente $x_n\to x$. \hfill$\square$
+		}
+	\end{cyanblock}
+	
+\end{frame}
+
+\begin{frame}%\frametitle{Demostración}
+	
+	\begin{block}{Observación de C.K. Fong: $A_1\subset \co{U}$}
+		\pause
+		Como $x\in A_1$, podemos tomar $x'\in A_1$ tal que $x\in [u,x'[$. \\ \pause La sucesión $x_0=u$ y $x_{n+1}=(x'+x_n)/2$ cumple $x\in [u,x_n]$ para $n$ lo bastante grande, luego $x\in\co{U}$.	
+	\end{block}
+
+	\pause
+
+	\vspace{4mm}
+
+	Claramente, $A=\operatorname{span}U$.
+\end{frame}
+
+\subsection{Una importante consecuencia}
+
+\begin{frame}\frametitle{Aplicación}
+	
+	\begin{block}{Corolario}
+		Sea $A$ una C*-álgebra unital y $U=\mathcal{U}(A)$ su grupo de unitarios, y sea $X$ un espacio normado arbitrario. Entonces, una aplicación lineal $\phi:A\rightarrow X$ es continua si y solo si $\phi$ está acotada en $U$. Además, se tiene la siguiente igualdad: \vspace{-2mm}
+		\begin{equation*}\label{eq:norm-unitary}
+		\|\phi\|=\sup_{u\in U}\|\phi(u)\|.
+		\end{equation*}
+	\end{block}
+
+\pause
+
+\begin{cyanblock}{Demostración}
+	{\small
+		Definimos una nueva norma en $A$ \vspace{-2mm}
+		\[\|a\|_U:=\inf\left\{\sum_{j=1}^n|\lambda_j|:a=\sum_{j=1}^n \lambda_j u_j,\ \lambda_j\in\mathbb{K},\ u_j\in U\right\}\] \vspace{-4mm} \pause
+		
+		Cumple $\|a\|\leq \|a\|_U\ \forall a\in A$. Además, $a\in \co{U}$ implica $\|a\|_U\leq 1$.
+	}
+\end{cyanblock}
+\end{frame}
+
+\begin{frame}%\frametitle{Aplicación}
+	
+	\begin{cyanblock}{Demostración}
+		{\small			
+			Para cada $\varepsilon>0$, $b=\dfrac{a}{\|a\|+\varepsilon}\in A_1\subset\co{U}$, luego $\|b\|_U\leq 1$ y $\|a\|_U\leq \|a\|+\varepsilon$. \pause Por tanto, $\|a\|=\|a\|_U \ \forall a\in A$. \vspace{1mm} \pause
+			
+			Sea $K=\sup_{u\in U}\|\phi(u)\|\in\mathbb{R}^+_0$. \pause Para cada $a=\sum_{j=1}^n \lambda_j u_j$ (con cada $\lambda_j\in\mathbb{K}$ y $u_j\in U$) tenemos\vspace{-3mm}
+			\[\|\phi(a)\|=\bigg\|\sum_{j=1}^n\lambda_j\phi(u_j)\bigg\|\leq \sum_{j=1}^n|\lambda_j|\|\phi(u_j)\|\leq K\sum_{j=1}^n|\lambda_j|,\] \vspace{-4mm} \pause
+			
+			luego $\|\phi(a)\|\leq K\|a\|_U=K\|a\|$. \pause Por tanto, $\phi$ es continua con $\|\phi\|\leq K$. \vspace{1mm} \pause
+			
+			Por la definición de $K$, existe una sucesión $\{u_n\}$ en $U\subset B_A$ tal que $\|\phi(u_n)\|\to K$, de modo que $\|\phi\|\geq K$.  \hfill$\square$
+		}
+	\end{cyanblock}
+	
+\end{frame}
+
+\section{Refinamiento de Kadison y Pedersen}
+
+\subsection*{Primer Refinamiento}
+\begin{frame}\frametitle{Mejora del teorema}
+	
+	Gardner prueba \textcolor{red}{$A_1+U\subset U+U$ ($*$)}
+	
+	\pause
+	
+	\begin{redblock}{Teorema}
+		Sea $A$ una C*-algebra unital y $U=\mathcal{U}(A)$ su grupo de unitarios. Si un elemento $a\in A$ cumple $\|a\|<1-\frac{2}{n}$ para algún entero $n>2$, entonces existen $n$ elementos unitarios $u_1,\ldots,u_n\in U$ tales que $a=n^{-1}(u_1+\cdots+u_n)$.
+	\end{redblock}
+	
+	\pause
+	
+	``Means and convex combinations of unitary operators'' (R.V. Kadison \& G.K. Pedersen, 1985).	
+\end{frame}
+
+\begin{frame}\frametitle{Demostración}
+	
+	\begin{cyanblock}{Demostración}
+		{\small			
+		Sean $x\in A_1$ and $u\in U$ cualesquiera, consideremos el elemento 
+		\vspace{-2mm}\[z=u+(n-1)x=u+x+(n-2)x\in A.\]\vspace{-6mm}
+		
+		\pause Existen $u_1,v_1\in U$ tales que $u+x=u_1+v_1$. \pause Luego	
+		\vspace{-2mm}\[z=u_1+v_1+(n-2)x=u_1+v_1+x+(n-3)x.\]\vspace{-6mm}
+		
+		\pause Existen $u_2,v_2\in U$ tales que $v_1+x=u_2+v_2$. \pause Luego
+		\vspace{-2mm}\[z=u_1+u_2+v_2+(n-3)x=u_1+u_2+v_2+x+(n-4)x.\]\vspace{-6mm}
+				
+		\pause En $n-3$ pasos más, \vspace{-4mm}
+		\begin{equation}\label{eq: sum of unitaries}
+		z=u+(n-1)x=\sum_{j=1}^n u_j,\hspace{2mm}\text{donde $u_j\in U$ para cada $j=1,\ldots,n$}
+		\end{equation}
+		}
+	\end{cyanblock}
+	
+\end{frame}
+
+\begin{frame}\frametitle{Demostración}
+	
+	\begin{cyanblock}{Demostración}
+		{\small ~\vspace{-4mm}
+			\begin{equation*}
+			z=u+(n-1)x=\sum_{j=1}^n u_j,\hspace{2mm}\text{donde $u_j\in U$ para cada $j=1,\ldots,n$} \tag{\ref{eq: sum of unitaries}}
+			\end{equation*} \vspace{-5mm}
+					
+			\pause Notemos ahora que \vspace{-2mm}
+			\begin{align*}
+			\|(n-1)^{-1}&(na-\mathbbm{1})\|\leq (n-1)^{-1}(n\|a\|+1) \\ <&(n-1)^{-1}\big(n(1-2/n)+1\big)=(n-1)^{-1}(n-1)=1,
+			\end{align*}\vspace{-6mm}
+			
+			\pause luego $(n-1)^{-1}(na-\mathbbm{1})\in A_1$. \vspace{2mm} \\ \pause Aplicamos \eqref{eq: sum of unitaries} con $x=(n-1)^{-1}(na-\mathbbm{1})$ y $u=\mathbbm{1}$:\vspace{-4mm}
+			\[u+(n-1)x=\mathbbm{1}+(na-\mathbbm{1})=na=u_1+u_2+\cdots+u_n=\sum_{j=1}^n u_j\]\vspace{-6mm}
+			
+			\hfill$\square$
+		}
+	\end{cyanblock}
+\end{frame}
+
+\subsection*{Consecuencia}
+
+\begin{frame}\frametitle{Aplicación}
+	
+	\begin{block}{Corolario}
+		Todo elemento de una C*-algebra unital $A$ es un multiplo positivo de la suma de tres unitarios.	
+	\end{block}
+	
+	\pause
+	
+	\begin{cyanblock}{Demostración}
+		{\small
+			Dado cualquier $a\in A$, tomamos $\varepsilon>0$ cualquiera y consideramos el elemento $b=\dfrac{1}{3(\|a\|+\varepsilon)}a$. \pause Claramente $\|b\|<1/3$. \vspace{2mm} \\ \pause
+			
+			Por el teorema anterior con $n=3$, podemos escribir $b=(u_1+u_2+u_3)/3$ con $u_j\in U$ para $j=1,2,3$. \pause Por tanto, \vspace{-2mm}\[a=3(\|a\|+\varepsilon)b=(\|a\|+\varepsilon)(u_1+u_2+u_3)\]\vspace{-10mm}
+			
+			\hfill$\square$			
+		}
+	\end{cyanblock}
+\end{frame}
+
+\subsection*{Segundo Refinamiento}
+
+\begin{frame}\frametitle{Otra vuelta de tuerca}
+	
+	\begin{redblock}{Teorema}
+		Sea $A$ una C*-algebra unital y $U=\mathcal{U}(A)$ su grupo de unitarios. Si un elemento $a\in A$ cumple $\|a\|\leq 1-2/n$ para algún entero $n>2$, entonces existen $n$ elementos unitarios $u_1,\ldots,u_n\in U$ tales que $a=n^{-1}(u_1+\cdots+u_n)$.
+	\end{redblock}
+	
+	\pause
+	
+	``Means of unitary operators, revisited'' (U. Haagerup, R.V. Kadison \& G.K. Pedersen, 2007).	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN
+
+\begin{frame}[plain,c]
+	\begin{center}
+		\Huge Fin.
+	\end{center}
+	\vspace{10mm}
+	\begin{center}
+		\huge Gracias por la atención.
+	\end{center}
+\end{frame}
+
+\end{document}
