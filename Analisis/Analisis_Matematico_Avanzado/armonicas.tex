@@ -1,0 +1,155 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\usepackage{parskip}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+
+\def\diam{\mathrm{diam}}
+\def\dom{\mathrm{dom}}
+\def\card{\mathrm{card}}
+\def\Re{\mathrm{Re}}
+\def\Im{\mathrm{Im}}
+\def\lin{\mathrm{lin}}
+\def\dim{\mathrm{dim}}
+\def\codim{\mathrm{codim}}
+\def\co{\mathrm{co}}
+\def\Int{\mathrm{Int}}
+
+\usepackage{enumerate}
+
+\usepackage{vmargin}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+\begin{document}
+
+\begin{center}
+\textbf{Problemas de Análisis Matemático Avanzado}
+
+\textbf{Tema 1: Funciones Armónicas}
+
+\bigskip
+
+David Cabezas Berrido
+
+\end{center}
+
+\bigskip
+
+\textbf{Ejercicio 1:}
+\begin{enumerate}[a)]
+	\item Ecuaciones de Cauchy-Riemann en polares para $u^*(r,\theta)=u(re^{i\theta})$ y $v^*(r,\theta)=v(re^{i\theta})$.
+	\item Ecuacion de Laplace en coordenadas polares para $u^*(r,\theta)=u(re^{i\theta})$.
+\end{enumerate}
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+Tenemos $u^*(r,\theta)=u(r\cos\theta, r\sin\theta)$. Por la regla de la cadena
+\begin{equation*}
+\frac{\partial u^*}{\partial r}(r,\theta)=\frac{\partial u}{\partial r}(r\cos\theta,r\sin\theta)=\frac{\partial u}{\partial x}\frac{\partial (r\cos\theta)}{\partial r}+\frac{\partial u}{\partial y}\frac{\partial (r\sin\theta)}{\partial r}
+=\frac{\partial u}{\partial x}\cos\theta+\frac{\partial u}{\partial y}\sin\theta,
+\end{equation*}
+\begin{equation*}
+\frac{\partial u^*}{\partial \theta}(r,\theta)=\frac{\partial u}{\partial \theta}(r\cos\theta,r\sin\theta)=\frac{\partial u}{\partial x}\frac{\partial (r\cos\theta)}{\partial \theta}+\frac{\partial u}{\partial y}\frac{\partial (r\sin\theta)}{\partial \theta}
+=\frac{\partial u}{\partial x}(-r\sin\theta)+\frac{\partial u}{\partial y}r\cos\theta.
+\end{equation*}
+Luego,
+\begin{equation} \label{eq:e1-u*}
+\frac{\partial u^*}{\partial r}(r,\theta)=\frac{\partial u}{\partial x}\cos\theta+\frac{\partial u}{\partial y}\sin\theta, \quad
+\frac{\partial u^*}{\partial \theta}(r,\theta)=\frac{\partial u}{\partial x}(-r\sin\theta)+\frac{\partial u}{\partial y}r\cos\theta.
+\end{equation}
+
+Análogamente,
+\begin{equation} \label{eq:e1-v*}
+\frac{\partial v^*}{\partial r}(r,\theta)=\frac{\partial v}{\partial x}\cos\theta+\frac{\partial v}{\partial y}\sin\theta, \quad
+\frac{\partial v^*}{\partial \theta}(r,\theta)=\frac{\partial v}{\partial x}(-r\sin\theta)+\frac{\partial v}{\partial y}r\cos\theta.
+\end{equation}
+
+Recíprocamente, recordando las relaciones entre $(x,y)$ y $(r,\theta)$ tenemos
+\begin{equation*} 
+\frac{\partial u}{\partial x}=\frac{\partial u^*}{\partial r}\frac{\partial r}{\partial x}+\frac{\partial u^*}{\partial \theta}\frac{\partial \theta}{\partial x}=\frac{\partial u^*}{\partial r}\cos\theta-\frac{\partial u^*}{\partial \theta}\frac{\sin\theta}{r},
+\end{equation*}
+\begin{equation*} 
+\frac{\partial u}{\partial y}=\frac{\partial u^*}{\partial r}\frac{\partial r}{\partial y}+\frac{\partial u^*}{\partial \theta}\frac{\partial \theta}{\partial y}=\frac{\partial u^*}{\partial r}\sin\theta+\frac{\partial u^*}{\partial \theta}\frac{\cos\theta}{r}.
+\end{equation*}
+
+Por tanto, 
+\begin{equation}  \label{eq:e1-u}
+\frac{\partial u}{\partial x}=\frac{\partial u^*}{\partial r}\cos\theta-\frac{\partial u^*}{\partial \theta}\frac{\sin\theta}{r},\quad
+\frac{\partial u}{\partial y}=\frac{\partial u^*}{\partial r}\sin\theta+\frac{\partial u^*}{\partial \theta}\frac{\cos\theta}{r}.
+\end{equation}
+
+\begin{enumerate}[a)]
+	\item Sustituyendo las ecuaciones de Cauchy-Riemann en \eqref{eq:e1-u*} y \eqref{eq:e1-v*} tenemos
+	\[\frac{\partial v^*}{\partial \theta}=\frac{\partial v}{\partial x}(-r\sin\theta)+\frac{\partial v}{\partial y}r\cos\theta=r\left(\frac{\partial u}{\partial y}\sin\theta+\frac{\partial u}{\partial x}\cos\theta\right)=r\frac{\partial u^*}{\partial r},\]
+	
+	\[\frac{\partial u^*}{\partial \theta}=\frac{\partial u}{\partial x}(-r\sin\theta)+\frac{\partial u}{\partial y}r\cos\theta=-r\left(\frac{\partial v}{\partial y}\sin\theta+\frac{\partial v}{\partial x}\cos\theta\right)=-r\frac{\partial v^*}{\partial r}.\]
+	
+	Las propiedades del cambio de variable a coordenadas polares nos dicen que estas ecuaciones son equivalentes a las ecuaciones clásicas de Cauchy-Riemann. También se pueden sustituir las ecuaciones del enunciado en \eqref{eq:e1-u} y su análoga para $v$.
+	
+	\item Sacamos a partir de \eqref{eq:e1-u} las derivadas parciales del laplaciano.
+	\begin{align*}
+	\frac{\partial^2 u}{\partial x^2}&=\frac{\partial}{\partial x}\left(\frac{\partial u^*}{\partial r}\cos\theta-\frac{\partial u^*}{\partial \theta}\frac{\sin\theta}{r}\right)\\
+	&=\cos^2\theta \frac{\partial^2 u^*}{\partial r^2}-\frac{\partial^2 u^*}{\partial \theta\partial r}\cos\theta\frac{\sin\theta}{r}+\frac{\partial u^*}{\partial r}\left(\frac{1}{r}-\frac{\cos^2\theta}{r}\right) \\
+	&-\frac{\sin\theta}{r}\frac{\partial^2 u^*}{\partial r\partial \theta}\cos\theta+\frac{\sin^2\theta}{r^2}\frac{\partial^2 u^*}{\partial \theta^2}+\frac{\partial u^*}{\partial \theta}\frac{2\cos\theta\sin\theta}{r^2} \\
+	&=\frac{\partial^2 u^*}{\partial r^2}\cos^2\theta-\frac{\partial^2 u^*}{\partial \theta\partial r}\frac{2\cos\theta\sin\theta}{r}+\frac{\partial^2 u^*}{\partial \theta^2}\frac{\sin^2\theta}{r^2}+\frac{\partial u^*}{\partial r}\frac{\sin^2\theta}{r}+\frac{\partial u^*}{\partial \theta}\frac{2\cos\theta\sin\theta}{r^2}.
+	\end{align*}
+	
+	\begin{align*}
+	\frac{\partial^2 u}{\partial^2 y}&=\frac{\partial}{\partial y}\left(\frac{\partial u^*}{\partial r}\sin\theta+\frac{\partial u^*}{\partial \theta}\frac{\cos\theta}{r}\right) \\
+	&= \sin^2\theta \frac{\partial^2 u^*}{\partial r^2}+\sin\theta \frac{\partial^2 u^*}{\partial\theta\partial r}\frac{\cos\theta}{r}+\frac{\partial u^*}{\partial r}\frac{\cos^2\theta}{r} \\
+	&+\frac{\cos\theta}{r}\frac{\partial^2 u^*}{\partial r\partial \theta}\sin\theta+\frac{\cos^2\theta}{r^2}\frac{\partial^2 u^*}{\partial \theta^2}-\frac{\partial u^*}{\partial \theta}\frac{2\cos\theta\sin\theta}{r^2} \\
+	&=\frac{\partial^2 u^*}{\partial r^2}\sin^2\theta +\frac{\partial^2 u^*}{\partial\theta\partial r}\frac{2\cos\theta\sin\theta}{r}+\frac{\partial^2 u^*}{\partial \theta^2}\frac{\cos^2\theta}{r^2}+\frac{\partial u^*}{\partial r}\frac{\cos^2\theta}{r}-\frac{\partial u^*}{\partial \theta}\frac{2\cos\theta\sin\theta}{r^2}.
+	\end{align*}
+	
+	La ecuación de Laplace queda así tras agrupar, cancelar y simplificar algunos términos
+	\[0=\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial^2 y}=\frac{\partial^2 u^*}{\partial r^2}+\frac{1}{r^2}\frac{\partial^2 u^*}{\partial \theta^2}+\frac{1}{r}\frac{\partial u^*}{\partial r}.\]
+\end{enumerate}
+
+\bigskip
+
+\textbf{Ejercicio 2:} Probar que $u(re^{i\theta})=\theta\log r$ es armónica en $\mathbb{C}\backslash\mathbb{R}^-$. Encontrar conjugada armónica $v$ de $u$. ¿Qué función es $f(z)=u(z)+iv(z)$.
+
+\bigskip
+
+\textbf{Solución:}
+Calculamos las derivadas:
+\[\frac{\partial u}{\partial r}=\frac{\theta}{r},\quad \frac{\partial u}{\partial \theta}=\log r,\quad \frac{\partial^2 u}{\partial r^2}=-\frac{\theta}{r^2},\quad \frac{\partial^2 u}{\partial \theta^2}=0.\]
+Sustituimos en la ecuación de Laplace:
+\[\frac{\partial^2 u}{\partial r^2}+\frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}+\frac{1}{r}\frac{\partial u}{\partial r}=-\frac{\theta}{r^2}+\frac{1}{r^2}\cdot 0+\frac{1}{r}\frac{\theta}{r}=0.\]
+Esto es válido en todo punto de $\mathbb{C}\backslash\mathbb{R}^-$, luego $u$ es armónica.
+
+Sea $v$ la conjugada armónica de $u$, que existe porque el dominio es simplemente conexo. Imponemos condiciones para hallar $v$:
+\[\frac{\partial v}{\partial \theta}=r\frac{\partial u}{\partial r}=r\frac{\theta}{r}=\theta,\]
+\[\frac{\partial v}{\partial r}=-\frac{1}{r}\frac{\partial u}{\partial \theta}=-\frac{1}{r}\log r.\]
+La primera ecuación nos dice que $v$ es de la forma $v(r,\theta)=\dfrac{\theta^2}{2}+\phi(r)$, y la segunda que $v(r,\theta)=-\dfrac{\log^2 r}{2}+\psi(\theta)$. Por tanto podemos tomar $v(r,\theta)=-\dfrac{\log^2 r}{2}+\dfrac{\theta^2}{2}$.
+
+Tomando $f(r e^{i\theta})=u(r e^{i\theta})+iv(r e^{i\theta})=\theta\log r+i\left(-\dfrac{\log^2 r}{2}+\dfrac{\theta^2}{2}\right)$ para todo $r e^{i\theta}\in \mathbb{C}\backslash\mathbb{R}^-$, tenemos $f\in\mathcal{H}(\mathbb{C}\backslash\mathbb{R}^-)$.
+
+\bigskip
+
+\textbf{Ejercicio 3:} 
+
+\bigskip
+
+\textbf{Soluci\'on:}
+
+\bigskip
+
+\end{document}
+
