@@ -1,0 +1,93 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\usepackage{parskip}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+
+\def\diam{\mathrm{diam}}
+\def\dom{\mathrm{dom}}
+\def\card{\mathrm{card}}
+\def\Re{\mathrm{Re}}
+\def\Im{\mathrm{Im}}
+\def\lin{\mathrm{lin}}
+\def\dim{\mathrm{dim}}
+\def\codim{\mathrm{codim}}
+\def\co{\mathrm{co}}
+\def\Int{\mathrm{Int}}
+
+\usepackage{vmargin}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+\begin{document}
+
+\begin{center}
+\textbf{ACM: Matemática Electoral}
+
+\textbf{Primera Clase: Elección Social}
+
+\bigskip
+
+David Cabezas Berrido
+
+\end{center}
+
+\bigskip
+
+\textbf{Ejercicio 1:} Establezca agendas de Condorcet que verifiquen Pareto.
+
+\bigskip
+
+\textbf{Soluci\'on:} Si elegimos la agenda atendiendo a Borda con orden inverso (al final la alternativa que más puntuación tiene) se verifica Pareto. Si todos los individuos prefieren la alternativa $X$ a la $Y$, entonces la $Y$ tiene menor puntuación Borda que $X$ y estará por delante en la agenda. Esto fuerza que $Y$ deba compararse con $X$ y será descartada.
+
+\bigskip
+
+\textbf{Ejercicio 2:} Describa un nuevo método de elección social y las propiedades que tiene o,
+alternativamente, describa una nueva propiedad deseable y los métodos que la
+verifican.
+
+\bigskip
+
+\textbf{Soluci\'on:} En clase se comentó que la \textbf{facilidad de manipulación} (emisión de un voto no sincero para lograr ventaja) también es un factor a tener en cuenta, pero no analizamos cuáles de los métodos se pueden manipular y cómo. A continuación presento algunos ejemplos que he razonado de cómo manipular en cada método. La mayoría se basan en suposiciones que un votante podría hacer a partir de las encuestas electorales y suponen un riesgo para el votante (podría votar contra su preferencia) en caso de que las encuestas no sean acertadas.
+
+En \textbf{Mayoría Simple} sólo se tiene en cuenta la primera opción de cada individuo. En caso de sospecha de que la primera opción no vaya a ganar, lo cual es muy común gracias a las encuestas electorales, un votante puede votar a su segunda o tercera opción con el objetivo de impedir que otra opción menos preferente salga elegida.
+
+En \textbf{Doble Vuelta}, si un votante está convencido (por ejemplo a través de los resultados de encuestas) de que la alternativa preferida será elegida primera, puede votar a la tercera fuerza más votada según las encuestas para intentar desbancar a la segunda y así aumentar las posibilidades de que en segunda vuelta gane su opción preferente, o simplemente porque deteste a la segunda fuerza en mayor medida de lo que apoya a la primera.
+
+En \textbf{VUT} se puede hacer algo similar. Por ejemplo, si las encuestas predicen que los partidos se van a eliminar en el orden $C, B, A$ y un votante con preferencia $ACB$ (de mayor a menor preferencia) quiere evitar que salga $B$ a toda costa puede votar $CAB$ para aumentar la probabilidad de eliminar a $B$, con la suposición de que $C$ caerá eliminada igualmente ante $A$.
+
+En \textbf{Borda}, si un votante tiene preferencias $ABC$ y fuertes sospechas de que $C$ no va a salir elegida, puede votar $ACB$ para aumentar las posibilidades de $A$ frente a $B$.
+
+En \textbf{MJ} se puede hacer algo similar. Si un votante realmente considera $A$ Grande, $B$ Bueno y $C$ Terrible pero está convencido de que $C$ no va a ser la elección social, puede votar $A$ Grande, $B$ Terrible y $C$ Terrible para aumentar las posibilidades de que gane su primera opción.
+
+\bigskip
+
+\textbf{Ejercicio 3:} De acuerdo con los conocimientos presentados en esta sesión y con su propia iniciativa
+debe describir de forma clara, precisa y razonada un método para la elección de
+Presidenta/e del Gobierno (o para el Presidenta/e de una CC.AA.) y efectuar una
+simulación con datos lo más reales posible.
+
+\bigskip
+
+\textbf{Soluci\'on:} Para cada partido, consideramos su número de escaños y le sumamos el de los partidos que tengan menos escaños, los partidos que superen el 50\% de los escaños podrán presentar un candidato. Esta medida asegura (suponiendo que todos los diputados de un partido votan a su candidato) que el presidente de un gobierno de coalición sea el candidato propuesto por el partido más votado de esa coalición, algo que no es obligatorio pero sí lógico.
+
+Ahora, tras una ronda de negociaciones, cada partido que no pueda presentar un candidato está obligado a decantarse por uno de los candidatos disponibles y sumarle su apoyo (también podría hacerse por cada diputado de un partido que no puede presentar candidato). Ahora se repite lo anterior, al haber agrupado los escaños de los partidos más pequeños junto a otros partidos más grandes, es posible que algunos partidos hayan perdido su opción de presentar un candidato (ya no queden partidos con menos escaños que les permitan sumar el 50\%). Esos partidos que ya no suman el 50\% de los escaños junto con otros estarían obligados a apoyar (tras otra ronda de negociaciones) a un candidato de los propuestos por los que tienen posibilidades de sumar el 50\% formando coaliciones con fuerzas menores. Esto se repite hasta que sólo quede un candidato.
+
+Si un partido tiene mayoría absoluta, obviamente gana porque es el único capaz de presentar un candidato. En caso contrario, habrá partidos que no puedan sumar el 50\% en coaliciones con partidos que posean menos escaños, y estos partidos entregarán sus apoyos a partidos más grandes. Por tanto, tras cada ronda desaparece al menos un partido y hace crecer a uno (o varios si se suma cada diputado individualmente al que elija) de los otros. Esto garantiza que este método siempre llegue a la elección de un candidato. La excepción es el empate, si por ejemplo en algún momento llegan a existir 3 grupos con 40\%, 30\% y 30\% de los escaños respectivamente, tiene sentido que los dos grupos menores puedan fusionarse para formar gobierno. Para arreglar esto, podríamos incluir una fecha límite en la que los partidos puedan agruparse y presentar un candidato conjunto. Si no lo logran, estarán obligados a prestar sus apoyos a otro partido con más votos.
+
+Este método garantiza la obtención de un ganador a través de presionar a los partidos con menos escaños para que apoyen a algún candidato presentado por una de las grandes fuerzas. Los partidos grandes están obligados a negociar con los pequeños al menos hasta el punto de ser una mejor opción que los otros partidos grandes, pero en general creo que por este método se tendrían muy poco en cuenta a los partidos pequeños. Otro factor serían las rondas de negociaciones, que pueden ser algo caóticas.
+\end{document}
+
