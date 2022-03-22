@@ -1,0 +1,18 @@
+\chapter{Ejercicio 2.1}
+
+Este ejercicio consiste en el uso y personalización del paquete \texttt{listings} para la inclusión de trozos de código en un documento \LaTeX.
+
+\begin{lstlisting}[language=python, caption={Implementación de un perceptrón}, captionpos=b]
+def dot(v, w):
+    """Producto escalar de v y w """
+    return sum(v_i * w_i for v_i, w_i in zip(v, w))
+
+def funcion_activacion(x):
+    """1 si la entrada es mayor o igual que 1,
+    0 en otro caso."""
+    return 1 if x >= 0 else 0
+
+def perceptron(entrada, pesos):
+    """1 si el perceptron se activa, 0 en otro caso"""
+    return funcion_activacion(dot(entrada, pesos))
+ \end{lstlisting}

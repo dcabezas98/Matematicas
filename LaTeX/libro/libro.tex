@@ -1,0 +1,164 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass{scrbook}
+
+\KOMAoptions{
+    fontsize=12pt,
+    paper=a4,
+    %titlepage=true,
+    twoside=true,
+    headings=normal, % small, normal, big
+    parskip=half, % full, half
+    headsepline=false,
+    cleardoublepage=empty,
+    chapterprefix=false,
+    appendixprefix=false,
+    listof=totoc,
+    index=totoc,
+    bibliography=totoc,
+    DIV=9,
+    BCOR=5mm,
+}
+
+\renewcommand{\dictumwidth}{0.45\textwidth}
+
+\usepackage{microtype}
+
+\usepackage[utf8]{inputenc} 			    % Codificación de caracteres
+\usepackage[spanish]{babel}           % Idioma
+
+\usepackage{datetime}
+
+\usepackage{lipsum}                   % Para incluir párrafos auxiliares de texto.
+
+% MATEMÁTICAS
+\usepackage{amsmath, amsthm, amssymb}
+
+% TABLAS Y GRÁFICOS
+\usepackage{booktabs}
+\usepackage{graphicx}
+  % Carpeta donde buscar los archivos de imagen por defecto
+  \graphicspath{{img/}}
+
+%\usepackage{showframe}
+
+\input{paquetes/hyperref}
+
+\usepackage{sidenotes}
+
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Colores
+% El siguiente estilo copia el existente en Jupyter
+\definecolor{backgroundcolor}{rgb}{0.97, 0.97, 0.97}     % Gris
+\definecolor{keyword}{rgb}{0.22, 0.5, 0}            % Verde
+\definecolor{identifier}{rgb}{0,0,0}                % Negro
+\definecolor{string}{rgb}{0.75, 0.13, 0.13}         % Rojo
+\definecolor{comment}{rgb}{0.75, 0.13, 0.13}
+\definecolor{number}{rgb}{0.4,0.4,0.4}
+\definecolor{command}{rgb}{0,0,0.5}
+\definecolor{parameter}{rgb}{0.28,0.14,0.45}
+\definecolor{operator}{rgb}{0.67, 0.13, 1}
+\definecolor{output}{rgb}{0.03,0.4,0.03}
+
+% Estilo secciones y subsecciones
+\addtokomafont{disposition}{\fontfamily{lmdh}\selectfont}
+\addtokomafont{part}{\color{brown}}
+\addtokomafont{chapter}{\color{ForestGreen}}
+\addtokomafont{section}{\color{red}}
+\addtokomafont{subsection}{\color{blue}}
+
+% Courier admite negrita, Computer Modern no
+\renewcommand{\ttdefault}{pcr}
+
+\usepackage{listings}
+ \lstset{
+   language=python,
+   frame=single,
+   rulecolor=\color[rgb]{0.81,0.81,0.81},
+   numbers=left,
+   numberstyle=\small\sffamily\color{number},
+   backgroundcolor=\color{backgroundcolor},
+   basicstyle=\small\ttfamily,
+   commentstyle=\color{comment},
+   keywordstyle=\color{keyword}\bfseries,
+   stringstyle=\color{string}\itshape,
+   identifierstyle=\color{identifier}
+ }
+
+\renewcommand{\lstlistingname}{Código}% Listing -> Código
+
+% Fuente
+\usepackage[T1]{fontenc}
+\usepackage{accanthis}
+
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+\usepackage{fontawesome}
+\usepackage{academicons}
+
+\usepackage[misc]{ifsym}
+
+\usepackage{makeidx}
+\makeindex
+
+\begin{document}
+
+\frontmatter
+
+\include{preliminares/portada}
+
+\include{preliminares/portadaint} % portada interna
+
+\include{preliminares/copyright}
+\cleardoublepage
+\include{preliminares/dedicatoria}
+
+\include{preliminares/prefacio}
+
+\include{preliminares/agradecimientos}
+
+\tableofcontents
+
+\include{capitulos/introduccion}
+
+\mainmatter
+
+\setpartpreamble[u][\textwidth]{
+\begin{center}
+Preámbulo primera parte
+\end{center}
+}
+\part{Primera parte}
+
+\include{capitulos/capitulo1}
+
+\part{Segunda parte}
+
+\include{capitulos/capitulo2}
+
+\part{Tercera parte: Ejercicios}
+
+\include{capitulos/capitulo3.tex}
+
+\include{capitulos/capitulo4.tex}
+
+\appendix
+
+\include{apendices/apendice1}
+
+\setindexpreamble{Todas los números de página impresos en \textbf{negrita} hacen referencia a la
+definición del término. Los números de página impresos normalmente hacen
+referencia a las páginas donde dicho término es usado.\par\bigskip}
+
+\printindex
+
+%\nocite{*}
+
+\setbibpreamble{Las referencias se listan por orden alfabético de acuerdo al apellido del primer autor.}
+
+\bibliographystyle{alpha}
+\bibliography{library}
+\end{document}

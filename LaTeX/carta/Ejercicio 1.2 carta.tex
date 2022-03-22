@@ -1,0 +1,63 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% Francisco Torralbo Torralbo
+% 2019-02-19
+
+\documentclass{scrlttr2}
+
+\KOMAoptions{
+    fontsize=12pt,
+    paper=a4,
+    %titlepage=true,
+    twoside=false,
+    parskip=half, % full, half
+    DIV=12,
+    pagenumber=false,
+    foldmarks=false,
+    fromlogo=true,
+    fromemail=true,
+    fromphone=true,
+    fromrule=afteraddress,
+    backaddress=false
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\selectlanguage{spanish}
+
+\usepackage{lipsum}
+
+\usepackage{graphicx}
+  % path to the graphics folder
+  \graphicspath{{img/}}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks, urlcolor=black, 
+    pdfauthor={David Cabezas Berrido},
+    pdftitle={Ejercicio 1.2 carta},
+    pdfsubject={Curso Avanzado de LaTeX}
+}
+
+% Datos de la carta
+\setkomavar{subject}{Entrega Ejercicio 1.2}
+\setkomavar{fromname}{David Cabezas Berrido}
+\setkomavar{fromaddress}{Dpto. Análisis Matemático \\ UGR}
+\setkomavar{fromphone}{958 24 32 76}
+\setkomavar{fromemail}{dcabezas@ugr.es}
+\setkomavar{fromlogo}{\includegraphics[width=25mm]{UGR}}
+\setkomavar{signature}{\includegraphics[width=50mm]{firma}}
+
+\begin{document}
+    \begin{letter}{Francisco Torralbo\\ Profesor de Actualización Científica en Matemáticas \\  Dpto. de Geometría y Topología, Despacho 4 \\ UGR}
+    
+    \opening{Estimado Sr. Destinatario:}
+    
+    \lipsum[1]
+    
+    \closing{Reciba un cordial saludo. Atentamente,}
+    
+    \ps PD: Postdata
+    \end{letter}
+\end{document}
