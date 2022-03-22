@@ -1,0 +1,211 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\usepackage{parskip}
+
+\usepackage{float}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=cyan}
+
+% Please add the following required packages to your document preamble:
+ \usepackage[normalem]{ulem}
+ \useunder{\uline}{\ul}{}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+
+\def\diam{\mathrm{diam}}
+\def\dom{\mathrm{dom}}
+\def\card{\mathrm{card}}
+\def\Re{\mathrm{Re}}
+\def\Im{\mathrm{Im}}
+\def\lin{\mathrm{lin}}
+\def\dim{\mathrm{dim}}
+\def\codim{\mathrm{codim}}
+\def\co{\mathrm{co}}
+\def\Int{\mathrm{Int}}
+
+\usepackage{vmargin}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+\begin{document}
+
+\begin{center}
+\textbf{ACM: Matemática Electoral}
+
+\textbf{Segunda Clase: Reparto Proporcional}
+
+\bigskip
+
+David Cabezas Berrido
+
+\end{center}
+
+\bigskip
+
+\textbf{Ejercicio 1:} Ejemplo en el que no se verifique la monotonía de los votos.
+
+\bigskip
+
+\textbf{Soluci\'on:} En vista de la tabla, es obvio que tenemos que buscar el ejemplo en el método de Hamilton. Presentamos el siguiente ejemplo, con 100 escaños y 4 partidos, en una población con cerca de 100 millones de votantes.
+
+
+\begin{table}[H]
+	\begin{tabular}{cc|ccc|c|ccc|}
+		\cline{3-5} \cline{7-9}
+		&  & \multicolumn{3}{c|}{\textbf{Primeras Elecciones}}                                     & \textbf{} & \multicolumn{3}{c|}{ \textbf{Segundas Elecciones}} \\    \cline{3-5} \cline{7-9}                           \\ \cline{1-1} \cline{3-5} \cline{7-9} 
+		\multicolumn{1}{|c|}{\textbf{Partido}} &  & \multicolumn{1}{c|}{\textbf{Votos}} & \multicolumn{1}{c|}{\textbf{Cuota}} & \textbf{Reparto} & \textbf{}       & \multicolumn{1}{c|}{\textbf{Votos}} & \multicolumn{1}{c|}{\textbf{Cuota}} & \textbf{Reparto} \\ \cline{1-1} \cline{3-5} \cline{7-9} 
+		\multicolumn{1}{|c|}{\textbf{A}}       &  & \multicolumn{1}{c|}{11 300 000}     & \multicolumn{1}{c|}{11.35632738}    & 12               &                 & \multicolumn{1}{c|}{11 302 000}       & \multicolumn{1}{c|}{11.59179487}    & 11               \\ \cline{1-1} \cline{3-5} \cline{7-9} 
+		\multicolumn{1}{|c|}{\textbf{B}}       &  & \multicolumn{1}{c|}{16 200 000}     & \multicolumn{1}{c|}{16.28075253}    & 16               &                 & \multicolumn{1}{c|}{16 198 000}       & \multicolumn{1}{c|}{16.61333333}    & 17               \\ \cline{1-1} \cline{3-5} \cline{7-9} 
+		\multicolumn{1}{|c|}{\textbf{C}}       &  & \multicolumn{1}{c|}{36 002 000}     & \multicolumn{1}{c|}{36.18146004}    & 36               &                 & \multicolumn{1}{c|}{35 000 000}       & \multicolumn{1}{c|}{35.8974359}     & 36               \\ \cline{1-1} \cline{3-5} \cline{7-9} 
+		\multicolumn{1}{|c|}{\textbf{D}}       &  & \multicolumn{1}{c|}{36 002 000}     & \multicolumn{1}{c|}{36.18146004}    & 36               &                 & \multicolumn{1}{c|}{35 000 000}       & \multicolumn{1}{c|}{35.8974359}     & 36               \\ \cline{1-1} \cline{3-5} \cline{7-9} 
+		\multicolumn{1}{|c|}{\textbf{Total}}   &  & \multicolumn{1}{c|}{99 504 000}       & \multicolumn{1}{c|}{100}            & 100              &                 & \multicolumn{1}{c|}{97 500 000}       & \multicolumn{1}{c|}{100}            & 100              \\ \cline{1-1} \cline{3-5} \cline{7-9} 
+	\end{tabular}
+\end{table}
+
+En las primeras elecciones el reparto inicial sería (11, 16, 36, 36), que suma 99 escaños. El escaño restante se lo lleva \textbf{A} y suma 12 escaños.
+
+En las segundas elecciones la participación baja, siendo \textbf{C} y \textbf{D} los principales perjudicados. A pesar de perder \textbf{B} 2000 votos, el descenso en la participación hace que su cuota aumente. \textbf{A} gana 2000 votos, lo que sumado al descenso de la participación supone un aumento de la cuota. Sin embargo, la parte decimal de la cuota de \textbf{B} ahora supera a la de \textbf{A}.
+Las cuotas de \textbf{C} y \textbf{D} bajan, puesto que la gran mayoría de votantes que han desistido de participar en las segundas elecciones eran suyos. Aun así, las partes decimales de sus cuotas son las más altas.
+
+El primer reparto quedaría (11, 16, 35, 35), que suma 97 escaños. Las partes decimales más altas son las de las cuotas de \textbf{C} y \textbf{D}, por lo que vuelven a tener 36. Sin embargo, ahora es \textbf{B} y no \textbf{A} quien se lleva el escaño restante.
+
+\bigskip
+
+\textbf{Ejercicio 2:} Ejemplo de método de divisores que no sea de familia paramétrica y no se produzca una transferencia correcta entre votos y escaños.
+\bigskip
+
+\textbf{Soluci\'on:} Escogeremos las barreras 0.7, 1.9, 2.3, 3.9 y 4.1. Consideremos unas elecciones con cuatro partidos y 10 escaños a repartir en las que han participado 95 votantes. Los resultados son:
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Partido} & $\textbf{V}$ & $0.1\cdot\textbf{V}$ & \textbf{Reparto} \\ \hline
+		\textbf{A}       & 41           & 4.1           & 5                \\ \hline
+		\textbf{B}       & 11           & 1.1           & 1                \\ \hline
+		\textbf{C}       & 22           & 2.2           & 2                \\ \hline
+		\textbf{D}       & 21           & 2.1           & 2                \\ \hline
+		\textbf{Total}   & 95           & 9.7           & 10               \\ \hline
+	\end{tabular}
+\end{table}
+
+Empezamos a transferir votos del partido \textbf{A} al \textbf{B}. Al transferir un sólo voto podemos cambiar a $k=0.103$ y el reparto sigue siendo correcto. Al transferir dos votos, ahora el partido \textbf{C} pasa la barrera del 2.3 antes de que el partido \textbf{A} pase el 4.1 para recuperar su escaño. Tenemos el siguiente reparto con $k=0.105$:¨
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Partido} & $\textbf{V}$ & $0.105\textbf{V}$ & \textbf{Reparto} \\ \hline
+		\textbf{A}       & 39           & 4.095         & 4                \\ \hline
+		\textbf{B}       & 13           & 1.365         & 1                \\ \hline
+		\textbf{C}       & 22           & 2.31          & 3                \\ \hline
+		\textbf{D}       & 21           & 2.205         & 2                \\ \hline
+		\textbf{Total}   & 95           & 9.975         & 10               \\ \hline
+	\end{tabular}
+\end{table}
+
+Transfiriendo tres votos más, podemos usar $k=0.109$ y el reparto sigue siendo el mismo.
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Partido} & $\textbf{V}$ & $0.109\textbf{V}$ & \textbf{Reparto} \\ \hline
+		\textbf{A}       & 36           & 3.924         & 4                \\ \hline
+		\textbf{B}       & 16           & 1.744         & 1                \\ \hline
+		\textbf{C}       & 22           & 2.398         & 3                \\ \hline
+		\textbf{D}       & 21           & 2.289         & 2                \\ \hline
+		\textbf{Total}   & 95           & 10.355        & 10               \\ \hline
+	\end{tabular}
+\end{table}
+
+Sin embargo, si transferimos un voto más, ahora \textbf{D} pasa la barrera del 2.3 antes que \textbf{A} la del 3.9. Obtenemos el siguiente reparto con $k=0.11$:
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Partido} & $\textbf{V}$ & $k\textbf{V}$ & \textbf{Reparto} \\ \hline
+		\textbf{A}       & 35           & 3.85          & 3                \\ \hline
+		\textbf{B}       & 17           & 1.87          & 1                \\ \hline
+		\textbf{C}       & 22           & 2.42          & 3                \\ \hline
+		\textbf{D}       & 21           & 2.31          & 3                \\ \hline
+		\textbf{Total}   & 95           & 10.45         & 10               \\ \hline
+	\end{tabular}
+\end{table}
+
+El partido \textbf{A} ya ha perdido dos escaños en favor de \textbf{C} y \textbf{D}, y \textbf{B} no ha logrado pasar la barrera del 1.9 para ganar su segundo escaños, luego no existe transferencia perfecta de \textbf{A} a \textbf{B}.
+
+\bigskip
+
+\textbf{Ejercicio 3:} Ejemplo de inconsistencia de Hamilton en elección al Congreso.
+
+\bigskip
+
+\textbf{Soluci\'on:} Tomamos los votos de las elecciones al congreso de 2015 (pueden encontrarse \href{https://resultados.elpais.com/elecciones/2015/generales/congreso/index.html}{aquí}), no consideraremos todos los partidos.
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		\textbf{Partido}     & \textbf{Votos} & \textbf{Cuota}    & \textbf{Cuota Inf} & \textbf{Resto}    & \textbf{+1} & \textbf{Reparto} \\ \hline
+		PP                   & 7215530        & 101.941215371344  & 101                & 0.941215371343745 & 1              & 102              \\ \hline
+		PSOE                 & 5530693        & 78.1377897764659  & 78                 & 0.137789776465937 &                & 78               \\ \hline
+		PODEMOS              & 5189333        & 73.3150458783515  & 73                 & 0.315045878351455 &                & 73               \\ \hline
+		C's                  & 3500446        & 49.4544017669885  & 49                 & 0.454401766988525 &                & 49               \\ \hline
+		ERC-CATSI            & 599289         & 8.46677222860652  & 8                  & 0.466772228606521 & 1              & 9                \\ \hline
+		DL                   & 565501         & 7.98941439280417  & 7                  & 0.989414392804168 & 1              & 8                \\ \hline
+		PNV                  & 301585         & 4.26080155411546  & 4                  & 0.260801554115456 &                & 4                \\ \hline
+		UNID. POP. & 923105         & 13.0416539901247  & 13                 & 0.041653990124669 &                & 13               \\ \hline
+		EH Bildu             & 218467         & 3.08650805949547  & 3                  & 0.08650805949547  &                & 3                \\ \hline
+		CCa-PNC              & 81750          & 1.1549663512739   & 1                  & 0.154966351273898 &                & 1                \\ \hline
+		PACMA                & 219181         & 3.09659547203137  & 3                  & 0.096595472031367 &                & 3                \\ \hline
+		UPYD                 & 153498         & 2.16862415887267  & 2                  & 0.16862415887267  &                & 2                \\ \hline
+		NÓS                  & 70464          & 0.995517418668672 & 0                  & 0.995517418668672 & 1              & 1                \\ \hline
+		unio.cat             & 64726          & 0.914450789633692 & 0                  & 0.914450789633692 & 1              & 1                \\ \hline
+		VOX                  & 57733          & 0.815653484502703 & 0                  & 0.815653484502703 & 1              & 1                \\ \hline
+		R0-GV  & 48217          & 0.681211162805792 & 0                  & 0.681211162805792 & 1              & 1                \\ \hline
+		MÉS                  & 33931          & 0.479378143915286 & 0                  & 0.479378143915286 & 1              & 1                \\ \hline
+		Total                & 24773449       &                   & 342                &                   &                & 350              \\ \hline
+	\end{tabular}
+\end{table}
+
+Si ahora nos restringimos a PP y MÉS, que suman 103 escaños, y repartimos esos escaños entre ellos por el método de Hamilton obtenemos un número de escaños distinto al que obtenían antes.
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		\textbf{Partido}     & \textbf{Votos} & \textbf{Cuota}    & \textbf{Cuota Inf} & \textbf{Resto}    & \textbf{+1} & \textbf{Reparto} \\ \hline
+		PP                   & 7215530        & 102.517909952202 & 102     & 0.517909952201961 & 1    & 103        \\ \hline
+		MÉS                  & 33931          & 0.482090047798036 & 0      & 0.479378143915286 & 0    & 0         \\ \hline
+		Total                & 7249461	&     & 102        &             &        & 103              \\ \hline
+	\end{tabular}
+\end{table}
+
+Por tanto, no se verifica la consistencia.
+
+\bigskip
+
+\textbf{Ejercicio 4:} Inventa un nuevo método o propiedad y analízalo.
+
+\bigskip
+
+\textbf{Soluci\'on:} La siguiente propiedad me parece adecuada: 
+
+\textbf{Concordancia con refinamientos:} Si el número de escaños se multiplica por un número natural, no pueden agravarse las infrarrepresentaciones ni las sobrerrepresentaciones.
+
+Esta propiedad resulta natural, puesto que el problema de reparto proporcional radica en que hay que discretizar las cuotas. Si podemos subdividir cada uno de los escaños anteriores, deberíamos de ser capaces de distribuir los nuevos escaños de forma más justa.
+
+TODO
+
+\end{document}
+
