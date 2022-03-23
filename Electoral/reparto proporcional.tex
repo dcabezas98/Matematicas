@@ -201,11 +201,68 @@ Por tanto, no se verifica la consistencia.
 
 \textbf{Soluci\'on:} La siguiente propiedad me parece adecuada: 
 
-\textbf{Concordancia con refinamientos:} Si el número de escaños se multiplica por un número natural, no pueden agravarse las infrarrepresentaciones ni las sobrerrepresentaciones.
+\textbf{Concordancia con refinamientos:} Si el número de escaños se multiplica por un número natural $m$, no pueden agravarse las infrarrepresentaciones ni las sobrerrepresentaciones. Entendemos estas en el sentido
+\[\|\textbf{q}-\textbf{a}\|<\|m\textbf{q}-\textbf{b}\|,\]
+donde $\textbf{a}$ corresponde al reparto original y \textbf{b} al nuevo reparto.
 
-Esta propiedad resulta natural, puesto que el problema de reparto proporcional radica en que hay que discretizar las cuotas. Si podemos subdividir cada uno de los escaños anteriores, deberíamos de ser capaces de distribuir los nuevos escaños de forma más justa.
+Esta propiedad resulta natural, puesto que el problema de reparto proporcional radica en que hay que discretizar las cuotas. Si podemos subdividir cada uno de los escaños anteriores en dos o más, deberíamos de ser capaces de distribuir los nuevos escaños de forma más justa.
+Incluso podríamos plantearnos si tiene sentido en caso de aumentar el número de escaños a un número que no sea necesariamente un múltiplo del número de escaños original.
 
-TODO
+La propiedad depende de la norma, trabajaremos con la norma $\|\cdot\|_1$ pero podrían considerarse otras. 
+
+Observamos que el método de Hamilton no cumple esta propiedad. Consideremos las siguientes elecciones en las que se reparten 40 escaños.
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		\textbf{Partido} & \textbf{Votos} & \textbf{Cuota} & \textbf{Cuota Inf} & \textbf{Resto} & \textbf{+1} & \textbf{Reparto} & \textbf{Dif} \\ \hline
+		A                & 6534           & 5.28           & 5                  & 0.28           &             & 5                & 0.28         \\ \hline
+		B                & 7810           & 6.31111        & 6                  & 0.31111        & 1           & 7                & 0.68889      \\ \hline
+		C                & 13992          & 11.30667       & 11                 & 0.30667        &             & 11               & 0.30667      \\ \hline
+		D                & 21164          & 17.10222       & 17                 & 0.10222        &             & 17               & 0.10222      \\ \hline
+		Total            & 49500          & 40             & 39                 &                &   1          &     40             & 1.37778      \\ \hline
+	\end{tabular}
+\end{table}
+
+Si ahora repartimos 80 escaños la suma de las diferencias en valor absoluto entre las cuotas y las asignaciones aumenta.
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		\textbf{Partido} & \textbf{Votos} & \multicolumn{1}{c|}{\textbf{Cuota}} & \multicolumn{1}{c|}{\textbf{Cuota Inf}} & \multicolumn{1}{c|}{\textbf{Resto}} & \multicolumn{1}{c|}{\textbf{+1}} & \multicolumn{1}{c|}{\textbf{Reparto}} & \textbf{Dif} \\ \hline
+		A                & 6534           & 10.56000                            & 10                                      & 0.56000                             &                                 & 10                                    & 0.56         \\ \hline
+		B                & 7810           & 12.62222                            & 12                                      & 0.62222                             & 1                                & 13                                    & 0.37778      \\ \hline
+		C                & 13992          & 22.61333                            & 22                                      & 0.61333                             & 1                                & 23                                    & 0.38667      \\ \hline
+		D                & 21164          & 34.20444                            & 34                                      & 0.20444                             &                                 & 34                                    & 0.20444      \\ \hline
+		Total            & 49500          & \multicolumn{1}{c|}{80}             & \multicolumn{1}{c|}{78}                 & \multicolumn{1}{c|}{}               & \multicolumn{1}{c|}{2}           & \multicolumn{1}{c|}{80}               & 1.5288       \\ \hline
+	\end{tabular}
+\end{table}
+
+En el siguiente ejemplo observamos que el método d'Hondt tampoco la verifica. Se reparten 8 escaños, pero si se pasa a 16 la diferencia entre el vector de cuotas y el reparto (en norma de la suma) aumenta.
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\textbf{Partido} & \textbf{Votos} & $0.095\cdot\textbf{Votos}$ & \textbf{Reparto} & \textbf{Cuota} & \textbf{Dif} \\ \hline
+		A                & 21             & 1.995                     & 1                & 1.69697        & 0.69697      \\ \hline
+		B                & 33             & 3.135                     & 3                & 2.66667        & 0.33333      \\ \hline
+		C                & 45             & 4.275                     & 4                & 3.63636        & 0.36363      \\ \hline
+		Total            & 99             & 9.405                     & 8             & 8              & 1.39394      \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\textbf{Partido} & \textbf{Votos} & $0.18\cdot\textbf{Votos}$ & \textbf{Reparto} & \textbf{Cuota}   & \textbf{Dif} \\ \hline
+		A                & 21             & 3.78                     & 3                & 3.39394 & 0.39394      \\ \hline
+		B                & 33             & 5.94                     & 5                & 5.33333 & 0.33333      \\ \hline
+		C                & 45             & 8.1                      & 8                & 7.27273 & 0.72727      \\ \hline
+		Total            & 99             & 17.82                    & 16               & 16               & 1.45455      \\ \hline
+	\end{tabular}
+\end{table}
+
+Que el método de d'Hont no cumpla nuestra propiedad no es buena noticia y podría ser indicio de que no estamos usando una métrica correcta para cuantificar las sobrerrepresentaciones e infrarrepresentaciones. Otra alternativa es que nuestra propiedad no sea muy importante, o simplemente que el método no la cumple, ningún método es perfecto.
 
 \end{document}
 
