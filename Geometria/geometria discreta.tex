@@ -1,0 +1,120 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[latin1]{inputenc}
+
+\usepackage{parskip}
+\usepackage{float}
+\usepackage{subfigure}
+
+\usepackage{graphicx}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+
+\def\diam{\mathrm{diam}}
+\def\dom{\mathrm{dom}}
+\def\card{\mathrm{card}}
+\def\Re{\mathrm{Re}}
+\def\Im{\mathrm{Im}}
+\def\lin{\mathrm{lin}}
+\def\dim{\mathrm{dim}}
+\def\codim{\mathrm{codim}}
+\def\co{\mathrm{co}}
+\def\Int{\mathrm{Int}}
+
+\usepackage{enumerate}
+
+\usepackage{vmargin}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
+\begin{document}
+
+\begin{center}
+\textbf{\Large Ejercicios de Geometría Discreta}
+
+\bigskip
+
+David Cabezas Berrido
+
+\end{center}
+
+\begin{center}
+	\textbf{\large Tarea 1: Polígonos}
+\end{center}
+
+\bigskip
+
+\textbf{Ejercicio:} Prueba que el número de triangulaciones de un polígono de $n+2$ vértices está entre 1 y $C_n$.
+
+\bigskip
+
+\textbf{Soluci\'on:} Hemos visto que todo polígono se puede triangular, luego la cota inferior está asegurada. Si el polígono fuese convexo se pueden trazar diagonales entre cada dos vértices no consecutivos, y ya sabemos que el número de triangulaciones es $C_n$. En caso de no ser convexo, la cantidad de diagonales que se pueden trazar es estrictamente menor, luego el número de triangulaciones diferentes no puede aumentar.
+
+\bigskip
+
+\textbf{Ejercicio:} Para cada $n > 3$ encuentra polígonos de $n$ vértices con
+exactamente 2 triangulaciones.
+
+\bigskip
+
+\textbf{Solución:} Para $n=4$, podemos tomar simplemente un rectángulo, que es convexo y tiene $C_2=\frac{1}{3}\binom{4}{2}=2$ triangulaciones. Para $n\geq 5$, podemos colocar todos los vértices menos dos en una media luna como indican los puntos azules del dibujo y unimos cada uno con el siguiente obteniendo una poligonal abierta. A continuación, colocamos un vértice (el rojo del dibujo) de tal forma que sólo ``vea'' a los tres primeros vértices azules, en el sentido de que no pueda unirse con los demás por una línea recta que no corte a las aristas ya colocadas entre los puntos azules. Trazamos una arista entre el nuevo vértice y el primer vértice azul, continuando nuestra curva poligonal abierta. Por último, colocamos el vértice restante (verde) de forma que vea a todos los vértices ya colocados excepto al vértice azul que unimos con el rojo. Unimos el vértice verde con el rojo y cerramos el polígono añadiendo la arista entre el vértice verde y el último vértice azul.
+
+\begin{figure}[H]
+	\centering
+	\subfigure[$n=4$]{\includegraphics[width=70mm]{imgs/dostriang-4}}
+	\subfigure[$n\geq 5$]{\includegraphics[width=70mm]{imgs/dostriang-5}}
+\end{figure}
+
+De esta forma, cada uno de los vértices azules (a excepción de los tres primeros y el último, que está unido con él) sólo ``ve'' al vértice verde, y a la hora de triangular el polígono la diagonal entre ese vértice azul y el verde es obligada. El primero y el último de los vértices azules están obligados a pertenecer a una oreja cada uno, puesto que sólo pueden unirse con los que ya comparten una arista. La diagonal que une el tercer vértice azul con el verde también es obligada para cerrar el triángulo que queda a un lado de la diagonal que une el cuarto vértice azul con el verde, a menos que sólo haya 3 vértices azules y ya estén unidos el 3º azul y el verde por una arista. Además, la oreja que contiene al primer vértice azul debe cerrarse con una diagonal entre el vértice rojo y el segundo azul, ya que el vértice 1 no puede unirse con el verde por dentro del polígono.  La conclusión de este razonamiento es que las diagonales en morado son obligadas.
+
+Por la construcción que hemos hecho, para finalizar la triangulación hay únicamente dos posibilidades, las dos líneas amarillas del dibujo. Por tanto, hay sólo dos triangulaciones posibles.
+
+Aunque en el dibujo hayamos puesto 7 vértices, se puede hacer para cualquier número mayor o igual a 5 simplemente cambiando el número de vértices azules que ponemos en la media luna (mínimo 3). Por ejemplo, para $n=5$ podemos cortar el polígono del dibujo por la línea cian y quedarnos con el polígono de la derecha.
+
+\bigskip
+
+\textbf{Ejercicio:} Para cada $n \geq 3$  prueba que no existen polígonos de $n + 2$
+vértices con exactamente $C_n - 1$ triangulaciones.
+
+\bigskip
+
+\textbf{Solución:} Consideremos un polígono de $n+2$ vértices, que como mínimo serán 5. Si el polígono es convexo tendrá $C_n$ triangulaciones, luego supondremos que no lo es. Existe un vértice no estrictamente convexo, luego no se puede trazar una diagonal entre sus adyacences y el vértice no puede formar parte de una oreja. Por tanto, habrá que unir el vértice con otro forzosamente. ?ara ello tenemos como máximo $n-1$ opciones posibles, puesto que no se puede unir ni con él mismo ni con los adyacentes. En el mejor de los casos hay $n-1$ opciones, y para cada una de ellas dividiríamos el polígono en dos por esa diagonal. Los dos polinomios resultantes suman $n+4$ vértices debido a que estamos contando dos veces los vértices por los que pasa la diagonal, y se pueden triangular de forma independiente. El número de triangulaciones de cada uno será menor o igual a $C_{k-2}$ y $C_{l-2}$ donde $k+l=n+4$ y $3\leq k,l\leq n+1$ (los vértices adyacentes al vértice por el que trazamos la diagonal quedan cada uno en un polígono diferente). Por tanto, el número de triangulaciones del polígono estará acotado por
+\[\sum_{k=3}^{n+1} C_{k-2} C_{n-k+2}=\sum_{k=1}^{n-1} C_{k} C_{n-k}.\]
+Es conocido que los números de Catalan verifican $C_0=1$ y 
+$C_n=\sum_{k=0}^n C_k C_{n-k}$,
+luego el número de triangulaciones es menor o igual que $C_n-2$ (hay dos términos menos y todos los sumandos son mayores o iguales que 1).
+
+\bigskip
+
+\textbf{Ejercicio:} Prueba que todo polígono con $r$ agujeros se puede triangular
+por diagonales y deduce cuál será el número de triángulos y de
+diagonales de una triangulación cualquiera en función de sus
+vértices y agujeros.
+
+\bigskip
+
+\textbf{Solución:} Primero razonaremos que es posible triangularlo. Haremos inducción en el número de agujeros, ya sabemos que se cumple para $r=0$. Supongamos que cualquier polígono con un número de agujeros menor que $r>0$ se puede triangular, y consideremos un polígono con $r$ agujeros.
+
+Fijemos cualquier orientación que haga que el polígono (agujeros incluídos) no tenga aristas horizontales ni verticales y de forma que no haya dos vértices en la misma vertical ni horizontal. Esto es posible porque el número de vértices y aristas es finito. Fijémonos en uno de los agujeros ($A$ en el dibujo). Tomemos el vértice más al oeste (1), y sus dos vértices adyacentes (2 y 4). Desplazamos una recta vertical desde 1 hacia la izquierda hasta chocar con un vértice que se pueda unir con 1 (5 en el dibujo), éste no pertenecerá al agujero puesto que 1 es el más al oeste. Si hemos acabado en el polígono exterior paramos (es el caso del dibujo), si hemos acabado en otro agujero hacemos lo mismo con el vértice más a la izquierda de ese agujero. De esta forma siempre acabamos en un vértice del polígono exterior.
+
+\begin{figure}[H]
+	\includegraphics[width=100mm]{imgs/triang-agujeros}
+\end{figure}
+
+Ahora repetimos el proceso con el vértice más a la derecha (3) del agujero $A$ que tomamos inicialmente. En este caso, saltamos al agujero $B$ (vértice 6) y salimos por el vértice 7, nos vamos al vértice 8 (agujero C), salimos por el 9 y llegamos al 10, que pertenece al polígono exterior. Los vértices 5 y 10 no podrían ser el mismo, puesto que el 5 está al oeste de 1 (el más al oeste del agujero $A$) y 10 está al este de 3 (el más al este del agujero $A$). Al hacer esto, hemos partido el polígono original en dos polígonos (norte y sur) con menos agujeros, ya que tenemos garantizado que $A$ separa ambos polígonos. Tanto el polígono norte como el sur se pueden triangular por la hipótesis de inducción, y añadiendo las diagonales que hemos colocado, queda triangulado el polígono original.
+
+Ahora usaremos los ángulos para deducir el número de triángulos y diagonales de una triangulación cualquiera. TODO
+
+\end{document}
+
