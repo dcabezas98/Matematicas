@@ -92,7 +92,7 @@ vértices con exactamente $C_n - 1$ triangulaciones.
 \textbf{Solución:} Consideremos un polígono de $n+2$ vértices, que como mínimo serán 5. Si el polígono es convexo tendrá $C_n$ triangulaciones, luego supondremos que no lo es. Existe un vértice no estrictamente convexo, luego no se puede trazar una diagonal entre sus adyacences y el vértice no puede formar parte de una oreja. Por tanto, habrá que unir el vértice con otro forzosamente. ?ara ello tenemos como máximo $n-1$ opciones posibles, puesto que no se puede unir ni con él mismo ni con los adyacentes. En el mejor de los casos hay $n-1$ opciones, y para cada una de ellas dividiríamos el polígono en dos por esa diagonal. Los dos polinomios resultantes suman $n+4$ vértices debido a que estamos contando dos veces los vértices por los que pasa la diagonal, y se pueden triangular de forma independiente. El número de triangulaciones de cada uno será menor o igual a $C_{k-2}$ y $C_{l-2}$ donde $k+l=n+4$ y $3\leq k,l\leq n+1$ (los vértices adyacentes al vértice por el que trazamos la diagonal quedan cada uno en un polígono diferente). Por tanto, el número de triangulaciones del polígono estará acotado por
 \[\sum_{k=3}^{n+1} C_{k-2} C_{n-k+2}=\sum_{k=1}^{n-1} C_{k} C_{n-k}.\]
 Es conocido que los números de Catalan verifican $C_0=1$ y 
-$C_n=\sum_{k=0}^n C_k C_{n-k}$,
+$C_n=\sum\limits_{k=0}^n C_k C_{n-k}$,
 luego el número de triangulaciones es menor o igual que $C_n-2$ (hay dos términos menos y todos los sumandos son mayores o iguales que 1).
 
 \bigskip
@@ -106,7 +106,7 @@ vértices y agujeros.
 
 \textbf{Solución:} Primero razonaremos que es posible triangularlo. Haremos inducción en el número de agujeros, ya sabemos que se cumple para $r=0$. Supongamos que cualquier polígono con un número de agujeros menor que $r>0$ se puede triangular, y consideremos un polígono con $r$ agujeros.
 
-Fijemos cualquier orientación que haga que el polígono (agujeros incluídos) no tenga aristas horizontales ni verticales y de forma que no haya dos vértices en la misma vertical ni horizontal. Esto es posible porque el número de vértices y aristas es finito. Fijémonos en uno de los agujeros ($A$ en el dibujo). Tomemos el vértice más al oeste (1), y sus dos vértices adyacentes (2 y 4). Desplazamos una recta vertical desde 1 hacia la izquierda hasta chocar con un vértice que se pueda unir con 1 (5 en el dibujo), éste no pertenecerá al agujero puesto que 1 es el más al oeste. Si hemos acabado en el polígono exterior paramos (es el caso del dibujo), si hemos acabado en otro agujero hacemos lo mismo con el vértice más a la izquierda de ese agujero. De esta forma siempre acabamos en un vértice del polígono exterior.
+Fijemos cualquier orientación que haga que el polígono (agujeros incluídos) no tenga aristas horizontales ni verticales y de forma que no haya dos vértices en la misma vertical ni horizontal. Esto es posible porque el número de vértices y aristas es finito. Fijémonos en uno de los agujeros ($A$ en el dibujo). Tomemos el vértice más al oeste (1), y sus dos vértices adyacentes (2 y 4). Desplazamos una recta vertical desde 1 hacia la izquierda hasta chocar con un vértice que se pueda unir con 1 (5 en el dibujo), éste no pertenecerá al agujero puesto que 1 es el más al oeste. Siempre llegamos a un vértice que se puede unir con 1, ya que siempre chocamos con al menos dos aristas del polígono exterior y al final de ellas habrá un vértice, si alguna arista se entromete entre 1 y el vértice, acabaremos chocando con su extremo a menos que otra arista nos tape, pero entonces chocaremos con el extremo de la nueva arista \ldots \ y así hasta que toquemos un vértice, la cantidad finita de aristas lo garantiza. Si hemos acabado en el polígono exterior paramos (es el caso del dibujo), si hemos acabado en otro agujero hacemos lo mismo con el vértice más a la izquierda de ese agujero. De esta forma siempre acabamos en un vértice del polígono exterior.
 
 \begin{figure}[H]
 	\includegraphics[width=100mm]{imgs/triang-agujeros}
@@ -114,7 +114,95 @@ Fijemos cualquier orientación que haga que el polígono (agujeros incluídos) no t
 
 Ahora repetimos el proceso con el vértice más a la derecha (3) del agujero $A$ que tomamos inicialmente. En este caso, saltamos al agujero $B$ (vértice 6) y salimos por el vértice 7, nos vamos al vértice 8 (agujero C), salimos por el 9 y llegamos al 10, que pertenece al polígono exterior. Los vértices 5 y 10 no podrían ser el mismo, puesto que el 5 está al oeste de 1 (el más al oeste del agujero $A$) y 10 está al este de 3 (el más al este del agujero $A$). Al hacer esto, hemos partido el polígono original en dos polígonos (norte y sur) con menos agujeros, ya que tenemos garantizado que $A$ separa ambos polígonos. Tanto el polígono norte como el sur se pueden triangular por la hipótesis de inducción, y añadiendo las diagonales que hemos colocado, queda triangulado el polígono original.
 
-Ahora usaremos los ángulos para deducir el número de triángulos y diagonales de una triangulación cualquiera. TODO
+Ahora usaremos los ángulos para deducir el número de triángulos y diagonales de una triangulación cualquiera. Sea un polígono $P$ con $n$ vértices y $k$ agujeros $P_1,\ldots, P_k$ cada uno con $n_k$ vértices. Sabemos que la suma de los ángulos interiores de $P$ (sin contar los agujeros) es $(n-2)\pi$ y la de los exteriores $(n+2)\pi$, y lo mismo ocurre con $(n_k-2)\pi$ y $(n_k+2)\pi$ para cada agujero. Los ángulos exteriores de los agujeros son ángulos interiores para $P$, luego los ángulos interiores de $P$ suman
+
+\begin{align*}
+(n-2)\pi+\sum_{j=1}^k (n_k+2)\pi&=\pi\left(n-2+\sum_{j=1}^k (n_k+2)\right)=\pi\left(n-2+\sum_{j=1}^k n_k+2k\right)\\&=\pi\left(n+\sum_{j=1}^k n_k+2(k-1)\right)
+\end{align*}
+
+Una triangulación de $P$ estará formada por triángulos en el interior de $P$ exterior de los agujeros, luego la suma de los ángulos de los triángulos será la suma de los ángulos interiores de $P$, como la suma de los ángulos de cada uno es $\pi$, habrá exactamente $n+\sum\limits_{j=1}^k n_k+2(k-1)$. triángulos. Para las diagonales, si tenemos $T$ triángulos, por separado tendremos $3T$ lados. Si quitamos las aristas del polígono (tanto interiores como exteriores) nos quedarán las diagonales, pero debemos dividir esta cantidad por dos, puesto que cada diagonal es compartida por dos triangulos y la estamos contando dos veces. Por tanto, el número de diagonales será al mitad de 
+
+\[3\left(n+\sum_{j=1}^k n_k+2(k-1)\right)-\left(n+\sum_{j=1}^k n_k\right)=2\left(n+\sum_{j=1}^k n_k\right)+6(k-1),\]
+es decir,
+\[n+\sum_{j=1}^k n_k+3(k-1).\]
+
+\bigskip
+
+\begin{center}
+	\textbf{\large Tarea 2: Galería de Arte}
+\end{center}
+
+\bigskip
+
+\textbf{Ejercicio:} 
+
+\bigskip
+
+\textbf{Solución:}
+
+\bigskip
+
+\begin{center}
+	\textbf{\large Tarea 3: Equidescomposición de Polígonos}
+\end{center}
+
+\bigskip
+
+\textbf{Ejercicio:} Encuentra otra descomposición poligonal de la cruz griega
+que sea también descomposición de un cuadrado.
+
+\bigskip
+
+\textbf{Solución:} Presentamos la siguiente descomposición de la cruz, las piezas se organizan como en la imagen de la derecha para formar un cuadrado.
+
+\begin{figure}[H]
+	\includegraphics[width=100mm]{imgs/cruz-cuadrado}
+\end{figure}
+
+La pieza 2 queda en la misma posición. Como la diagonal secciona por la mitad el rectángulo de anchura 1 y altura 2 de la derecha (el que tiene el 1 arriba), la pieza 1 encaja en el hueco que queda abajo a la derecha de la 2. El mismo razonamiento hace que las piezas 4 y 5 encajen a la izquierda de la 2 (la 4) y debajo (la 5 debajo de la 4). El hueco que queda es exactamente medio rectángulo de altura 1 y anchura 2, donde encaja perfectamente la pieza 3. También es importante la orientación de las piezas, por ejemplo la sección verde que separa la 4 de la 5 debe darse seccionando por una recta con pendiente hacia arriba, si seccionamos con una recta de pendiente hacia abajo las piezas 4 y 5 no encajan (habría que reflejarlas).
+
+\bigskip
+
+\textbf{Ejercicio:} Encuentra descomposiciones poligonales de dos cruces griegas
+que combinadas den una de un solo cuadrado.
+
+\bigskip
+
+\textbf{Solución:} Si ambas son del mismo tamaño, cada una se puede dividir fácilmente en 5 cuadrados iguales, y ya conocemos cómo 10 cuadrados iguales se descomponen en otro más grande (diapositiva 7).
+
+\begin{figure}[H]
+	\includegraphics[width=80mm]{imgs/cruces-cuadrado1}
+\end{figure}
+
+Si una es exactamente el doble de grande de la otra, en la diapositiva 8 tenemos otra descomposición más.
+
+También para el mismo tamaño, seccionando cada cruz por la mitad y pegándo las piezas como se indica en el dibujo es claro que se obtiene un cuadrado.
+
+\begin{figure}[H]
+	\includegraphics[width=100mm]{imgs/cruces-cuadrado2}
+\end{figure}
+
+\bigskip
+
+\textbf{Ejercicio:} Encuentra una descomposición poligonal con tres elementos
+de un triángulo que dé también una descomposición de su
+imagen especular.
+
+\bigskip
+
+\textbf{Solución:} TODO
+
+\bigskip
+\begin{center}
+	\textbf{\large Tarea 4: Equidescomposición de Poliedros}
+\end{center}
+\bigskip
+
+\textbf{Ejercicio:} 
+
+\bigskip
+
+\textbf{Solución:}
 
 \end{document}
 
