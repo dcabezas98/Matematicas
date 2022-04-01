@@ -72,7 +72,7 @@ exactamente 2 triangulaciones.
 
 \begin{figure}[H]
 	\centering
-	\subfigure[$n=4$]{\includegraphics[width=70mm]{imgs/dostriang-4}}
+	\subfigure[$n=4$]{\includegraphics[width=60mm]{imgs/dostriang-4}}
 	\subfigure[$n\geq 5$]{\includegraphics[width=70mm]{imgs/dostriang-5}}
 \end{figure}
 
@@ -190,7 +190,26 @@ imagen especular.
 
 \bigskip
 
-\textbf{Solución:} TODO
+\textbf{Solución:} Dado un triángulo cualquiera, nos tomamos el lado más largo (si hay empate podemos coger un lado cualquiera) de forma que tenemos garantizado que la perpendicular por el vértice opuesto (altura) corte a ese lado. En el dibujo tomamos el lado negro de abajo. Trazamos la altura desde el vértice opuesto (en azul) y una paralela al lado que pase por el punto medio de la altura (también en azul), esta paralela también pasará por los puntos medios de los lados menores.
+
+Ahora damos dos cortes (en morado), ambos desde el punto donde la altura corta al lado largo y cada uno hasta el punto medio de un lado menor (el punto amarillo donde la paralela azul corta al lado). Esto divide el triangulo en un cuadrilátero y dos triángulos pequeños (1 y 2). Trazamos otra paralela más al lado largo por el vértice opuesto (en verde) y prolongamos (en rojo) los cortes morados hasta que corten a dicha paralela. Como es paralela, tenemos garantizado que cada uno de los ángulos $\alpha$, $\beta$, $\gamma$ y $\delta$ se repite arriba tal como indica el dibujo en amarillo. Por tanto, el las piezas triangulares 1 y 2 que hemos separado al hacer los cortes morados encajan en las posiciones 1 y 2 rojas que hay entre la paralela azul y la paralela verde. Obtenemos así el triángulo reflejado.
+
+\begin{figure}[H]
+	\includegraphics[width=100mm]{imgs/reflejar-triangulo}
+\end{figure}
+
+
+\bigskip
+
+\textbf{Ejercicio:} Se puede asegurar que en un polígono dado, el número de
+triángulos de una triangulación es menor o igual que el de una
+descomposición por triángulos.
+
+\bigskip
+
+\textbf{Solución:} Claramente una triangulación es una descomposición por triángulos, luego TODO
+
+TODO: El enunciado está muy mal redactado, ¿no? Preguntar
 
 \bigskip
 \begin{center}
@@ -198,11 +217,15 @@ imagen especular.
 \end{center}
 \bigskip
 
-\textbf{Ejercicio:} 
+\textbf{Ejercicio:} Encuentra los ángulos diedrales de un cubo, un tetraedro y un octaedro
+regular. Prueba que el cubo no es equidescomponible con el tetraedro regular
+del mismo volumen.
 
 \bigskip
 
-\textbf{Solución:}
+\textbf{Solución:} El de un cubo es claramente $\pi/2$. Como todas las aristas son perpendiculares entre sí, el ángulo entre dos caras cualesquiera es el ángulo que forman dos aristas en un vértice donde se corten.
+
+Con el siguiente dibujo en mente, vemos que el ángulo diedral del tetraedro puede obtenerse a partir del triángulo rectangulo que tiene como hipotenusa la altura de una cara (triángulo equilátero), como cateto opuesto la altura del tetraedro y como cateto contiguo la apotema de una cara. Para facilitar los cálculos, podemos suponer que la altura de los triángulos que forman las caras vale 1.
 
 \end{document}
 
