@@ -137,11 +137,29 @@ es decir,
 
 \bigskip
 
-\textbf{Ejercicio:} 
+\textbf{O'Rourke y Wood, 1983:} $E^+[n/2]$ V-guardias son necesarios y suficientes para ver el exterior de un polígono de $n$ lados.
 
 \bigskip
 
-\textbf{Solución:}
+\textbf{Demostración:} Sea $P$ un polígono cualquiera con $n$ lados. Comenzamos haciendo su envolvente convexa y triangulando la parte de su envolvente convexa exterior a $P$, esto nos genera un grafo plano $G''$.
+
+\begin{figure}[H]
+	\includegraphics[width=70mm]{imgs/museo-g2}
+\end{figure}
+
+Ahora añadimos un nuevo vértice $V_\infty$ en el exterior del grafo y lo conectamos a los vértices de la envolvente convexa, es decir, los que dan al exterior de $G''$. Así obtenemos un nuevo grafo (plano) $G'$. Las nuevas aristas rodearán a $G''$ por arriba o por abajo (o izquierda y derecha, según donde coloquemos $V_\infty$) hasta llegar a cada vértice. El último vértice que rodeemos por cada lado no quedará ``encerrado'' por las nuevas aristas (el resto sí). Llamaremos $x$ a uno de los dos vértices que todavía dan al exterior del grafo a parte de $V_\infty$.
+
+\begin{figure}[H]
+	\includegraphics[width=80mm]{imgs/museo-g1}
+\end{figure}
+
+Ahora abrimos el grafo duplicando el vértice $x$ en $x'$ y $x''$, ambos quedarán conectados con todos los vértices que lo estaban con $x$, conectaremos $V_\infty$ con $x'$ y $x''$ rodeando el grafo por dos lados  diferentes (arriba y abajo o izquierda y derecha). Obtenemos así el grafo $G$, que tiene $n+2$ vértices (hemos añadido $V_\infty$ y duplicado $x$).
+
+\begin{figure}[H]
+	\includegraphics[width=80mm]{imgs/museo-g}
+\end{figure}
+
+ $G$ que es la triangulación de un polígono (al menos topológicamente hablando) y por tanto 3-coloreable. Coloreamos $G$ con los colores rojo, verde y azul, pongamos que $V_\infty$ queda rojo. Habrá un color que no esté presente en menos de $E[\frac{n+2}{3}]$ vértices. Si ese color no es el rojo, TODO
 
 \bigskip
 
