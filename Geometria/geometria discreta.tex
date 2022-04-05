@@ -39,12 +39,12 @@
 {23.42cm}                    % altura del texto
 {10pt}                           % altura de los encabezados
 {1cm}                           % espacio entre el texto y los encabezados
-{0pt}                             % altura del pie de p·gina
-{2cm}                           % espacio entre el texto y el pie de p·gina
+{0pt}                             % altura del pie de p√°gina
+{2cm}                           % espacio entre el texto y el pie de p√°gina
 \begin{document}
 
 \begin{center}
-\textbf{\Large Ejercicios de GeometrÌa Discreta}
+\textbf{\Large Ejercicios de Geometr√≠a Discreta}
 
 \bigskip
 
@@ -53,25 +53,25 @@ David Cabezas Berrido
 \end{center}
 
 \begin{center}
-	\textbf{\large Tarea 1: PolÌgonos}
+	\textbf{\large Tarea 1: Pol√≠gonos}
 \end{center}
 
 \bigskip
 
-\textbf{Ejercicio:} Prueba que el n˙mero de triangulaciones de un polÌgono de $n+2$ vÈrtices est· entre 1 y $C_n$.
+\textbf{Ejercicio:} Prueba que el n√∫mero de triangulaciones de un pol√≠gono de $n+2$ v√©rtices est√° entre 1 y $C_n$.
 
 \bigskip
 
-\textbf{Soluci\'on:} Hemos visto que todo polÌgono se puede triangular, luego la cota inferior est· asegurada. Si el polÌgono fuese convexo se pueden trazar diagonales entre cada dos vÈrtices no consecutivos, y ya sabemos que el n˙mero de triangulaciones es $C_n$. En caso de no ser convexo, la cantidad de diagonales que se pueden trazar es estrictamente menor, luego el n˙mero de triangulaciones diferentes no puede aumentar.
+\textbf{Soluci\'on:} Hemos visto que todo pol√≠gono se puede triangular, luego la cota inferior est√° asegurada. Si el pol√≠gono fuese convexo se pueden trazar diagonales entre cada dos v√©rtices no consecutivos, y ya sabemos que el n√∫mero de triangulaciones es $C_n$. En caso de no ser convexo, la cantidad de diagonales que se pueden trazar es estrictamente menor, luego el n√∫mero de triangulaciones diferentes no puede aumentar.
 
 \bigskip
 
-\textbf{Ejercicio:} Para cada $n > 3$ encuentra polÌgonos de $n$ vÈrtices con
+\textbf{Ejercicio:} Para cada $n > 3$ encuentra pol√≠gonos de $n$ v√©rtices con
 exactamente 2 triangulaciones.
 
 \bigskip
 
-\textbf{SoluciÛn:} Para $n=4$, podemos tomar simplemente un rect·ngulo, que es convexo y tiene $C_2=\frac{1}{3}\binom{4}{2}=2$ triangulaciones. Para $n\geq 5$, podemos colocar todos los vÈrtices menos dos en una media luna como indican los puntos azules del dibujo y unimos cada uno con el siguiente obteniendo una poligonal abierta. A continuaciÛn, colocamos un vÈrtice (el rojo del dibujo) de tal forma que sÛlo ``vea'' a los tres primeros vÈrtices azules, en el sentido de que no pueda unirse con los dem·s por una lÌnea recta que no corte a las aristas ya colocadas entre los puntos azules. Trazamos una arista entre el nuevo vÈrtice y el primer vÈrtice azul, continuando nuestra curva poligonal abierta. Por ˙ltimo, colocamos el vÈrtice restante (verde) de forma que vea a todos los vÈrtices ya colocados excepto al vÈrtice azul que unimos con el rojo. Unimos el vÈrtice verde con el rojo y cerramos el polÌgono aÒadiendo la arista entre el vÈrtice verde y el ˙ltimo vÈrtice azul.
+\textbf{Soluci√≥n:} Para $n=4$, podemos tomar simplemente un rect√°ngulo, que es convexo y tiene $C_2=\frac{1}{3}\binom{4}{2}=2$ triangulaciones. Para $n\geq 5$, podemos colocar todos los v√©rtices menos dos en una media luna como indican los puntos azules del dibujo y unimos cada uno con el siguiente obteniendo una poligonal abierta. A continuaci√≥n, colocamos un v√©rtice (el rojo del dibujo) de tal forma que s√≥lo ``vea'' a los tres primeros v√©rtices azules, en el sentido de que no pueda unirse con los dem√°s por una l√≠nea recta que no corte a las aristas ya colocadas entre los puntos azules. Trazamos una arista entre el nuevo v√©rtice y el primer v√©rtice azul, continuando nuestra curva poligonal abierta. Por √∫ltimo, colocamos el v√©rtice restante (verde) de forma que vea a todos los v√©rtices ya colocados excepto al v√©rtice azul que unimos con el rojo. Unimos el v√©rtice verde con el rojo y cerramos el pol√≠gono a√±adiendo la arista entre el v√©rtice verde y el √∫ltimo v√©rtice azul.
 
 \begin{figure}[H]
 	\centering
@@ -79,51 +79,51 @@ exactamente 2 triangulaciones.
 	\subfigure[$n\geq 5$]{\includegraphics[width=70mm]{imgs/dostriang-5}}
 \end{figure}
 
-De esta forma, cada uno de los vÈrtices azules (a excepciÛn de los tres primeros y el ˙ltimo, que est· unido con Èl) sÛlo ``ve'' al vÈrtice verde, y a la hora de triangular el polÌgono la diagonal entre ese vÈrtice azul y el verde es obligada. El primero y el ˙ltimo de los vÈrtices azules est·n obligados a pertenecer a una oreja cada uno, puesto que sÛlo pueden unirse con los que ya comparten una arista. La diagonal que une el tercer vÈrtice azul con el verde tambiÈn es obligada para cerrar el tri·ngulo que queda a un lado de la diagonal que une el cuarto vÈrtice azul con el verde, a menos que sÛlo haya 3 vÈrtices azules y ya estÈn unidos el 3∫ azul y el verde por una arista. Adem·s, la oreja que contiene al primer vÈrtice azul debe cerrarse con una diagonal entre el vÈrtice rojo y el segundo azul, ya que el vÈrtice 1 no puede unirse con el verde por dentro del polÌgono.  La conclusiÛn de este razonamiento es que las diagonales en morado son obligadas.
+De esta forma, cada uno de los v√©rtices azules (a excepci√≥n de los tres primeros y el √∫ltimo, que est√° unido con √©l) s√≥lo ``ve'' al v√©rtice verde, y a la hora de triangular el pol√≠gono la diagonal entre ese v√©rtice azul y el verde es obligada. El primero y el √∫ltimo de los v√©rtices azules est√°n obligados a pertenecer a una oreja cada uno, puesto que s√≥lo pueden unirse con los que ya comparten una arista. La diagonal que une el tercer v√©rtice azul con el verde tambi√©n es obligada para cerrar el tri√°ngulo que queda a un lado de la diagonal que une el cuarto v√©rtice azul con el verde, a menos que s√≥lo haya 3 v√©rtices azules y ya est√©n unidos el 3¬∫ azul y el verde por una arista. Adem√°s, la oreja que contiene al primer v√©rtice azul debe cerrarse con una diagonal entre el v√©rtice rojo y el segundo azul, ya que el v√©rtice 1 no puede unirse con el verde por dentro del pol√≠gono.  La conclusi√≥n de este razonamiento es que las diagonales en morado son obligadas.
 
-Por la construcciÛn que hemos hecho, para finalizar la triangulaciÛn hay ˙nicamente dos posibilidades, las dos lÌneas amarillas del dibujo. Por tanto, hay sÛlo dos triangulaciones posibles.
+Por la construcci√≥n que hemos hecho, para finalizar la triangulaci√≥n hay √∫nicamente dos posibilidades, las dos l√≠neas amarillas del dibujo. Por tanto, hay s√≥lo dos triangulaciones posibles.
 
-Aunque en el dibujo hayamos puesto 7 vÈrtices, se puede hacer para cualquier n˙mero mayor o igual a 5 simplemente cambiando el n˙mero de vÈrtices azules que ponemos en la media luna (mÌnimo 3). Por ejemplo, para $n=5$ podemos cortar el polÌgono del dibujo por la lÌnea cian y quedarnos con el polÌgono de la derecha.
-
-\bigskip
-
-\textbf{Ejercicio:} Para cada $n \geq 3$  prueba que no existen polÌgonos de $n + 2$
-vÈrtices con exactamente $C_n - 1$ triangulaciones.
+Aunque en el dibujo hayamos puesto 7 v√©rtices, se puede hacer para cualquier n√∫mero mayor o igual a 5 simplemente cambiando el n√∫mero de v√©rtices azules que ponemos en la media luna (m√≠nimo 3). Por ejemplo, para $n=5$ podemos cortar el pol√≠gono del dibujo por la l√≠nea cian y quedarnos con el pol√≠gono de la derecha.
 
 \bigskip
 
-\textbf{SoluciÛn:} Consideremos un polÌgono de $n+2$ vÈrtices, que como mÌnimo ser·n 5. Si el polÌgono es convexo tendr· $C_n$ triangulaciones, luego supondremos que no lo es. Existe un vÈrtice no estrictamente convexo, luego no se puede trazar una diagonal entre sus adyacences y el vÈrtice no puede formar parte de una oreja. Por tanto, habr· que unir el vÈrtice con otro forzosamente. ?ara ello tenemos como m·ximo $n-1$ opciones posibles, puesto que no se puede unir ni con Èl mismo ni con los adyacentes. En el mejor de los casos hay $n-1$ opciones, y para cada una de ellas dividirÌamos el polÌgono en dos por esa diagonal. Los dos polinomios resultantes suman $n+4$ vÈrtices debido a que estamos contando dos veces los vÈrtices por los que pasa la diagonal, y se pueden triangular de forma independiente. El n˙mero de triangulaciones de cada uno ser· menor o igual a $C_{k-2}$ y $C_{l-2}$ donde $k+l=n+4$ y $3\leq k,l\leq n+1$ (los vÈrtices adyacentes al vÈrtice por el que trazamos la diagonal quedan cada uno en un polÌgono diferente). Por tanto, el n˙mero de triangulaciones del polÌgono estar· acotado por
+\textbf{Ejercicio:} Para cada $n \geq 3$  prueba que no existen pol√≠gonos de $n + 2$
+v√©rtices con exactamente $C_n - 1$ triangulaciones.
+
+\bigskip
+
+\textbf{Soluci√≥n:} Consideremos un pol√≠gono de $n+2$ v√©rtices, que como m√≠nimo ser√°n 5. Si el pol√≠gono es convexo tendr√° $C_n$ triangulaciones, luego supondremos que no lo es. Existe un v√©rtice no estrictamente convexo, luego no se puede trazar una diagonal entre sus adyacences y el v√©rtice no puede formar parte de una oreja. Por tanto, habr√° que unir el v√©rtice con otro forzosamente. ?ara ello tenemos como m√°ximo $n-1$ opciones posibles, puesto que no se puede unir ni con √©l mismo ni con los adyacentes. En el mejor de los casos hay $n-1$ opciones, y para cada una de ellas dividir√≠amos el pol√≠gono en dos por esa diagonal. Los dos polinomios resultantes suman $n+4$ v√©rtices debido a que estamos contando dos veces los v√©rtices por los que pasa la diagonal, y se pueden triangular de forma independiente. El n√∫mero de triangulaciones de cada uno ser√° menor o igual a $C_{k-2}$ y $C_{l-2}$ donde $k+l=n+4$ y $3\leq k,l\leq n+1$ (los v√©rtices adyacentes al v√©rtice por el que trazamos la diagonal quedan cada uno en un pol√≠gono diferente). Por tanto, el n√∫mero de triangulaciones del pol√≠gono estar√° acotado por
 \[\sum_{k=3}^{n+1} C_{k-2} C_{n-k+2}=\sum_{k=1}^{n-1} C_{k} C_{n-k}.\]
-Es conocido que los n˙meros de Catalan verifican $C_0=1$ y 
+Es conocido que los n√∫meros de Catalan verifican $C_0=1$ y 
 $C_n=\sum\limits_{k=0}^n C_k C_{n-k}$,
-luego el n˙mero de triangulaciones es menor o igual que $C_n-2$ (hay dos tÈrminos menos y todos los sumandos son mayores o iguales que 1).
+luego el n√∫mero de triangulaciones es menor o igual que $C_n-2$ (hay dos t√©rminos menos y todos los sumandos son mayores o iguales que 1).
 
 \bigskip
 
-\textbf{Ejercicio:} Prueba que todo polÌgono con $r$ agujeros se puede triangular
-por diagonales y deduce cu·l ser· el n˙mero de tri·ngulos y de
-diagonales de una triangulaciÛn cualquiera en funciÛn de sus
-vÈrtices y agujeros.
+\textbf{Ejercicio:} Prueba que todo pol√≠gono con $r$ agujeros se puede triangular
+por diagonales y deduce cu√°l ser√° el n√∫mero de tri√°ngulos y de
+diagonales de una triangulaci√≥n cualquiera en funci√≥n de sus
+v√©rtices y agujeros.
 
 \bigskip
 
-\textbf{SoluciÛn:} Primero razonaremos que es posible triangularlo. Haremos inducciÛn en el n˙mero de agujeros, ya sabemos que se cumple para $r=0$. Supongamos que cualquier polÌgono con un n˙mero de agujeros menor que $r>0$ se puede triangular, y consideremos un polÌgono con $r$ agujeros.
+\textbf{Soluci√≥n:} Primero razonaremos que es posible triangularlo. Haremos inducci√≥n en el n√∫mero de agujeros, ya sabemos que se cumple para $r=0$. Supongamos que cualquier pol√≠gono con un n√∫mero de agujeros menor que $r>0$ se puede triangular, y consideremos un pol√≠gono con $r$ agujeros.
 
-Fijemos cualquier orientaciÛn que haga que el polÌgono (agujeros incluÌdos) no tenga aristas horizontales ni verticales y de forma que no haya dos vÈrtices en la misma vertical ni horizontal. Esto es posible porque el n˙mero de vÈrtices y aristas es finito. FijÈmonos en uno de los agujeros ($A$ en el dibujo). Tomemos el vÈrtice m·s al oeste (1), y sus dos vÈrtices adyacentes (2 y 4). Desplazamos una recta vertical desde 1 hacia la izquierda hasta chocar con un vÈrtice que se pueda unir con 1 (5 en el dibujo), Èste no pertenecer· al agujero puesto que 1 es el m·s al oeste. Siempre llegamos a un vÈrtice que se puede unir con 1, ya que siempre chocamos con al menos dos aristas del polÌgono exterior y al final de ellas habr· un vÈrtice, si alguna arista se entromete entre 1 y el vÈrtice, acabaremos chocando con su extremo a menos que otra arista nos tape, pero entonces chocaremos con el extremo de la nueva arista \ldots \ y asÌ hasta que toquemos un vÈrtice, la cantidad finita de aristas lo garantiza. Si hemos acabado en el polÌgono exterior paramos (es el caso del dibujo), si hemos acabado en otro agujero hacemos lo mismo con el vÈrtice m·s a la izquierda de ese agujero. De esta forma siempre acabamos en un vÈrtice del polÌgono exterior.
+Fijemos cualquier orientaci√≥n que haga que el pol√≠gono (agujeros inclu√≠dos) no tenga aristas horizontales ni verticales y de forma que no haya dos v√©rtices en la misma vertical ni horizontal. Esto es posible porque el n√∫mero de v√©rtices y aristas es finito. Fij√©monos en uno de los agujeros ($A$ en el dibujo). Tomemos el v√©rtice m√°s al oeste (1), y sus dos v√©rtices adyacentes (2 y 4). Desplazamos una recta vertical desde 1 hacia la izquierda hasta chocar con un v√©rtice que se pueda unir con 1 (5 en el dibujo), √©ste no pertenecer√° al agujero puesto que 1 es el m√°s al oeste. Siempre llegamos a un v√©rtice que se puede unir con 1, ya que siempre chocamos con al menos dos aristas del pol√≠gono exterior y al final de ellas habr√° un v√©rtice, si alguna arista se entromete entre 1 y el v√©rtice, acabaremos chocando con su extremo a menos que otra arista nos tape, pero entonces chocaremos con el extremo de la nueva arista \ldots \ y as√≠ hasta que toquemos un v√©rtice, la cantidad finita de aristas lo garantiza. Si hemos acabado en el pol√≠gono exterior paramos (es el caso del dibujo), si hemos acabado en otro agujero hacemos lo mismo con el v√©rtice m√°s a la izquierda de ese agujero. De esta forma siempre acabamos en un v√©rtice del pol√≠gono exterior.
 
 \begin{figure}[H]
 	\includegraphics[width=100mm]{imgs/triang-agujeros}
 \end{figure}
 
-Ahora repetimos el proceso con el vÈrtice m·s a la derecha (3) del agujero $A$ que tomamos inicialmente. En este caso, saltamos al agujero $B$ (vÈrtice 6) y salimos por el vÈrtice 7, nos vamos al vÈrtice 8 (agujero C), salimos por el 9 y llegamos al 10, que pertenece al polÌgono exterior. Los vÈrtices 5 y 10 no podrÌan ser el mismo, puesto que el 5 est· al oeste de 1 (el m·s al oeste del agujero $A$) y 10 est· al este de 3 (el m·s al este del agujero $A$). Al hacer esto, hemos partido el polÌgono original en dos polÌgonos (norte y sur) con menos agujeros, ya que tenemos garantizado que $A$ separa ambos polÌgonos. Tanto el polÌgono norte como el sur se pueden triangular por la hipÛtesis de inducciÛn, y aÒadiendo las diagonales que hemos colocado, queda triangulado el polÌgono original.
+Ahora repetimos el proceso con el v√©rtice m√°s a la derecha (3) del agujero $A$ que tomamos inicialmente. En este caso, saltamos al agujero $B$ (v√©rtice 6) y salimos por el v√©rtice 7, nos vamos al v√©rtice 8 (agujero C), salimos por el 9 y llegamos al 10, que pertenece al pol√≠gono exterior. Los v√©rtices 5 y 10 no podr√≠an ser el mismo, puesto que el 5 est√° al oeste de 1 (el m√°s al oeste del agujero $A$) y 10 est√° al este de 3 (el m√°s al este del agujero $A$). Al hacer esto, hemos partido el pol√≠gono original en dos pol√≠gonos (norte y sur) con menos agujeros, ya que tenemos garantizado que $A$ separa ambos pol√≠gonos. Tanto el pol√≠gono norte como el sur se pueden triangular por la hip√≥tesis de inducci√≥n, y a√±adiendo las diagonales que hemos colocado, queda triangulado el pol√≠gono original.
 
-Ahora usaremos los ·ngulos para deducir el n˙mero de tri·ngulos y diagonales de una triangulaciÛn cualquiera. Sea un polÌgono $P$ con $n$ vÈrtices y $k$ agujeros $P_1,\ldots, P_k$ cada uno con $n_k$ vÈrtices. Sabemos que la suma de los ·ngulos interiores de $P$ (sin contar los agujeros) es $(n-2)\pi$ y la de los exteriores $(n+2)\pi$, y lo mismo ocurre con $(n_k-2)\pi$ y $(n_k+2)\pi$ para cada agujero. Los ·ngulos exteriores de los agujeros son ·ngulos interiores para $P$, luego los ·ngulos interiores de $P$ suman
+Ahora usaremos los √°ngulos para deducir el n√∫mero de tri√°ngulos y diagonales de una triangulaci√≥n cualquiera. Sea un pol√≠gono $P$ con $n$ v√©rtices y $k$ agujeros $P_1,\ldots, P_k$ cada uno con $n_k$ v√©rtices. Sabemos que la suma de los √°ngulos interiores de $P$ (sin contar los agujeros) es $(n-2)\pi$ y la de los exteriores $(n+2)\pi$, y lo mismo ocurre con $(n_k-2)\pi$ y $(n_k+2)\pi$ para cada agujero. Los √°ngulos exteriores de los agujeros son √°ngulos interiores para $P$, luego los √°ngulos interiores de $P$ suman
 
 \begin{align*}
 (n-2)\pi+\sum_{j=1}^k (n_k+2)\pi&=\pi\left(n-2+\sum_{j=1}^k (n_k+2)\right)=\pi\left(n-2+\sum_{j=1}^k n_k+2k\right)\\&=\pi\left(n+\sum_{j=1}^k n_k+2(k-1)\right)
 \end{align*}
 
-Una triangulaciÛn de $P$ estar· formada por tri·ngulos en el interior de $P$ exterior de los agujeros, luego la suma de los ·ngulos de los tri·ngulos ser· la suma de los ·ngulos interiores de $P$, como la suma de los ·ngulos de cada uno es $\pi$, habr· exactamente $n+\sum\limits_{j=1}^k n_k+2(k-1)$. tri·ngulos. Para las diagonales, si tenemos $T$ tri·ngulos, por separado tendremos $3T$ lados. Si quitamos las aristas del polÌgono (tanto interiores como exteriores) nos quedar·n las diagonales, pero debemos dividir esta cantidad por dos, puesto que cada diagonal es compartida por dos triangulos y la estamos contando dos veces. Por tanto, el n˙mero de diagonales ser· al mitad de 
+Una triangulaci√≥n de $P$ estar√° formada por tri√°ngulos en el interior de $P$ exterior de los agujeros, luego la suma de los √°ngulos de los tri√°ngulos ser√° la suma de los √°ngulos interiores de $P$, como la suma de los √°ngulos de cada uno es $\pi$, habr√° exactamente $n+\sum\limits_{j=1}^k n_k+2(k-1)$. tri√°ngulos. Para las diagonales, si tenemos $T$ tri√°ngulos, por separado tendremos $3T$ lados. Si quitamos las aristas del pol√≠gono (tanto interiores como exteriores) nos quedar√°n las diagonales, pero debemos dividir esta cantidad por dos, puesto que cada diagonal es compartida por dos triangulos y la estamos contando dos veces. Por tanto, el n√∫mero de diagonales ser√° al mitad de 
 
 \[3\left(n+\sum_{j=1}^k n_k+2(k-1)\right)-\left(n+\sum_{j=1}^k n_k\right)=2\left(n+\sum_{j=1}^k n_k\right)+6(k-1),\]
 es decir,
@@ -132,55 +132,55 @@ es decir,
 \bigskip
 
 \begin{center}
-	\textbf{\large Tarea 2: GalerÌa de Arte}
+	\textbf{\large Tarea 2: Galer√≠a de Arte}
 \end{center}
 
 \bigskip
 
-\textbf{O'Rourke y Wood, 1983:} $E^+[n/2]$ V-guardias son necesarios y suficientes para ver el exterior de un polÌgono de $n$ lados.
+\textbf{O'Rourke y Wood, 1983:} $E^+[n/2]$ V-guardias son necesarios y suficientes para ver el exterior de un pol√≠gono de $n$ lados.
 
 \bigskip
 
-\textbf{DemostraciÛn:} Sea $P$ un polÌgono cualquiera con $n$ lados. Comenzamos haciendo su envolvente convexa y triangulando la parte de su envolvente convexa exterior a $P$, esto nos genera un grafo plano $G''$.
+\textbf{Demostraci√≥n:} Sea $P$ un pol√≠gono cualquiera con $n$ lados. Comenzamos haciendo su envolvente convexa y triangulando la parte de su envolvente convexa exterior a $P$, esto nos genera un grafo plano $G''$.
 
 \begin{figure}[H]
 	\includegraphics[width=70mm]{imgs/museo-g2}
 \end{figure}
 
-Ahora aÒadimos un nuevo vÈrtice $V_\infty$ en el exterior del grafo y lo conectamos a los vÈrtices de la envolvente convexa, es decir, los que dan al exterior de $G''$. AsÌ obtenemos un nuevo grafo (plano) $G'$. Las nuevas aristas rodear·n a $G''$ por arriba o por abajo (o izquierda y derecha, seg˙n donde coloquemos $V_\infty$) hasta llegar a cada vÈrtice. El ˙ltimo vÈrtice que rodeemos por cada lado no quedar· ``encerrado'' por las nuevas aristas (el resto sÌ). Llamaremos $x$ a uno de los dos vÈrtices que todavÌa dan al exterior del grafo a parte de $V_\infty$.
+Ahora a√±adimos un nuevo v√©rtice $V_\infty$ en el exterior del grafo y lo conectamos a los v√©rtices de la envolvente convexa, es decir, los que dan al exterior de $G''$. As√≠ obtenemos un nuevo grafo (plano) $G'$. Las nuevas aristas rodear√°n a $G''$ por arriba o por abajo (o izquierda y derecha, seg√∫n donde coloquemos $V_\infty$) hasta llegar a cada v√©rtice. El √∫ltimo v√©rtice que rodeemos por cada lado no quedar√° ``encerrado'' por las nuevas aristas (el resto s√≠). Llamaremos $x$ a uno de los dos v√©rtices que todav√≠a dan al exterior del grafo a parte de $V_\infty$.
 
 \begin{figure}[H]
 	\includegraphics[width=80mm]{imgs/museo-g1}
 \end{figure}
 
-Ahora abrimos el grafo duplicando el vÈrtice $x$ en $x'$ y $x''$, ambos quedar·n conectados con todos los vÈrtices que lo estaban con $x$, conectaremos $V_\infty$ con $x'$ y $x''$ rodeando el grafo por dos lados  diferentes (arriba y abajo o izquierda y derecha). Obtenemos asÌ el grafo $G$, que tiene $n+2$ vÈrtices (hemos aÒadido $V_\infty$ y duplicado $x$).
+Ahora abrimos el grafo duplicando el v√©rtice $x$ en $x'$ y $x''$, ambos quedar√°n conectados con todos los v√©rtices que lo estaban con $x$, conectaremos $V_\infty$ con $x'$ y $x''$ rodeando el grafo por dos lados  diferentes (arriba y abajo o izquierda y derecha). Obtenemos as√≠ el grafo $G$, que tiene $n+2$ v√©rtices (hemos a√±adido $V_\infty$ y duplicado $x$).
 
 \begin{figure}[H]
 	\includegraphics[width=80mm]{imgs/museo-g}
 \end{figure}
 
- $G$ que es la triangulaciÛn de un polÌgono (al menos topolÛgicamente hablando) y por tanto 3-coloreable. Coloreamos $G$ con los colores rojo, verde y azul, pongamos que $V_\infty$ queda rojo. Habr· un color que no estÈ presente en menos de $E[\frac{n+2}{3}]$ vÈrtices. Si ese color no es el rojo, TODO
+ $G$ que es la triangulaci√≥n de un pol√≠gono (al menos topol√≥gicamente hablando) y por tanto 3-coloreable. Coloreamos $G$ con los colores rojo, verde y azul, pongamos que $V_\infty$ queda rojo. Habr√° un color que no est√© presente en menos de $E[\frac{n+2}{3}]$ v√©rtices. Si ese color no es el rojo, TODO
 
 \bigskip
 
 \begin{center}
-	\textbf{\large Tarea 3: EquidescomposiciÛn de PolÌgonos}
+	\textbf{\large Tarea 3: Equidescomposici√≥n de Pol√≠gonos}
 \end{center}
 
 \bigskip
 
-\textbf{Ejercicio:} Encuentra otra descomposiciÛn poligonal de la cruz griega
-que sea tambiÈn descomposiciÛn de un cuadrado.
+\textbf{Ejercicio:} Encuentra otra descomposici√≥n poligonal de la cruz griega
+que sea tambi√©n descomposici√≥n de un cuadrado.
 
 \bigskip
 
-\textbf{SoluciÛn:} Presentamos la siguiente descomposiciÛn de la cruz, las piezas se organizan como en la imagen de la derecha para formar un cuadrado.
+\textbf{Soluci√≥n:} Presentamos la siguiente descomposici√≥n de la cruz, las piezas se organizan como en la imagen de la derecha para formar un cuadrado.
 
 \begin{figure}[H]
 	\includegraphics[width=100mm]{imgs/cruz-cuadrado}
 \end{figure}
 
-La pieza 2 queda en la misma posiciÛn. Como la diagonal secciona por la mitad el rect·ngulo de anchura 1 y altura 2 de la derecha (el que tiene el 1 arriba), la pieza 1 encaja en el hueco que queda abajo a la derecha de la 2. El mismo razonamiento hace que las piezas 4 y 5 encajen a la izquierda de la 2 (la 4) y debajo (la 5 debajo de la 4). El hueco que queda es exactamente medio rect·ngulo de altura 1 y anchura 2, donde encaja perfectamente la pieza 3. TambiÈn es importante la orientaciÛn de las piezas, por ejemplo la secciÛn verde que separa la 4 de la 5 debe darse seccionando por una recta con pendiente hacia arriba, si seccionamos con una recta de pendiente hacia abajo las piezas 4 y 5 no encajan (habrÌa que reflejarlas).
+La pieza 2 queda en la misma posici√≥n. Como la diagonal secciona por la mitad el rect√°ngulo de anchura 1 y altura 2 de la derecha (el que tiene el 1 arriba), la pieza 1 encaja en el hueco que queda abajo a la derecha de la 2. El mismo razonamiento hace que las piezas 4 y 5 encajen a la izquierda de la 2 (la 4) y debajo (la 5 debajo de la 4). El hueco que queda es exactamente medio rect√°ngulo de altura 1 y anchura 2, donde encaja perfectamente la pieza 3. Tambi√©n es importante la orientaci√≥n de las piezas, por ejemplo la secci√≥n verde que separa la 4 de la 5 debe darse seccionando por una recta con pendiente hacia arriba, si seccionamos con una recta de pendiente hacia abajo las piezas 4 y 5 no encajan (habr√≠a que reflejarlas).
 
 \bigskip
 
@@ -189,15 +189,15 @@ que combinadas den una de un solo cuadrado.
 
 \bigskip
 
-\textbf{SoluciÛn:} Si ambas son del mismo tamaÒo, cada una se puede dividir f·cilmente en 5 cuadrados iguales, y ya conocemos cÛmo 10 cuadrados iguales se descomponen en otro m·s grande (diapositiva 7).
+\textbf{Soluci√≥n:} Si ambas son del mismo tama√±o, cada una se puede dividir f√°cilmente en 5 cuadrados iguales, y ya conocemos c√≥mo 10 cuadrados iguales se descomponen en otro m√°s grande (diapositiva 7).
 
 \begin{figure}[H]
 	\includegraphics[width=80mm]{imgs/cruces-cuadrado1}
 \end{figure}
 
-Si una es exactamente el doble de grande de la otra, en la diapositiva 8 tenemos otra descomposiciÛn m·s.
+Si una es exactamente el doble de grande de la otra, en la diapositiva 8 tenemos otra descomposici√≥n m√°s.
 
-TambiÈn para el mismo tamaÒo, seccionando cada cruz por la mitad y peg·ndo las piezas como se indica en el dibujo es claro que se obtiene un cuadrado.
+Tambi√©n para el mismo tama√±o, seccionando cada cruz por la mitad y peg√°ndo las piezas como se indica en el dibujo es claro que se obtiene un cuadrado.
 
 \begin{figure}[H]
 	\includegraphics[width=100mm]{imgs/cruces-cuadrado2}
@@ -205,15 +205,15 @@ TambiÈn para el mismo tamaÒo, seccionando cada cruz por la mitad y peg·ndo las p
 
 \bigskip
 
-\textbf{Ejercicio:} Encuentra una descomposiciÛn poligonal con tres elementos
-de un tri·ngulo que dÈ tambiÈn una descomposiciÛn de su
+\textbf{Ejercicio:} Encuentra una descomposici√≥n poligonal con tres elementos
+de un tri√°ngulo que d√© tambi√©n una descomposici√≥n de su
 imagen especular.
 
 \bigskip
 
-\textbf{SoluciÛn:} Dado un tri·ngulo cualquiera, nos tomamos el lado m·s largo (si hay empate podemos coger un lado cualquiera) de forma que tenemos garantizado que la perpendicular por el vÈrtice opuesto (altura) corte a ese lado. En el dibujo tomamos el lado negro de abajo. Trazamos la altura desde el vÈrtice opuesto (en azul) y una paralela al lado que pase por el punto medio de la altura (tambiÈn en azul), esta paralela tambiÈn pasar· por los puntos medios de los lados menores.
+\textbf{Soluci√≥n:} Dado un tri√°ngulo cualquiera, nos tomamos el lado m√°s largo (si hay empate podemos coger un lado cualquiera) de forma que tenemos garantizado que la perpendicular por el v√©rtice opuesto (altura) corte a ese lado. En el dibujo tomamos el lado negro de abajo. Trazamos la altura desde el v√©rtice opuesto (en azul) y una paralela al lado que pase por el punto medio de la altura (tambi√©n en azul), esta paralela tambi√©n pasar√° por los puntos medios de los lados menores.
 
-Ahora damos dos cortes (en morado), ambos desde el punto donde la altura corta al lado largo y cada uno hasta el punto medio de un lado menor (el punto amarillo donde la paralela azul corta al lado). Esto divide el triangulo en un cuadril·tero y dos tri·ngulos pequeÒos (1 y 2). Trazamos otra paralela m·s al lado largo por el vÈrtice opuesto (en verde) y prolongamos (en rojo) los cortes morados hasta que corten a dicha paralela. Como es paralela, tenemos garantizado que cada uno de los ·ngulos $\alpha$, $\beta$, $\gamma$ y $\delta$ se repite arriba tal como indica el dibujo en amarillo. Por tanto, el las piezas triangulares 1 y 2 que hemos separado al hacer los cortes morados encajan en las posiciones 1 y 2 rojas que hay entre la paralela azul y la paralela verde. Obtenemos asÌ el tri·ngulo reflejado.
+Ahora damos dos cortes (en morado), ambos desde el punto donde la altura corta al lado largo y cada uno hasta el punto medio de un lado menor (el punto amarillo donde la paralela azul corta al lado). Esto divide el triangulo en un cuadril√°tero y dos tri√°ngulos peque√±os (1 y 2). Trazamos otra paralela m√°s al lado largo por el v√©rtice opuesto (en verde) y prolongamos (en rojo) los cortes morados hasta que corten a dicha paralela. Como es paralela, tenemos garantizado que cada uno de los √°ngulos $\alpha$, $\beta$, $\gamma$ y $\delta$ se repite arriba tal como indica el dibujo en amarillo. Por tanto, el las piezas triangulares 1 y 2 que hemos separado al hacer los cortes morados encajan en las posiciones 1 y 2 rojas que hay entre la paralela azul y la paralela verde. Obtenemos as√≠ el tri√°ngulo reflejado.
 
 \begin{figure}[H]
 	\includegraphics[width=100mm]{imgs/reflejar-triangulo}
@@ -222,47 +222,47 @@ Ahora damos dos cortes (en morado), ambos desde el punto donde la altura corta a
 
 \bigskip
 
-\textbf{Ejercicio:} Se puede asegurar que en un polÌgono dado, el n˙mero de
-tri·ngulos de una triangulaciÛn es menor o igual que el de una
-descomposiciÛn por tri·ngulos.
+\textbf{Ejercicio:} Se puede asegurar que en un pol√≠gono dado, el n√∫mero de
+tri√°ngulos de una triangulaci√≥n es menor o igual que el de una
+descomposici√≥n por tri√°ngulos.
 
 \bigskip
 
-\textbf{SoluciÛn:} Claramente una triangulaciÛn es una descomposiciÛn por tri·ngulos, luego TODO
+\textbf{Soluci√≥n:} Claramente una triangulaci√≥n es una descomposici√≥n por tri√°ngulos, luego TODO
 
-TODO: El enunciado est· muy mal redactado, øno? Preguntar
+TODO: El enunciado est√° muy mal redactado, ¬øno? Preguntar
 
 \bigskip
 \begin{center}
-	\textbf{\large Tarea 4: EquidescomposiciÛn de Poliedros}
+	\textbf{\large Tarea 4: Equidescomposici√≥n de Poliedros}
 \end{center}
 \bigskip
 
-\textbf{Ejercicio:} Encuentra los ·ngulos diedrales de un cubo, un tetraedro y un octaedro
+\textbf{Ejercicio:} Encuentra los √°ngulos diedrales de un cubo, un tetraedro y un octaedro
 regular. Prueba que el cubo no es equidescomponible con el tetraedro regular
 del mismo volumen.
 
 \bigskip
 
-\textbf{SoluciÛn:} El de un cubo es claramente $\pi/2$. Como todas las aristas son perpendiculares entre sÌ, el ·ngulo entre dos caras cualesquiera es el ·ngulo que forman dos aristas en un vÈrtice donde se corten.
+\textbf{Soluci√≥n:} El de un cubo es claramente $\pi/2$. Como todas las aristas son perpendiculares entre s√≠, el √°ngulo entre dos caras cualesquiera es el √°ngulo que forman dos aristas en un v√©rtice donde se corten.
 
-Con el siguiente dibujo en mente, vemos que el ·ngulo diedral del tetraedro puede obtenerse a partir del tri·ngulo rectangulo que tiene como hipotenusa la altura de una cara (tri·ngulo equil·tero), como cateto opuesto la altura del tetraedro y como cateto contiguo la apotema de una cara. Para facilitar los c·lculos, podemos suponer (el ·ngulo no cambia por dilataciones) que la altura de los tri·ngulos que forman las caras vale 1.
+Con el siguiente dibujo en mente, vemos que el √°ngulo diedral del tetraedro puede obtenerse a partir del tri√°ngulo rectangulo que tiene como hipotenusa la altura de una cara (tri√°ngulo equil√°tero), como cateto opuesto la altura del tetraedro y como cateto contiguo la apotema de una cara. Para facilitar los c√°lculos, podemos suponer (el √°ngulo no cambia por dilataciones) que la altura de los tri√°ngulos que forman las caras vale 1.
 
 \begin{figure}[H]
 	\includegraphics[width=80mm]{imgs/diedral-tetraedro}
 \end{figure}
 
-El lado contigo al ·ngulo diedral es justamente la apotema del tri·ngulo que forma la base del tetraedro. Sabemos que la apotema de un tri·ngulo equil·tero es un tercio de la altura, en este caso ser· $1/3$. Como la hipotenusa (la altura de una cara) vale 1, podemos obtener el ·ngulo como el arco coseno de $1/3$.
+El lado contiguo al √°ngulo diedral es justamente la apotema del tri√°ngulo que forma la base del tetraedro. Sabemos que la apotema de un tri√°ngulo equil√°tero es un tercio de la altura, en este caso ser√° $1/3$. Como la hipotenusa (la altura de una cara) vale 1, podemos obtener el √°ngulo como el arco coseno de $1/3$.
 
-Para el octaedro el ·ngulo diedral ser· el doble de el que representamos en amarillo en la figura. Tenemos un tri·ngulo rect·ngulo donde la hipotenusa es la altura de una cara y el cateto contiguo es la apotema de un cuadrado de lado igual al lado de los tri·ngulos que forman las caras. Ahora, por simplicidad, supondremos que el lado de los tri·ngulos equil·teros (las caras) mide 1. La altura de una cara ser· entonces $\sqrt{3}/2$, y la apotema del cuadrado ser· la mitad del lado, $1/2$. Por tanto, el ·ngulo representado en el dibujo ser· el arco coseno de $\frac{1/2}{\sqrt{3}/2}=1/\sqrt{3}$, y el ·ngulo diedral ser· $2\arccos{(1/\sqrt{3})}$.
+Para el octaedro el √°ngulo diedral ser√° el doble de el que representamos en amarillo en la figura. Tenemos un tri√°ngulo rect√°ngulo donde la hipotenusa es la altura de una cara y el cateto contiguo es la apotema de un cuadrado de lado igual al lado de los tri√°ngulos que forman las caras. Ahora, por simplicidad, supondremos que el lado de los tri√°ngulos equil√°teros (las caras) mide 1. La altura de una cara ser√° entonces $\sqrt{3}/2$, y la apotema del cuadrado ser√° la mitad del lado, $1/2$. Por tanto, el √°ngulo representado en el dibujo ser√° el arco coseno de $\frac{1/2}{\sqrt{3}/2}=1/\sqrt{3}$, y el √°ngulo diedral ser√° $2\arccos{(1/\sqrt{3})}$.
 
 \begin{figure}[H]
 	\includegraphics[width=80mm]{imgs/diedral-octaedro}
 \end{figure}
 
-Para probar que el cubo $C$ no es equidescomponible con el tetraedro regular $T$ del mismo volumen recurriremos al argumento de Dehn-Hadwiger. Consideramos el $\mathbb{Q}$-espacio vectorial $V$ generado por $\{\pi,\arccos{(1/3)}\}$. Que claramente contiene a los ·ngulos diedrales del cubo ($\pi/2$) y del tetraedro ($\arccos{(1/3)}$). Supongamos que $\{\pi,\arccos{(1/3)}\}$ es una base de $V$, en ese caso podemos definir una funciÛn lineal $f:V\rightarrow\mathbb{R}$ por $f(\pi)=0$ y $f(\arccos{(1/3)})=1$. Como $f$ es lineal y $f(\pi)=0$, tambiÈn $f(\pi/2)=0$ y $f(C)=12\cdot f(\pi/2)=0$ (el cubo tiene 12 aristas). Como el tetraedro tiene 6 aristas, se tendr· $f(T)=6\cdot f(\arccos{(1/3)})=6$. Como $f(C)\neq f(T)$, $C$ y $T$ no son equidescomponibles.
+Para probar que el cubo $C$ no es equidescomponible con el tetraedro regular $T$ del mismo volumen recurriremos al argumento de Dehn-Hadwiger. Consideramos el $\mathbb{Q}$-espacio vectorial $V$ generado por $\{\pi,\arccos{(1/3)}\}$. Que claramente contiene a los √°ngulos diedrales del cubo ($\pi/2$) y del tetraedro ($\arccos{(1/3)}$). Supongamos que $\{\pi,\arccos{(1/3)}\}$ es una base de $V$, en ese caso podemos definir una funci√≥n lineal $f:V\rightarrow\mathbb{R}$ por $f(\pi)=0$ y $f(\arccos{(1/3)})=1$. Como $f$ es lineal y $f(\pi)=0$, tambi√©n $f(\pi/2)=0$ y $f(C)=12\cdot f(\pi/2)=0$ (el cubo tiene 12 aristas). Como el tetraedro tiene 6 aristas, se tendr√° $f(T)=6\cdot f(\arccos{(1/3)})=6$. Como $f(C)\neq f(T)$, $C$ y $T$ no son equidescomponibles.
 
-Este razonamiento funciona siempre que $\{\pi,\arccos{(1/3)}\}$ sea una base de $V$, es claro que es sistema de generadores. Para ver que es linealmente independiente habr· que probar que $\arccos{1/3}$ no puede ser ning˙n m˙ltiplo racional de $\pi$. Para ello he mirado \href{https://web.math.utk.edu/~jconant/pisol.html}{https://web.math.utk.edu/$\mathtt{\sim}$jconant/pisol.html}.
+Este razonamiento funciona siempre que $\{\pi,\arccos{(1/3)}\}$ sea una base de $V$, es claro que es sistema de generadores. Para ver que es linealmente independiente habr√° que probar que $\arccos{1/3}$ no puede ser ning√∫n m√∫ltiplo racional de $\pi$. Para ello he mirado \href{https://web.math.utk.edu/~jconant/pisol.html}{https://web.math.utk.edu/$\mathtt{\sim}$jconant/pisol.html}.
 
 Supongamos que $\dfrac{\arccos{(1/3)}}{\pi}=\dfrac{p}{q}$ con $p,q$ enteros no nulos. En tal caso % $\displaystyle{e^{i\pi p/q}=e^{i\arccos{(1/3)}}}$
 \[e^{i\pi p/q}=e^{i\arccos{(1/3)}}=\frac{1}{3}+\frac{2\sqrt{2}}{3}i,\]
@@ -274,9 +274,9 @@ para algunos enteros $a_n$ y $b_n$. Esto se tiene claramente para $n=1$ con $a_1
 \begin{align*}
 \Big(\frac{1}{3}+\frac{2\sqrt{2}}{3}i\Big)^n&=\Big(\frac{1}{3}+\frac{2\sqrt{2}}{3}i\Big)^{n-1}\Big(\frac{1}{3}+\frac{2\sqrt{2}}{3}i\Big)=\Big(\frac{a_{n-1}}{3^{n-1}}+\frac{b_{n-1}\sqrt{2}}{3^{n-1}}i\Big)\Big(\frac{1}{3}+\frac{2\sqrt{2}}{3}i\Big) \\&=\frac{a_{n-1}}{3^n}-\frac{4b_{n-1}}{3^n}+\frac{2a_{n-1}\sqrt{2}}{3^n}i+\frac{b_{n-1}\sqrt{2}}{3^n}i=\frac{a_{n-1}-4b_{n-1}}{3^n}+\frac{(2a_{n-1}+b_{n-1})\sqrt{2}}{3^n}i
 \end{align*}
-luego $a_n=a_{n-1}-4b_{n-1}$ y $b_n=b_{n-1}+2a_{n-1}$ son enteros. Ahora probaremos que ning˙n $b_n$ puede ser 0, en concreto mostraremos que $b_n$ nunca es congruente con 0 en mÛdulo 3: tenemos $a_1=1$, $b_1=2=-1$ (mod 3). Sustituyendo en la recursiÛn obtenemos $a_2=1+4=-1$ y $b_2=-1+2=1$ (mod 3). Sustituyendo una vez m·s sale $a_3=-1-4=1$ y $b_3=1-2=-1$ (mod 3), por lo que el ciclo se repite y $b_n$ nunca llega a ser un m˙ltiplo de 3.
+luego $a_n=a_{n-1}-4b_{n-1}$ y $b_n=b_{n-1}+2a_{n-1}$ son enteros. Ahora probaremos que ning√∫n $b_n$ puede ser 0, en concreto mostraremos que $b_n$ nunca es congruente con 0 en m√≥dulo 3: tenemos $a_1=1$, $b_1=2=-1$ (mod 3). Sustituyendo en la recursi√≥n obtenemos $a_2=1+4=-1$ y $b_2=-1+2=1$ (mod 3). Sustituyendo una vez m√°s sale $a_3=-1-4=1$ y $b_3=1-2=-1$ (mod 3), por lo que el ciclo se repite y $b_n$ nunca llega a ser un m√∫ltiplo de 3.
 
-Finalmente, elevando a $2q$ ambos miembros en la ecuaciÛn de las exponenciales llegamos a
+Finalmente, elevando a $2q$ ambos miembros en la ecuaci√≥n de las exponenciales llegamos a
 \[1=e^{2i\pi p}=\Big(\frac{1}{3}+\frac{2\sqrt{2}}{3}i\Big)^{2q}=\frac{a_{2q}}{3^{2q}}+\frac{b_{2q}\sqrt{2}}{3^{2q}}i,\]
 lo cual es absurdo, puesto que $b_{2q}\neq 0$. Concluimos que $\dfrac{\arccos{(1/3)}}{\pi}$ es irracional y $\{\pi,\arccos{(1/3)}\}$ es una base de $V$.
 
