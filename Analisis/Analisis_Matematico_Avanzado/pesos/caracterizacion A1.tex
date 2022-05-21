@@ -30,9 +30,9 @@
 % Theorem environments
 
 %% \theoremstyle{plain} %% This is the default
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Teorema}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}[theorem]{Lema}
 \newtheorem{proposition}[theorem]{Proposition}
 %\newtheorem{ax}{Axioma}
 
@@ -42,7 +42,6 @@
 \newtheorem{definition}{Definition}[section]
 
 \theoremstyle{remark}
-\newtheorem*{remark*}{Remark by C. K. Fong}
 \newtheorem{example}{Example}[section]
 
 %\numberwithin{equation}{section}
@@ -50,7 +49,7 @@
 \newcommand{\co}[1]{\operatorname{co}(#1)}
 \newcommand{\cloco}[1]{\overline{\operatorname{co}}(#1)}
 
-\title{Teorema de Caracterización de pesos $A_1$}
+\title{Teorema de Caracterización de Pesos $A_1$}
 
 \author{David Cabezas Berrido}
 
@@ -60,132 +59,51 @@
 
 \maketitle
 
-\section*{Notación}
+\section*{Introducción}
 
-In this memoir we present Russo-Dye Theorem, an important result concerning unitary C*-algebras which states that the convex hull of the unitary elements is dense in the closed unit ball. This result was published by B. Russo and H. A. Dye in 1966 (\cite{russo-dye}).
+Vamos a demostrar el teorema de caracterización de los pesos $A_1$. Nuestra referencia principal será el libro ``Análisis de Fourier'' de Javier Duoandikoetxea. Fijemos primero algo de notación.
 
-The study of the ways in which an element of a C*-algebra can be expressed as a convex combination of unitary elements was initiated by Phelps in \cite{phelps} (1964), where a commutative version of Theorem \ref{thm:russo-dye} is provided. Russo-Dye Theorem entails a significant fact about the abundance of unitary elements in (unitary) C*-algebras, which is latter improved by Kadison and Pedersen among others.
+Trabajaremos en el espacio $\mathbb{R}^n$. En adelante $w$ denotará un peso, es decir, una función medible, no negativa y localmente integrable en $\mathbb{R}^n$. Para cada conjunto medible $E\subset \mathbb{R}^n$, notaremos $w(E)=\int_E w dx$, donde la integral es respecto a la medida de Lebesgue en $\mathbb{R}^n$. La medida de Lebesgue de un conjunto medible $E$ se denota por $|E|$.
 
-Let us fix some notation first. Given an unitary C*-algebra $A$ over the field $\mathbb{C}$, we shall denote its identity element by $\mathbbm{1}$, its open unit ball by $A_1=\{a\in A: \|a\|<1\}$, and its closed unit ball by $B_A$.
+Consideramos el funcional maximal de Hardy-Littlewood $M$ definido por
+\begin{equation}\label{eq: H-L}
+Mf(x)=\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f(y)|dy
+\end{equation}
+para cada $f$ localmente integrable en $\mathbb{R}^n$ \big($f\in L^1_{\rm loc}(\mathbb{R}^n)$\big). El supremo de la expresión de arriba es en todos los cubos diádicos $Q$ que contienen al punto $x\in\mathbb{R}^n$.
 
-The following construction will be employed along the document:
+La condición para que un peso $w$ esté en la clase $A_1$ es
+\begin{equation}\label{eq: A1}
+\frac{w(Q)}{|Q|}\leq C w(x) 
+\end{equation}
+para casi todo $x\in Q$ y para todo cubo diádico $Q$. La constance $C$ no puede depender ni de $x$ ni de $Q$, se le llama \emph{constante $A_1$ de $w$.}.
 
-Take any invertible element $a\in A$. Consider the positive and invertible element $|a|^2:=a^*a\in A$, note that the module and the square symbols do not mean anything yet. We know from Continuous Functional Calculus that every positive element admits a positive square root, which we shall conveniently denote by $|a|\in A$, that is also positive since the identification in CFC is $*$-preserving.
+\section*{Demostración del teorema}
 
-We claim that $|a|$ is invertible. Namely, we know that $|a|^2$ is invertible with inverse $a^{-1}(a^{-1})^*=a^{-1}(a^*)^{-1}=:|a|^{-2}$, so
-\begin{gather*}
-|a|(|a||a|^{-2})=(|a||a|)|a|^{-2}=|a|^2|a|^{-2}=\mathbbm{1}\\
-(|a|^{-2}|a|)|a|=|a|^{-2}(|a||a|)=|a|^{-2}|a|^2=\mathbbm{1}.
-\end{gather*}
-Hence, $|a|$ is invertible with $|a|^{-1}=|a||a|^{-2}=|a|^{-2}|a|$, which also implies $|a|^{-1}|a|^{-1}=|a|^{-2}$. Now, consider the invertible element $u=a|a|^{-1}\in A$. Since $|a|^{-1}$ is self-adjoint, we have
-\begin{gather*}
-uu^*=a|a|^{-1}|a|^{-1}a^*=a|a|^{-2}a^*=a(a^*a)^{-1}a^*=aa^{-1}(a^*)^{-1}a^*=\mathbbm{1}\\
-u^*u=|a|^{-1}a^*a|a|^{-1}=|a|^{-1}|a|^2|a|^{-1}=|a|^{-1}|a||a||a|^{-1}=\mathbbm{1},
-\end{gather*}
-and we conclude that $u$ is unitary. We have just proved the following statement.
-\begin{lemma*} \label{lm:polar decomposition} \ 
-	Let $A$ be a unitary C*-algebra. Every invertible element $a\in A$ admits a \emph{polar decomposition} of the form $a=u|a|$, where $|a|=(a^*a)^{1/2}$ is positive and $u$ is unitary.
-\end{lemma*}
+Primero enunciaremos dos resultados que necesitaremos para la prueba del teorema. El primero es la \emph{desigualdad de Kolmogorov}.
 
-\section{The Russo-Dye Theorem}
+\begin{lemma} \label{lm: kolmogorov} Si $T$ es un operador $(1,1)$-débil y $\delta\in [0,1[$, se tiene
+	\[\int_E |Tf|^\delta dx\leq C(\delta) |E|^{1-\delta}\|f\|_{1}^\delta\]
+	para alguna constante $C(\delta)$ dependiente de $\delta$ válida para toda $f$ integrable.
+\end{lemma}
 
-The main result of this document reads as follow.
+Sabemos que el operador $M$ es (1,1)-débil, por lo que podremos aplicarle éste resultado. El siguiente es la \emph{desigualdad de Hölder inversa}.
 
-\begin{theorem} \label{thm:russo-dye} {\normalfont (\cite[Theorem 1]{russo-dye})} \ 
-	Let $A$ be a unitary C*-algebra and $U=\mathcal{U}(A)$ its unitary group. Then, the closed unit ball in $A$ is the closed convex hull of $U$.
+\begin{lemma} \label{lm: inverse holder} Si $w\in A_p$ con $1<p<\infty$. Existe $\varepsilon>0$ dependiente sólo de $p$ y de la constante $A_p$ de $w$ tal que
+	\[\left(\frac{1}{|Q|}\int_Q w^{1+\varepsilon}\right)^{\frac{1}{1+\varepsilon}}\leq \frac{C}{|Q|}\int_Q\int w,\]
+	donde la constante $C$ es válida para todo cubo diádico $Q$.
+\end{lemma}
+
+Ya estamos en condiciones de demostrar el teorema de caracterización de pesos $A_1$.
+
+\begin{theorem}\label{thm: A1 characterization}
+	
 \end{theorem}
 
-One inclusion follows directly from every unitary element having norm one (it lies in the closed unit ball, which is convex and closed). So the non-trivial information is that every element in the closed unit ball can be approximated in norm by convex convex combinations of unitary elements. The original proof due to Russo and Dye can be found in \cite{russo-dye}, but we will present an elementary proof provided by L. Terrel Gardner in 1984 (\cite{gardner}).
+Esencialmente, TODO
 
 \begin{proof}
-	Since the closed unit ball is the closure of the open unit ball and every unitary element has unit norm, it suffices to show that $A_1\subset\cloco{U}$. Fix any $x\in A_1$, we shall first show that $y:=(x+u)/2\in\co{U}$ for each $u\in U$. Namely, we have $y=\dfrac{xu^*+\mathbbm{1}}{2}u$. Note that $\|xu^*\|\leq \|x\|\|u^*\|=\|x\|<1$, so $xu^*+\mathbbm{1}$ is invertible and, hence, so is $y$. Furthermore,\[\|y\|\leq \frac{1}{2} \|xu^*+1\|\|u\|\leq \frac{1}{2}(\|x\|\|u^*\|+1)=1/2+\|x\|/2<1.\]
-	Thus, $y$ admits a polar decomposition $y=v|y|$ with $v\in U$ and $|y|=(y^*y)^{1/2}$ a positive element in $B_A$. We have
-	$\||y|^2\|=\|y^*y\|=\|y\|^2<1$, so $|y|^2\leq \||y|^2\|\mathbbm{1}\leq \mathbbm{1}$. We deduce that $\mathbbm{1}-|y|^2$ is positive and admits a square root. We can therefore write $|y|=(w+w^*)/2$, where
-	\[w=|y|+i(\mathbbm{1}-|y|^2)^{1/2},\quad w^*=|y|-i(\mathbbm{1}-|y|^2)^{1/2}.\]
-	Besides, $w$ is unitary (and hence, so is $w^*=w^{-1}$). Namely, 
-	\begin{gather*}
-	ww^*=\big(|y|+i(\mathbbm{1}-|y|^2)^{1/2}\big)\big(|y|-i(\mathbbm{1}-|y|^2)^{1/2}\big)=|y|^2+\mathbbm{1}-|y|^2=\mathbbm{1}\\
-	w^*w=\big(|y|-i(\mathbbm{1}-|y|^2)^{1/2}\big)\big(|y|+i(\mathbbm{1}-|y|^2)^{1/2}\big)=|y|^2+\mathbbm{1}-|y|^2=\mathbbm{1},
-	\end{gather*}
-	where we have employed that $|y|$ and $(\mathbbm{1}-|y|^2)^{1/2}$ commute\footnote{Both $|y|$ and $(\mathbbm{1}-|y|^2)^{1/2}$ lie in the unitary commutative C*-subalgebra generated by the positive element $|y|^2$ and the unit.}.
-	In conclusion, we have shown that $x+u=vw+vw^*$ can be written as a sum of two unitary elements, so $y=(x+u)/2=(vw+vw^*)/2\in\co{U}$. By the arbitrariness of $u$, we have $x+U\subset 2\co{U}\subset 2\cloco{U}$. Equivalently, $U\subset 2\cloco{U}-x$, which is closed and convex. Thus, $\cloco{U}\subset 2\cloco{U}-x$ and $(x+\cloco{U})/2\subset \cloco{U}$.
-	
-	With the last equality in mind, take any $u\in U$. It is clear that the sequence defined by $x_0=u$ and $x_{n+1}=(x+x_n)/2$ is contained in $\cloco{U}$ and converges to $x$, so $x\in\cloco{U}$ (given that $\cloco{U}$ is closed).
+	TODO
 \end{proof}
-
-\begin{remark*} \label{rmk:gardner} {\normalfont (\cite[Note]{gardner})} \ Let us recover the proof from the inclusion $x+U\subset 2\co{U}$ at the last paragraph. This is equivalent to $U\subset 2\co{U}-x$, which is convex (and not necessarily closed any more). Thus, $\co{U}\subset 2\co{U}-x$ and $(x+\co{U})/2\subset \co{U}$.
-	
-Now, since $x\in A_1$, we can find an element $x'\in A_1$ such that $x\in[u,x'[$, where $u$ is any fixed unitary element. The sequence defined by $x_0=u$ and $x_{n+1}=(x'+x_n)/2$ is contained in $\co{U}$ and converges to $x'$, so $x$ lies in $[u,x_n]$ for $n$ large enough. Therefore $x\in \co{U}$, and we conclude by the arbitrariness of $x$ the slightly stronger statement $A_1\subset\co{U}$.
-\end{remark*}
-
-It is clear that Russo-Dye Theorem implies that $A$ is the linear span of $U$. We shall work out a very noteworthy application. 
-
-\begin{corollary} \label{cor:norm-unitary} {\normalfont (\cite[Corollary 1]{russo-dye})} \ Let $A$ be a unitary C*-algebra and $U=\mathcal{U}(A)$ its unitary group, and let $X$ be an arbitrary normed space. Then, a linear mapping $\phi:A\rightarrow X$ is continuous if and only if $\phi$ is bounded on $U$. Furthermore, the following equality holds:
-	\begin{equation*}\label{eq:norm-unitary}
-	\|\phi\|=\sup_{u\in U}\|\phi(u)\|.
-	\end{equation*}
-\end{corollary}
-
-\begin{proof}%[Proof of Corollary \ref{cor:norm-unitary}]
-	For each element $a\in A$ we define 
-	\[\|a\|_U:=\inf\left\{\sum_{j=1}^n|\lambda_j|:a=\sum_{j=1}^n \lambda_j u_j, \ n\in\mathbb{N},\ \lambda_j\in\mathbb{K},\ u_j\in U \text{ for $j=1,\ldots,n$}\right\},\] where the latter set is non-empty because $A=\operatorname{span}U$. It is straightforward to check that $\|\cdot\|_U$ defines a norm in $A$ with $\|a\|\leq \|a\|_U$ for each $a\in A$. Furthermore, if $a\in \co{U}$, it is clear that $\|a\|_U\leq 1$.
-	
-	For each $\varepsilon>0$, we have $b=\dfrac{a}{\|a\|+\varepsilon}\in A_1\subset\co{U}\footnote{Russo and Dye did not know about this last inclusion, which is showed in the Remark. Nonetheless, they proved $A_1\subset 2\co{U}$ by more advanced methods and worked out a simple workaround.}$. Then $\|b\|_U\leq 1$, so $\|a\|_U\leq \|a\|+\varepsilon$ and the arbitrariness of $\varepsilon>0$ leads to $\|a\|=\|a\|_U$ for each $a\in A$.
-	
-	Finally, let $K=\sup_{u\in U}\|\phi(u)\|\in\mathbb{R}^+_0$. For each $a=\sum_{j=1}^n \lambda_j u_j$ (with each $\lambda_j\in\mathbb{K}$ and $u_j\in U$) we have
-	\[\|\phi(a)\|=\left\|\sum_{j=1}^n\lambda_j\phi(u_j)\right\|\leq \sum_{j=1}^n|\lambda_j|\|\phi(u_j)\|\leq K\sum_{j=1}^n|\lambda_j|,\]
-	so $\|\phi(a)\|\leq K\|a\|_U=K\|a\|$. Hence, $\phi$ is continuous with  $\|\phi\|\leq K$.
-	
-	By the definition of $K$, there exists a sequence $\{u_n\}$ in $U\subset B_A$ such that $\{\|\phi(u_n)\|\}$ converges to $K$, which leads to $\|\phi\|\geq K$.
-\end{proof}
-
-\section{A refinement by Kadison and Pedersen}
-
-A generalization of Russo-Dye Theorem was provided by R. V. Kadison and G. K. Pedersen in 1985 (\cite{kadison-pedersen 85}), where it is stated that an element of the open unit ball can be written as an arithmetic mean of $n$ unitary elements, where the value of $n$ can be estimated using the distance to the surface of the unit ball: the closer the element is to the surface, the larger $n$ must be. 
-
-\begin{theorem} \label{thm:kadisonPedersen1} {\normalfont (\cite[Theorem 1]{kadison-pedersen 85})} \ 
-	Let $A$ be a unitary C*-algebra and $U=\mathcal{U}(A)$ its unitary group. If an element $a\in A$ satisfies $\|a\|<1-2/n$ for some integer $n>2$, then there are $n$ unitary elements $u_1,\ldots,u_n\in U$ such that $a=n^{-1}(u_1+\cdots+u_n)$.
-\end{theorem}
-
-The proof takes advantage of Gardner ideas.
-
-\begin{proof}
-	In the first part of Gardner's proof, it is shown that the sum of a unitary element and an element in the open unit ball can written as the sum of two unitary elements. Fix any $x\in A_1$ and $u\in U$, consider the element $z\in A$ given by
-	\[z=u+(n-1)x=u+x+(n-2)x.\]
-	By the previous argument, there exist $u_1,v_1\in U$ such that $u+x=u_1+v_1$. Then,
-	\[z=u_1+v_1+(n-2)x=u_1+v_1+x+(n-3)x.\]
-	We apply the same argument again to write $v_1+x=u_2+v_2$ with $u_2,v_2\in U$, so
-	\[z=u_1+u_2+v_2+(n-3)x=u_1+u_2+v_2+x+(n-4)x.\]
-	Applying this $n-3$ times more, we get
-	\begin{equation}\label{eq: sum of unitaries}
-	z=u+(n-1)x=\sum_{j=1}^n u_j,\quad\text{where $u_j\in U$ for each $j=1,\ldots,n$},
-	\end{equation}
-	so $z$ can be expressed as the sum of $n$ unitary elements.
-	Now, let us note that
-	\begin{align*}
-	\|(n-1)^{-1}(na-\mathbbm{1})\|&\leq (n-1)^{-1}(n\|a\|+1)<(n-1)^{-1}\big(n(1-2/n)+1\big) \\
-	&=(n-1)^{-1}(n-1)=1,
-	\end{align*}
-	so $(n-1)^{-1}(na-\mathbbm{1})\in A_1$. Thus, we can apply \eqref{eq: sum of unitaries} with $x=(n-1)^{-1}(na-\mathbbm{1})$ and $u=\mathbbm{1}$ to get
-	\[u+(n-1)x=\mathbbm{1}+(na-\mathbbm{1})=na=u_1+u_2+\cdots+u_n=\sum_{j=1}^n u_j.\]
-\end{proof}
-
-As a consequence, we can explicitly write each element of a C*-algebra in terms of unitary elements.
-
-\begin{corollary} {\normalfont (\cite[Corollary 2]{kadison-pedersen 85})} \ Each element of a unitary C*-algebra $A$ is some positive multiple of the sum of three unitary elements.	
-\end{corollary}
-
-\begin{proof}
-	Given any $a\in A$, take any $\varepsilon>0$ and consider the element $b=\dfrac{1}{3(\|a\|+\varepsilon)}a$. Clearly, we have
-	\[\|b\|=\dfrac{1}{3(\|a\|+\varepsilon)}\|a\|<1/3=1-2/3.\]
-	Hence, by Theorem \ref{thm:kadisonPedersen1}, $b$ can be written as $b=(u_1+u_2+u_3)/3$, with $u_j$ unitary for each $j=1,2,3$. Therefore, \[a=3(\|a\|+\varepsilon)b=(\|a\|+\varepsilon)(u_1+u_2+u_3).\]
-\end{proof}
-
-In 2007, in collaboration with U. Haagerup, Kadison and Pedersen published an improved version of Theorem \ref{thm:kadisonPedersen1}, which does not require the strict inequality in the norm of $a$.
-
-\begin{theorem} \label{thm:kadisonPedersen2} {\normalfont (\cite[Theorem]{haagerup-kadison-pedersen 07})} \ 
-	Let $A$ be a unitary C*-algebra and $U=\mathcal{U}(A)$ its unitary group. If an element $a\in A$ satisfies $\|a\|\leq 1-2/n$ for some integer $n>2$, then there are $n$ unitary elements $u_1,\ldots,u_n\in U$ such that $a=n^{-1}(u_1+\cdots+u_n)$.
-\end{theorem}
 
 \begin{thebibliography}{99}
 \bibitem{duo} J. Duoandikoetxea: \emph{Análisis de Fourier}. Universidad Autónoma de Madrid, 1995.
