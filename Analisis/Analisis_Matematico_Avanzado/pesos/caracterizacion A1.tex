@@ -75,7 +75,7 @@ La condición para que un peso $w$ esté en la clase $A_1$ es
 \begin{equation}\label{eq: A1}
 \frac{w(Q)}{|Q|}\leq C w(x) 
 \end{equation}
-para casi todo $x\in Q$ y para todo cubo diádico $Q$. La constance $C$ no puede depender ni de $x$ ni de $Q$, se le llama \emph{constante $A_1$ de $w$.}.
+para casi todo $x\in Q$ y para todo cubo diádico $Q$. La constance $C$ no puede depender ni de $x$ ni de $Q$, se le llama \emph{constante $A_1$ de $w$}.
 
 \section*{Demostración del teorema}
 
@@ -89,20 +89,36 @@ Primero enunciaremos dos resultados que necesitaremos para la prueba del teorema
 Sabemos que el operador $M$ es (1,1)-débil, por lo que podremos aplicarle éste resultado. El siguiente es la \emph{desigualdad de Hölder inversa}.
 
 \begin{lemma} \label{lm: inverse holder} Si $w\in A_p$ con $1<p<\infty$. Existe $\varepsilon>0$ dependiente sólo de $p$ y de la constante $A_p$ de $w$ tal que
-	\[\left(\frac{1}{|Q|}\int_Q w^{1+\varepsilon}\right)^{\frac{1}{1+\varepsilon}}\leq \frac{C}{|Q|}\int_Q\int w,\]
+	\[\left(\frac{1}{|Q|}\int_Q w^{1+\varepsilon}\right)^{\frac{1}{1+\varepsilon}}\leq \frac{C}{|Q|}\int_Q w,\]
 	donde la constante $C$ es válida para todo cubo diádico $Q$.
 \end{lemma}
 
 Ya estamos en condiciones de demostrar el teorema de caracterización de pesos $A_1$.
 
-\begin{theorem}\label{thm: A1 characterization}
+\begin{theorem}\label{thm: A1 characterization} Sea $f\in L^1_{\rm loc}(\mathbb{R}^n)$ tal que $Mf(x)<\infty$ casi por doquier en $\mathbb{R}^n$. Si $\delta\in[0,1[$, $w(x)=\big(Mf(x)\big)^\delta$ es un peso $A_1$ con constante $A_1$ dependiente del $\delta$ pero no de $f$.
 	
+Recíprocamente, si $w\in A_1$ existen $f\in L^1_{\rm loc}(\mathbb{R}^n)$, $k\in L^\infty$ con $k^{-1}\in L^\infty$ y $\delta\in[0,1[$ tales que $w=k(Mf)^\delta$.
 \end{theorem}
 
-Esencialmente, TODO
-
 \begin{proof}
-	TODO
+	Para la primera parte, debemos probar que para todo cubo diádico $Q$ y para casi todo $x\in Q$ se tiene la condición $A_1$:
+	\[\frac{1}{|Q|}\int_Q(Mf)^\delta\leq C\big(Mf(x)\big)^\delta\]
+	con $C$ independientemente de $Q$ y de $f$. Fijados $Q$ y $f$, sea $\overline{Q}$ el cubo con el mismo centro y el doble de lado. De esta forma, $\overline{Q}$ también es un cubo diádico con $|\overline{Q}|=2^n|Q|$. Podemos escribir $f=f_1+f_2$ con $f_1=f\cdot\chi_{\overline{Q}}$ y $f_2=f-f_1$. Tenemos
+	\begin{align*}
+	Mf(x)&=\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f_1(y)+f_2(y)|dy\leq\sup_{Q\ni x}\left(\frac{1}{|Q|}\int_Q|f_1(y)|dy+\frac{1}{|Q|}\int_Q|f_2(y)|dy\right) \\
+	&\leq\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f_1(y)|dy+\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f_2(y)|dy=Mf_1(x)+Mf_2(x)
+	\end{align*}
+	para casi todo $x\in\mathbb{R}^n$. Por tanto, si $\delta\in [0,1[$, $Mf(x)^\delta\leq Mf_1(x)^\delta+Mf_2(x)^\delta$ pct (para casi todo) $x$.
+	
+	Trabajemos primero con $f_1\in L^1(\mathbb{R}^n)$. Usando el Lema \ref{lm: kolmogorov}, puesto que $M$ es (1,1)-débil y no negativo, obtenemos
+	\begin{equation} \label{eq: cota int Mf1}
+	\begin{split}
+		\frac{1}{|Q|}\int_Q(Mf_1)^\delta &\leq\frac{1}{|Q|} C(\delta)|Q|^{1-\delta}\|f_1\|_1^\delta=C(\delta)\left(\frac{\int_{\overline{Q}}|f|}{|Q|}\right)^\delta =C(\delta)\left(\frac{\int_{\overline{Q}}|f|}{|\overline{Q}|/2^n}\right)^\delta \\ &\leq C(\delta)2^{\delta n} \left(\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f|\right)^\delta\leq C(\delta)2^{n} Mf(x)^\delta
+	\end{split}
+	\end{equation}
+	pct $x\in\overline{Q}$, en particular, pct $x\in Q$. En el segundo paso hemos usado que $f_1=f\cdot\chi_{\overline{Q}}$.
+	
+	Por otra parte,
 \end{proof}
 
 \begin{thebibliography}{99}
