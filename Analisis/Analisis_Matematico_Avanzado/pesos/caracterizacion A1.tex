@@ -11,6 +11,8 @@
 
 \usepackage{ bbm }
 
+\usepackage{comment}
+
 \usepackage[doument]{ragged2e}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
@@ -69,13 +71,13 @@ Consideramos el funcional maximal de Hardy-Littlewood $M$ definido por
 \begin{equation}\label{eq: H-L}
 Mf(x)=\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f(y)|dy
 \end{equation}
-para cada $f$ localmente integrable en $\mathbb{R}^n$ \big($f\in L^1_{\rm loc}(\mathbb{R}^n)$\big). El supremo de la expresión de arriba es en todos los cubos diádicos $Q$ que contienen al punto $x\in\mathbb{R}^n$.
+para cada $f$ localmente integrable en $\mathbb{R}^n$ \big($f\in L^1_{\rm loc}(\mathbb{R}^n)$\big). El supremo de la expresión de arriba es en todos los cubos $Q$ que contienen al punto $x\in\mathbb{R}^n$.
 
-La condición para que un peso $w$ esté en la clase $A_1$ es
+Recordamos que la condición para que un peso $w$ esté en la clase $A_1$ es
 \begin{equation}\label{eq: A1}
 \frac{w(Q)}{|Q|}\leq C w(x) 
 \end{equation}
-para casi todo $x\in Q$ y para todo cubo diádico $Q$. La constance $C$ no puede depender ni de $x$ ni de $Q$, se le llama \emph{constante $A_1$ de $w$}.
+para casi todo $x\in Q$ y para todo cubo $Q$. La constance $C$ no puede depender ni de $x$ ni de $Q$, se le llama \emph{constante $A_1$ de $w$}.
 
 \section*{Demostración del teorema}
 
@@ -86,24 +88,63 @@ Primero enunciaremos dos resultados que necesitaremos para la prueba del teorema
 	para alguna constante $C(\delta)$ dependiente de $\delta$ válida para toda $f$ integrable.
 \end{lemma}
 
-Sabemos que el operador $M$ es (1,1)-débil, por lo que podremos aplicarle éste resultado. El siguiente es la \emph{desigualdad de Hölder inversa}.
+\begin{proof}
+	
+	Partimos de que existe una constante $C>0$ tal que
+	\[|\{x\in\mathbb{R}^n:|Tf(x)|>\lambda\}|\leq\frac{C\|f\|_1}{\lambda}\]
+	para toda $f\in L_1(\mathbb{R}^n)$.
+	
+	Tomando $\phi(\lambda)=\lambda^\delta$, se tiene por el TFC que
+	\[\int_E |Tf(x)|^\delta dx=\int_E \phi(|Tf(x)|)dx=\int_E\int_0^{|Tf(x)|}\phi'(\lambda)d\lambda dx=\delta\int_E\int_0^{|Tf(x)|}\lambda^{\delta-1}d\lambda dx.\]
+	Usando Fubini-Tonelli obtenemos
+	\[\int_E |Tf(x)|^\delta dx=\delta\int_0^{+\infty}\int_{E'}\lambda^{\delta-1}dxd\lambda=\delta\int_0^{+\infty}\lambda^{\delta-1}\int_{E'}dxd\lambda=\delta\int_0^{+\infty}\lambda^{\delta-1}|E'|d\lambda,\]
+	donde $E'=\{x\in E:0<\lambda<|Tf(x)|\}$. La desigualdad $(1,1)$-débil nos dice que $|E'|\leq\min\left\{|E|,\frac{C}{\lambda}\|f\|_1\right\}$, luego
+	\begin{align*}
+	\int_E |Tf(x)|^\delta dx&\leq\delta\int_0^{+\infty} \lambda^{\delta-1}\min\left\{|E|,\frac{C}{\lambda}\|f\|_1\right\}d\lambda \\
+	&=\delta \int_0^{C\|f\|_1/|E|}\lambda^{\delta-1}|E|d\lambda+\delta\int_{C\|f\|_1/|E|}^{+\infty} C\|f\|_1\lambda^{\delta-2}d\lambda \\
+	&=|E|\lambda^\delta\Big|_0^{C\|f\|_1/|E|}+\delta C \|f\|_1 \frac{\lambda^{\delta-1}}{\delta-1}\Big|_{C\|f\|_1/|E|}^{+\infty} \\
+	&=|E|C^\delta \|f\|_1^\delta |E|^{-\delta}+\frac{\delta}{1-\delta}C\|f\|_1 C^{\delta-1}\|f\|_1^{\delta-1}|E|^{1-\delta} \\
+	&\leq |E|^{1-\delta}\|f\|_1^\delta\left(C^\delta+\frac{\delta}{1-\delta}C\right)=|E|^{1-\delta}\|f\|_1^\delta C(\delta).
+	\end{align*}
+\end{proof}
+
+Sabemos que el operador $M$ es (1,1)-débil, por lo que podremos aplicarle éste resultado. El siguiente es la \emph{desigualdad de Hölder inversa}, que ya fue probado durante el curso.
 
 \begin{lemma} \label{lm: inverse holder} Si $w\in A_p$ con $1<p<\infty$. Existe $\varepsilon>0$ dependiente sólo de $p$ y de la constante $A_p$ de $w$ tal que
 	\[\left(\frac{1}{|Q|}\int_Q w^{1+\varepsilon}\right)^{\frac{1}{1+\varepsilon}}\leq \frac{C}{|Q|}\int_Q w,\]
-	donde la constante $C$ es válida para todo cubo diádico $Q$.
+	donde la constante $C$ es válida para todo cubo $Q$.
 \end{lemma}
+
+\begin{comment}
+La siguiente observación es necesaria. Cuando dilatamos un cubo diádico manteniendo su centro y doblando su lado no obtenemos necesariamente un cubo diádico, puesto que los vértices puede que no estén en el retículo $(2^{-k}\mathbb{Z})^n$ siendo $2^{-k}$ la longitud del nuevo lado. En el siguiente dibujo se muestra un ejemplo: Dividimos el cubo azul obteniendo los cuatro cubos de la siguiente generación que están contenidos en él. Si dilatamos el cubo morado de abajo a la izquierda duplicando su lado y manteniendo su centro obtenemos el cubo verde, que no puede ser diádico porque interseca con el azul sin que ninguno de ellos esté contenido en el otro.
+
+\begin{center}
+	\includegraphics[width=80mm]{imgs/no-diadico}
+\end{center}
+
+Lo que sí ocurre es que el cubo resultante de la dilatación es la unión disjunta del cubo morado y de varios cubos diádicos alrededor. Son de la generación posterior al morado, con la mitad de lado. En el siguiente dibujo el cubo original es el azul y el dilatado el rojo. El rojo es unión del azul con varios cubos alrededor, representamos algunos de ellos en azul claro. 
+
+\begin{center}
+	\includegraphics[width=80mm]{imgs/union-diadicos}
+\end{center}
+
+Si ahora quisiésemos un cubo con el triple de lado que el cubo diádico original (azul), podríamos añadir otra capa de cubos diádicos del tamaño de los celestes alrededor, lo mismo para el cuádruple y así sucesivamente. Esto es válido también en dimensión mayor que dos. Por último, notemos que si un cubo es unión disjunta de diádicos: $Q'=Q_1\cup \cdots \cup Q_m$, para cada $f\in L^1_{\rm loc}(\mathbb{R}^n)$ y cada $x\in Q'$ se tiene TODO
+\begin{equation}
+\frac{1}{|Q'|}\int_{Q'}|f|=\frac{1}{|Q'|}\sum_{j=1}^m \int_{Q_j}|f|\leq \frac{1}{|Q'|}\int_{Q'}|f|
+\end{equation}
+\end{comment}
 
 Ya estamos en condiciones de demostrar el teorema de caracterización de pesos $A_1$.
 
 \begin{theorem}\label{thm: A1 characterization} Sea $f\in L^1_{\rm loc}(\mathbb{R}^n)$ tal que $Mf(x)<\infty$ casi por doquier en $\mathbb{R}^n$. Si $\delta\in[0,1[$, $w(x)=\big(Mf(x)\big)^\delta$ es un peso $A_1$ con constante $A_1$ dependiente del $\delta$ pero no de $f$.
 	
-Recíprocamente, si $w\in A_1$ existen $f\in L^1_{\rm loc}(\mathbb{R}^n)$, $k\in L^\infty$ con $k^{-1}\in L^\infty$ y $\delta\in[0,1[$ tales que $w=k(Mf)^\delta$.
+Recíprocamente, si $w\in A_1$ existen $f\in L^1_{\rm loc}(\mathbb{R}^n)$, $k\in L^\infty(\mathbb{R}^n)$ con $k^{-1}\in L^\infty(\mathbb{R}^n)$ y $\delta\in[0,1[$ tales que $w=k(Mf)^\delta$.
 \end{theorem}
 
 \begin{proof}
-	Para la primera parte, debemos probar que para todo cubo diádico $Q$ y para casi todo $x\in Q$ se tiene la condición $A_1$:
+	Para la primera parte, debemos probar que para todo cubo $Q$ y para casi todo $x\in Q$ se tiene la condición $A_1$:
 	\[\frac{1}{|Q|}\int_Q(Mf)^\delta\leq C\big(Mf(x)\big)^\delta\]
-	con $C$ independientemente de $Q$ y de $f$. Fijados $Q$ y $f$, sea $\overline{Q}$ el cubo con el mismo centro y el doble de lado. De esta forma, $\overline{Q}$ también es un cubo diádico con $|\overline{Q}|=2^n|Q|$. Podemos escribir $f=f_1+f_2$ con $f_1=f\cdot\chi_{\overline{Q}}$ y $f_2=f-f_1$. Tenemos
+	con $C$ independientemente de $Q$ y de $f$. Fijados $Q$ y $f$, sea $\overline{Q}$ el cubo con el mismo centro y el doble de lado. De esta forma se tiene $|\overline{Q}|=2^n|Q|$. Podemos escribir $f=f_1+f_2$ con $f_1=f\cdot\chi_{\overline{Q}}$ y $f_2=f-f_1$. Tenemos
 	\begin{align*}
 	Mf(x)&=\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f_1(y)+f_2(y)|dy\leq\sup_{Q\ni x}\left(\frac{1}{|Q|}\int_Q|f_1(y)|dy+\frac{1}{|Q|}\int_Q|f_2(y)|dy\right) \\
 	&\leq\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f_1(y)|dy+\sup_{Q\ni x}\frac{1}{|Q|}\int_Q|f_2(y)|dy=Mf_1(x)+Mf_2(x)
@@ -118,7 +159,35 @@ Recíprocamente, si $w\in A_1$ existen $f\in L^1_{\rm loc}(\mathbb{R}^n)$, $k\in
 	\end{equation}
 	pct $x\in\overline{Q}$, en particular, pct $x\in Q$. En el segundo paso hemos usado que $f_1=f\cdot\chi_{\overline{Q}}$.
 	
-	Por otra parte,
+	Por otra parte, para cada $y\in Q$ satisfaciendo $Mf_2(y)>0$ habrá algún cubo $R\ni y$ tal que $\int_R |f_2|>0$. Como $f_2|_{\overline{Q}}\equiv 0$, el cubo $R$ no puede quedar contenido en $\overline{Q}$. Además, tiene que contener a $y$, por lo que el lado del cubo $R$ deberá ser mayor que la mitad del lado de $Q$. Por tanto, existirá una constante $c_n>0$ dependiente sólo de la dimensión del espacio tal que al dilatar el cubo $R$ por esa constante manteniendo su centro se obtiene un cubo $R'$ tal que $Q\subset R'$ y $|R'|=c_n^n|R|$. Se tiene entonces
+	\[\frac{1}{|R|}\int_R |f_2|\leq \frac{c_n^n}{|R'|}\int_{R'} |f|\leq c_n^n Mf(x) \quad\forall x\in Q,\]
+	y tomando supremo en $R\ni y$ obtenemos $Mf_2(y)\leq c_n^n Mf(x)$ para cada $x,y\in Q$. Esto nos permite acotar la integral
+	\begin{equation} \label{eq: cota int Mf2}
+	\begin{split}
+		\frac{1}{|Q|}\int_Q Mf_2(y)^\delta dy &\leq \frac{1}{|Q|}\int_Q c_n^n Mf(x)^\delta dy=c_n^n Mf(x)^\delta
+	\end{split}
+\end{equation}
+pct $x\in Q$.
+
+Combinando \eqref{eq: cota int Mf1} y \eqref{eq: cota int Mf2} con la desigualdad que probamos al principio nos queda la condición deseada con $C=C(\delta)2^{n}+c_n^n$:
+\begin{align*}
+\frac{1}{|Q|}\int_Q (Mf)^\delta& \leq \frac{1}{|Q|}\int_Q (Mf_1)^\delta + \frac{1}{|Q|}\int_Q (Mf_2)^\delta\leq C(\delta)2^{n} Mf(x)^\delta+c_n^n Mf(x)^\delta \\
+&=\big(C(\delta)2^{n}+c_n^n\big) Mf(x)^\delta =C Mf(x)^\delta
+\end{align*}
+para casi todo $x\in Q$. La arbitrarierdad de $Q$ nos dice que $Mf(x)^\delta\in A_1$ como queríamos.
+
+Ahora probaremos la implicación recíproca. Supongamos que $w\in A_1$, entonces $w\in A_p$ para todo $p\geq 1$. Podemos usar el Lema \ref{lm: inverse holder} para obtener $C,\varepsilon>0$ satisfaciendo
+
+\[\left(\frac{1}{|Q|}\int_Q w^{1+\varepsilon}\right)^{\frac{1}{1+\varepsilon}}\leq \frac{C}{|Q|}\int_Q w=\frac{C w(Q)}{|Q|}\leq C' w(x)\]
+pct $x\in Q$ y para todo cubo $Q$. Para la última desigualdad hemos usado la condición \eqref{eq: A1}. La constante $C'>0$ no depende ni de $x$ ni de $Q$. Fijando $x\in\mathbb{R}^n$ y tomando supremos obtenemos
+\[M(w^{1+\varepsilon})(x)^\frac{1}{1+\varepsilon}\leq C' w(x)\]
+casi por doquier en $\mathbb{R}^n$. Si llamamos $f=w^{1+\varepsilon}\in L^1_{\rm loc}$ y $\delta=\frac{1}{1+\varepsilon}\in ]0,1[$, esto se lee como
+\[Mf(x)^\delta\leq C' w(x)\quad\text{pct $x\in\mathbb{R}^n$}.\]
+Además, aplicando el teorema de diferenciación de Lebesgue obtenemos que pct $x\in\mathbb{R}^n$,
+\[w^{1+\varepsilon}(x)=\lim_{r\to 0}\frac{1}{|Q(x,r)|}\int_{Q(x,r)}w\leq Mw^{1+\varepsilon}(x)=Mf(x),\]
+donde $Q(x,r)$ denota el cubo en $\mathbb{R}^n$ de centro $x$ y radio $r$: $\{y\in\mathbb{R}^n: \|x-y\|_\infty < r\}$. La desigualdad es clara por la definición de $M$, que es el supremo de la misma expresión pero en los cubos que contienen a $x$. Elevando ambos miembros a $\delta=(1+\varepsilon)^{-1}$ obtenemos $w(x)\leq Mf(x)^\delta$ pct $x\in\mathbb{R}^n$.
+
+Definiendo $k(x)=\frac{w(x)}{Mf(x)^\delta}$, se tiene $0<C'^{-1}\leq k(x)\leq 1$ casi por doquier en $\mathbb{R}^n$. Por tanto, $k,1/k\in L^\infty(\mathbb{R}^n)$ y $w=k (Mf)^\delta$.
 \end{proof}
 
 \begin{thebibliography}{99}
